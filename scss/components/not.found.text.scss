@@ -1,0 +1,25 @@
+.not-found-text {
+    .not-found-logo {
+        margin: 50px 0 10px 0;
+        img {
+            width: 7em;
+        }
+    }
+    .not-found-text {
+        p {
+            font-size: 1em;
+            color: #959595;
+            margin: 0 5px 0 0;
+        }
+    }
+}
+
+.refresh-btn {
+    font-size: 1.1em;
+    color: #0092da;
+    border: thin solid #0092da;
+    border-radius: 3px;
+    background-color: transparent;
+    padding: 5px 5px;
+    margin-top: 25px;
+}

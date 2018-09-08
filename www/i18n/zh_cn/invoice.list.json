@@ -1,0 +1,19 @@
+{
+    "invoice.list": {
+        "button": {
+            "delete": "删除",
+            "edit": "编辑"
+        },
+        "empty": "没有费用信息",
+        "header": {
+            "amount": "金额",
+            "attachment": "附件",
+            "comment": "事由",
+            "date": "日期",
+            "index": "序号",
+            "invoiceType": "费用类型"
+        },
+        "noComment": "未填写",
+        "title": "账本"
+    }
+}

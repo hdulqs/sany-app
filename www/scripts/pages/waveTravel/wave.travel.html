@@ -1,0 +1,74 @@
+<ion-view class="waveTravel">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'wave.wave.travel' | translate}}<!--扬招出行--></span>
+    </ion-nav-title>
+    <ion-content>
+        <div class="content">
+            <div class="advisement-div row row-bottom " ng-if="view.getDown">
+                <div class="advisement">
+                    {{data.pickUp.pickUpTime}}<br>
+                    {{data.pickUp.pickUpLocation}}
+                    <div class="img-div"></div>
+                </div>
+            </div>
+            <div class="advisement-div row row-bottom" ng-if="!view.getDown">
+                <div class="advisement">{{'wave.click.build.time.location' | translate}}<!--点击生成上车时间、地点-->
+                    <div class="img-div"></div>
+                </div>
+            </div>
+            <div class="pick-up-button">
+                <button class="button" ng-disabled="!view.pickUp" ng-click="pickUp()">{{'wave.get.on' | translate}}<!--上车--></button>
+            </div>
+            <div class="warn-message-div row" ng-if="data.pickUpMessage">
+                <div class="col col-10"></div>
+                <div class="warn-message col">
+                    {{data.pickUp.pickUpMessage}}
+                </div>
+                <div class="col col-10"></div>
+            </div>
+            <div class="advisement-div row row-bottom" ng-if="view.finish">
+                <div class="advisement">
+                    {{data.getDown.getDownTime}}<br>
+                    {{data.getDown.getDownLocation}}
+                    <div class="img-div"></div>
+                </div>
+            </div>
+            <div class="advisement-div row row-bottom" ng-if="!view.finish">
+                <div class="advisement">
+                    {{'wave.click.build.time.location' | translate}}<!--点击生成下车时间、地点-->
+                    <div class="img-div"></div>
+                </div>
+            </div>
+            <div class="get-down-location">
+                <button class="button" ng-disabled="!view.getDown" ng-click="getDown()">{{'wave.get.off' | translate}}<!--下车--></button>
+            </div>
+            <div class="warn-message-div row" ng-if="data.getDownMessage">
+                <div class="col col-10"></div>
+                <div class="warn-message col">
+                    {{data.getDown.getDownMessage}}
+                </div>
+                <div class="col col-10"></div>
+            </div>
+            <form name="waveForm">
+                <div class="amount-div">
+                    <div class="amount-title" ng-class="{'theme-finish-amount-title': view.finish}">{{'wave.fare' | translate}}<!--车费金额--></div>
+                    <div class="amount row">
+                        <div class="col col-20"></div>
+                        <div class="col amount-col">
+                            <!--请输入车费金额-->
+                            <input type="number" class="amount-input col"
+                                   ng-disabled="!view.finish" placeholder="{{'wave.please.enter.the.fare' | translate}}"
+                                   ng-model="data.amount" money-input decimal-length="2">
+                        </div>
+                        <div class="col col-20"></div>
+                    </div>
+                    <div>
+                        <button class="button finish-button" ng-disabled="!data.amount || view.submit" ng-click="createExpense()">{{'wave.submit' | translate}}<!--提交--></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>
+
+

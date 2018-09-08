@@ -1,0 +1,18 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+    <ion-tab title="{{'tabs.Home.page'|translate}}" icon-off="ion-homepage" icon-on="ion-homepage-active" href="#/tab/dash"><!--首页-->
+        <ion-nav-view name="tab-dash"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="{{'tabs.cost'|translate}}" icon-off="ion-expense" icon-on="ion-expense-active" ng-click="go('app.tab.expense-list')"><!--费用-->
+        <ion-nav-view name="tab-expense"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="{{'tabs.my'|translate}}" icon-off="ion-my-account" icon-on="ion-my-account-active" href="#/tab/account"><!--我的-->
+        <ion-nav-view name="tab-account" animation="slide-left-right"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

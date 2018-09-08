@@ -1,0 +1,15 @@
+{
+    "company": {
+        "Bank.name": "Account Name",
+        "Copy.success": "Copy Successfully",
+        "Network.failure.please.try.again.later": "Network failure, please try again later",
+        "No.information.of.make.out.an.invoice.for.the.time.being": "No billing information at the moment",
+        "Taxpayer.identification.number": "VAT Registration Number",
+        "The.information.of.make.out.an.invoice": "Billing Information",
+        "The.name.of.the.company": "Company Name",
+        "address": "Address",
+        "bank.account": "Bank Account",
+        "error": "Error",
+        "phone": "Phone"
+    }
+}

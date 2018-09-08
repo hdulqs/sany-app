@@ -1,0 +1,35 @@
+<ion-view cache-view="false"  class="help-list">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'help.feedback.help.and.feedback'|translate}}<!--帮助与反馈--></span>
+    </ion-nav-title>
+    <ion-content class="help-category">
+            <div class="list">
+                <div class="item item-divider"></div>
+                <div class="item item-text-wrap" ng-click="gettingStart()" ng-hide="view.functionProfileList['ma.feedback.user.guide.disabled']">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.new.guidance'|translate}}<!--新手指导--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <!--<div class="item item-text-wrap" ng-click="goTo('app.faq_list')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">常见问题</div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>-->
+                <div class="item item-text-wrap" ng-click="goTo('app.feedback')" ng-hide="view.functionProfileList['ma.feedback.bug.report.disabled']">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.The.problem.of.feedback'|translate}}<!--问题反馈--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <!--<div class="item item-text-wrap" ng-click="contactOnline()" ng-hide="view.functionProfileList['ma.feedback.customer.service.disabled']">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col col-95 filed-name">在线客服</div>-->
+                        <!--<span class="icon ion-ios-arrow-right"></span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+    </ion-content>
+</ion-view>
+

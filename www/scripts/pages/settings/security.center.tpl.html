@@ -1,0 +1,22 @@
+<ion-view class="setting-list">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'security_center.Security.center'|translate}}<!--安全中心--></span>
+    </ion-nav-title>
+    <ion-content class="setting-category has-footer">
+        <div class="list">
+            <div class="item item-divider"></div>
+            <div class="item item-text-wrap" ng-click="goTo('app.change_password_init')" ng-if="!functionProfileList['security.password.disabled']">
+                <div class="row">
+                    <div class="col col-95 filed-name">{{'security_center.Modify.the.login.password'|translate}}<!--修改登录密码--></div>
+                    <span class="icon ion-ios-arrow-right"></span>
+                </div>
+            </div>
+            <div class="item item-text-wrap" ng-click="goTo('app.pattern_lock_setting')">
+                <div class="row">
+                    <div class="col col-95 filed-name">{{'security_center.Gestures.to.lock'|translate}}<!--手势锁--></div>
+                    <span class="icon ion-ios-arrow-right"></span>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

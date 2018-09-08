@@ -1,0 +1,64 @@
+{
+    "base": {
+        "Jingdong.application": "Jingdong application",
+        "Please.enter.a.note": "Please enter comments (optional ,, can not be more than 200 characters)",
+        "Please.enter.the.reason": "Please enter subject (required, not be more than 50 characters)",
+        "delete": "Delete",
+        "save": "Save",
+        "submit": "Submit"
+    },
+    "base_js": {
+        "After.deleting.will.cancel.the.jingdong.orders.at.the.same.time": "Cancel will delete Jingdong orders",
+        "Application.form.is.invalid": "Requisition invalid",
+        "Confirm.to.delete": "Are you sure to delete? ",
+        "Cost.center.is.not.configured": "Cost center is not configured, please contact the administrator",
+        "Delete.failed": "Failed to delete",
+        "Delete.the.success": "Successfully Deleted",
+        "Has.been.submitted": "Submitted",
+        "Jingdong.order.is.invalid": "Jingdong order invalid",
+        "Jingdong.order.time.error": "Jingdong orders wrong time",
+        "Please.enter.the": "Please enter ",
+        "Please.select.a": "Please choose ",
+        "Save.failed": "Failed to save",
+        "The.order.was.cancelled": "Order has been canceled, the application can not be submitted",
+        "The.saved": "Saved",
+        "cancel": "Cancel",
+        "day": "Day",
+        "determine": "OK",
+        "hours": "Hour",
+        "submit.failure": "Submission Failed"
+    },
+    "detail": {
+        "Go.to.the.payment": "To Pay",
+        "The.examination.and.approval.of.history": "Approval History",
+        "To.view.the.order.details": "View order details",
+        "Waiting": "Wait",
+        "examine.and.approve": "Approval",
+        "pass": "Passed",
+        "reject": "Rejected",
+        "withdraw": "Withdraw"
+    },
+    "detail_js": {
+        "Has.been.rejected": "Rejected",
+        "Has.withdrawn": "It has been withdrawn",
+        "Have.been.through": "Passed",
+        "Please.enter.the.reject.reason": "Please enter a reason for rejection",
+        "Reason.for.rejection": "Reason for rejection",
+        "Withdraw.the.failure": "Recall Failure",
+        "cancel": "Cancel",
+        "failed": "Failed",
+        "ok": "OK"
+    },
+    "order": {
+        "Check.the.details": "See details",
+        "Has.been.cancelled": "Cancelled",
+        "Have.to.return": "Returned",
+        "Logistics.information": "Logistics Information",
+        "The.order.information": "Order information",
+        "The.rest.payment": "The remaining time of payment",
+        "Total.amount": "Total Amount",
+        "freight": "Freight",
+        "number": "Quantity",
+        "pleaseInputReason": "Please input reason"
+    }
+}

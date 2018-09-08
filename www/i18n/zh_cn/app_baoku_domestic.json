@@ -1,0 +1,994 @@
+[
+    {
+        "tag": "历史",
+        "customLocationDetailDTOS": [
+        ]
+    },
+    {
+        "tag": "热门",
+        "customLocationDetailDTOS": [
+            {
+                "code": "CHN011000000",
+                "city": "北京"
+            },
+            {
+                "code": "CHN043001000",
+                "city": "长沙"
+            },
+            {
+                "code": "CHN051001000",
+                "city": "成都"
+            },
+            {
+                "code": "CHN050000000",
+                "city": "重庆"
+            },
+            {
+                "code": "CHN021002000",
+                "city": "大连"
+            },
+            {
+                "code": "CHN035001000",
+                "city": "福州"
+            },
+            {
+                "code": "CHN044001000",
+                "city": "广州"
+            },
+            {
+                "code": "CHN033001000",
+                "city": "杭州"
+            },
+            {
+                "code": "CHN037001000",
+                "city": "济南"
+            },
+            {
+                "code": "CHN053001000",
+                "city": "昆明"
+            },
+            {
+                "code": "CHN032001000",
+                "city": "南京"
+            },
+            {
+                "code": "CHN037002000",
+                "city": "青岛"
+            },
+            {
+                "code": "CHN046002000",
+                "city": "三亚"
+            },
+            {
+                "code": "CHN031000000",
+                "city": "上海"
+            },
+            {
+                "code": "CHN044003000",
+                "city": "深圳"
+            },
+            {
+                "code": "CHN012000000",
+                "city": "天津"
+            },
+            {
+                "code": "CHN042001000",
+                "city": "武汉"
+            },
+            {
+                "code": "CHN061001000",
+                "city": "西安"
+            },
+            {
+                "code": "CHN035002000",
+                "city": "厦门"
+            },
+            {
+                "code": "CHN041001000",
+                "city": "郑州"
+            }
+        ]
+    },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN021003000",
+        "city": "鞍山"
+      },
+      {
+        "code": "CHN034008000",
+        "city": "安庆"
+      },
+      {
+        "code": "CHN052004000",
+        "city": "安顺"
+      },
+      {
+        "code": "CHN054025000",
+        "city": "阿里"
+      },
+      {
+        "code": "CHN061009000",
+        "city": "安康"
+      },
+      {
+        "code": "CHN065029000",
+        "city": "阿克苏"
+      },
+      {
+        "code": "CHN065043000",
+        "city": "阿勒泰"
+      }
+    ],
+    "tag": "A"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN011000000",
+        "city": "北京"
+      },
+      {
+        "code": "CHN015002000",
+        "city": "包头"
+      },
+      {
+        "code": "CHN015008000",
+        "city": "巴彦淖尔"
+      },
+      {
+        "code": "CHN045005000",
+        "city": "北海"
+      },
+      {
+        "code": "CHN045010000",
+        "city": "百色"
+      },
+      {
+        "code": "CHN052024000",
+        "city": "毕节"
+      },
+      {
+        "code": "CHN053005000",
+        "city": "保山"
+      },
+      {
+        "code": "CHN065027001",
+        "city": "博乐"
+      }
+    ],
+    "tag": "B"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN011005000",
+        "city": "朝阳"
+      },
+      {
+        "code": "CHN014004000",
+        "city": "长治"
+      },
+      {
+        "code": "CHN015004000",
+        "city": "赤峰"
+      },
+      {
+        "code": "CHN022001000",
+        "city": "长春"
+      },
+      {
+        "code": "CHN032004000",
+        "city": "常州"
+      },
+      {
+        "code": "CHN043001000",
+        "city": "长沙"
+      },
+      {
+        "code": "CHN043007000",
+        "city": "常德"
+      },
+      {
+        "code": "CHN050000000",
+        "city": "重庆"
+      },
+      {
+        "code": "CHN051001000",
+        "city": "成都"
+      },
+      {
+        "code": "CHN054021000",
+        "city": "昌都"
+      },
+      {
+        "code": "CHN022025000",
+        "city": "长白山"
+      },
+      {
+        "code": "CHN021002024",
+        "city": "长海"
+      },
+      {
+        "code": "CHN034017000",
+        "city": "池州"
+      }
+    ],
+    "tag": "C"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN014002000",
+        "city": "大同"
+      },
+      {
+        "code": "CHN021002000",
+        "city": "大连"
+      },
+      {
+        "code": "CHN021006000",
+        "city": "丹东"
+      },
+      {
+        "code": "CHN023006000",
+        "city": "大庆"
+      },
+      {
+        "code": "CHN037005000",
+        "city": "东营"
+      },
+      {
+        "code": "CHN053029000",
+        "city": "大理"
+      },
+      {
+        "code": "CHN053031000",
+        "city": "德宏"
+      },
+      {
+        "code": "CHN053034000",
+        "city": "迪庆"
+      },
+      {
+        "code": "CHN051033037",
+        "city": "稻城"
+      },
+      {
+        "code": "CHN062009082",
+        "city": "敦煌"
+      },
+      {
+        "code": "CHN063028002",
+        "city": "德令哈"
+      }
+    ],
+    "tag": "D"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN015006000",
+        "city": "鄂尔多斯"
+      },
+      {
+        "code": "CHN042028000",
+        "city": "恩施"
+      },
+      {
+        "code": "CHN015029023",
+        "city": "额济纳旗"
+      },
+      {
+        "code": "CHN015025001",
+        "city": "二连浩特"
+      }
+    ],
+    "tag": "E"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN034012000",
+        "city": "阜阳"
+      },
+      {
+        "code": "CHN035001000",
+        "city": "福州"
+      },
+      {
+        "code": "CHN044006000",
+        "city": "佛山"
+      },
+      {
+        "code": "CHN065043022",
+        "city": "富蕴"
+      }
+    ],
+    "tag": "F"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN036007000",
+        "city": "赣州"
+      },
+      {
+        "code": "CHN044001000",
+        "city": "广州"
+      },
+      {
+        "code": "CHN045003000",
+        "city": "桂林"
+      },
+      {
+        "code": "CHN051008000",
+        "city": "广元"
+      },
+      {
+        "code": "CHN052001000",
+        "city": "贵阳"
+      },
+      {
+        "code": "CHN064004000",
+        "city": "固原"
+      },
+      {
+        "code": "CHN063028001",
+        "city": "格尔木"
+      },
+      {
+        "code": "CHN051006081",
+        "city": "广汉"
+      },
+      {
+        "code": "CHN042097000",
+        "city": "光化"
+      }
+    ],
+    "tag": "G"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN013004000",
+        "city": "邯郸"
+      },
+      {
+        "code": "CHN015001000",
+        "city": "呼和浩特"
+      },
+      {
+        "code": "CHN023001000",
+        "city": "哈尔滨"
+      },
+      {
+        "code": "CHN023011000",
+        "city": "黑河"
+      },
+      {
+        "code": "CHN032008000",
+        "city": "淮安"
+      },
+      {
+        "code": "CHN033001000",
+        "city": "杭州"
+      },
+      {
+        "code": "CHN034001000",
+        "city": "合肥"
+      },
+      {
+        "code": "CHN034010000",
+        "city": "黄山"
+      },
+      {
+        "code": "CHN043004000",
+        "city": "衡阳"
+      },
+      {
+        "code": "CHN043012000",
+        "city": "怀化"
+      },
+      {
+        "code": "CHN044013000",
+        "city": "惠州"
+      },
+      {
+        "code": "CHN045012000",
+        "city": "河池"
+      },
+      {
+        "code": "CHN046001000",
+        "city": "海口"
+      },
+      {
+        "code": "CHN061007000",
+        "city": "汉中"
+      },
+      {
+        "code": "CHN065032000",
+        "city": "和田"
+      }
+    ],
+    "tag": "H"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN021007000",
+        "city": "锦州"
+      },
+      {
+        "code": "CHN023003000",
+        "city": "鸡西"
+      },
+      {
+        "code": "CHN023008000",
+        "city": "佳木斯"
+      },
+      {
+        "code": "CHN036002000",
+        "city": "景德镇"
+      },
+      {
+        "code": "CHN036004000",
+        "city": "九江"
+      },
+      {
+        "code": "CHN037001000",
+        "city": "济南"
+      },
+      {
+        "code": "CHN037008000",
+        "city": "济宁"
+      },
+      {
+        "code": "CHN044052000",
+        "city": "揭阳"
+      },
+      {
+        "code": "CHN062002000",
+        "city": "嘉峪关"
+      },
+      {
+        "code": "CHN062003000",
+        "city": "金昌"
+      },
+      {
+        "code": "CHN023028000",
+        "city": "加格达奇"
+      },
+      {
+        "code": "CHN036008081",
+        "city": "井冈山"
+      },
+      {
+        "code": "CHN051032025",
+        "city": "九寨沟"
+      }
+    ],
+    "tag": "J"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN053001000",
+        "city": "昆明"
+      },
+      {
+        "code": "CHN065002000",
+        "city": "克拉玛依"
+      },
+      {
+        "code": "CHN065031000",
+        "city": "喀什"
+      },
+      {
+        "code": "CHN065096000",
+        "city": "喀纳斯"
+      },
+      {
+        "code": "CHN051033021",
+        "city": "康定"
+      },
+      {
+        "code": "CHN065029023",
+        "city": "库车"
+      },
+      {
+        "code": "CHN065028001",
+        "city": "库尔勒"
+      }
+    ],
+    "tag": "K"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN014010000",
+        "city": "临汾"
+      },
+      {
+        "code": "CHN014011000",
+        "city": "吕梁"
+      },
+      {
+        "code": "CHN032007000",
+        "city": "连云港"
+      },
+      {
+        "code": "CHN037013000",
+        "city": "临沂"
+      },
+      {
+        "code": "CHN041003000",
+        "city": "洛阳"
+      },
+      {
+        "code": "CHN045002000",
+        "city": "柳州"
+      },
+      {
+        "code": "CHN050028000",
+        "city": "梁平"
+      },
+      {
+        "code": "CHN051005000",
+        "city": "泸州"
+      },
+      {
+        "code": "CHN052002000",
+        "city": "六盘水"
+      },
+      {
+        "code": "CHN053007000",
+        "city": "丽江"
+      },
+      {
+        "code": "CHN053009000",
+        "city": "临沧"
+      },
+      {
+        "code": "CHN054001000",
+        "city": "拉萨"
+      },
+      {
+        "code": "CHN054026000",
+        "city": "林芝"
+      },
+      {
+        "code": "CHN062001000",
+        "city": "兰州"
+      },
+      {
+        "code": "CHN052027022",
+        "city": "荔波"
+      },
+      {
+        "code": "CHN015004024",
+        "city": "林西"
+      },
+      {
+        "code": "CHN052026031",
+        "city": "黎平"
+      },
+      {
+        "code": "CHN036004002",
+        "city": "庐山"
+      }
+    ],
+    "tag": "L"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN023010000",
+        "city": "牡丹江"
+      },
+      {
+        "code": "CHN051007000",
+        "city": "绵阳"
+      },
+      {
+        "code": "CHN015007081",
+        "city": "满洲里"
+      },
+      {
+        "code": "CHN023027023",
+        "city": "漠河"
+      }
+    ],
+    "tag": "M"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN032001000",
+        "city": "南京"
+      },
+      {
+        "code": "CHN032006000",
+        "city": "南通"
+      },
+      {
+        "code": "CHN033002000",
+        "city": "宁波"
+      },
+      {
+        "code": "CHN036001000",
+        "city": "南昌"
+      },
+      {
+        "code": "CHN041013000",
+        "city": "南阳"
+      },
+      {
+        "code": "CHN045001000",
+        "city": "南宁"
+      },
+      {
+        "code": "CHN051013000",
+        "city": "南充"
+      },
+      {
+        "code": "CHN065097000",
+        "city": "那拉提"
+      }
+    ],
+    "tag": "N"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN051004000",
+        "city": "攀枝花"
+      }
+    ],
+    "tag": "P"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN013003000",
+        "city": "秦皇岛"
+      },
+      {
+        "code": "CHN023002000",
+        "city": "齐齐哈尔"
+      },
+      {
+        "code": "CHN033008000",
+        "city": "衢州"
+      },
+      {
+        "code": "CHN037002000",
+        "city": "青岛"
+      },
+      {
+        "code": "CHN050039000",
+        "city": "黔江"
+      },
+      {
+        "code": "CHN062010000",
+        "city": "庆阳"
+      },
+      {
+        "code": "CHN065028025",
+        "city": "且末"
+      }
+    ],
+    "tag": "Q"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN037011000",
+        "city": "日照"
+      },
+      {
+        "code": "CHN054023000",
+        "city": "日喀则"
+      }
+    ],
+    "tag": "R"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN013001000",
+        "city": "石家庄"
+      },
+      {
+        "code": "CHN021001000",
+        "city": "沈阳"
+      },
+      {
+        "code": "CHN031000000",
+        "city": "上海"
+      },
+      {
+        "code": "CHN035004000",
+        "city": "三明"
+      },
+      {
+        "code": "CHN042003000",
+        "city": "十堰"
+      },
+      {
+        "code": "CHN044003000",
+        "city": "深圳"
+      },
+      {
+        "code": "CHN046002000",
+        "city": "三亚"
+      }
+    ],
+    "tag": "S"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN012000000",
+        "city": "天津"
+      },
+      {
+        "code": "CHN013002000",
+        "city": "唐山"
+      },
+      {
+        "code": "CHN014001000",
+        "city": "太原"
+      },
+      {
+        "code": "CHN015005000",
+        "city": "通辽"
+      },
+      {
+        "code": "CHN022005000",
+        "city": "通化"
+      },
+      {
+        "code": "CHN033010000",
+        "city": "台州"
+      },
+      {
+        "code": "CHN062005000",
+        "city": "天水"
+      },
+      {
+        "code": "CHN065042000",
+        "city": "塔城"
+      },
+      {
+        "code": "CHN053005022",
+        "city": "腾冲"
+      }
+    ],
+    "tag": "T"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN015003000",
+        "city": "乌海"
+      },
+      {
+        "code": "CHN015009000",
+        "city": "乌兰察布"
+      },
+      {
+        "code": "CHN032002000",
+        "city": "无锡"
+      },
+      {
+        "code": "CHN033003000",
+        "city": "温州"
+      },
+      {
+        "code": "CHN037007000",
+        "city": "潍坊"
+      },
+      {
+        "code": "CHN037010000",
+        "city": "威海"
+      },
+      {
+        "code": "CHN042001000",
+        "city": "武汉"
+      },
+      {
+        "code": "CHN045004000",
+        "city": "梧州"
+      },
+      {
+        "code": "CHN050001000",
+        "city": "万州"
+      },
+      {
+        "code": "CHN053026000",
+        "city": "文山"
+      },
+      {
+        "code": "CHN065001000",
+        "city": "乌鲁木齐"
+      },
+      {
+        "code": "CHN015022001",
+        "city": "乌兰浩特"
+      },
+      {
+        "code": "CHN035007082",
+        "city": "武夷山"
+      }
+    ],
+    "tag": "W"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN032003000",
+        "city": "徐州"
+      },
+      {
+        "code": "CHN035002000",
+        "city": "厦门"
+      },
+      {
+        "code": "CHN053028000",
+        "city": "西双版纳"
+      },
+      {
+        "code": "CHN061001000",
+        "city": "西安"
+      },
+      {
+        "code": "CHN063001000",
+        "city": "西宁"
+      },
+      {
+        "code": "CHN042006000",
+        "city": "襄阳"
+      },
+      {
+        "code": "CHN051034001",
+        "city": "西昌"
+      },
+      {
+        "code": "CHN015025002",
+        "city": "锡林浩特"
+      },
+      {
+        "code": "CHN052023001",
+        "city": "兴义"
+      }
+    ],
+    "tag": "X"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN014008000",
+        "city": "运城"
+      },
+      {
+        "code": "CHN021008000",
+        "city": "营口"
+      },
+      {
+        "code": "CHN023007000",
+        "city": "伊春"
+      },
+      {
+        "code": "CHN032009000",
+        "city": "盐城"
+      },
+      {
+        "code": "CHN032010000",
+        "city": "扬州"
+      },
+      {
+        "code": "CHN036009000",
+        "city": "宜春"
+      },
+      {
+        "code": "CHN037006000",
+        "city": "烟台"
+      },
+      {
+        "code": "CHN042005000",
+        "city": "宜昌"
+      },
+      {
+        "code": "CHN043011000",
+        "city": "永州"
+      },
+      {
+        "code": "CHN051015000",
+        "city": "宜宾"
+      },
+      {
+        "code": "CHN061006000",
+        "city": "延安"
+      },
+      {
+        "code": "CHN061008000",
+        "city": "榆林"
+      },
+      {
+        "code": "CHN063027000",
+        "city": "玉树"
+      },
+      {
+        "code": "CHN064001000",
+        "city": "银川"
+      },
+      {
+        "code": "CHN022024001",
+        "city": "延吉"
+      },
+      {
+        "code": "CHN023001023",
+        "city": "依兰"
+      },
+      {
+        "code": "CHN065040002",
+        "city": "伊宁"
+      },
+      {
+        "code": "CHN033007082",
+        "city": "义乌"
+      },
+      {
+        "code": "CHN053023028",
+        "city": "元谋"
+      }
+    ],
+    "tag": "Y"
+  },
+  {
+    "customLocationDetailDTOS": [
+      {
+        "code": "CHN013007000",
+        "city": "张家口"
+      },
+      {
+        "code": "CHN033009000",
+        "city": "舟山"
+      },
+      {
+        "code": "CHN041001000",
+        "city": "郑州"
+      },
+      {
+        "code": "CHN043008000",
+        "city": "张家界"
+      },
+      {
+        "code": "CHN044004000",
+        "city": "珠海"
+      },
+      {
+        "code": "CHN044008000",
+        "city": "湛江"
+      },
+      {
+        "code": "CHN052003000",
+        "city": "遵义"
+      },
+      {
+        "code": "CHN053006000",
+        "city": "昭通"
+      },
+      {
+        "code": "CHN062007000",
+        "city": "张掖"
+      },
+      {
+        "code": "CHN064005000",
+        "city": "中卫"
+      }
+    ],
+    "tag": "Z"
+  }
+]

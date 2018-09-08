@@ -1,0 +1,25 @@
+/*
+  Localizable.strings
+  PluginDemo
+
+  Created by Yongjia Liu on 2017/5/31.
+
+*/
+"CALENDAR_TEST" = "测试";
+"CALENDAR_SELECT_DATE" = "选择日期";
+"CALENDAR_CANCEL" = "取消";
+"CALENDAR_LIMIT" = "不限制";
+
+
+"CALENDAR_SUN" = "日";
+"CALENDAR_MON" = "一";
+"CALENDAR_TUE" = "二";
+"CALENDAR_WED" = "三";
+"CALENDAR_THU" = "四";
+"CALENDAR_FRI" = "五";
+"CALENDAR_SAT" = "六";
+
+"alert_title" = "无法获取地理位置";
+"alert_message" = "滴滴，费用，里程补贴等功能需要使用定位功能,请在iPhone的 设置-隐私-定位服务 中允许访问地理位置";
+"alert_cancel" = "取消";
+"alert_comfirm" = "确定";

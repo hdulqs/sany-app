@@ -1,0 +1,27 @@
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+node_modules/
+local_plugins/
+platforms/
+#/plugins/
+.idea
+www/lib/**
+app.constants.js
+www/scripts/server.js
+
+translation_excel.py
+update_config.py
+
+.DS_Store
+
+www/css/**
+/res/
+
+*.iml
+*.sh
+*.apk
+*.keystore
+ionic.config.json
+*mockData*
+*.xlsx

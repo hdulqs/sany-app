@@ -1,0 +1,201 @@
+.approval {
+    .go-back-arrow {
+        padding: 0;
+        border: none;
+        background-color: transparent;
+    }
+    ion-content {
+        //margin-top: 44px;
+        background-color: #f8f8f8;
+        .pane.scroll-content.ionic-scroll {
+            padding-top: 10px
+        }
+    }
+    .approval-list {
+        margin-top: 44px;
+        //background-color: #f8f8f8;
+        .list {
+            padding-top: 10px;
+            .row {
+                height: 90px;
+                padding: 5px 5px 5px 15px;
+                border-right: 0;
+                img {
+                    border-radius: 50%;
+                    border: 1px solid #f1f1f1;
+                    height: 60px;
+                    width: 60px;
+                }
+                .col-name {
+                    padding: 5px;
+                }
+                .approval-create-date {
+                    font-size: 12px;
+                    text-align: right;
+                }
+                .wait-for-approval {
+                    text-align: right;
+                    .invoiceAmount {
+                        color: #ffaa46;;
+                    }
+                    .invoiceNum {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+
+    .approval-other-expense {
+        background-color: #f8f8f8;
+        padding-top: 10px;
+        margin-top: 44px;
+
+        .approval-main.item {
+            padding: 0px 5px;
+            height: 90px;
+        }
+
+        .card img {
+            display: inline;
+            box-shadow: none;
+        }
+
+        .expense-detail {
+            height: 90px;
+            .col_secondRow {
+                //margin-top: 7px;
+            }
+        }
+        .row-center {
+            height: 90px;
+            .proName {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-size: 15px;
+                color: #4c4c4c;
+            }
+        }
+        .approval-type {
+            width: 30px;
+        }
+        .approval-omit {
+            font-size: 17px;
+            margin-left: 5px;
+            position: relative;
+        }
+        .approval-img {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            .typeImg {
+                width: 30px;
+                border-radius: 50%;
+                margin-left: 3px;
+            }
+            .omit {
+                color: #979590;
+                position: relative;
+                font-size: 18px;
+                bottom: 13px;
+                right: 0;
+            }
+        }
+        .imgName {
+            color: rgb(151, 149, 144);
+            font-size: 0.7em;
+            position: relative;
+            top: 0.3em;
+        }
+        .preInvoiceType {
+            color: rgb(151, 149, 144);
+            font-size: 0.7em;
+            position: relative;
+        }
+
+
+        .secondCol {
+            text-align: right;
+            margin-top: 4px;
+            .expense-money {
+                padding-bottom: 6px;
+            }
+            .expense-amount {
+                font-size: 15px;
+                color: #ff6a10;
+                width: 100%;
+                .ion-social-yen {
+                    font-size: 0.8em;
+                }
+            }
+            .preInvoice-amount{
+                position: ABSOLUTE;
+                right: 15px;
+                top: 16px;
+            }
+            .expense-user {
+                font-size: 13px;
+                width: 100%;
+                color: #959595;
+
+            }
+            .date-span {
+                width: 100%;
+                color: #959595;
+                font-size: 12px;
+            }
+            .expense-date {
+
+            }
+            .expense-message {
+                .message-span {
+                    width: 100%;
+                    color: #959595;
+                    font-size: 12px;
+
+                }
+            }
+        }
+    }
+}
+
+
+
+#approval-list-toggle-button {
+    font-size: 15px;
+    height: 44px;
+    padding: 0;
+    color: #444;
+    .button:after {
+        left: 0;
+        right: 0;
+        top: 0;
+        buttom: 0;
+        font-size: 15px;
+    }
+}
+#approval-list-header{
+    margin: auto -10px;
+    .tab-mode{
+        font-size: 16px;
+        background-color: #fff;
+        border: 1px solid #0092da;
+        padding: 5px;
+        color: #0092da;
+    }
+    .tab-mode-first{
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-right: none;
+    }
+    .tab-mode-second{
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border-left: none;
+    }
+    .active{
+        color: #fff;
+        background-color: #0092da;
+    }
+}

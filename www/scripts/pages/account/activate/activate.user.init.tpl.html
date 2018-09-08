@@ -1,0 +1,33 @@
+<ion-view class="activate-user">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'account.user.activation' | translate}}<!--用户激活--></span>
+    </ion-nav-title>
+    <ion-content class="padding">
+        <form name="getTokenForm" novalidate ng-submit="getToken.sendActivationToken(getTokenForm.$valid)">
+            <p class="prompt-color">{{'account.please.input' | translate}}<!--请输入-->{{mobile}}{{'account.send.verification.code' | translate}}<!--收到验证码--></p>
+
+            <div class="input-group row">
+                <!--请输入验证码-->
+                <input name="token" class="col-60" type="text" placeholder="{{'account.received.verification.code' | translate}}"
+                       ng-model="getToken.token">
+                <button type="submit" class="col-40 button button-positive button-raised" ng-hide="status.smsSent">
+                    {{'account.send.verification.code' | translate}}<!--发送验证码-->
+                </button>
+                <button class="col-40 button disabled" ng-show="status.smsSent && status.timerStart">
+                    <timer interval="1000" countdown="60" auto-start="false"
+                           finish-callback="getToken.countdownFinished()"> {{'account.resend' | translate}}<!--重新发送-->({{countdown}}{{'account.later.second' | translate}}<!--秒后-->)
+                    </timer>
+                </button>
+                <button type="submit" class="col-40 button button-positive"
+                        ng-show="status.smsSent && !status.timerStart">
+                    {{'account.resend.verification.code' | translate}}<!--重新发送验证码-->
+                </button>
+            </div>
+        </form>
+        <button class="button button-block button-positive"
+                ng-disabled="getToken.token == null || getToken.token.length != 6"
+                ng-click="changePasswordNext()"
+        >{{'account.next.step' | translate}}<!--下一步-->
+        </button>
+    </ion-content>
+</ion-view>

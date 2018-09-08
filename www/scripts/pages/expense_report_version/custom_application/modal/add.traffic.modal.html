@@ -1,0 +1,62 @@
+<ion-modal-view class="arrange-journey">
+    <ion-header-bar>
+        <span class="arrange-cancel" ng-click="addTraffic.hide()">
+            {{'common.cancel' | translate}}
+        </span>
+        <h3 class="title">{{'custom.application.travel.add.traffic' | translate}}</h3>
+    </ion-header-bar>
+    <ion-content>
+        <div class="row row-center select-city">
+            <div class="col border-right">
+                <p class="text-center city-label">
+                    {{'custom.application.travel.start.city' | translate}}
+                </p>
+                <p class="text-center city-name">
+                    <city-selector supplier-name="view.oldCitySupplier" city="view.route.fromCity" hide-hot-city="view.functionProfileList['ca.travel.hotCity.disabled']"
+                                   type="view.route.trafficType"
+                                   hide-foreign="view.route.trafficType == 1002"
+                                   readonly="view.readonly" holder="'请选择'">
+                    </city-selector>
+                </p>
+            </div>
+            <div class="col">
+                <p class="text-center city-label">
+                    {{'custom.application.travel.end.city' | translate}}
+                </p>
+                <p class="text-center city-name">
+                    <city-selector supplier-name="view.oldCitySupplier" city="view.route.toCity" hide-hot-city="view.functionProfileList['ca.travel.hotCity.disabled']"
+                                   hide-foreign="view.route.trafficType == 1002"
+                                   type="view.route.trafficType" readonly="view.readonly" holder="'请选择'">
+                    </city-selector>
+                </p>
+            </div>
+        </div>
+        <div class="to-icon">
+            <img src="img/expense_report_version/travel/to.png" alt="">
+        </div>
+        <div>
+            <p class="choice-name">
+                {{'custom.application.travel.please.traffic.date' | translate}}
+            </p>
+            <div class="journey">
+                <div class="row row-center date-list" ng-repeat="date in  view.applicationData.travelApplication.travelItinerarys" ng-click="additional.selectDate($index)">
+                    <img src="img/expense_report_version/travel/select.png" alt="" class="select-icon" ng-if="view.trafficSelectIndex === $index">
+                    <p class="date-index">
+                        {{'custom.application.travel.number' | translate}} {{date.dayNumber}} {{'custom.application.travel.day' | translate}}
+                    </p>
+                    <p class="date-week">
+                        {{date.itineraryDate | dayDotFilter}}
+                    </p>
+                    <p class="date-week">
+                        {{date.week | weekFilter}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="arrange-sure" ng-click="additional.selectCity()">
+            {{'common.ok' | translate}}
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

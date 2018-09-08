@@ -1,0 +1,128 @@
+.private-car-for-public{
+    background: #f1f1f1;
+    .content{
+        .btn-get-location{
+            font-size: 16px;
+            color: #fff;
+            border-radius: 5px;
+            background-color: #0092da;
+            width: 100%;
+            height: 3em;
+            line-height: 3em;
+        }
+        .btn-location-modify{
+            font-size: 16px;
+            color: #0092da;
+            border-radius: 5px;
+            background-color: #F1F1F1;
+            width: 100%;
+            height: 3em;
+            line-height: 3em;
+            border: thin solid #0092da;
+        }
+        .text-placeholder{
+            font-size: 16px;
+            color: #959595;
+            line-height: 30px;
+            margin-top: 30px;
+            min-height: 60px;
+        }
+        .text-location{
+            font-size: 16px;
+            color: #4c4c4c;
+            line-height: 30px;
+            margin-top: 30px;
+            min-height: 60px;
+        }
+        .text-error{
+            font-size: 16px;
+            color: #ff6060;
+            line-height: 30px;
+            margin-top: 30px;
+        }
+        .btn-active{
+            background-color: #0092da;
+        }
+        .btn-disabled{
+            background-color: #cdcdcd;
+        }
+        .distance-text{
+           font-size: 14px;
+            color: #4C4C4C;
+            text-align: right;
+        }
+        .tips{
+            padding-top: 4px;
+            width: 16px;
+            height: 20px;
+        }
+        .text-message-label{
+            font-size: 16px;
+            color: #959595;
+        }
+        .text-price{
+            font-size: 16px;
+            color:#4c4c4c;
+        }
+        .text-money{
+            font-size: 16px;
+            color:#ff9015;
+        }
+        .text-disance{
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+            border-bottom: thin solid #cdcdcd;
+            text-align: center;
+            font-size: 16px;
+            color:#4c4c4c;
+            background-color: #f1f1f1;
+            padding: 0;
+            margin: 0;
+            max-width: 100px;
+            line-height: 34px;
+        }
+    }
+    .private-car-for-public-footer{
+        background-color: #0092da;
+        color: #fff;
+        .row {
+            padding: 0;
+            border-top: thin solid #e2e2e2;
+            .col {
+                padding: 0;
+                height: 44px;
+                line-height: 44px;
+            }
+        }
+    }
+    .text-center{
+        text-align: center;
+    }
+    .text-right{
+        text-align: right;
+    }
+    .btn-active{
+        background-color: #0092da;
+    }
+    .btn-disabled{
+        background-color: #cdcdcd;
+    }
+}
+.platform-android .popover-backdrop, .platform-android .popover-backdrop.active{
+    opacity: 1;
+}
+.platform-android .popover{
+    background-color: #fff;
+}
+.mileage-tips-popover{
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    font-size: 16px;
+    color: #4C4C4C;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.18) !important;
+    border-radius: 5px !important;
+    .relative-container{
+        padding: 10px;
+    }
+}

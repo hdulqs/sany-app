@@ -1,0 +1,40 @@
+.hec-over-standard {
+    font-size: 1rem;
+    .detail-status {
+        text-align: -webkit-center;
+        padding-bottom: 20px;
+        padding-top: 10px;
+        p {
+            font-size: 15px;
+            width: 96%;
+            padding: .5rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e2e2;
+        }
+        div {
+            font-size: 15px;
+            width: 96%;
+            .detail-info {
+                tr th, tr td {
+                    width: 12rem;
+                    border: 1px solid #e2e2e2;
+                    padding: .5rem 0;
+                }
+            }
+        }
+        .detail-wrap {
+            border-radius: .5rem;
+            border: 1px solid #e2e2e2;
+            .detail-bottom{
+                padding-bottom: 0px;
+                .detail-font {
+                    font-size: 16px;
+                    color: #0092da;
+                    padding: .2rem;width:100%;
+                }
+            }
+
+        }
+    }
+
+}

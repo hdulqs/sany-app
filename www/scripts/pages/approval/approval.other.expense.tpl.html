@@ -1,0 +1,151 @@
+<ion-content class="approval-other-expense">
+    <!--加载中...-->
+    <ion-refresher
+        pulling-text="{{'approval.loading'|translate}}"
+        on-refresh="refreshApprovalData()">
+    </ion-refresher>
+    <ion-list class="animate-blinds">
+        <div class="alert alert-warning warn" ng-hide="withoutApprovalList">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <!--暂时没有审批信息!-->
+            <p class="warning-word">{{'approval.notApprovalMessage'|translate}}</p>
+        </div>
+        <ion-item menu-close class="approval-main"
+                  ng-repeat="approval in approvals"
+                  ng-repeat-done="approvalDataLoaded"
+                  ng-show="approvals.length>0"
+                  ng-click="goDetail(approval)"
+            >
+            <div class="row row-center approval-main">
+                <div class="col col-10">
+                    <img class="approval-type" ng-if="approval.processKey === 'reimbursementProcess'"
+                         src="img/expense-type.png"/>
+                    <img class="approval-type" ng-if="approval.processKey === 'customProcess'"
+                         src="img/notification/custom-process.png"/>
+                    <img class="approval-type"
+                         ng-if="approval.processKey === 'travelProcess' && approval.travelDTO.applyType  === 1001"
+                         src="img/notification/flyback-type.png"/>
+                    <img class="approval-type"
+                         ng-if="approval.processKey === 'travelProcess' && approval.travelDTO.applyType  === 1002"
+                         src="img/notification/travel-type.png"/>
+                    <img class="approval-type"
+                         ng-if="approval.processKey === 'travelProcess' && approval.travelDTO.applyType  === 1003"
+                         src="img/notification/travel-type.png"/>
+                </div>
+                <div class="col col-60 expense-detail">
+                    <div class="row">
+                        <span class="proName" ng-if="approval.processKey === 'reimbursementProcess'">{{approval.reimbursementDTO.costCenterItemName}}</span>
+                        <span class="proName" ng-if="approval.processKey === 'travelProcess'">{{approval.travelDTO.costCenterItemName}}</span>
+                        <!--<span class="proName" ng-if="approval.processKey === 'customProcess'">{{approval.costCenterItemName}}</span>-->
+
+                            <span class="proName" ng-if="approval.processKey === 'customProcess' && field.fieldName === '项目'" ng-repeat="field in approval.customProcessDTO.customFormValueDTOs">
+                                {{costCenters[field.value]}}
+                            </span>
+                    </div>
+                    <div class="row col_secondRow">
+                        <div class="col col-27">
+                            <!--费用包含:-->
+                            <span class="imgName" ng-if="approval.processKey === 'reimbursementProcess'">{{'approval.costContain'|translate}}</span>
+                        </div>
+                        <div class="col approval-img">
+                            <img class="typeImg" ng-src="img/expensetypes/{{invoiceType}}.png"
+                                 ng-repeat="invoiceType in approval.reimbursementDTO.invoiceTypes"
+                                 ng-hide="$index>2">
+                                <span class="omit"
+                                      ng-show="approval.reimbursementDTO.invoiceTypes.length > 3">...</span>
+                        </div>
+                    </div>
+
+                    <div class="row col_secondRow" ng-if="approval.processKey === 'customProcess'" ng-repeat="field in approval.customProcessDTO.customFormValueDTOs">
+                        <!--类别-->
+                        <div class="col col-27" ng-if="field.fieldName === {{'approval.Category'|translate}}">
+                                <span class="imgName">
+                                    {{field.value}}
+                                </span>
+                        </div>
+                    </div>
+
+                    <div class="row col_secondRow"
+                         ng-if="approval.processKey === 'travelProcess' && approval.travelDTO.applyType===1002">
+                             <span class="preInvoiceType"
+                                   ng-repeat="item in approval.travelDTO.trafficPlanDTOs[0].airRoute track by $index">
+                                   <span ng-hide="$index>2">{{item}}
+                                       <span ng-hide="(approval.travelDTO.trafficPlanDTOs[0].airRoute.length >= 3&&$index === 2)||(approval.travelDTO.trafficPlanDTOs[0].airRoute.length === 2&&$index === 1)
+                                   ">-</span>
+                                   </span>
+                                </span>
+                            <span class="approval-omit"
+                                  ng-if="approval.travelDTO.trafficPlanDTOs[0].airRoute.length > 3">...</span>
+                    </div>
+                    <div class="row col_secondRow"
+                         ng-if="approval.processKey === 'travelProcess' && approval.travelDTO.applyType !== 1002 && approval.travelDTO.applyType!==1001 && approval.travelDTO.applyType !== 1003">
+                        <div class="approval-travel">
+                            <!--无飞行计划-->
+                            <span class="imgName">{{'approval.notFlightPlan'|translate}}</span>
+                        </div>
+                    </div>
+                    <div class="row col_secondRow"
+                         ng-if="approval.processKey === 'travelProcess' && approval.travelDTO.applyType === 1001">
+                        <div class="approval-travel">
+                            <span class="imgName">{{approval.travelDTO.flybackDTO.projectCity}} - {{approval.travelDTO.flybackDTO.baseCity}}</span>
+                        </div>
+                    </div>
+                    <div class="row col_secondRow"
+                         ng-if="approval.processKey === 'travelProcess' && approval.travelDTO.applyType === 1003">
+                        <div class="approval-travel">
+                            <span class="imgName">{{approval.travelDTO.interviewApplication.departure}} - {{approval.travelDTO.interviewApplication.destination}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col secondCol">
+                    <div class="row expense-money">
+                        <!--金额-->
+                        <div ng-if="approval.processKey === 'customProcess' && field.fieldName === {{'approval.money'|translate}}" ng-repeat="field in approval.customProcessDTO.customFormValueDTOs" style="width: 100%;">
+                                <span class="text-right expense-amount">
+                                    <i class="icon ion-social-yen"></i>
+                                    {{field.value}}
+                                </span>
+                        </div>
+                        <!--<span class="text-right expense-amount" ng-if="approval.processKey === 'customProcess'"-->
+                        <!--ng-repeat="field in approval.customProcessDTO.customFormValueDTOs">-->
+                        <!--<span class="text-right expense-amount" ng-if="field.fieldName === '金额'">-->
+                        <!--<i class="icon ion-social-yen"></i>-->
+                        <!--{{field.value}}-->
+                        <!--</span>-->
+                        <!--</span>-->
+                            <span class="text-right expense-amount" ng-if="approval.processKey === 'reimbursementProcess'"><i
+                                class="icon ion-social-yen"></i>{{approval.reimbursementDTO.totalAmount}}</span>
+                        <!--提交-->
+                        <span class="text-right expense-user" ng-if="approval.processKey === 'travelProcess'">{{approval.travelDTO.applicantMessage.userName}}{{'approval.submit'|translate}}</span>
+                    </div>
+                    <div class="row expense-date">
+                        <span class="date-span" ng-if="approval.processKey === 'reimbursementProcess'">{{approval.reimbursementDTO.applicantMessage.createdDate|dateFilter}}</span>
+                        <span class="date-span" ng-if="approval.processKey === 'travelProcess'">{{approval.travelDTO.applicantMessage.createdDate|dateFilter}}</span>
+                        <!--提交-->
+                        <span class="text-right expense-user" ng-if="approval.processKey === 'customProcess'">{{approval.customProcessDTO.applicantMessage.userName}}{{'approval.submit'|translate}}</span>
+
+                    </div>
+                    <div class="row expense-message">
+                        <span class="date-span" ng-if="approval.processKey === 'customProcess'">{{approval.startTime |dateFilter}}</span>
+                        <span class="message-span" ng-if="approval.processKey === 'reimbursementProcess'">{{approval.reimbursementDTO.applicantMessage.message}}</span>
+                        <!--普通-->
+                            <span class="message-span"
+                                  ng-if="approval.processKey === 'travelProcess' && approval.travelDTO.applyType === 1002">{{'approval.common'|translate}}</span>
+                            <span class="message-span"
+                                  ng-if="approval.processKey === 'travelProcess' && approval.travelDTO.applyType === 1001">flyback</span>
+                        <!--面试-->
+                            <span class="message-span"
+                                  ng-if="approval.processKey === 'travelProcess' && approval.travelDTO.applyType === 1003">{{'approval.Interview'|translate}}</span>
+                    </div>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll
+        on-infinite="loadMoreApprovals(page.current+1)"
+        distance="1%"
+        ng-if="page.links['last'] > page.current"
+        immediate-check="false"
+        >
+    </ion-infinite-scroll>
+</ion-content>

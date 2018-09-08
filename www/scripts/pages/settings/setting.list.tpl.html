@@ -1,0 +1,57 @@
+<ion-view class="setting-list">
+    <ion-nav-buttons side="left">
+        <button class="button back-button buttons button-clear header-item" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'settings_list.Setup'|translate}}<!--设置--></span>
+    </ion-nav-title>
+    <ion-content class="setting-category has-footer">
+        <div class="list">
+            <div class="item item-divider"></div>
+            <!--安全中心-->
+            <!--<div class="item item-text-wrap" ng-click="goTo('app.security_center')">
+                <div class="row">
+                    <div class="col col-95 filed-name">{{'security_center.Security.center'|translate}}</div>
+                    <span class="icon ion-ios-arrow-right"></span>
+                </div>
+            </div>-->
+            <!--修改登录密码-->
+            <div class="item item-text-wrap" ng-click="goTo('app.change_password_init')">
+                <div class="row">
+                    <div class="col col-95 filed-name">{{'security_center.Modify.the.login.password'|translate}}</div>
+                    <span class="icon ion-ios-arrow-right"></span>
+                </div>
+            </div>
+            <div class="item item-text-wrap" ng-click="goTo('app.save_photo')">
+                <div class="row">
+                    <div class="col col-95 filed-name">{{'settings_list.Take.the.invoice'|translate}}<!--拍发票--></div>
+                    <span class="icon ion-ios-arrow-right"></span>
+                </div>
+            </div>
+            <!--<div class="item item-text-wrap" ng-click="showLanguage()">-->
+            <div class="item item-text-wrap" ng-click="showLanguage()">
+                <div class="row">
+                    <div class="col col-60 filed-name">{{'language_list.language'| translate}}
+                        <!--语言--></div>
+                    <div class="col col-35 text-right language-right">{{'language_list.' + view.languageName | translate
+                        }}
+                    </div>
+                    <!--<span class="icon ion-ios-arrow-right"></span>-->
+                </div>
+            </div>
+            <!--滴滴同步-->
+            <!--<div class="item item-text-wrap" ng-click="goTo('app.didi_sync')" ng-if="showDidi">
+                <div class="row">
+                    <div class="col col-95 filed-name">{{'settings_list.didi.synchronization'|translate}}</div>
+                    <span class="icon ion-ios-arrow-right"></span>
+                </div>
+            </div>-->
+        </div>
+    </ion-content>
+    <!--<div class="cover-screen" ng-show="view.operationIsOpen" ng-click="view.operationInit()"></div>-->
+    <!--<button class="sticky-bottom bar bar-footer button-full button-assertive exit-button" ng-click="exitAccount()">退出当前账号</button>-->
+</ion-view>
+

@@ -1,0 +1,20 @@
+<div class="list">
+    <div class="item row">
+        <div class="col col-40">
+            <div class="emp-tip"><!--加签给-->{{'approval.sign.prompt.signTo'|translate}}：</div>
+        </div>
+        <div class="col col-60">
+            <input type="text" ng-click="vm.chooseEmp()" placeholder="{{'approval.sign.prompt.please.choose'|translate}}" ng-model="vm.selectedEmp.name" readonly>
+            <span class="icon ion-ios-arrow-right" style="position: relative; left: -16px;"></span>
+        </div>
+    </div>
+    <div class="item row">
+        <div class="col col-40">
+            <div class="text-tip" style="white-space: normal;"><!--加签说明-->{{'approval.sign.prompt.signText'|translate}}：</div>
+        </div>
+        <div class="col col-60">
+            <textarea ng-model="vm.signText" rows="5" placeholder="{{'approval.sign.At.most.200.characters'|translate}}" maxlength="200">
+            </textarea>
+        </div>
+    </div>
+</div>

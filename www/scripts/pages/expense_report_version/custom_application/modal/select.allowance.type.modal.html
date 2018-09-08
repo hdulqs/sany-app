@@ -1,0 +1,50 @@
+<ion-modal-view class="select-type">
+    <ion-header-bar align-title="center">
+        <p class="title">
+            {{"modal.select_allowance_type"|translate}}
+            <!--选择差旅类型-->
+        </p>
+        <span class="city-cancel" ng-click="view.cancelSelectAllowanceType()">
+                {{'destination.cancel'|translate}}<!--取消-->
+            </span>
+    </ion-header-bar>
+    <ion-content class="allowance-content" delegate-handle="allowanceTypeScroll">
+        <div class="type-list-pane">
+            <div class="expense-list" ng-if="view.subsidiesList[view.subsidiesListIndex].expenseType.length > 0">
+                <div class="row row-center expense-item" ng-repeat="type in view.subsidiesList[view.subsidiesListIndex].expenseType" ng-click="view.chooseAllowanceType($index)">
+                    <img ng-src="{{type.expenseTypeIconURL}}" alt="" class="icon" ng-if="type.expenseTypeIconURL">
+                    <p class="type-list-text">{{type.expenseTypeName}}</p>
+                    <img src="img/travel/select.png" alt="" ng-if="view.subsidiesList[view.subsidiesListIndex].expenseTypeOIDs.indexOf(type.expenseTypeOID) > -1" class="select-icon">
+                </div>
+            </div>
+        </div>
+        <div ng-if="view.subsidiesList[view.subsidiesListIndex].nothing || view.subsidiesList[view.subsidiesListIndex].expenseType.length == 0">
+            <div class="text-center no-itinerary">
+                <img src="img/expense_report_version/travel/no-itinerary.png" alt="">
+                <p class="text-center">
+                    <!--无可选费用类型，请联系管理员-->
+                    {{'common.appliant.no_expenes'|translate}}～
+                </p>
+                <div ng-if="view.adminList.length > 0" class="admin-list">
+                    <div class="row row-center" ng-repeat="item in view.adminList" ng-if="$index <= 2">
+                        <div class="col col-50 text-right text-name">
+                            {{item.fullName}}{{'common.telephone'|translate}}:
+                            <!--电话-->
+                        </div>
+                        <div class="col col-50 text-left text-login">
+                            <a href="tel:{{item.login}}">{{item.login}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="allowance-bar">
+        <div class="row row-center">
+            <button class="col col-100 text-center create-add-traffic" ng-click="view.comfireAllowanceType()">
+                {{"common.sure"|translate}}
+                <!--确认-->
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

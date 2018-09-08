@@ -1,0 +1,250 @@
+<ion-view class="account-book" hide-back-button="false">
+    <ion-nav-title>
+        <span class="expense-report-nav-title"> {{'account.my.account' | translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right" class="rightbutton">
+        <a ng-click="view.goTo('app.account_problem')" ng-if="view.showNoticeIcon">
+            <img class="dashboard-message-icon"
+                 src="img/expense_report_version/my_account/notice.png"/>
+            <div class="message-tips" ng-if="hasMessageTips"></div>
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="expense-list-content" ng-class="{true: 'has-footer'}[!view.showCreateInvoiceIcon]">
+        <div class="alert alert-warning warn" ng-if="view.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'account.Temporarily.no.cost.information' | translate}}</p>
+        </div>
+        <div ng-if="view.networkError && view.expenseList.length === 0">
+            <not-found-text title="view.networkErrorText" icon="view.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="view.doRefresh()">
+                    {{'account.Click.the.refresh' | translate}}
+                </button>
+            </div>
+        </div>
+        <div ng-if="view.systemError && view.expenseList.length === 0">
+            <not-found-text title="view.systemErrorText" sub-title="view.systemErrorSubText"
+                            icon="view.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <ion-refresher on-refresh="view.doRefresh()" pulling-text="{{'account.loading' | translate}}"></ion-refresher>
+        <ion-list can-swipe="view.canWithdraw || view.canDelete">
+            <div ng-repeat="expense in view.expenseList">
+                <div ng-if="view.invoiceStatus !== 'REPRESENTED'">
+                    <div class="time-node"
+                         ng-if="(expense.invoiceStatus === 'INIT' &&
+                         expense.rejectType !== 1 &&
+                         expense.rejectType !== 2) &&
+                         view.invoiceStatus === 'INIT' &&
+                         ($index === 0 ||
+                         ($index > 0 &&
+                         view.expenseList[$index].formatDate !== view.expenseList[$index-1].formatDate))">
+                        <p> {{ expense.createdDate | dateFilter }} {{expense.week | weekFilter}}</p>
+                    </div>
+
+
+                    <div class="row row-center expense-item"
+                         ng-class="{true: 'is-reject',false: ''}[ expense.invoiceStatus === 'INIT' && (expense.rejectType === 1 || expense.rejectType === 2 || expense.rejectType === 4)]">
+
+                        <!--如果显示拒绝-->
+                        <div class="reject-text"
+                             ng-if="expense.invoiceStatus === 'INIT' &&
+                             (expense.rejectType === 1 || expense.rejectType === 2 || expense.rejectType === 4)">
+                            <img src="img/expense/reject-icon.png" alt="">
+                        </div>
+
+
+
+                        <ion-checkbox ng-model="expense.checked"
+                                      ng-if="!view.showCreateInvoiceIcon"
+                                      ng-click="view.countSelect($index ,expense)">
+                            <erv-invoice-item item="expense"
+                                              origin-currency-code="view.originCurrencyCode"
+                                              delete='view.canDelete'
+                                              delete-expense="view.deleteInvoice(expense.invoiceOID)"
+                                              withdraw="view.canWithdraw"
+                                              show-detail="view.showDetail"
+                                              withdraw-expense="view.withdraw(expense.invoiceOID)"
+                                              go-detail="view.goExpenseDetail(expense.readonly, expense.invoiceOID)">
+                            </erv-invoice-item>
+                        </ion-checkbox>
+
+                        <div class="col"
+                             ng-if="view.showDetail">
+                            <erv-invoice-item item="expense"
+                                              origin-currency-code="view.originCurrencyCode"
+                                              delete='view.canDelete'
+                                              delete-expense="view.deleteInvoice(expense.invoiceOID)"
+                                              withdraw="view.canWithdraw"
+                                              show-detail="view.showDetail"
+                                              withdraw-expense="view.withdraw(expense.invoiceOID)"
+                                              go-detail="view.goExpenseDetail(expense.readonly, expense.invoiceOID)">
+                            </erv-invoice-item>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </ion-list>
+
+
+        <ion-infinite-scroll
+            ng-if="view.pageable.page < view.dataNum.lastPage"
+            on-infinite="view.getExpenseList(view.pageable.page + 1)" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+
+
+    </ion-content>
+    <div ng-click="view.goToCreateExpense()" ng-show="view.showCreateInvoiceIcon && (!view.functionProfileList || !view.functionProfileList['account.book.upsert.disabled'])">
+        <img class="create-invoice"
+             src="img/expense_report_version/expense_report/create-expense.png"/>
+    </div>
+    <ion-footer-bar class="expense-list-footer"
+                    ng-hide="view.showCreateInvoiceIcon">
+        <!--<div class="row row-center" ng-if="!view.isBatchOpertion && view.invoiceStatus === 'INIT'">
+            <div class="col text-center expense-new" ng-click="view.goTo('app.expense_create')">
+                新增费用
+            </div>
+            <div class="col text-center operation-all" ng-disabled="view.nothing"
+                 ng-class="{true: 'disable-operation',false: ''}[view.nothing]"
+                 ng-click="view.batchOperation()">
+                批量提交
+            </div>
+        </div>
+        <div class="row row-center" ng-if="!view.isBatchProduct && view.invoiceStatus === 'APPROVALED'">
+            <div class="col text-center operation-all" ng-disabled="view.nothing"
+                 ng-class="{true: 'disable-operation',false: ''}[view.nothing]"
+                 ng-click="view.productInvoiceList()">
+                生成发票清单
+            </div>
+        </div>-->
+        <!-- <div class="row row-center">
+             <div class="col text-center expense-checkbox-btn">
+                 <ion-checkbox ng-model="view.selectAll" ng-click="view.selectAllAction()">全选</ion-checkbox>
+             </div>
+             <div class="col col-70 text-center operation-all" ng-click="view.batchProduct()"
+                  ng-class="{true: 'submit-btn', false: ''}[view.selectData.length > 0]">
+                 生成<br/>
+                 <span ng-if="view.selectData.length > 0">
+                     ({{view.selectData.length}}条)
+                         {{ view.selectAmount | currency : '￥' }}
+                     </span>
+             </div>
+         </div>-->
+
+        <!--从报销单进入账本:全选,帅选,导入-->
+        <div class="row row-center">
+            <div class="col text-center expense-checkbox-btn">
+                <ion-checkbox ng-model="view.selectAll"
+                              ng-click="view.selectAllAction()">
+                    {{'account.Future.generations'|translate}}
+                </ion-checkbox>
+            </div>
+            <div class="col text-center expense-checkbox-btn"
+                 ng-click="view.showSiftPane()">
+                {{'account.screening'|translate}}
+            </div>
+            <div class="col col-50 text-center operation-all"
+                 ng-click="view.applyForApproval()"
+                 ng-class="{true: 'submit-btn', false: ''}[view.selectLength > 0]">
+                {{'account.import'|translate}}
+                <span ng-if="view.selectLength > 0">
+                    ({{view.selectLength}}{{'account.article'|translate}})<br/>
+                    {{view.currencyCode}}
+                    {{ view.selectAmount|number:2}}
+                </span>
+            </div>
+        </div>
+
+
+    </ion-footer-bar>
+    <div class="cover-screen" ng-if="view.isFilterContainerOpen" ng-click="view.hideSiftPane()">
+    </div>
+    <div class="expense-list-filter-container" ng-if="view.isFilterContainerOpen">
+        <div class="filter-content">
+            <div class="filter-time">
+                <div class="row row-center">
+                    <div class="col">
+                        <p class="title">
+                            {{'account.Date.selection'|translate}}
+                        </p>
+                    </div>
+                    <div class="col" ng-repeat="time in view.timeList" ng-click="view.selectTime($index)">
+                        <span class="period-btn"
+                              ng-class="{true: 'period-btn-active',false: ''}[$index === view.filter.timeFilter]">
+                            {{time.name}}
+                        </span>
+                    </div>
+                </div>
+                <div class="row row-center">
+                    <div class="col-25">
+
+                    </div>
+                    <div class="col col-75">
+                        <span class="period-btn" ng-click="view.showSelfDefinition()"
+                              ng-class="{true: 'period-btn-active', false: ''}[view.isDefineTime]">
+                            {{'account.The.custom.time'|translate}}
+                        </span>
+                    </div>
+                </div>
+                <div class="row self-time" ng-if="view.isDefineTime">
+                    <div class="col" ng-click="datePicker.selectDate('begin')">
+                        <p ng-if="view.filter.begin">
+                            {{view.filter.begin | dateFilter}}
+                        </p>
+                    </div>
+                    <div class="col col-10 no-border">
+                        {{'account.to'|translate}}
+                    </div>
+                    <div class="col" ng-click="datePicker.selectDate('end')">
+                        <p ng-if="view.filter.end">
+                            {{view.filter.end | dateFilter}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-center">
+                <div class="col">
+                    <p class="title">
+                        {{'account.Cost.type'|translate}}
+                    </p>
+                </div>
+                <div class="col">
+                    <span class="period-btn" ng-click="view.selectAllType()"
+                          ng-class="{true: 'period-btn-active',false: ''}[view.filter.isAllType]">
+                        {{'account.all'|translate}}
+                    </span>
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+            </div>
+            <div class="type-list-box">
+                <div class="type-icon" ng-repeat="type in view.typeList" ng-click="view.selectType($index)">
+                    <img ng-src="{{type.iconURL}}" alt="" ng-if="type.iconURL">
+                    <img ng-src="img/expensetypes/{{type.iconName}}.png" alt="" ng-if="!type.iconURL">
+                    <p>
+                        {{type.name}}
+                    </p>
+                    <img src="img/expense/selected.png" alt="" class="select-icon" ng-if="type.isSelected">
+                </div>
+            </div>
+            <div class="row row-center btn-group">
+                <div class="col">
+                    <span class="btn-reset" ng-click="view.resetFilter()">
+                        {{'account.reset'|translate}}
+                    </span>
+                </div>
+                <div class="col">
+                    <span class="btn-sure" ng-click="view.dataSelector()">
+                        {{'account.ok'|translate}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-view>

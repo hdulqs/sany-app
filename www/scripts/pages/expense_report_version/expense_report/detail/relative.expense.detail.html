@@ -1,0 +1,59 @@
+<ion-view class="relative-expense-page" hide-back-button="true">
+    <ion-nav-title>
+        <div>
+            <span class="expense-report-nav-title">{{view.title}}</span>
+        </div>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear icon ion-ios-arrow-left" id="approval-detail-back-icon"
+                ng-click="goBack()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <ion-refresher on-refresh="doRefresh()" pulling-text="{{'expense.Loading.in'|translate}}"></ion-refresher>
+        <div class="alert alert-warning warn" ng-if="view.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+
+            <p class="warning-word">{{'expense.Nothing'|translate}}</p>
+
+            <p class="warning-word">{{'expense.No.application.for.the.time.being'|translate}}</p>
+        </div>
+        <ion-list>
+            <div class="row row-center title-relative-travel" ng-if="!view.nothing">
+                <span class="relative-text">{{view.dividerTitle}}</span>
+            </div>
+            <ion-item ng-if="!view.nothing&&view.content=='travel_expense'"
+                      ng-repeat="item in view.relativeTravelExpenseList"
+                >
+                <div class="row row-center expense-main"
+                     ng-click="createRelativeExpense(item)">
+                    <div class="col col-center">
+                        <p>No.{{item.travelApplication.businessCode}}
+                            &nbsp;&nbsp;{{item.title}}</p>
+                    </div>
+                </div>
+
+            </ion-item>
+            <ion-item ng-if="!view.nothing&&view.content=='invoice_expense'"
+                      ng-repeat="item in view.relativeInvoiceExpenseList"
+                >
+                <div class="row row-center expense-main"
+                     ng-click="createRelativeExpense(item)">
+                    <div class="col col-center col-60">
+                        <p>No.{{item.expenseApplication.businessCode}}</p>
+                    </div>
+                    <div class="col col-center col-40 text-right">
+                        <p>{{item.title}}</p>
+                    </div>
+                </div>
+
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="view.page.current < view.page.lastPage"
+            on-infinite="getRelativeExpense(view.page.current + 1)"
+            immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

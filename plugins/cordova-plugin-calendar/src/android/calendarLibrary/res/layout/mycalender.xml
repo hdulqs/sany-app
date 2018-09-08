@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="@drawable/head"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/back_iv"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:scaleType="fitCenter"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_back"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingRight="30dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#fffdfdfe"
+            android:text="日历"/>
+    </LinearLayout>
+
+
+    <com.hand.calendar.timessquare.CalendarPickerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="16dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:clipToPadding="false"
+        android:background="#FFFFFF"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="#FFFFFF"
+            android:text="选一个日期"
+            android:background="#00BFFF"
+            android:layout_marginRight="5dp"
+            android:onClick="single"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="5dp"
+            android:text="选一个期间"
+            android:background="#00BFFF"
+            android:onClick="range"/>
+    </LinearLayout>
+</LinearLayout>

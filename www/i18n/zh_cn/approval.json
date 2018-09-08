@@ -1,0 +1,189 @@
+{
+    "approval": {
+        "aggregate.amount": "总金额",
+        "all.rejected": "全部驳回",
+        "all.through": "全部通过",
+        "already": "已审批",
+        "already.passed": "已通过",
+        "approval.passed": "审核通过",
+        "approval.rejected": "审核驳回",
+        "approve": "审批",
+        "audit.rejected": "审核驳回时,可先登录汇联易后台,在财务管理>报销审核>待审核中切换到扫描审核模式,通过键盘输入驳回理由",
+        "automatically.receive.scanned.reimbursement.Report": "自动收到扫描到的报销单",
+        "automatically.reject.the.scanned.reimbursement.form.and.fill.out.the.reasons": "自动驳回扫描到的报销单并填写理由",
+        "automatically.through.scanning.to.submit.the.expense.accounts": "自动通过扫描到的报销单",
+        "batch.reject": "批量驳回",
+        "borrowing.application": "借款申请单",
+        "budget": "预算",
+        "cancel": "取消",
+        "cancel.after.verification": "还款",
+        "check.all": "全选",
+        "click.refresh": "点击刷新",
+        "close": "关闭",
+        "confirm": "确认",
+        "daily.expense.report": "日常报销单",
+        "didi.failure.costs": "笔开票失败费用,详情联系滴滴客服",
+        "does.not.conform.to.the.reimbursement.policy": "不符合报销政策",
+        "empty": "空空如也!",
+        "history.of.approval": "审批历史",
+        "loading": "加载中...",
+        "no.approval": "暂无审批单",
+        "no.verification": "不还款",
+        "not.approved": "未审批",
+        "original.bill.type.and.cost.type.inconsistent": "原始票据类型与费用类型不一致",
+        "original.note.does.not.conform.to.the.provisions": "原始票据不符合规定",
+        "pen.billing.failure.costs": "笔开票失败费用,详情联系滴滴客服",
+        "pen.cost": "笔费用",
+        "pending": "未审批",
+        "people": "人",
+        "please.enter.the.reason.for.rejecting": "请输入驳回理由",
+        "please.select.the.cost": "请选择费用",
+        "received": "已收到",
+        "reimbursement.approval": "报销单审批",
+        "rejected": "已驳回",
+        "remark": "备注",
+        "revise": "修改",
+        "scan": {
+            "title": "扫一扫",
+            "plugin": {
+                "title": {
+                    "AUDIT_PASS": "锁定审核通过",
+                    "AUDIT": "锁定审核驳回",
+                    "RECEIVE": "锁定报销单收到"
+                },
+                "tipScan": "请扫描单据上的二维码",
+                "tipInput": "输入单号",
+                "tipLoading": "正在处理中... ",
+                "tipNetworkError": "当前网络不可用, 请检查网络设置",
+                "tipOffline": "请按照页面下方提示 先打开汇联易网站",
+                "openButton": "我已打开",
+                "footerFirst": {
+                    "REVIEW": "请先在电脑游览器打开https://www.huilianyi.com",
+                    "AUDIT": "如需通过键盘输入驳回理由，可在电脑游览器打开https://www.huilianyi.com，在财务管理>单据审核页面切换到扫码审核模式"
+                },
+                "footerSecond": {
+                    "REVIEW": "进入财务管理>单据审核页面，再进行app扫码"
+                }
+            },
+            "receive": {
+                "title": "收到",
+                "tip": "自动收到扫描到的报销单"
+            },
+            "APPApproval": {
+                "title": "APP端审核",
+                "pass": {
+                    "title": "审核通过",
+                    "tip": "自动通过扫描到的报销单"
+                },
+                "reject": {
+                    "title": "审核驳回",
+                    "tip1": "如需通过键盘输入驳回理由，可在电脑游览器打开 ",
+                    "tip2": "https://www.huilianyi.com",
+                    "tip3": "，在",
+                    "tip4": "财务管理>单据审核",
+                    "tip5": "页面切换到",
+                    "tip6": "扫码审核模式"
+                }
+            },
+            "WebApproval": {
+                "title": "网页端审核",
+                "tip1": "请先在电脑游览器打开 ",
+                "tip2": "https://www.huilianyi.com",
+                "tip3": ",进入",
+                "tip4": "财务管理>单据审核",
+                "tip5": "页面，使用APP进行扫码审核"
+            },
+            "scanModal": {
+                "webTip": "请在PC端审核单据",
+                "nextTip": "继续扫描下一张"
+            },
+            "rejectModal": {
+                "title": "审核驳回",
+                "placeholder": "请输入驳回理由, 最多200个字符",
+                "emptyTip": "驳回理由不能为空",
+                "quickReply": {
+                    "title": "快捷回复",
+                    "tip0": "报销金额与原始票据不一致",
+                    "tip1": "原始票据类型与费用类型不一致",
+                    "tip2": "原始票据不符合规定",
+                    "tip3": "不符合报销政策",
+                    "tip4": "存在不合理报销事项"
+                }
+            },
+            "inputModal": {
+                "title": "输入单号",
+                "placeholder": "请输入最少3位单据号",
+                "noResult": "无搜索结果",
+                "buttonContent": {
+                    "REVIEW": "确认",
+                    "AUDIT_PASS": "审核通过",
+                    "AUDIT": "审核驳回",
+                    "RECEIVE": "确认收到"
+                }
+            },
+            "toast": {
+                "reject": {
+                    "success": "驳回成功",
+                    "fail": "驳回失败"
+                },
+                "report": {
+                    "success": "处理成功!",
+                    "fail": "处理失败!",
+                    "notValid": "该单据无效!",
+                    "offline": "请先打开汇联易网站,进入财务管理>单据审核页面!"
+                }
+            }
+        },
+        "search": "搜索",
+        "submission.of.reasons.for.failure": "提交驳回理由失败",
+        "submitted.for.success": "提交驳回理由成功",
+        "submitter": "提交人",
+        "total": "总",
+        "total.budget": "总预算",
+        "view.application": "查看申请",
+        "waiting": "等待",
+        "uploadCentre":"加载中...",
+        "TemporarilyNotMessge":"暂时没有费用信息!",
+        "recentlyApproval":"最近审批",
+        "cost":"笔费用",
+        "listing":"列表",
+        "map":"地图",
+        "week":"周",
+        "batchSubmit":"批量提交",
+        "selectAll":"全选",
+        "reject":"驳回",
+        "pass":"通过",
+        "strip":"条",
+        "all":"全部",
+        "oneMonth":"近一个月",
+        "twoMonthes":"近两个月",
+        "pleaseReason":"请输入理由",
+        "submitOk":"提交成功!",
+        "notApprovalMessage":"暂时没有审批信息!",
+        "costContain":"费用包含:",
+        "Category":"类别",
+        "notFlightPlan":"无飞行计划",
+        "submit":"提交",
+        "common":"普通",
+        "Interview":"面试",
+        "money":"金额",
+        "project":"项目",
+        "Other":"其他",
+        "mapApproval":"地图审批",
+        "OnJuly5":"7月5号",
+        "haveTicket":"有票",
+        "noTicket":"无票",
+        "please.enter": "请输入申请人姓名／单号"
+    },
+    "error": {
+        "failed": "失败了",
+        "network": "哎呀,网络出错了!",
+        "please.enter.the.reason.for.rejecting": "请输入驳回理由",
+        "reason.for.rejection": "驳回理由",
+        "reject.failure": "驳回失败",
+        "release.budget.failed.withdraw.failed": "释放预算失败，撤回失败",
+        "server": "服务器开小差了,",
+        "system": "技术小哥正在努力修复!",
+        "there.is.no.charge.for.this.expense": "此报销无费用"
+    }
+}

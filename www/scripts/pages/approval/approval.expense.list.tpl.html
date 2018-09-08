@@ -1,0 +1,95 @@
+<ion-view class="approval-expense-list" hide-back-button="true">
+    <ion-nav-buttons>
+        <button class="go-back-arrow" ng-click="view.goBack()">
+            <img src="img/back.png" class="save-btn">
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <div id="approval-list-header">
+            <span class="tab-mode tab-mode-first" ng-class="{'active' : view.isList}" ng-click="view.listToggle()">
+                <!--列表-->
+                {{"approval.listing"|translate}}
+            </span>
+            <span class="tab-mode tab-mode-second" ng-class="{'active' : !view.isList}" ng-click="view.listToggle()">
+                <!--地图-->
+                {{"approval.map"|translate}}
+            </span>
+        </div>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div ng-if="view.isBatchOperation">
+            <p ng-click="view.cancelBatchOperation()" class="cancel-filter">
+                <!--取消-->
+                {{"approval.cancel"|translate}}
+            </p>
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="expense-list-content">
+        <div class="alert alert-warning warn" ng-if="view.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <!--暂时没有费用信息!-->
+            <p class="warning-word">{{"approval.TemporarilyNotMessge"|translate}}</p>
+        </div>
+        <!--加载中...-->
+        <ion-refresher on-refresh="view.doRefresh()" pulling-text="{{'approval.uploadCentre'|translate}}"></ion-refresher>
+        <ion-list>
+            <div ng-repeat="expense in view.expenseList">
+                <div ng-if="view.invoiceStatus !== 'REPRESENTED'">
+                    <div class="time-node"
+                         ng-if="($index === 0 || ($index > 0 && view.expenseList[$index].formatDate !== view.expenseList[$index-1].formatDate))">
+                        <!--周-->
+                        <p> {{ expense.createdDate | dateFilter }} {{expense.week | weekFilter}}</p>
+                    </div>
+                    <div class="row row-center expense-item"
+                         ng-class="{true: 'is-reject',false: ''}[ expense.invoiceStatus === 'INIT' && (expense.rejectType === 1 || expense.rejectType === 2)]">
+                        <ion-checkbox ng-model="expense.checked" ng-if="view.isBatchOperation"
+                                      ng-click="view.countSelect($index)"></ion-checkbox>
+                        <div class="col">
+                            <expense-item item="expense" show-approval="view.unApproved"
+                                          origin-currency-code="view.originCurrencyCode"
+                                          go-detail="view.goExpenseDetail(expense.invoiceOID)"
+                                          agree-expense="view.agree(expense.invoiceOID)"
+                                          reject-expense="view.reject(expense.invoiceOID)">
+                            </expense-item>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="view.pageable.page < view.dataNum.lastPage"
+            on-infinite="view.getExpenseList(view.pageable.page + 1)" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+    <ion-footer-bar class="approval-list-footer" ng-if="view.unApproved">
+        <div class="row row-center" ng-if="!view.isBatchOperation">
+            <div class="col text-center operation-all" ng-disabled="view.nothing"
+                 ng-class="{true: 'disable-operation',false: ''}[view.nothing]"
+                 ng-click="view.batchOperation()">
+                <!--批量提交-->
+                {{"approval.batchSubmit"|translate}}
+            </div>
+        </div>
+        <div class="row row-center" ng-if="view.isBatchOperation">
+            <div class="col-25 text-center expense-checkbox-btn">
+                <!--全选-->
+                <ion-checkbox ng-model="view.selectAll" ng-click="view.selectAllAction()">{{"approval.selectAll"|translate}}</ion-checkbox>
+            </div>
+            <div class="col text-center expense-reject" ng-click="view.showOpinionPopup()">
+                <!--驳回-->
+                {{"approval.reject"|translate}}
+            </div>
+            <div class="col text-center expense-agree" ng-click="view.agreeExpense()"
+                 ng-class="{true: 'submit-btn', false: ''}[view.selectData.length > 0]">
+                <!--通过-->
+                {{"approval.pass"|translate}}
+                <span ng-if="view.selectData.length > 0">
+                    <!--条-->
+                    ({{view.selectData.length}}{{"approval.strip"|translate}})
+                        <br/>{{ view.selectAmount | currency : '￥' }}
+                </span>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

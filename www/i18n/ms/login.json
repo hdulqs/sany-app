@@ -1,0 +1,39 @@
+{
+    "login": {
+        "activate": {
+            "title": "aktive"
+        },
+        "button": {
+            "active.account": "aktivekan akaun",
+            "forget.password": "lupa kata laluan",
+            "login": "log masuk",
+            "user.register": "Pendaftaran pengguna"
+        },
+        "cloud.helios": "汇联易",
+        "errors": {
+            "maxlength.text": "{{name}} tidak boleh melebihi {{maxlength}}",
+            "mobile.maxlength": "nombor telefon bimbit tidak boleh melebihi 11 digit",
+            "pattern": "{{name}}format salah",
+            "request.error": "permintaan salah",
+            "required": "{{name}}tidak boleh dikosongkan",
+            "user.is.locked1": "gagal log masuk, sila cuba lagi",
+            "user.is.locked2": "anda telah masukkan 3 kali kata laluan salah, akaun dikunci, sila reset kata laluan",
+            "user.not.activated": "akaun anda tidak aktive, sila guna akses telefon bimbit untuk aktivekan.",
+            "user.not.found": "nama pengguna tidak dapat di cari",
+            "wrong.password": "kata laluan salah, sila cuba lagi"
+        },
+        "fields": {
+            "cellphone": "nombor telefon bimbit",
+            "password": "kata laluan"
+        },
+        "register": {
+            "title": "mendaftar"
+        },
+        "tips": {
+            "message": "nombor telefon bimbit telah",
+            "please": "sila",
+            "times": "kali"
+        },
+        "title": "log masuk"
+    }
+}

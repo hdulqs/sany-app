@@ -1,0 +1,63 @@
+<div class="department-selector" ng-class="{styleClass: styleClass === null}"
+     ng-click="department.openDialog()">
+    <span class="value value-placeholder" ng-hide="departmentId">{{'selector.Please.select.a.department'|translate}}<!--请选择部门--></span>
+    <div class="value choice-value" ng-show="departmentId">{{departmentName}}</div>
+</div>
+<script id="department.selector.html" type="text/ng-template">
+    <ion-modal-view class="department-selector-body">
+        <ion-header-bar class="header bar-positive">
+            <span ng-click="department.cancelDepartment()" class="department-cancel-btn">
+                <!--取消-->
+                {{"destination.cancel"|translate}}
+            </span>
+            <h3 class="title">{{'selector.Choose.department'|translate}}<!--选择部门--></h3>
+            <span ng-click="department.submitDepartment()" class="department-sure-btn">
+                {{'directive.determine'|translate}}<!--确定-->
+            </span>
+
+            <!--<div class="buttons">-->
+            <!--<button class="button button-clear" ng-click="department.submitDepartment()">确定</button>-->
+            <!--</div>-->
+        </ion-header-bar>
+        <div class="department-selected-bar">
+            <!--请输入关键字-->
+            <div class="search">
+                <input class="header-input" placeholder="{{'selector.Please.enter.the.keywords'|translate}}" ng-model-options="{debounce:500}" ng-model="department.keyword" ng-change="department.searchByKeywords()">
+            </div>
+            <p class="selected-title">
+                {{'selector.Have.chosen.sector'|translate}}<!--已选择部门-->
+            </p>
+            <p class="selected-content">
+                <span class="text">{{departmentName}}</span>&nbsp;<!--部门名字最多显示两行-->
+                <span ng-if="selected.status == 102" class="disable">({{'selector.department.disable'|translate}})</span>
+            </p>
+        </div>
+        <ion-content class="department-selector-modal">
+            <div class="selected-department list">
+                <div ng-show="history !== null" class="department-title">
+                    {{'selector.The.history.department'|translate}}<!--历史部门-->
+                </div>
+                <div class="history-department" ng-repeat="dep in history | orderBy:'-modifiedDate'"
+                     ng-click="department.selectDepartment(dep)">
+                    <p class="selected-content">
+                        {{dep.path | departmentPath}} <span ng-if="dep.status == 102" class="disable">({{'selector.department.disable'|translate}}) <!--已停用--></span>
+                    </p>
+                </div>
+
+                <!--<div class="item" ng-repeat="dep in history" ng-show="history !== null">-->
+                <!--<a ng-click="department.selectDepartment(dep)">{{dep.path | departmentPath}}</a>-->
+                <!--</div>-->
+                <div class="department-title">
+                    {{'selector.Department.list'|translate}}<!--部门列表-->
+                </div>
+            </div>
+            <div class="department-list">
+                <department-item ng-repeat="dep in department.data" data="dep"
+                                 callback="department.selectDepartment"
+                                 search="isSearch"
+                                 search-department="hideDepartment"
+                                 mode="mode"></department-item>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

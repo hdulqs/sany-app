@@ -1,0 +1,336 @@
+<ion-view class="create-travel-next-erv">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{view.title}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div class="create-travel-save" ng-if="view.content === 'next' || view.content === 'edit'"
+             ng-click="view.saveTravel()">
+            {{'create.base.save'|translate}}<!--保存-->
+        </div>
+        <!--<div class="create-expense-report" ng-if="view.content === 'hasPass'" ng-click="view.exportExpense()">-->
+            <!--生成报销单-->
+        <!--</div>-->
+        <div class="create-expense-report" ng-if="view.content === 'waitApproval' && !view.functionProfileList['ta.opt.withdraw.disabled']" ng-click="view.withdrawTravel()">
+            {{'create.next.withdraw'|translate}}<!--撤回-->
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="create-travel-next-content"
+                 ng-class="{true: 'has-footer',false: ''}[view.content === 'next'|| view.content === 'edit' || view.content === 'hasPass' || view.content === 'hasReject' || (view.content === 'approval' && !view.functionProfileList['ta.opt.approval.disabled']) || view.content === 'order']">
+        <div ng-if="view.isNotFound">
+            <not-found-text title="view.notFoundText" icon="view.notFoundIcon">
+
+            </not-found-text>
+        </div>
+        <div ng-if="!view.isNotFound">
+            <div class="create-base-message">
+                <img src="img/expense_report_version/travel/edit.png" alt="" class="base-edit"
+                     ng-click="view.editBase()"
+                     ng-if="view.content === 'next' || view.content === 'hasReject' || view.content === 'edit' ">
+                <p class="text-center travel-comment">
+                    {{view.travel.title}}
+                </p>
+                <p class="text-center travel-department" ng-if="!view.functionProfileList || view.functionProfileList['ta.department.selection']">
+                    {{view.travel.travelApplication.departmentName}}
+                </p>
+                <p class="text-center travel-department" ng-if="!view.functionProfileList || view.functionProfileList['ta.costCenter.selection']">
+                    {{view.travel.travelApplication.costCenterItemName}}
+                </p>
+                <p class="text-center travel-date">
+                    <span ng-if="view.travel.travelApplication.startDate">
+                        {{view.travel.travelApplication.startDate | dateDotFilter}}
+                    </span>  --
+                    <span ng-if="view.travel.travelApplication.endDate">
+                        {{view.travel.travelApplication.endDate |dateDotFilter}}
+                    </span>
+                </p>
+                <div>
+                    <div class="join-member-list" ng-if="view.showTravelMember">
+                        <div class="join-member"
+                             ng-repeat="avater in view.travel.applicationParticipants">
+                            <user-avatar full-name="avater.fullName" icon-url="avater.avatar"
+                                         employ-id="avater.participantOID"></user-avatar>
+                            <p>
+                                {{avater.fullName}}
+                            </p>
+                        </div>
+                        <div class="join-member" ng-if="view.travel.travelApplication.externalParticipantNumber > 0">
+                            <user-avatar full-name="enternal.name" employ-id="enternal.applicationOID"
+                                         is-enternal="true"></user-avatar>
+                            <p>
+                                {{view.enternalNumName}}
+                            </p>
+                        </div>
+                        <!--<div class="join-member"-->
+                             <!--ng-repeat="enternal in view.travel.travelApplication.externalParticipants">-->
+                            <!--<user-avatar full-name="enternal.name" employ-id="enternal.applicationOID"-->
+                                         <!--is-enternal="true"></user-avatar>-->
+                            <!--<p>-->
+                                <!--{{enternal.name}}-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="row row-center" ng-if="view.travel.travelApplication.averageBudget">
+                        <div class="col travel-avaergeBudget text-center">
+                            {{'create.next.budget'|translate}}<!--预算-->:{{view.travel.travelApplication.averageBudget | currency : view.code }}/{{'create.next_js.people' | translate}}
+                        </div>
+                        <!--<div class="col text-right travel-money right-border padding-right">-->
+                        <!--预算:{{view.travel.travelApplication.averageBudget | currency : view.code }}/人-->
+                        <!--</div>-->
+                        <!--<div class="col text-left travel-money padding-left">-->
+                        <!--总金额:{{view.travel.travelApplication.totalBudget | currency : view.code}}-->
+                        <!--</div>-->
+                    </div>
+                    <div class="row row-center">
+                        <div class="col text-center travel-money" ng-if="view.travel.travelApplication.totalBudget">
+                            {{'create.next.Total.budget'|translate}}<!--总预算-->:{{view.travel.travelApplication.totalBudget | currency : view.code}}
+                        </div>
+                    </div>
+                    <p class="travel-remark" ng-if="view.travel.remark && view.showTravelMember">
+                        {{'create.next.note'|translate}}<!--备注-->:{{view.travel.remark}}
+                    </p>
+                    <div class="row row-center travel-supplier" ng-if="view.selectedSupplier && view.showTravelMember">
+                        <div class="col text-right supplier-icon">
+                            <img src="img/expense_report_version/travel/supplier.png" alt="">
+                        </div>
+                        <div class="col">
+                            {{view.selectedSupplier.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="expand-member-list" ng-click="view.expandTravelMember()">
+                <img src="img/expense_report_version/travel/expand-arrow.png" alt=""
+                     ng-class="{true: 'rotate',false: ''}[view.showTravelMember]">
+            </div>
+            <div class="journey">
+                <div class="every-day"
+                     ng-repeat="date in view.travel.travelApplication.travelItinerarys track by $index">
+                    <div class="row row-center date-list" ng-click="view.changeExpand($index)">
+                        <div class="col col-90">
+                            <p class="date-index">
+                                {{'create.arrange.the'|translate}}<!--第--> {{date.dayNumber}} {{'create.arrange.day'|translate}}<!--天-->
+                                <span class="date-week">
+                                    {{date.itineraryDate | dayDotFilter}}
+                                </span>
+                                <span class="date-week">
+                                    <!--周-->{{date.week | weekFilter}}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="col text-right"
+                             ng-if="(date.travelItineraryTraffics.length > 0 || date.ctripOrders.length > 0 )">
+                            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow"
+                                 ng-class="{true: 'arrow-rotate', false : ''}[date.isExpand]">
+                        </div>
+                    </div>
+                    <ion-list
+                        ng-if="(date.travelItineraryTraffics.length > 0 || date.ctripOrders.length > 0 ) && date.isExpand">
+                        <ion-item class="journey-ervey-day"
+                                  ng-repeat="route in date.travelItineraryTraffics track by $index">
+                            <div class="row row-center">
+                                <div class="col">
+                                    {{route.fromCity}}
+                                </div>
+                                <div class="col col-50">
+                                    <img ng-src="img/expense_report_version/travel/traffic/plane.png" alt=""
+                                         class="traffic-type" ng-if="route.trafficType === 1001">
+                                    <img ng-src="img/expense_report_version/travel/traffic/train.png" alt=""
+                                         class="traffic-type" ng-if="route.trafficType === 1002">
+                                </div>
+                                <div class="col text-right">
+                                    {{route.toCity}}
+                                </div>
+                            </div>
+                            <ion-option-button ng-if="!view.readOnly" class="button-assertive"
+                                               ng-click="view.removeRoute(date.dayNumber, $index)">
+                                <div class="column">
+                                    <div class="delete-text">{{'create.next.delete'|translate}}<!--删除--></div>
+                                </div>
+                            </ion-option-button>
+                        </ion-item>
+
+                        <ion-item class="journey-ervey-day traffic-item"
+                                  ng-repeat="ctrip in date.ctripOrders track by $index"
+                                  ng-if="date.ctripOrders.length > 0">
+                            <div class="traffic-detail">
+                                <div class="row row-center date-row">
+                                    <div class="col col-60 col-center fly-type">
+                                        {{ctrip.flightOrderDetails[0].airline}}{{ctrip.flightOrderDetails[0].flightCode}}
+                                        &nbsp;{{ctrip.flightOrderDetails[0].seatClass}}
+                                    </div>
+                                    <div class="col  col-center fly-line">
+                                        {{ctrip.flightOrderDetails[0].startCity}}—{{ctrip.flightOrderDetails[0].endCity}}
+                                    </div>
+                                </div>
+                                <div class="row row-center time-row">
+                                    <div class="col col-center startTime-div">
+                                        {{ctrip.flightOrderDetails[0].startDate | timeFilter}}
+                                    </div>
+                                    <div class="col col-50" align="center">
+                                        <img src="img/expense_report_version/travel/traffic/plane.png">
+                                    </div>
+                                    <div class="col col-center endTime-div">
+                                        {{ctrip.flightOrderDetails[0].endDate | timeFilter}}
+                                    </div>
+                                </div>
+                                <div class="row flyInfo">
+                                    <div class="col fly-start">
+                                        <p>
+                                            {{ctrip.flightOrderDetails[0].startDate |
+                                            dayChineseFilter}}　{{ctrip.flightOrderDetails[0].startDate | weekDayFilter}}
+                                        </p>
+
+                                        <p>
+                                            {{ctrip.flightOrderDetails[0].startAirport}}
+                                        </p>
+                                    </div>
+                                    <div class="col fly-end">
+                                        <p>
+                                            {{ctrip.flightOrderDetails[0].endDate |
+                                            dayChineseFilter}}　{{ctrip.flightOrderDetails[0].endDate | weekDayFilter}}
+                                        </p>
+
+                                        <p>
+                                            {{ctrip.flightOrderDetails[0].endAirport}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-center price-row">
+                                <div class="col col-center price-detail">
+                                    <p><span>{{'create.next.Ticket.prices'|translate}}<!--机票价格-->：</span><span class="price-span">
+                                        {{ctrip.flightOrderDetails[0].price | currency: '￥'}}
+                                    </span></p>
+
+                                    <p><span>{{'create.next.The.service.fee'|translate}}<!--服务费-->+{{'create.next.Fuel.surcharge'|translate}}<!--燃油费-->：</span><span class="price-span">
+                                        {{ctrip.flightOrderDetails[0].tax+ctrip.flightOrderDetails[0].serverFee | currency :'￥'}}
+                                    </span></p>
+                                </div>
+                                <div class="col col-center price-total">
+                                    {{'create.next.combined'|translate}}<!--合计-->：
+                                    {{ctrip.flightOrderDetails[0].amount+ctrip.flightOrderDetails[0].serverFee |
+                                    currency: '￥'}}
+                                </div>
+                            </div>
+                        </ion-item>
+
+                    </ion-list>
+                </div>
+            </div>
+            <div class="travel-approval-histroy" ng-if="view.travel.approvalHistorys.length > 0">
+                <p class="travel-tips">
+                    {{'create.next.The.examination.and.approval.of.history'|translate}}<!--审批历史-->
+                </p>
+                <div class="approval-history-pane history-block">
+                    <div class="line"></div>
+                    <div class="approval-history">
+                        <div class="row" ng-if="view.travel.approvalChains.length > 0">
+                            <span class="history-dot-wait"></span>
+
+                            <div class="col padding-0">
+                                <div class="row padding-5-0">
+                                    <div class="col padding-0">
+                                        <p class="approval-time approval-name operation-title">
+                                            {{'create.next.Waiting'|translate}}<!--等待-->
+                                            <span ng-if="view.language === 'zh_cn'">{{'create.next.examine.and.approve'|translate}}</span><!--审批-->
+                                        </p>
+                                    </div>
+                                    <div class="col padding-0">
+                                        <p class="approval-time txt-right operation-date">
+                                            {{view.travel.approvalChains[0].lastModifiedDate | dateTimeFilter}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="approval-time">
+                                    <span ng-repeat="chain in view.travel.approvalChains">
+                                        {{chain.approverName}}&nbsp;{{chain.approverEmployeeID}} <span ng-if="$index != (view.travel.approvalChains.length -1)">，</span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row" ng-repeat="history in view.travel.approvalHistorys">
+                            <span class="history-dot-wait" ng-if="history.operation === 3004 || history.operation === 4000"></span>
+                            <span class="history-dot-success" ng-if="history.operation === 1001 ||
+                            history.operation === 2001 || history.operation === 3001 || history.operation === 3003 ||
+                            history.operation === 4001 || history.operation === 4011 || history.operation === 5000 ||
+                            history.operation === 5001 || history.operation === 5002 || history.operation === 5004 || history.operation === 5007"></span>
+                            <span class="history-dot-reject" ng-if="history.operation === 2002 || history.operation === 3002 ||
+                            history.operation === 4012 || history.operation === 5003 || history.operation === 5005 || history.operation === 5006 || history.operation === 5008"></span>
+                            <span class="history-dot-withdraw" ng-if="history.operation === 1002"></span>
+
+                            <div class="col padding-0">
+                                <div class="row padding-5-0">
+                                    <div class="col padding-0">
+                                        <p class="approval-time operation-title">
+                                            <span ng-hide="history.operation == 2001 && history.operationType == 1001">
+                                                {{history.operation | operation}}
+                                            </span>
+                                            <span ng-if="history.operation == 2001 && history.operationType == 1001">
+                                                {{'filter_js.selfApproval' | translate}}
+                                                <!--自审批通过-->
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col padding-0">
+                                        <p class="approval-time txt-right operation-date">
+                                            {{history.createdDate | dateTimeFilter}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="approval-time">
+                                    {{history.operator.fullName}}&nbsp;{{history.operator.employeeID}}
+                                </p>
+                                <p class="approval-time" ng-class="{'reject-remark': history.operation == 2002 || history.operation == 3002 || history.operation == 4012 || history.operation == 5003}">
+                                    {{history.operationDetail}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="travel-next-footer"
+                    ng-if="view.content === 'next' || view.content === 'edit' || view.content === 'hasPass' || view.content === 'hasReject' || (view.content === 'approval' && !view.functionProfileList['ta.opt.approval.disabled']) || view.content === 'order'"
+                    ng-if="!view.isNotFound">
+        <div class="row row-center" ng-if="view.content === 'next' || view.content === 'edit'">
+            <div class="col col-33 text-center travel-create-submit" ng-click="view.submitTravel()">
+                {{'create.next.submit'|translate}}<!--提交-->
+            </div>
+            <div class="col text-center create-add-traffic" ng-click="selectTraffic.showTraffic()">
+                {{'create.arrange.Add.traffic'|translate}}<!--添加交通-->
+            </div>
+        </div>
+        <div class="row row-center" ng-if="view.content === 'hasPass' || view.content === 'order'">
+            <div class="col text-center travel-order-ticket"
+                 ng-class="{true: 'btn-disable',false: ''}[view.disabledPlane]"
+                 ng-click="!view.disabledPlane && view.orderPlaneTicket()">
+                {{'create.next.Booking.a.flight'|translate}}<!--订机票-->
+            </div>
+            <div class="col text-center travel-order-train"
+                 ng-if="view.hasTongCheng"
+                 ng-class="{true: 'btn-disable',false: ''}[view.disabledTrain]"
+                 ng-click=" !view.disabledTrain && view.orderTrainTicket()">
+                {{'create.next.Order.train.ticket'|translate}}<!--订火车票-->
+            </div>
+            <div class="col text-center travel-order-hotel"
+                 ng-class="{true: 'btn-disable',false: ''}[view.disabledHotel]"
+                 ng-click="!view.disabledHotel && view.orderHotelTicket()">
+                {{'create.next.Book.the.hotel'|translate}}<!--订酒店-->
+            </div>
+        </div>
+        <div class="row row-center" ng-if="view.content === 'approval' && view.travel.status === 1002">
+            <div class="col text-center travel-reject" ng-click="view.showOpinionPopup()">
+                {{'create.next.rejected'|translate}}<!--驳回-->
+            </div>
+            <div class="col text-center travel-agree" ng-click="view.agree()">
+                {{'create.next.through'|translate}}<!--通过-->
+            </div>
+        </div>
+        <div class="row row-center" ng-if="view.content === 'hasReject'">
+            <div class="col text-center travel-edit" ng-click="">
+                {{'create.next.Modify'|translate}}<!--修改-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

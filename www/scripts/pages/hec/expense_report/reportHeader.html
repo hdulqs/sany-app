@@ -1,0 +1,324 @@
+<!--创建报销单-->
+<ion-view class="hec-expense-report" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{"report.new.exp.report"|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <div ng-click="vm.submitReport()" ng-if="vm.isReadOnly">
+            <span class="hec-submit-expense" ng-class="{'hec-can-submit':vm.hasPayPlanFlag}">{{'report.submit'|translate}}</span>
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="has-header hec-content" ng-class="{'has-footer':vm.header.exp_report_type_code}">
+        <ion-list>
+            <!--已关联申请单-->
+            <ion-item ng-if="vm.header.exp_report_type_code=='1010'||vm.header.exp_report_type_code=='1015'">
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'report.refReq'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value">{{vm.header.exp_requisition_number}}</p>
+                    </div>
+                </div>
+            </ion-item>
+            <!--公司-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{"report.header.company"|translate}}</span>
+                    <div class="col">
+                        <p class="text-value">{{vm.header.company_name}}</p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--部门-->
+            <ion-item>
+                <hecunit-selector unit-name="vm.header.unit_name" selected="vm.header.unit_id"
+                                  company-id="vm.header.company_id" resp-center-id="vm.header.responsibility_center_id"
+                                  resp-center-name="vm.header.responsibility_center_name"
+                                  position-id="vm.header.position_id"
+                                  readonly="!vm.header.initFlag"></hecunit-selector>
+            </ion-item>
+
+            <!--成本中心-->
+            <ion-item>
+                <hecresp-selector company-id="vm.header.company_id" unit-id="vm.header.unit_id"
+                                  readonly="!vm.header.initFlag" resp-name="vm.header.responsibility_center_name"
+                                  selected="vm.header.responsibility_center_id"
+                                  employee-id="vm.header.employee_id"></hecresp-selector>
+            </ion-item>
+
+            <!--报销日期-->
+            <ion-item ng-click="datePicker.selectHandDate()">
+                <div class="row">
+                    <span class="hec-item-prompt">{{"report.header.date"|translate}}<span ng-if="!vm.isReadOnly" style="color:#ff0000">*</span></span>
+                    <div class="col text-value">
+                        {{vm.header.exp_report_date|dateFilter}}
+                        <img src="img/hec/form/calendar.png" alt="" ng-if="!vm.isReadOnly"
+                             style="width: 1.2rem;vertical-align: middle;">
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--收款币种-->
+            <ion-item>
+                <heccry-selector prompt-name="receipt" selected="vm.header.exp_report_currency_code" readonly="!vm.header.initFlag"></heccry-selector>
+            </ion-item>
+
+            <!--HR岗位-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{"report.header.job"|translate}}</span>
+                    <div class="col">
+                        <p class="text-value">{{vm.header.hr_position_name}}</p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--职级-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{"report.header.level"|translate}}</span>
+                    <div class="col">
+                        <p class="text-value">{{vm.header.employee_level}}</p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--报销金额-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{"report.header.amount"|translate}}</span>
+                    <div class="col">
+                        <p class="text-value">{{vm.header.exp_report_currency_code}} {{vm.header.sum_amount|amountFilter}}</p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--（收款-本位币）汇率-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{"report.header.exchange.rate"|translate}}</span>
+                    <div class="col">
+                        <p class="text-value">{{vm.header.exp_report_rate}}</p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--付款方式-->
+            <ion-item>
+                <hecpayway-selector payment-method-desc="vm.header.exp_report_payment_method" selected="vm.header.payment_method_id" readonly="vm.isReadOnly"></hecpayway-selector>
+            </ion-item>
+
+            <!--内部职称-->
+          <!--  <ion-item ng-hide="vm.header.document_page_type =='STREAMLINED'">
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{"report.header.internal.title"|translate}}</span>
+                    <div class="col">
+                        <p class="text-value">{{vm.header.position_name}}</p>
+                    </div>
+                </div>
+            </ion-item>-->
+
+            <!--收款对象-->
+            <ion-item>
+                <hec-syscode-selector sys-code-name="vm.header.exp_report_payee_category_name" sys-code-type="PAYMENT_OBJECT1"
+                                      selected="vm.header.exp_report_payee_category" readonly="vm.isReadOnly"
+                                      sys-code-id="vm.sysCodeId"></hec-syscode-selector>
+            </ion-item>
+
+            <!--收款方-->
+            <ion-item>
+                <hecbeneficiary-selector account-name="vm.header.account_name" account-num="vm.header.account_num"
+                    beneficiary-desc="vm.header.exp_report_payee_name" payment-object="{{vm.header.exp_report_payee_category}}"
+                    company-id="vm.header.company_id" selected="vm.header.exp_report_payee_id" readonly="vm.isReadOnly"></hecbeneficiary-selector>
+            </ion-item>
+
+            <!--合同号-->
+            <ion-item class="hec-item-input">
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{"report.header.contract.number"|translate}}</span>
+                    <div class="col">
+                        <input type="text" placeholder="{{ 'report.please.input' | translate}}"
+                                   ng-model="vm.header.contract_number" ng-readonly="vm.isReadOnly" ng-if="!vm.isReadOnly">
+                        <input type="text" placeholder="{{ 'filter_js.hec.nothing' | translate}}"
+                               ng-model="vm.header.contract_number" ng-readonly="vm.isReadOnly" ng-if="vm.isReadOnly">
+                    </div>
+                    <img class="form-logo" src="img/hec/form/edit.png" alt="" ng-if="!vm.isReadOnly">
+                </div>
+            </ion-item>
+            <!--业务属性-->
+            <ion-item ng-hide="vm.header.document_page_type =='STREAMLINED'">
+                <hec-syscode-selector sys-code-name="vm.header.business_attribute" sys-code-type="BUSINESS_ATTRIBUTE"
+                                      selected="vm.header.business_attribute_code"></hec-syscode-selector>
+            </ion-item>
+
+            <!--领导已审-->
+            <ion-toggle ng-hide="vm.header.document_page_type =='STREAMLINED'" class="hec-ion-toggle" ng-model="vm.header.leader_approved_flag" toggle-class="toggle-positive" ng-true-value="'Y'"
+                        ng-false-value="'N'" style="font-size: 15px;">
+                {{"report.header.approval.leadership"|translate}}
+            </ion-toggle>
+
+
+            <!--是否特批-->
+            <ion-toggle ng-hide="vm.header.document_page_type =='STREAMLINED'" class="hec-ion-toggle" ng-model="vm.header.special_approved_flag" toggle-class="toggle-positive" ng-true-value="'Y'"
+                        ng-false-value="'N'" style="font-size: 15px">
+                {{"report.header.approval.special"|translate}}
+            </ion-toggle>
+
+            <!--需添加审批人-->
+            <ion-toggle ng-hide="vm.header.document_page_type =='STREAMLINED'" class="hec-ion-toggle" ng-model="vm.header.add_approval_flag" toggle-class="toggle-positive" ng-true-value="'Y'"
+                        ng-false-value="'N'" style="font-size: 15px">
+                {{"report.header.addApproval"|translate}}
+            </ion-toggle>
+
+
+            <div ng-hide="vm.header.document_page_type =='STREAMLINED'" class="item item-text-wrap">
+                <div ng-if="vm.header.exp_report_type_code !='1010'&& vm.header.exp_report_type_code !='1015'">
+                    <div class="row row-center">
+                        <!--合同付款条件 非差旅-->
+                        <div class="col description-tip hec-item-prompt">
+                            {{'report.header.contract.payment.terms' |translate}}<span ng-if="vm.header.business_attribute_code=='G'" style="color:#ff0000">*</span>
+                        </div>
+                    </div>
+                    <div class="row row-center">
+                        <div class="col">
+                    <textarea class="description-content" placeholder="{{'report.header.contract.payment.terms'|translate}}" ng-model="vm.header.contract_pay_term">
+                    </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="vm.header.exp_report_type_code =='1010'|| vm.header.exp_report_type_code =='1015'">
+                    <div class="row row-center">
+                        <div class="col description-tip hec-item-prompt">
+                            {{'report.header.special.approval.note' |translate}}<span ng-if="vm.header.special_approved_flag=='Y'" style="color:#ff0000">*</span>
+                        </div>
+                    </div>
+                    <div class="row row-center">
+                        <div class="col">
+                    <textarea class="description-content" placeholder="{{'report.header.special.approval.note'|translate}}" ng-model="vm.header.contract_pay_term">
+                    </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--报销事由-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col description-tip hec-item-prompt">
+                        {{"report.header.description"|translate}}<span style="color:#ff0000">*</span>
+                    </div>
+                </div>
+                <div class="row row-center">
+                    <div class="col">
+                    <textarea class="description-content" placeholder="{{'report.header.description'|translate}}"  ng-model="vm.header.exp_report_description"  >
+                    </textarea>
+                    </div>
+                </div>
+            </div>
+            <!--查看单据历史-->
+            <div class="row hec-history-button" ng-if="!vm.header.initFlag">
+                <div class="col col-50" ng-click="vm.goPage('docHistory')">
+                    <button type="button" class="button button-block button-positive"
+                            style="min-height: 35px; font-size: 15px;line-height: 35px;margin: 5px 0px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                        <!--查看单据历史-->
+                        {{'report.header.view.document.history'|translate}}
+                    </button>
+                </div>
+                <div class="col col-50" ng-click="vm.goPage('OverPage')" >
+                    <button type="button" class="button button-block button-positive hec-over-button">
+                        <!--查看超标准情况-->
+                        {{'report.header.standard.situation'|translate}}
+                    </button>
+                </div>
+            </div>
+            <!--生成计划付款行按钮-->
+            <div ng-click="vm.lineList.length >0&&vm.goPayPlan()" class="hec-plan">
+                <button type="button" class="button button-block button-positive" ng-class="{'hec-disable':vm.lineList.length <1}">
+                    {{'report.header.new.plans' | translate}}
+                </button>
+            </div>
+            <!-- 附件信息(最多可上传9张照片)-->
+            <div ng-if="!vm.header.initFlag">
+                <p class="expense-tips">
+                    {{'report.header.Attachment.information' |translate}}
+                </p>
+                <upload-image attachment-src="vm.attachments" delete-attachment="vm.deleteAttachment"
+                              upload-finish="vm.uploadFinish" header-id="vm.header.exp_report_header_id" type-name="erh"
+                              read-only-flag="false"></upload-image>
+            </div>
+        </ion-list>
+        <ion-list can-swipe="true">
+            <div ng-repeat="item in vm.lineList">
+                <ion-item class="line-item">
+                    <div class="row row-center" ng-click="vm.goExpenseLine(item)">
+                        <!--右边的icon-->
+                        <div class="col col-10">
+                            {{item.line_number}}
+                        </div>
+                        <!--中间的内容-->
+                        <div class="col col-50">
+                            <div>
+                                <p class="type-name">
+                                    {{item.exp_req_item_name}}
+                                </p>
+                                <p class="comment">
+                                    {{item.unit_name}}-{{item.responsibility_center_name}}
+                                </p>
+                            </div>
+                        </div>
+                        <!--左边的费用-->
+                        <div class="col">
+                            <p class="amount">
+                                <span class="currency">{{item.currency_code|currencyFilter}}</span>
+                                <span>{{item.report_amount|amountFilter}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <ion-option-button class="button-delete" ng-click="vm.deleteExpReportLine(item)">
+                        <div>{{'report.delete'|translate}}<!--删除--></div>
+                    </ion-option-button>
+                </ion-item>
+            </div>
+        </ion-list>
+    </ion-content>
+
+    <!--差旅报销单-->
+    <ion-footer-bar class="hec-footer" ng-if="vm.header.exp_report_type_code =='1010'|| vm.header.exp_report_type_code =='1015'">
+        <div class="row row-center submit-btn">
+            <div class="col col-center submit-btn" ng-click="vm.saveReportHeader('M')">
+                {{'report.save'|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+    <!--不关联申请时-->
+    <ion-footer-bar class="hec-footer no-padding" ng-if="vm.header.req_required_flag =='N'&& vm.header.exp_report_type_code !='1010'&& vm.header.exp_report_type_code !='1015'">
+        <div class="row row-center" style="padding: 0;">
+            <div class="col col-30 text-center no-padding hec-report-save" ng-click="vm.saveReportHeader('M')" ng-click="vm.saveReportHeader('M')">
+                {{'report.save'|translate}}
+            </div>
+            <div class="col col-40 text-center no-padding hec-report-import hec-intercept" ng-hide="vm.header.document_page_type =='STREAMLINED'" ng-click="vm.goPage('expList')">
+                {{'report.from.book' | translate}}
+            </div>
+            <div class="col col-30 text-center no-padding hec-report-new approval-agree hec-intercept" ng-click="vm.goPage('createExp')">
+               {{'report.new.exp'|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+    <!--关联申请时-->
+    <ion-footer-bar class="hec-footer" ng-if="vm.header.req_required_flag =='Y' && vm.header.exp_report_type_code !='1010'&& vm.header.exp_report_type_code !='1015'">
+        <div class="row row-center">
+            <div class="col text-center expense-new" ng-click="vm.saveReportHeader('M')">
+                {{'report.save'|translate}}
+            </div>
+            <div class="col text-center operation-all hec-intercept"  ng-click="vm.goPage('needReq')">
+               {{'report.from.req'|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+

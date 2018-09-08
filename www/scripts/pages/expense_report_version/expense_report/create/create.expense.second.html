@@ -1,0 +1,229 @@
+ <ion-view class="create-expense-second-page">
+    <div class="cover-screen expense-screen" ng-show="view.relateStatus" ng-click="cancel()"></div>
+    <ion-nav-title>
+        <span class="expense-report-nav-title">
+            {{view.title}}
+        </span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div class="travel-list-add">
+            <img src="img/expense_report_version/expense_report/edit.png" alt="" ng-click="editExpense()">
+        </div>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true">
+        <div class="alert alert-warning warn"
+             ng-show="!view.nothing && view.content!='approval_reject'&&view.content!='audit_reject'"
+             ng-class="{'relative-warn':view.content=='travel_expense'}">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'expense.Have.not.charge.a.new.at.once'|translate}}</p>
+            <img src="img/expense_report_version/expense_report/guide.png" class="guide-icon">
+        </div>
+        <div class="header-information">
+            <div class="row row-center"
+                 ng-if="(view.content=='approval_reject'||view.content=='audit_reject')&&view.expenseNextStep.showInformation">
+                <span class="header-reject-text">{{view.expenseNextStep.businessCode}}{{'expense.Rejected.change'|translate}}</span>
+            </div>
+
+            <div class="row row-center header-dep"
+                 ng-if="view.showRelativeInformation&&view.expenseNextStep.showInformation">
+                <p>
+                    {{view.expenseNextStep.departmentPath}}
+                </p>
+            </div>
+            <div class="row row-center header-time"
+                 ng-if="view.showRelativeInformation&&view.expenseNextStep.showInformation&&
+                 view.expenseNextStep.startDate!=null&&view.expenseNextStep.endDate!=null">
+                <p>
+                    {{view.expenseNextStep.startDate|dateDotFilter}}&nbsp;-&nbsp;{{view.expenseNextStep.endDate|dateDotFilter}}
+                </p>
+            </div>
+            <div class="row row-center participator"
+                 ng-if="view.showRelativeInformation&&view.expenseNextStep.showInformation">
+                <div class="repeat-div"
+                     ng-repeat="avater in view.expenseNextStep.applicationParticipants">
+                    <div class="member-item text-center">
+                        <user-avatar full-name="avater.fullName" employ-id="avater.participantOID"
+                                     icon-url="avater.avatar"></user-avatar>
+                    </div>
+                    <div class="text-center member-fullname">
+                        {{avater.fullName}}
+                    </div>
+                </div>
+            </div>
+            <div class="row row-center">
+                <p class="text-center invoice-money">
+                    {{view.expenseFirstStep.code}}
+                    {{view.amount|number:2}}
+                </p>
+            </div>
+            <div class="row row-center" ng-if="view.expenseNextStep.showInformation">
+                <div class="col col-center text-center"
+                     ng-if="view.expenseNextStep.writeoffFlag || view.expenseNextStep.averageBudget">
+                    <span
+                        ng-if="view.showRelativeInformation && view.expenseNextStep.averageBudget>0">
+                       {{'expense.budget'|translate}}:&nbsp;&nbsp;{{view.expenseNextStep.averageBudget|currency:view.symbol}}/人
+                    </span>
+
+                    <span
+                        ng-if="(view.expenseNextStep.writeoffFlag)&&(view.showRelativeInformation && view.expenseNextStep.averageBudget > 0)">
+                        &nbsp;|&nbsp;
+                    </span>
+                     <span ng-if="(view.expenseNextStep.writeoffFlag) && view.expenseNextStep.showInformation">
+                       {{'expense.Cancel.after.verification'|translate}}
+                         <img class="write-off-icon" src="img/operationTypeIcon/2001.png">
+                     </span>
+                </div>
+            </div>
+            <div class="row row-center"
+                 ng-if="(view.expenseNextStep.remark)&&view.expenseNextStep.showInformation">
+                <span class="header-reject-text">{{'expense.note'|translate}}:{{view.expenseNextStep.remark}}</span>
+            </div>
+        </div>
+        <div class="expense-arrow" ng-click="showHeaderInformation()">
+            <img class="arrow-icon" src="img/expense_report_version/expense_report/arrow.png"
+                 ng-class="{true:'rotate',false:'arrow-icon-down'}[view.expenseNextStep.showInformation]">
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="expense in view.expenseReportList" ng-show="view.nothing"
+                      class="invoice-item-list">
+                <div>
+                    <div class="row row-center row-date"
+                         ng-if="$index === 0 || ($index > 0 && view.expenseReportList[$index].formatDate !== view.expenseReportList[$index-1].formatDate)">
+                        <div class="col col-center col-60 expense-date">
+                            <p>{{expense.createdDate | dayCharFilter }}{{expense.week | weekFilter}}</p>
+                        </div>
+                    </div>
+                    <expense-item item="expense"
+                                  origin-currency-code="view.originCurrencyCode"
+                                  delete="view.canDelete"
+                                  delete-expense="deleteInvoice(expense)"
+                                  go-detail="showDetail(expense)">
+                    </expense-item>
+                </div>
+            </ion-item>
+        </ion-list>
+
+
+        <ion-infinite-scroll
+            ng-if="pagenation.page < pagenation.maxPage"
+            on-infinite="pagenation.loadMore(pagenation.page + 1)"
+            immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+
+
+        <!--<div class="item item-divider"-->
+        <!--ng-show="(view.content=='approval_reject'||view.content=='audit_reject')&&view.nothing"></div>-->
+        <div class="approval-history-page"
+             ng-show="(view.content=='approval_reject'||view.content=='audit_reject')"
+        >
+            <p class="expense-tips">
+                {{'expense.The.examination.and.approval.of.history'|translate}}
+            </p>
+
+            <div class="approval-history-pane history-block">
+                <div class="line"></div>
+                <div class="approval-history">
+                    <div class="row" ng-if="view.expenseNextStep.expenseDetails.approvalChains.length > 0">
+                        <span class="history-dot-wait"></span>
+
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        {{'expense.wait'|translate}}
+                                        {{'expense.approval'|translate}}
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        {{view.expenseNextStep.expenseDetails.approvalChains[0].lastModifiedDate | dateTimeFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                <span ng-repeat="chain in view.expenseNextStep.expenseDetails.approvalChains">
+                                    {{chain.approverName}}&nbsp;{{chain.approverEmployeeID}} <span ng-if="$index != (view.expenseNextStep.expenseDetails.approvalChains.length -1)">，</span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="history in view.expenseNextStep.expenseDetails.approvalHistory | orderBy:'-createdDate'">
+                        <span class="history-dot-wait" ng-if="history.operation === 3004 || history.operation === 4000"></span>
+                        <span class="history-dot-success" ng-if="history.operation === 1001 ||
+                            history.operation === 2001 || history.operation === 3001 || history.operation === 3003 ||
+                            history.operation === 4001 || history.operation === 4011 || history.operation === 5000 ||
+                            history.operation === 5001 || history.operation === 5002 || history.operation === 5004 || history.operation === 5007"></span>
+                        <span class="history-dot-reject" ng-if="history.operation === 2002 || history.operation === 3002 ||
+                            history.operation === 4012 || history.operation === 5003 || history.operation === 5005 || history.operation === 5006 || history.operation === 5008"></span>
+                        <span class="history-dot-withdraw" ng-if="history.operation === 1002"></span>
+
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time operation-title">
+                                        <span ng-hide="history.operation == 2001 && history.operationType == 1001">
+                                            {{history.operation | operation}}
+                                        </span>
+                                        <span ng-if="history.operation == 2001 && history.operationType == 1001">
+                                            {{'filter_js.selfApproval' | translate}}
+                                            <!--自审批通过-->
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        {{history.lastModifiedDate | dateTimeFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                {{history.operator.fullName}}&nbsp;{{history.operator.employeeID}}
+                            </p>
+                            <p class="approval-time" ng-class="{'reject-remark': history.operation == 2002 || history.operation == 3002 || history.operation == 4012 || history.operation == 5003}">
+                                {{history.operationDetail}}
+                            </p>
+                            <p class="approval-time" ng-if="history.operation === 4001">
+                                {{'expense.The.exchange.rate.standards'|translate}}:&nbsp;{{view.expenseNextStep.expenseDetails.exchangeRateValue}}&nbsp;&nbsp;,
+                            </p>
+                            <p class="approval-time" ng-if="history.operation === 4001">
+                                {{'expense.make.loans'|translate}}:&nbsp;{{view.expenseNextStep.expenseDetails.baseCurrencyAmount|currency:'¥'}}<br>
+                            </p>
+                            <p class="approval-time" ng-if="history.operation !== 4001">
+                                <span class="receipt-reason" ng-if="history.operation === 4012 && history.operationDetail === null"><br>
+                                    {{'expense.Failure.of.make.out.an.invoice'|translate}}
+                                </span>
+                                <span ng-if="history.remarks.rejectCount>0&&history.remarks!==null&&views.content=='passed'&&history.remarks.value.length>0">
+                                    {{history.remarks.passCount}}&nbsp;{{'expense.deal'|translate}}&nbsp;&nbsp;</span><br>
+                                <span ng-if="history.remarks.rejectCount>0&&history.remarks!==null&&views.content=='passed'&&history.remarks.value.length>0">
+                                    {{'expense.rejected'|translate}}&nbsp;{{history.remarks.rejectCount}}&nbsp;{{'expense.deal'|translate}}&nbsp;
+                                    <span ng-repeat="type in history.remarks.value">
+                                         {{type.key}}&nbsp;{{type.amount|currency:'¥'}}&nbsp;
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div class="add-expense-category" ng-click="goTo('app.expense_create')">
+        <img class="create-icon" src="img/expense_report_version/expense_report/create-expense.png">
+        <span class="create-text">{{'expense.Manually.add'|translate}}</span>
+    </div>
+    <div class="add-expense-category" ng-click="goTo('app.account_book')">
+        <img class="import-icon" src="img/expense_report_version/expense_report/choice.png">
+        <span class="import-text">{{'expense.account.book.to.lead'|translate}}</span>
+    </div>
+    <ion-footer-bar>
+        <div class="row bottom-btn">
+            <div class="col col-50 save-btn-expense-report" ng-click="saveExpense('secondCreate')">
+                {{'expense.save'|translate}}
+            </div>
+            <div class="col col-50 submit-btn" ng-click="commitExpense()">
+                {{'expense.submit'|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

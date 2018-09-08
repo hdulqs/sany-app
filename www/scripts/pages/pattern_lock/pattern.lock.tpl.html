@@ -1,0 +1,11 @@
+<ion-view hide-back-button='true'>
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'pattern.Enter.the.password.for.gestures'|translate}}<!--请输入手势密码--></span>
+    </ion-nav-title>
+
+    <ion-content class="center">
+        <div id='lockPattern' class='pattern-holder patt-holder pattern-lock'></div>
+        <div class="error-message" ng-show="patternLockErrorTime<5 && patternLockErrorTime>0">*{{'pattern.You.can.also.input'|translate}}<!--您还可以输入-->{{ patternLockErrorTime }}{{'pattern.times'|translate}}<!--次--></div>
+        <div class="reset-message"><a ng-click="view.resetPatternLock()">{{'pattern.Verify.password'|translate}}<!--验证登录密码--></a></div>
+    </ion-content>
+</ion-view>

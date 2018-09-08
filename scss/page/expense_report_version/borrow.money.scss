@@ -1,0 +1,98 @@
+.borrow-money-list{
+    background-color: #f1f1f1;
+    .borrow-list-content{
+        .warning-icon {
+            width: 40%;
+        }
+        .warning-word {
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        .create-invoice-type-btn {
+            font-size: 1.1em;
+            color: #0092da;
+            border: 1px solid #0092da;
+            border-radius: 3px;
+            background-color: transparent;
+            padding: 5px 5px;
+            margin-top: 25px;
+        }
+        .total-amount-container{
+            margin: 0 auto;
+        }
+        .actual-amount {
+            background-color: #fff;
+            text-align: center;
+            height: 50px;
+            border-bottom: 1px solid #ddd;
+            margin-top: 15px;
+            .title{
+                margin-right: 5px;
+            }
+            img {
+                width: 1.5em;
+                position: relative;
+                top: 15px;
+                margin-right: 10px;
+            }
+            span {
+                color: #ffaa46;
+                font-size: 1.2em;
+                position: relative;
+                top: 10px;
+            }
+        }
+        .time-node {
+            p {
+                margin: 5px 0 5px 18px;
+                color: #959595;
+                font-size: 14px;
+            }
+        }
+    }
+}
+.borrow-money-item-directive{
+    padding: 0;
+    .item-content{
+        min-height: 60px;
+    }
+    .row {
+        margin: 0;
+        font-size: 14px;
+        min-height: 25px;
+        .col {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0;
+            margin: 0;
+        }
+    }
+    .row-middle {
+        padding: 0;
+        .expense-type-text {
+            display: inline;
+            color: #959595;
+            font-size: 12px;
+        }
+    }
+    .icon-img{
+        height: 36px;
+        margin: 0 10px 0 5px;
+        img{
+            width: 36px;
+        }
+    }
+    .text-right{
+        text-align: right;
+    }
+    .date-text{
+        color: #4c4c4c;
+    }
+    .amount-text{
+        font-size: 16px;
+    }
+    .process-text{
+        color: #ffaa46;
+    }
+}

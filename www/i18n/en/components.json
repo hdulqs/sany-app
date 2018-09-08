@@ -1,0 +1,398 @@
+{
+    "account": {
+        "Account.opening.an.account": "Account No.",
+        "Loading": "Loading...",
+        "To.open.an.account.name": "Account Name",
+        "bank": "Bank",
+        "empty": "Empty"
+    },
+    "account_js": {
+        "Make.a.mistake": "Error"
+    },
+    "add": {
+        "Add.external.participants": "Adding external participants",
+        "Empty.the.history": "Clear history",
+        "External.participants": "External participants",
+        "Participants": "Participant",
+        "Please.add": "Please add",
+        "The.historical.record": "History record"
+    },
+    "add_js": {
+        "Has.been.removed": "Removed",
+        "The.user.has.been.added": "This user has been added"
+    },
+    "application_item": {
+        "Has.been.closed": "Expired",
+        "Has.been.rejected": "Rejected",
+        "Has.withdrawn": "Withdrawn",
+        "In.the.editor": "Open",
+        "pay_in_process":"Paying",
+        "In.the.examination.and.approval": "Processing",
+        "Reason.for.rejection": "Reason",
+        "budget": "Total",
+        "yetAudit": "Approved",
+        "paymenting": "Repaying",
+        "yetRepayment": "Repaid",
+        "ren": "in all",
+        "Flyback": "Flyback Application"
+    },
+    "approval_selector": {
+        "No.data": "No data",
+        "choose": "Choose",
+        "No.bank": "No enabled bank account, please contact administrator!"
+    },
+    "approval_selector_js": {
+        "mistake": "Error",
+        "tip": "Tips",
+        "clear_allowance": "Allowance will be cleared if you change peers.",
+        "sure_modify": "Confirm",
+        "please_select_costCenter": "Please select cost centre first.",
+        "please_select_applicant": "Please select applicant first.",
+        "please_select_department": "Please select department first",
+        "The.most.optional": "Up to ",
+        "unit": " "
+    },
+    "back.to.HuiLianYi": "Back",
+    "bank_item": {
+        "No.bank": "No bank",
+        "Popular.bank": "Popular Bank"
+    },
+    "break_expense_js": {
+        "ctrip": "Ctrip Amount",
+        "stick": "Stamp Amount",
+        "didi": "Didi Amount",
+        "changguan": "场馆金额",
+        "huafei": "话费金额",
+        "youka": "油卡金额"
+    },
+    "city_selector": {
+        "Please.enter.the.city": "Please enter a city"
+    },
+    "cost": {
+        "Last.choice": "Last choice ",
+        "Please.enter.the.keywords": "Please enter key words",
+        "public": "Public "
+    },
+    "cost_center": {
+        "Cost.center.is.not.configured": "Cost center is not configured, please contact your administrator"
+    },
+    "cost_js": {
+        "Cost.center": "Cost Center"
+    },
+    "date": {
+        "Friday": "Friday",
+        "Monday": "Monday",
+        "Saturday": "Saturday",
+        "Sunday": "Sunday",
+        "Thursday": "Thursday",
+        "Tuesday": "Tuesday",
+        "Wednesday": "Wednesday"
+    },
+    "destination": {
+        "Hot.city": "Popular cities",
+        "Please.enter.the.keywords": "Please enter a keyword",
+        "Select.the.city": "Select a city",
+        "There.is.no.city": "Non-city",
+        "cancel": "Cancel"
+    },
+    "destination_js": {
+        "Beijing": "Beijing",
+        "Changsha": "Changsha",
+        "Guangzhou": "Guangzhou",
+        "HongKong": "Hong Kong",
+        "Shanghai": "Shanghai",
+        "Shenzhen": "Shenzhen",
+        "Wuhan": "Wuhan",
+        "Wuxi": "Wuxi"
+    },
+    "destination_js_ctrip": {
+        "Beijing": "Beijing",
+        "Changsha": "Changsha",
+        "Guangzhou": "Guangzhou",
+        "HongKong": "Hong Kong",
+        "Shanghai": "Shanghai",
+        "Shenzhen": "Shenzhen",
+        "Wuhan": "Wuhan",
+        "Wuxi": "Wuxi"
+    },
+    "didi_fake": {
+        "order.success": "Order generated successfully!",
+        "request.error": "Service request error, please try again later!"
+    },
+    "directive": {
+        "Level.approver": "Level approver",
+        "Please.select.a.user.of.examination.and.approval": "Please select the user for approval",
+        "Please.select.the.approver": "Please select an approver",
+        "Select.the.approver": "Select the approver",
+        "determine": "OK"
+    },
+    "directive_js": {
+        "An.approver": "Approver",
+        "Can.only.choose": "You can only select"
+    },
+    "eid": {
+        "Have.a.refund": "Refunds",
+        "Modify": "Modify",
+        "The.actual.audit": "The actual audit"
+    },
+    "error_comp": {
+        "deploy": "Not configured, please contact the administrator",
+        "network": "Oops, network error!",
+        "server": "Server deserted,",
+        "service.no.open": "Not subscribe to the service",
+        "system": "Technican is working on repairing!",
+        "permission": "No effective proxy relationship, please contact the administrator!",
+        "error": "Request error!",
+        "connect": "Can not connect to",
+        "retry": "Please try again later!",
+        "config": "Config error!",
+        "card.no.open":"Your account number has not been initiated, please contact the administrator!"
+    },
+    "expense_item": {
+        "Daily.expense.account": "Daily expense",
+        "Do.not.need.to.stick.a.ticket": "Not required",
+        "Make.out.an.invoice.is.rejected": "Invoice rejected",
+        "Review.the.rejected": "Review rejected",
+        "Stick.a.ticket.cost": "Receipt required",
+        "Success.of.make.out.an.invoice": "Billing through",
+        "Travel.reimbursement": "Travel claims",
+        "reimbursement": "Reimbursement"
+    },
+    "expense_item_js": {
+        "didi.travel": "Didi travel"
+    },
+    "fill": {
+        "Add.personnel": "Add personnel",
+        "name": "Full name"
+    },
+    "invoice_item": {
+        "Cost.to.apply.for": "Expense request",
+        "Etc": "..., "
+    },
+    "invoice_type": {
+        "Total.amount": "Total Amount",
+        "add": "Add"
+    },
+    "invoice_type_js": {
+        "Please.enter.the.amount": "Please enter the amount",
+        "Please.select.a.cost.type": "Please select the type of cost",
+        "type": "Types of"
+    },
+    "item": {
+        "For.the.ticket": "Replace Receipt",
+        "Have.a.ticket": "With Receipt",
+        "Special.ticket": "Tax(Universal)",
+        "There.is.no.ticket": "Without Receipt",
+        "delete": "Delete",
+        "rejected": "Rejected",
+        "through": "Passed",
+        "withdraw": "Withdraw",
+        "apportion": "分摊"
+    },
+    "linkage": {
+        "Please.enter.the": "Please enter ",
+        "Please.enter.keyword": "请输入成本中心名称",
+        "Please.select": "Select ",
+        "My": "My Account ",
+        "not.enabled": "Not Enabled"
+    },
+    "location": {
+        "Please.select.a.location": "Please select a location",
+        "Site.keywords": "Location keywords",
+        "search": "Search"
+    },
+    "location_js": {
+        "catering": "Food and beverage",
+        "coach": "Coach",
+        "conference": "Conference",
+        "hotel": "Hotels",
+        "ticket": "Air tickets",
+        "traffic": "Traffic",
+        "train": "Train",
+        "searchError": "加载失败"
+    },
+    "more_settings": {
+        "More.Settings": "More settings",
+        "The.approver.set": "Approver settings"
+    },
+    "person_tpl": {
+        "No.search.results": "No search results",
+        "Select.personnel": "Choose member"
+    },
+    "person_tpl_js": {
+        "participants": "Participant"
+    },
+    "popup": {
+        "cancel": "Cancel",
+        "ok": "Ok",
+        "you.have": "You have ",
+        "need.to.be.processed": " approval(s) need to be processed."
+    },
+    "select_type": {
+        "Cost.type.choice": "Enter Type and Amount",
+        "Enter.the.amount": "Enter the amount",
+        "Enter.the.number": "Number of days",
+        "Refer.to.the.mileage": "Ref. mileage",
+        "The.total.amount": "Total amount",
+        "The.total.amount.of": "Amount",
+        "complete": "Completed",
+        "mileage": "Mileage",
+        "money": "Amount",
+        "number": "Number",
+        "reset": "C",
+        "subsidies": "Subsidy",
+        "histroy.select": "History"
+    },
+    "select_type_js": {
+        "Length.must.be.greater.than.zero": "Length.must.be.greater.than.zero",
+        "Mileage.up.to.a.decimal": "Mileage.up.to.a.decimal",
+        "Please.enter.the.legal.number.of.days": "Please enter a valid number of days",
+        "Please.enter.the.legal.range": "Please.enter.the.legal.range",
+        "Please.enter.the.legitimate.expression": "Please enter a valid expression",
+        "Please.select.currency": "Please select currency",
+        "confirm": "OK"
+    },
+    "selector": {
+        "Choose.department": "Select the department",
+        "Department.list": "List of departments",
+        "Have.chosen.sector": "Selected departments",
+        "Please.select.a.department": "Please select the department",
+        "The.history.department": "History department",
+        "Please.enter.the.keywords": "Please enter keywords",
+        "department.disable": "Disabled"
+    },
+    "status": {
+        "Bank.account.only.Numbers": "Bank account can only be number",
+        "Have.been.through": "Passed",
+        "Make.out.an.invoice.through": "Billing through",
+        "Payment.has.been": "Paid",
+        "Please.enter.the.legal.amount": "Please enter a valid amount",
+        "approved": "Approved",
+        "pay_in_process": "Paying",
+        "loan_in_process": "Processing"
+    },
+    "supplier_tpl": {
+        "Please.select.a.supplier": "Select Travel Agency",
+        "Please.select.a.supplier.new": "Choose air-ticket supplier"
+    },
+    "tabs": {
+        "Expense.account": "Expense Claim",
+        "Home.page": "Home",
+        "cost": "Cost",
+        "my": "My Account"
+    },
+    "travel_directive": {
+        "Travel.application": "Travel application"
+    },
+    "upload_js": {
+        "Choose.from.the.album": "Album",
+        "Network.failure.please.try.again.later": "Network failure, please try again later.",
+        "Photos.over.limit": "Number of photos over the limit!",
+        "Taking.pictures": "Camera",
+        "take.pictures.and.compress": "Camera and Compress",
+        "choose.from.album.and.compress": "Album and Compress"
+    },
+    "user": {
+        "external": "External"
+    },
+    "value_tpl": {
+        "Approver": "approver(s)",
+        "Click.the.refresh": "Click Refresh",
+        "No.results": "No result!",
+        "Select.value": "Select value ",
+        "amendMileage": "Modify mileage",
+        "cardID": "CardID:",
+        "onlyChoose": "Only choose",
+        "pleaseInputMileage": "Please Input Mileage",
+        "default": "Default"
+    },
+    "city_js":{
+        "china.city":"Domestic city",
+        "inter.city":"Foreign city",
+        "history":"History",
+        "popular":"Popular",
+        "please.enter.the.city":"Please enter the city name",
+        "cancel":"Cancel",
+        "sorry":"Sorry, no foreign data",
+        "failed":"Query failed",
+        "china":"China",
+        "city":"City"
+    },
+    "hec_common": {
+        "please.select.one": "Please select",
+        "no.search.results": "No search result",
+        "searchError": "Query failed",
+        "search": "Search",
+        "nothing":"None",
+        "Please.enter.the.search":"Please enter the retrieval contents",
+        "other":"Others"
+    },
+    "hec_lov": {
+        "input.company.prompt": "Company",
+        "input.company.keywords": "Please enter the company name",
+        "input.unit.prompt": "Department",
+        "input.unit.keywords": "Please enter the Department name",
+        "input.resp.prompt": "Expense center",
+        "input.resp.keywords": "Please enter the name of the expense center",
+        "input.cry.prompt": "Currency",
+        "collection.currency.prompt":"Collection currency",
+        "settlement.currency.prompt":"Settlement currency",
+        "input.cry.keywords": "Please enter the currency name",
+        "input.exptype.prompt": "Expense type",
+        "input.exptype.keywords": "Please enter the name of expense type",
+        "input.expitem.prompt": "Expense item",
+        "input.expitem.keywords": "Please enter the name of expense item",
+        "exp.type.choose": "Selection of expense type",
+        "cancel":"Cancel",
+        "please.enter.a.valid.amount":"Please enter the legal amount",
+        "please.enter.a.valid.expression":"Please enter the legitimate expression",
+        "please.select.the.type.of.cost":"Please select the type of expenses",
+        "input.search.info": "Please enter the fuzzy query information",
+        "load.cost.type.data.failed":"Failed to load the expense type data",
+        "flexfield.loading.failed":"Failed to load the flexfield",
+        "flexfield.initialization.failed":"Failed to initialize the flexfield",
+        "type.prompt": "Type",
+        "start.location.prompt":"Departure place",
+        "end.location.prompt":"Destination",
+        "input.location.name":"Please enter the name of the place",
+        "input.location.from.prompt":"Departure place",
+        "input.location.to.prompt":"Destination",
+        "input.bemp.prompt": "Job No.",
+        "input.bemp.keywords": "Please enter the employee's name, Job No. or department",
+        "input.dimension.prompt": "Project",
+        "input.dimension.keywords":"Please enter the name of dimension value",
+        "input.beneficiary.prompt":"Payee",
+        "input.beneficiary.keywords":"Please enter the name of the payee",
+        "input.cashplan.prompt":"Capital plan",
+        "input.cashplan.keywords":"Please enter the fund plan"
+    },
+    "hec_combox": {
+        "input.emp.prompt": "Responsible person",
+        "input.rate.prompt": "Tax rate",
+        "input.invcate.prompt": "Invoice category",
+        "input.doctype.prompt": "Bill type",
+        "input.invitem.prompt": "Invoice item",
+        "input.park.prompt": "Live in park or not",
+        "input.treament.level.type.prompt": "Type of treatment level",
+        "input.airplane.vender.prompt": "Air ticket supplier",
+        "input.hotel.vender.prompt": "Hotel supplier",
+        "input.business.attribute.prompt":"Business attributes",
+        "input.payment.object.prompt":"Collection object",
+        "input.cabin.prompt": "Airfare cabin",
+        "input.emptype.prompt":"Type of employee",
+        "input.dimension.value.prompt":"Dimension value",
+        "input.reimtype.prompt":"Type of reimbursement",
+        "input.period.prompt": "Business interval",
+        "input.cashplan.prompt":"Capital plan",
+        "input.reqitem.prompt":"Application item",
+        "input.payway.prompt":"Payment method",
+        "input.loantype.prompt":"Type of borrowing",
+        "input.account.prompt":"Bank account number"
+    },
+    "hec_image": {
+        "error.get.seqid": "Failed to get SeqID",
+        "error.download.image.failed": "Failed to download pictures",
+        "error.delete.image.failed": "Error information due to failure to delete pictures:",
+        "error.upload.image.failed": "Error information due to failure to upload pictures:"
+    }
+}

@@ -1,0 +1,82 @@
+<ion-view class="pane"  hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{"approval.payment.item.title"|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="hec-approval-detail">
+            <div class="row">
+                <div class="col  text-right">
+                    <!--收款方-->
+                    {{"approval.accountInfo.payeeName"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.payee_partner_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--付款方式-->
+                    {{"approval.accountInfo.paymentMethod"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.payment_method}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--收款银行账号-->
+                    {{"approval.accountInfo.accountNumber"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.account_number}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--银行户名-->
+                    {{"approval.accountInfo.accountName"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.account_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--未支付金额-->
+                    {{"approval.payment.item.unPaymentAmount"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.currency_code|currencyFilter}}
+                    &nbsp;{{vm.item.unpayment_amount|amountFilter}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col  text-right">
+                    <!--可申请金额-->
+                    {{"approval.payment.item.canReqAmount"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                   {{vm.item.currency_code|currencyFilter}}</span>
+                    &nbsp;{{vm.item.can_req_amount|amountFilter}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--本次申请金额-->
+                    {{"approval.payment.item.reqAmount"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.currency_code|currencyFilter}}
+                    &nbsp;{{vm.item.req_amount|amountFilter}}
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

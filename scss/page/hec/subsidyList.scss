@@ -1,0 +1,21 @@
+/*补贴信息列表样式*/
+.subsidy-list {
+    .operation-buttons {
+        width: 96%;
+        margin: 0 auto;
+        padding: 1rem 0;
+        border-bottom: 1px solid #e2e2e2;
+        display: flex;
+        justify-content: space-around;
+        color: #ffffff;
+        .operation-btn {
+            background: none;
+            border: 1px dashed;
+        }
+        .operation-img {
+            width: 2rem;
+            vertical-align: middle;
+            margin-right: .4rem;
+        }
+    }
+}

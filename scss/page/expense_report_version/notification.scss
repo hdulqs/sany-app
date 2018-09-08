@@ -1,0 +1,115 @@
+.erv-notification-page {
+    background: #f1f1f1;
+    .item-content {
+        padding: 10px !important;
+    }
+    .notification-item {
+        padding: 0 15px !important;
+        height: 90px;
+        border-bottom: 1px solid #cdcdcd;
+        margin: -1px;
+    }
+    .col, .row {
+
+        padding: 0
+    }
+    .notification-print {
+        margin-top: 10px;
+    }
+    span {
+        font-size: 13px;
+        color: #cdcdcd;
+    }
+    .notification-date {
+        text-align: right;
+        margin-bottom: 11px;
+        padding: 0;
+    }
+    .button-assertive {
+        width: 60px;
+        padding: 0 15px;
+    }
+    .delete-news {
+        background-color: #df2c2c;
+        color: white;
+    }
+    .rubbish {
+        width: 16px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        margin-top: 10px;
+    }
+    .text-right {
+        text-align: right;
+    }
+    .operation-note {
+        text-align: left;
+        float: left;
+        padding: 0 10px 10px 18px;
+        line-height: 13px;
+    }
+    .message-date {
+        color: #959595;
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .message-text{
+        color: #959595;
+        font-size: 13px;
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 15px;
+    }
+    .notice {
+        width: 100%;
+        font-size: 14px;
+        color: #4c4c4c;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .operate-notice {
+        padding: 5px;
+    }
+    .read-point{
+        position: absolute;
+        top: 15px;
+        font-size: 16px;
+        color: #0092da;
+        width: 10px;
+        height: 10px;
+    }
+    .margin-left{
+        margin-left: 18px;
+    }
+    .margin-left-32{
+        margin-left: 32px;
+    }
+    .margin-left-50{
+        margin-left: 50px;
+    }
+    .margin-top-5{
+        margin-top: 5px;
+    }
+    .read-bg{
+        .item-content{
+            //background-color: #FFFAE9;
+        }
+    }
+    .notice-icon{
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
+    }
+    .notice-text{
+        white-space: normal;
+    }
+    .text-money{
+        span{
+            color: #ff6a10;
+            white-space: normal;
+        }
+    }
+}

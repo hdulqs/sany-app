@@ -1,0 +1,11 @@
+<ion-view>
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{ view.headerContent }}</span>
+    </ion-nav-title>
+
+    <ion-content class="center">
+        <div id='lockPatternSetting' class='pattern-holder patt-holder pattern-lock'></div>
+        <div class="error-message" ng-show="patternLockErrorTime<5 && patternLockErrorTime>0">{{'pattern.You.can.also.input'|translate}}<!--您还可以输入-->{{ patternLockErrorTime }}{{'pattern.times'|translate}}<!--次--></div>
+        <div class="reset-message" ng-show="view.isCancelPatternLock()"><a ng-click="view.resetPatternLock()">{{'pattern.Verify.password'|translate}}<!--验证登录密码--></a></div>
+    </ion-content>
+</ion-view>

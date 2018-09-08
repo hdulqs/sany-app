@@ -1,0 +1,17 @@
+{
+    "application": {
+        "activity.form": "form aktiviti",
+        "meike.approval": "pengesahan meike",
+        "other.apply": "applikasi lain"
+    },
+    "vendor": {
+        "fasco": "tiket pernerbangan fasco",
+        "hrs": "HRS",
+        "huazhu": "huazhu",
+        "jingdong": "jingdong",
+        "xiecheng": "xiecheng",
+        "baoku": "宝库",
+        "baokuAir": "中青旅",
+        "baokuHotel": "宝库酒店"
+    }
+}

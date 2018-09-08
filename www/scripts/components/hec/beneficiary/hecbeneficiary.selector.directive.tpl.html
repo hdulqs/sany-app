@@ -1,0 +1,51 @@
+<!--lov 收款方（报销单-申请单）
+Created by Dawn on 2017/10/20.-->
+<div class="hecbeneficiary-selector">
+    <div class="row row-center">
+        <div class="col text-left filed-name hec-item-prompt" >
+            {{'hec_lov.input.beneficiary.prompt'|translate}}
+            <span class="hec-selector-required" ng-if="!readonly">*</span>
+        </div>
+        <div class="col col-60 text-right language-right"  ng-click="!readonly&&openDialog()">
+            <span ng-if="beneficiaryDesc" class="cost-center-name" style="white-space: normal;">
+                {{beneficiaryDesc}}
+            </span>
+            <span class="cost-center-name hec-selector-placeholder" ng-if="!readonly" ng-hide="beneficiaryDesc">{{'hec_common.please.select.one'|translate}}</span>
+        </div>
+        <span class="icon ion-ios-arrow-right hec-selector-arrow-right" ng-hide="readonly"></span>
+    </div>
+</div>
+<script id="hecbeneficiary.selector.dialog.html" type="text/ng-template">
+    <ion-modal-view class="hecbeneficiary-selector-modal">
+        <ion-header-bar class="header item-input-inset">
+            <button class="button button-clear" ng-click="modal.hide()">
+                <i class="icon ion-ios-arrow-left"></i>
+            </button>
+            <label class="item-input-wrapper">
+                <i class="icon ion-ios-search placeholder-icon"></i>
+                <input type="search" placeholder="{{'hec_lov.input.beneficiary.keywords'|translate}}"
+                       ng-model="searchKeyword.value" ng-model-options="{debounce:500}"
+                       ng-change="searchBeneficiary()"><!--部门关键字-->
+            </label>
+        </ion-header-bar>
+        <ion-content>
+            <div class="text-center selector-nothing" ng-if="nothing">
+                <img class="no_data_img" src="img/expense_report_version/travel/no-itinerary.png" alt="">
+                <p class="text-center">
+                    {{"hec_common.no.search.results"|translate}}
+                </p>
+            </div>
+            <ion-list>
+                <div class="item" style="padding: 10px" ng-repeat="item in beneficiaryList track by $index" ng-click="selectItem(item)">
+                    <h2 style="white-space: normal;">{{item.partner_code}}</h2>
+                </div>
+            </ion-list>
+            <ion-infinite-scroll
+                on-infinite="loadMore(page + 1)"
+                distance="1%"
+                ng-if="lastPage > page"
+                immediate-check="false"
+            ></ion-infinite-scroll>
+        </ion-content>
+    </ion-modal-view>
+</script>

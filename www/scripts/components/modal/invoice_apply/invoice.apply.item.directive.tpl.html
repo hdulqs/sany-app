@@ -1,0 +1,120 @@
+<ion-item class="invoice-apply-directive">
+    <div ng-click="goDetail()">
+        <div class="row row-center header">
+            <div class="color-block"></div>
+            <div class="col col-70 error-col">
+                <p class="budget-cell" ng-if="item.errorMsg" ng-class="{'budget-color-cell':item.errorMsg.externalPropertyName==='1002'
+                || item.errorMsg.externalPropertyName==='2002'}">
+                    <span class="over-difference" ng-if="item.errorMsg.externalPropertyName==='1001' || item.errorMsg.externalPropertyName==='2002'">超申请</span>
+                    <span class="over-budget" ng-if="item.errorMsg.externalPropertyName==='1002' || item.errorMsg.externalPropertyName==='1004'">超预算</span>
+                    <span class="sys-error" ng-if="item.errorMsg.externalPropertyName==='2001'">超差标</span>
+                    <span class="sys-error" ng-if="item.errorMsg.externalPropertyName==='1003'">系统错误</span>
+                </p>
+                <p class="businessCode-anchor">
+                    No.{{item.expenseApplication.businessCode}}
+
+                </p>
+            </div>
+            <div class="col">
+                <p class="text-right">
+                    {{ item.createdDate | dateFilter}}
+                </p>
+            </div>
+        </div>
+        <div class="invoice-item-content">
+            <div class="row row-center">
+                <div class="col col-70">
+                    <p class="detail">
+                        <!--{{item.formName}}-->
+                        {{'invoice_item.Cost.to.apply.for'|translate}}<!--费用申请-->
+                    </p>
+                </div>
+
+                <div class="col col-30 text-right invoice-types" ng-if="!isHideState">
+                    <p class="approval-status bg-has-pass" ng-if="item.status === 1003 && item.rejectType === 1000">
+                        {{'status.Have.been.through'|translate}}<!--已通过-->
+                    </p>
+
+                    <p class="approval-status bg-wait-approval"
+                       ng-if="item.status === 1002 && item.rejectType === 1000">
+                        {{'application_item.In.the.examination.and.approval'|translate}}<!--审批中-->
+                    </p>
+
+                    <p class="approval-status bg-editing" ng-if="item.status === 1001 && item.rejectType === 1000">
+                        {{'application_item.In.the.editor'|translate}}<!--编辑中-->
+                    </p>
+
+                    <p class="approval-status bg-has-reject" ng-if="item.status === 1001 && item.rejectType === 1002">
+                        {{'application_item.Has.been.rejected'|translate}}<!--已驳回-->
+                    </p>
+
+                    <p class="approval-status bg-withdraw" ng-if="item.status === 1001 && item.rejectType === 1001">
+                        {{'application_item.Has.withdrawn'|translate}}<!--已撤回-->
+                    </p>
+                    <p class="approval-status bg-wait-approval" ng-if="item.status === 1008 && item.rejectType === 1001">
+                        {{'application_item.pay_in_process'|translate}}<!--付款中-->
+                    </p>
+                </div>
+            </div>
+
+            <div class="row row-center row-middle">
+
+                <div class="col col-60 comment">
+                    {{item.title}}
+                </div>
+
+
+                <div class="col col-40 text-right">
+                    <p class="total">
+                        {{item.expenseApplication.currencyCode}}
+                        {{item.expenseApplication.totalBudget |number:2}}
+                    </p>
+                </div>
+
+            </div>
+            <div class="row row-center row-middle" ng-show="item.rejectType === 1002 && item.rejectReason && item.rejectReason !== null && item.rejectReason !== ''">
+                <div class="col col-60 ">
+                    <p class="reject-reason">
+                        {{'application_item.Reason.for.rejection'|translate}}<!--驳回理由-->:{{item.rejectReason}}
+                    </p>
+                </div>
+
+            </div>
+            <div class="row row-center approval-detail" ng-if="isShowType">
+                <div class="col approval-dep">{{item.expenseApplication.departmentName}}
+                </div>
+                <div class="col text-right approval-dep approval-name-anchor">
+                    {{item.applicationParticipants[0].fullName}}
+                    <span ng-if="item.applicationParticipants.length > 1">
+                    {{'invoice_item.Etc'|translate}}<!--等-->&nbsp;{{item.applicationParticipants.length}}&nbsp;{{"application_item.ren"|translate}}
+                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ion-option-button class="button-assertive invoice-apply-directive-delete" ng-click="deleteInvoice()"
+                       ng-if="canDelete">
+        <div class="column">
+            <div class="delete-text">{{'item.delete'|translate}}<!--删除--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive invoice-apply-withdraw" ng-click="withdrawInvoice()" ng-if="withdraw">
+        <div class="column">
+            <div class="delete-text">{{'item.withdraw'|translate}}<!--撤回--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive expense-reject" ng-if="canApproval"
+                       ng-click="reject()">
+        <div class="column">
+            <div class="reject-text">{{'item.rejected'|translate}}<!--驳回--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive expense-agree" ng-if="canApproval"
+                       ng-click="agree()">
+        <div class="column">
+            <div class="agree-text">{{'item.through'|translate}}<!--通过--></div>
+        </div>
+    </ion-option-button>
+</ion-item>
+
+

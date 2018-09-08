@@ -1,0 +1,17 @@
+<ion-view class="activate-user">
+    <ion-nav-title class="activate-init">
+        <span class="expense-report-nav-title">{{'account.activate.account' | translate}}<!--激活账号--></span>
+    </ion-nav-title>
+    <ion-content>
+        <div class="card">
+            <div class="log-phone">
+                <div class="log-phone log-phone-picture">
+                    <img ng-src="img/phone.png"/>
+                </div>
+                <div class="log-phone phone-number-text">{{'account.your.mobile.phone.number' | translate}}<!--你绑定的手机号--></div>
+                <div class="log-phone phone-number">{{mobile}}</div>
+                <button class="log-phone button-finish" ng-click="login()">{{'account.complete' | translate}}<!--完成--></button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

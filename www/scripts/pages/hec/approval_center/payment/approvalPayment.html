@@ -1,0 +1,226 @@
+<ion-view class="hec-approval"  hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{"approval.payment.title"|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content ng-class="{true:'has-footer'}[vm.waitApprovalFlag]">
+        <div class="row">
+            <div class="col col-25 approval-img" >
+                <img src="img/expensetypes/zongjianjijin.png">
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col text-left padding-0">
+                        {{vm.header.exp_report_type_name}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-left padding-0">
+                        {{vm.header.requisition_number}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-left padding-0">
+                        {{"approval.loan.applyer"|translate}}：{{vm.header.req_name}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-left padding-0">
+                        {{"approval.phone"|translate}}：{{vm.header.requisition_phone}}
+                    </div>
+                </div>
+            </div>
+            <div class="col col-20 passed-img"  ng-if="vm.passFlag=='Y'">
+                <img src="img/expense_report_version/approval/agree-all.png">
+                <br><!--审批通过-->{{'approval.already.passed'|translate}}
+            </div>
+        </div>
+
+        <!--关联报销单编号-->
+        <ion-item  >
+            <div class="row row-center">
+                <div class="col"> {{"approval.payment.expnum"|translate}}</div>
+                <div class="col text-right">
+                    <a  ng-click="vm.goRefReport(vm.header.exp_report_header_id)">{{vm.header.acp_ref_rpt_number}}</a>
+                </div>
+            </div>
+        </ion-item>
+
+        <!--申请日期-->
+        <ion-item>
+            <div class="row row-center">
+                <div class="col">{{"approval.req.date"|translate}}</div>
+                <div class="col text-right">
+                    <span>{{vm.header.requisition_date}}</span>
+                </div>
+            </div>
+        </ion-item>
+
+        <!--
+         干部类型
+        {{"approval.cadre"|translate}}
+        内部职称
+        {{"approval.internal.title"|translate}}：
+        -->
+
+        <!--岗位-->
+        <ion-item>
+            <div class="row row-center">
+                <div class="col">{{"approval.job"|translate}}</div>
+                <div class="col text-right">
+                    <span>{{vm.header.hr_position_name}}</span>
+                </div>
+            </div>
+        </ion-item>
+
+        <!--申请总金额-->
+        <ion-item>
+            <div class="row row-center">
+                <div class="col">{{"approval.req.amount"|translate}}</div>
+                <div class="col text-right">
+                    {{vm.header.currency_code|currencyFilter}}
+                    &nbsp;{{vm.header.total_amount|amountFilter}}
+                </div>
+            </div>
+        </ion-item>
+
+        <!--付款事由-->
+        <ion-item>
+            <div class="row row-center">
+                <div class="col description-tip">
+                    {{"approval.payment.comment"|translate}}
+                </div>
+            </div>
+            <div class="row row-center">
+                <div class="col description-content">
+                    {{vm.header.description|convertNothing}}
+                </div>
+            </div>
+        </ion-item>
+
+        <!--附件信息-->
+        <div class="row"  ng-if="vm.attachments.length > 0">
+            <div class="col col-95">
+                <div>
+                    <p class="attachment-label">{{'attachment.label' | translate}}</p>
+                    <upload-image attachment-src="vm.attachments" type-name="prh" read-only-flag="true"></upload-image>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin:10px 0px">
+            <ion-item class="expense-directive approval-line"   ng-repeat="item in vm.line">
+                <div class="expense-item-content" ng-click="vm.goPaymentLine(item)">
+                    <div class="row row-center">
+                        <div class="col col-60">
+                            <p class="daily-expense">
+                                {{ item.payee_partner_name }}
+                            </p>
+                        </div>
+                        <div class="col col-40 col-center">
+                            <p class="text-right">
+                                {{item.currency_code|currencyFilter}}&nbsp;
+                                {{item.req_amount|amountFilter}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+        </div>
+
+        <div class="hec-approval-history-page" >
+            <!--审批中心待审批：查看审批记录-->
+            <div ng-if="vm.waitApprovalFlag">
+                <p class="expense-tips"><!--审批记录-->{{"approval.record"|translate}}</p>
+                <div class="no-record-tips" ng-if="vm.approvalRecordList.length==0"><!--您是第一个审批节点，没有审批记录!-->{{'approval.record.first'|translate}}{{'approval.record.nothing'|translate}}</div>
+                <div class="approval-history-pane">
+                    <div class="line"></div>
+                    <div class="approval-history">
+                        <div class="row" ng-repeat="approvalRecord in  vm.approvalRecordList">
+                            <!-- 同意1-->
+                            <span class="history-dot-success" ng-show="approvalRecord.action_type == '1'"></span>
+                            <!-- 拒绝-1-->
+                            <span class="history-dot-reject" ng-show="approvalRecord.action_type == '-1'"></span>
+                            <!-- 其他情况：转交0 加签5 通知10-->
+                            <span class="history-dot-wait" ng-show="approvalRecord.action_type != '1' &&  approvalRecord.action_type != '-1'"></span>
+                            <!--<span class="history-dot-withdraw"></span>-->
+                            <div class="col padding-0" >
+                                <div class="row row-head">
+                                    <div class="col padding-0">
+                                        <p class="approval-time operation-title">{{approvalRecord.creation_date}}</p>
+                                        <div>{{approvalRecord.user_name}}<!--（{{approvalRecord.node_name|convertNothing}}）--></div>
+                                    </div>
+                                    <div class="col-40 padding-0">
+                                        <p></p>
+                                        <div>{{approvalRecord.action_title}}</div>
+                                    </div>
+                                </div>
+                                <div class="row row-desc">
+                                    <div class="col padding-0">
+                                        <p class="approval-time">{{approvalRecord.comment_text}}</p>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="expense-tips"><!--审批意见-->{{"approval.opinions"|translate}}</p>
+                    <div class="row">
+                        <textarea  ng-model="vm.approvalText" class="row approval-text" rows="4" placeholder="{{'approval.opinions_tip'|translate}}"></textarea><!-- -->
+                    </div>
+                </div>
+            </div>
+            <!-- 查看单据类型 -->
+            <div ng-if="!vm.waitApprovalFlag">
+                <p class="expense-tips" ><!--审批记录-->{{"approval.record"|translate}}</p>
+                <div class="no-record-tips" ng-if="vm.approvalRecordList.length==0"><!--没有审批记录!-->{{'approval.record.nothing'|translate}}</div>
+                <div class="approval-history-pane ">
+                    <div class="line"></div>
+                    <div class="approval-history">
+                        <div class="row" ng-repeat="approvalRecord in  vm.approvalRecordList">
+                            <span class="history-dot-success"></span>
+                            <div class="col padding-0" >
+                                <div class="row row-head">
+                                    <div class="col padding-0">
+                                        <p class="approval-time operation-title">{{approvalRecord.operation_time}}</p>
+                                        <div>{{approvalRecord.operater}}</div>
+                                    </div>
+                                    <div class="col-40 padding-0">
+                                        <p></p>
+                                        <div>{{approvalRecord.operation}}</div>
+                                    </div>
+                                </div>
+                                <div class="row row-desc">
+                                    <div class="col padding-0">
+                                        <p class="approval-time">{{approvalRecord.description}}</p>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="approval-footer" ng-if="vm.waitApprovalFlag">
+        <div class="row row-center">
+            <div class="col text-center approval-reject" ng-click="vm.refuseApproval()">
+                {{"approval.approval.refuse"|translate}}
+            </div>
+            <div class="col text-center approval-sign" ng-click="vm.showSignPopup()">
+                {{"approval.approval.sign"|translate}}
+            </div>
+            <div class="col text-center approval-agree" ng-click="vm.passApproval()">
+                {{"approval.approval.pass"|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

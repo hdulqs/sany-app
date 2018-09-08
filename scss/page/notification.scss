@@ -1,0 +1,409 @@
+ion-view.notification-page.pane {
+    background-color: #f1f1f1;
+
+    .card img {
+        box-shadow: none;
+    }
+    .text-right {
+        text-align: right;
+    }
+    .item {
+        width: auto;
+        .item-content {
+            padding: 0;
+            //height: 90px;
+            z-index: 2;
+            background-color: #fff;
+            .news-project {
+                color: #4c4c4c;
+                font-size: 1.1em;
+            }
+            .approval-type {
+                right: 15px;
+                color: #fff;
+                border-radius: 3px;
+                font-size: 0.8em;
+                padding: 3px 5px;
+            }
+            .news-invoice {
+                margin-top: 13px;
+                .invoice-icon {
+                    width: 40px;
+                }
+                .invoice-name {
+                    color: #4C4C4C;
+                    font-size: 1.1em;
+                }
+                .invoice-tip {
+                    color: #df2c2c;
+                    font-size: 0.8em;
+                }
+                .invoice-money {
+                    color: #ff8a44;
+                    font-size: 1.1em;
+                    .ion-social-yen {
+                        font-size: 0.8em;
+                    }
+                }
+                .invoice-date {
+                    color: #959595;
+                    font-size: 0.8em;
+                }
+            }
+            .reimbursement-news {
+                margin-top: 8px;
+                .reimbursement-icon {
+                    width: 30px;
+                }
+                .reimbursement-money {
+                    color: #ff8a44;
+                    font-size: 1.1em;
+                    .ion-social-yen {
+                        font-size: 0.8em;
+                    }
+                }
+                .reimbursement-submit {
+                    color: #959595;
+                    font-size: 1em;
+                    line-height: 14px;
+                    margin-bottom: 4px;
+                }
+                .reimbursement-date {
+                    color: #959595;
+                    font-size: 0.8em;
+                    line-height: 13px;
+                }
+                .reimbursement-include {
+                    display: flex;
+                    width: 100%;
+                    .include-label {
+                        margin-right: 5px;
+                        font-size: 0.8em;
+                        line-height: 30px;
+                    }
+                }
+                .typeImg {
+                    display: inline;
+                    width: 30px;
+                    height: 30px;
+                    margin: 0 3px;
+                }
+            }
+            .travel-news {
+                margin-top: 7px;
+                .travel-icon {
+                    width: 30px;
+                    margin-top: 3px;
+                }
+                .travel-route {
+                    margin-top: 10px;
+                    .travel-city {
+                        font-size: 1.1em;
+                        color: #959595;
+                        margin-right: 10px;
+                    }
+                }
+                .expenses-types {
+                    .travel-submit {
+                        color: #959595;
+                        font-size: 1em;
+                    }
+                    .travel-date {
+                        color: #959595;
+                        font-size: 0.8em;
+                        line-height: 16px;
+                        margin-bottom: 0;
+                    }
+                    .travel-type {
+                        color: #959595;
+                        font-size: 0.8em;
+                        line-height: 17px;
+
+                    }
+                }
+            }
+        }
+        .button-assertive {
+            width: 60px;
+            padding: 0 15px;
+        }
+        .delete-news {
+            background-color: #df2c2c;
+        }
+        .rubbish {
+            width: 16px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            margin-top: 10px;
+        }
+        .approval-reject {
+            background-color: #ef473a;
+            .rubbish {
+                width: 18px;
+            }
+        }
+        .approval-pass {
+            background-color: #3ad569;
+            .rubbish {
+                width: 22px;
+            }
+
+        }
+    }
+    .item-content{
+        padding: 0;
+    }
+    ion-item.item {
+        padding: 0;
+        margin: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        .notification-list {
+            height: 100%;
+            .item.item-divider.row {
+                padding: 0;
+                border: none;
+                margin: 0;
+                //border-bottom: 1px solid #ff6a10;
+                .reject-date{
+                    text-align: center;
+                }
+            }
+            .row.reject-text {
+                padding: 0;
+                margin: 0;
+                img {
+                    width: 15px;
+                    max-width: 15px;
+                    min-width: 15px;
+                    height: 14px;
+                }
+                p.reject-status {
+                    font-size: 10px;
+                    color: #ff6a10;
+                    margin-left: 5px;
+                }
+            }
+            .decline-item {
+                padding: 0 15px;
+                margin: 0;
+                height: 100%;
+                .row, .col {
+                    padding: 0;
+                }
+                img {
+                    width: 32px;
+                }
+                .expense-location {
+                    p {
+                        text-align: left;
+                    }
+
+                }
+                .expense-category {
+                    padding-left: 10px;
+                }
+                .address {
+                    font-size: 15px;
+                    color: #cdcdcd;
+                    padding: 7px 0;
+                }
+
+            }
+            .expense-sum {
+                text-align: right;
+                .date {
+                    font-size: 15px;
+                    position: absolute;
+                    right: 14px;
+                    top: 35px;
+                }
+                .amount {
+                    width: 100%;
+                    color: #ff6a10;
+                    font-size: 15px;
+                    position: absolute;
+                    right: 14px;
+                    top: 52px;
+                    i.icon.ion-social-yen.amount-icon {
+                        font-size: 10px;
+                    }
+                }
+                .expense-status {
+                    border: thin solid #0092da;
+                    width: 56px;
+                    text-align: center;
+                    color: #0092da;
+                    border-radius: 5px;
+                    display: block;
+                }
+            }
+        }
+        .com-expense-pass {
+            padding: 0 15px;
+            //height: 69px;
+            height: 105px;
+            margin: 0;
+            border-left: none;
+            border-right: none;
+            //border-bottom: 1px solid #cdcdcd;
+            .com-expense-detail {
+                margin-top: 15px;
+            }
+            .row, .col {
+                padding: 0;
+            }
+            .col.col-25 {
+                text-align: right;
+            }
+            img.com-icon {
+                width: 32px;
+                margin-top: 13px;
+            }
+            .com-text {
+                white-space: nowrap;
+                overflow: visible;
+                font-size: 15px;
+            }
+            .com-status {
+                font-size: 13px;
+                margin-top: 10px;
+                color: #cdcdcd;
+            }
+            .com-date {
+                font-size: 15px;
+                color: #cdcdcd;
+                position: relative;
+                bottom: 15px;
+            }
+        }
+        .travel-expense-pass {
+            padding: 0 15px;
+            margin: 0;
+            //height: 69px;
+            border-left: none;
+            border-right: none;
+            //border-bottom: 1px solid #cdcdcd;
+            .row,.col{
+                padding: 0;
+            }
+            .col-25{
+                text-align: right;
+            }
+            img.travel-icon {
+                width: 32px;
+                margin-top:21px;
+            }
+            .travel-expense-detail{
+                margin-top: 15px;
+            }
+            .travel-text{
+                white-space: nowrap;
+                overflow: visible;
+                font-size: 15px;
+            }
+
+            .travel-date{
+                font-size: 15px;
+                color: #cdcdcd;
+                position: relative;
+                bottom: 15px;
+            }
+        }
+        .other-expense {
+            padding: 0 15px;
+            margin: 0;
+            height: 69px;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px solid #cdcdcd;
+            .row,.col{
+                padding: 0;
+            }
+            .col-25{
+                text-align: right;
+            }
+            img.other-icon {
+                width: 32px;
+                margin-top: 21px;
+            }
+            .other-expense-detail{
+                margin-top: 15px;
+            }
+            .other-text{
+                white-space: nowrap;
+                overflow: visible;
+                font-size: 15px;
+            }
+            .other-date{
+                font-size: 15px;
+                color: #cdcdcd;
+                position: relative;
+                bottom: 15px;
+            }
+        }
+        ion-option-button.button-assertive.delete-news.button {
+            background-color: #ef473a;
+            color: #fff;
+            width: 60px;
+            padding: 0 15px;
+            img.rubbish {
+                box-shadow: none;
+                width: 21px;
+                position: absolute;
+                margin-top: 10px;
+                margin-left: 0;
+                right: 18px;
+            }
+            .delete-text {
+                margin-top: 35px;
+            }
+        }
+    }
+    .expenses-types {
+        .approval-status {
+            position: absolute;
+            right: 15px;
+            display: block;
+            color: #fff;
+            border-radius: 3px;
+            font-size: 0.8em;
+            padding: 0 5px;
+        }
+        .empty-top {
+            margin-top: 43px;
+        }
+        //.bg-editing {
+        //    background-color: #56a1f2;
+        //}
+        //.bg-wait-approval {
+        //    background-color: #ffaa46;
+        //}
+        //.bg-has-pass {
+        //    background-color: #2fce85;
+        //}
+        //.bg-has-reject {
+        //    background-color: #e73a3a;
+        //}
+        //.bg-bpo-receive {
+        //    background-color: #97c8ff;
+        //}
+        //.bg-bpo-reject {
+        //    background-color: #ef6f6f;
+        //}
+        //.bg-bpo-pass {
+        //    background-color: #90d47c;
+        //}
+        //.bg-finance-loan {
+        //    background-color: #a182fa;
+        //}
+        //.bg-finance-refund{
+        //    background: #EEAEF8;
+        //}
+        //.bg-unknown {
+        //    background-color: #C3C3C3;
+        //}
+    }
+}

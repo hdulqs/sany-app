@@ -1,0 +1,39 @@
+{
+    "error": {
+        "error": "Error",
+        "the.service.has.not.yet.been.opened": "Not subscribe to the service"
+    },
+    "vendor": {
+        "Restart": "Restart, please wait",
+        "application": "Request",
+        "approval": "Approval",
+        "cancel": "Cancel",
+        "coming.soon": "Coming soon",
+        "confirm": "OK",
+        "consume": "Vendor",
+        "cost.application": "Expense Request",
+        "downloadUpdate": "Downloading small update",
+        "hint": "Prompt",
+        "hotel": "Ctrip Hotels",
+        "my.account": "Journal",
+        "oil.card.fee": "IDD Free Call",
+        "ordering.secretary": "Food and Beverage Ordering",
+        "other.applications": "Other Applications",
+        "private.car.for.public": "Mileage Allowance",
+        "purchase": "Purchase",
+        "report": "Reports",
+        "travel.confirmation":"Travel confirmation",
+        "return.huilianyi": "Back to Helios",
+        "settings.other": "Go to Settings -> Other Application Management -> Helios -> Camera authorize application access",
+        "taxi": "Cab Reservation",
+        "ticket": "Ctrip Air tickets",
+        "train": "LYTrain",
+        "ctripTrain": "Train",
+        "travel.request": "Travel Request",
+        "updateHint": "Update tips",
+        "use": "Function",
+        "venue": "Venue Booking",
+        "yangzhao": "Taxi",
+        "yesOrNoBownload": "There is a small update, whether to download"
+    }
+}

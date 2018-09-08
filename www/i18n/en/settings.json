@@ -1,0 +1,125 @@
+{
+    "account_bind": {
+        "Account.binding": "Account Binding",
+        "binding": "Bound",
+        "didi.travel": "Didi Travel",
+        "unbounded": "Unbound"
+    },
+    "account_bind_js": {
+        "BindingSuccess": "Binding success",
+        "PhoneNumberError": "Phone number error",
+        "SendingFrequent": "Verification code sent frequently, please try again later",
+        "VerificationCodeError": "Verification code error, please re-enter",
+        "beOccupied": "The phone number has been occupied",
+        "beenBound": "The phone number has been bound, please bind other phone number",
+        "binding.phone.number": "It has unbind the phone number",
+        "iuputPhoneNumber": "Please input phone number",
+        "networkAnomaly": "Network anomaly, please try again later",
+        "phone.number.as.login.account": "The mobile phone number as a login account, you can not unbind",
+        "relationDiDiService": "The number has been occupied, please contact customer service of Didi",
+        "verificationCodePastDue": "The verification code has expired, please resend it",
+        "verificationCodeSend": "The verification code has been sent"
+    },
+    "bind_mobile": {
+        "Binding.mobile.phone.number": "Bound phone number",
+        "Please.enter.the.phone.number": "Please enter phone number",
+        "Please.enter.the.verification.code": "Please enter verification code",
+        "Seconds.later": "Seconds",
+        "Send.verification.code": "Send the verification code",
+        "complete": "Carry out",
+        "resend": "Resend",
+        "resend.the.verification.code": "Resend verification code"
+    },
+    "didi_order": {
+        "choose.time": "Click to select",
+        "didi.Settings": "Didi synchronization settings",
+        "start": "Starting Time",
+        "stop": "End Time",
+        "synchronous": "Synchronize"
+    },
+    "didi_order_js": {
+        "End.time.is.not.less.than.start.time": "End time can not be less than the start time",
+        "End.time.is.today.at.the.latest": "End time is no later than today",
+        "Please.select.start.time": "Please select the start time",
+        "Please.select.stop.time": "Please select an end time",
+        "Start.time.is.today.at.the.latest": "Start time is no later than today",
+        "check_in_expense_list": "Please view expenses list!",
+        "orders.have.been.synchronized.success": "Didi order has been successfully synchronized,"
+    },
+    "expense_time": {
+        "A.month": "Every month",
+        "Please.select.a.date": "Please select a date",
+        "Regularly.submit": "Regular submission",
+        "Regularly.submit.the.expense.account": "Regularly submit reimbursement claims",
+        "Submit.time": "Submit time",
+        "date": "Number"
+    },
+    "language_list": {
+        "Malay": "Malay",
+        "en": "English",
+        "english": "English",
+        "language": "Language",
+        "ms": "Malay",
+        "simplified.chinese": "Chinese",
+        "updating.languages": "Updating Languages",
+        "updating.languages_en": "Updating Languages",
+        "updating.languages_ms": "Updating Languages",
+        "updating.languages_zh_CN": "更新语言",
+        "whether_change_the_language": "Would you like to set ",
+        "zh_cn": "Chinese"
+    },
+    "mobile_list": {
+        "New.mobile.phone.number": "New phone number",
+        "phone.number": "Phone number"
+    },
+    "order_form": {
+        "Ctrip": "Ctrip",
+        "Ctrip.hotline": "Ctrip Hotline",
+        "Order.secretary": "Ordering small secretary",
+        "The.hotel.order": "Hotel orders",
+        "The.ticket.order": "Ticket orders",
+        "order.information": "Order information"
+    },
+    "person": {
+        "Exit.from.the.current.account": "Exit the current account",
+        "Head.portrait": "Avatar",
+        "Personal.information": "Personal Information",
+        "department": "Department",
+        "email": "Mailbox",
+        "name": "Name",
+        "phone": "Phone number",
+        "position": "Position",
+        "level":"Level"
+    },
+    "person_js": {
+        "Choose.from.the.album": "Choose from the album",
+        "Failed.to.upload.again": "Upload failed, please re-upload",
+        "Picture.exceeds.the.limit": "Photo size exceeds the limit!",
+        "Uploaded.successfully": "Upload Successfully",
+        "cancel": "Cancel",
+        "confirmExit": "Are you sure to quit?",
+        "network": "Network abnormal!",
+        "ok": "OK",
+        "pictures": "Pictures",
+        "prompt": "Prompt",
+        "uploading": "The invoice is being uploaded!"
+    },
+    "photo_settings": {
+        "Photo.set": "Camera Setting",
+        "Saved": "Turn on this option to save the photos to your local album.",
+        "Saved.to.the.local": "Save to Local Album"
+    },
+    "relieve_bind": {
+        "Remove.the.binding": "Unbind"
+    },
+    "security_center": {
+        "Gestures.to.lock": "Gesture Password",
+        "Modify.the.login.password": "Change Password",
+        "Security.center": "Security"
+    },
+    "settings_list": {
+        "Setup": "Setting",
+        "Take.the.invoice": "Camera",
+        "didi.synchronization": "Didi synchronization"
+    }
+}

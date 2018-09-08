@@ -1,0 +1,66 @@
+<ion-view class="invoice-apply-list-erv">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'invoice.cost.application' | translate}}<!--费用申请--></span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div class="invoice-apply-list-add" ng-hide="view.functionProfileList['ea.opt.upsert.disabled']">
+            <img src="img/expense_report_version/travel/add.png" alt=""
+                 ng-click="view.goTo('app.erv_invoice_apply_create')">
+        </div>
+    </ion-nav-buttons>
+
+    <ion-subheader-bar class="bar bar-subheader">
+        <div class="row row-center head-tab">
+            <div class="col text-center" ng-repeat="item in view.tabItem" ng-click="view.changeTab($index)">
+                <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[$index === view.tabIndex]">
+                    {{item.name}}
+                </span>
+            </div>
+        </div>
+    </ion-subheader-bar>
+    <ion-content class="invoice-apply-list-content has-subheader">
+        <div class="alert alert-warning warn" ng-if="view.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+
+            <p class="warning-word">{{'invoice.empty' | translate}}<!--空空如也!--></p>
+
+            <p class="warning-word">{{'invoice.temporarily.no.fee.application' | translate}}<!--暂时无费用申请!--></p>
+            <button class="create-invoice-type-btn" ng-click="view.goTo('app.erv_invoice_apply_create')" ng-show="view.tabIndex === 0 && !view.functionProfileList['ea.opt.upsert.disabled']">
+                {{'invoice.new.cost.application' | translate}}<!--新建费用申请-->
+            </button>
+        </div>
+        <div ng-if="view.networkError && view.invoiceApplyList.length === 0">
+            <not-found-text title="view.networkErrorText" icon="view.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="view.doRefresh()">
+                    {{'invoice.click.refresh' | translate}}<!--点击刷新-->
+                </button>
+            </div>
+        </div>
+        <div ng-if="view.systemError && view.invoiceApplyList.length === 0">
+            <not-found-text title="view.systemErrorText" sub-title="view.systemErrorSubText"
+                            icon="view.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <ion-refresher on-refresh="view.doRefresh()" pulling-text="{{'invoice.loading' | translate}}"></ion-refresher><!--加载中...-->
+        <ion-list>
+            <div ng-repeat="invoiceApply in view.invoiceApplyList" class="invoice-item-list">
+                <invoice-apply-item item="invoiceApply"
+                                    can-delete="view.canDelete"
+                                    withdraw="view.canWithdraw"
+                                    is-show-type="view.isShowType"
+                                    delete-invoice="view.deleteInvoiceApply(invoiceApply.applicationOID)"
+                                    withdraw-invoice="view.withdrawInvoiceApply(invoiceApply.applicationOID)"
+                                    go-detail="view.goDetail(invoiceApply.applicationOID)">
+
+                </invoice-apply-item>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+                ng-if="view.pageable.page < view.dataNum.lastPage"
+                on-infinite="view.getInvoiceApplyList(view.pageable.page + 1)" immediate-check="false"
+                distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view class="activate-user">
+    <ion-nav-title>
+        <span class="expense-report-nav-title"> {{'account.modify .password' | translate}}<!--修改密码--></span>
+    </ion-nav-title>
+    <ion-content class="padding">
+        <form name="activateUser" novalidate ng-submit="activate.activateUser(activateUser.$valid)">
+            <div class="card">
+                <div class="list">
+                    <label class="item item-input item-floating-label">
+                        <input type="password" placeholder="{{'account.password' | translate}}" name="newPassword" ng-model="activate.newPassword"><!--密码-->
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <!--确认密码-->
+                        <input type="password" placeholder="{{'account.confirm.password' | translate}}" name="confirmPassword"
+                               ng-model="activate.confirmPassword">
+                    </label>
+                </div>
+            </div>
+            <p class="prompt-color">{{'account.password.consists'| translate}}<!--密码由6~20英文字母，数字或符号组成--></p>
+            <button type="submit" class="button button-block button-positive"
+                    ng-disabled=" activate.newPassword == null || activate.confirmPassword == null
+                                 || activate.newPassword.length < 6 || activate.confirmPassword.length < 6"
+            >{{'account.activation' | translate}}<!--激活-->
+            </button>
+        </form>
+    </ion-content>
+</ion-view>

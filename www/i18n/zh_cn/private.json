@@ -1,0 +1,41 @@
+{
+    "error": {
+        "error": "出错了",
+        "location.failed.please.try.again.or.manually.input": "定位失败，请重试或手动输入",
+        "network": "哎呀,网络出错了!",
+        "no.unit.price.per.kilometer": "未设置每公里单价",
+        "server": "服务器开小差了,",
+        "system": "技术小哥正在努力修复!",
+        "this.type.is.not.available.please.contact.administrator": "该类型不可用，请联系管理员"
+    },
+    "private": {
+        "arrival": "到达",
+        "city": "城市",
+        "click.refresh": "点击刷新",
+        "click.start.time.place": "点击生成时间、地点",
+        "data.from.Baidu.maps.according.to.departure/arrival.calculation": "数据来自百度地图。根据出发、到达地计算",
+        "departure": "出发",
+        "distance": "参考里程",
+        "import": "输入",
+        "kilometer": "公里",
+        "location.key": "地点关键字",
+        "meter": "米",
+        "mileage": "里程",
+        "mileage.must.be.greater.than.0": "里程必须大于0",
+        "mileage.to.retain.a.decimal": "里程最多保留一位小数",
+        "place.of.arrival": "目的地",
+        "place.of.departure": "出发地",
+        "please.contact.the.administrator": "请联系管理员",
+        "please.enter.a.valid.range": "请输入合法的里程",
+        "position": "定位中...",
+        "price": "单价",
+        "private.car.for.public": "里程补贴",
+        "revise": "修改",
+        "search": "搜索",
+        "submit": "提交",
+        "submitted": "已提交",
+        "time.of.arrival": "到达时间",
+        "time.of.departure": "出发时间",
+        "total": "总额"
+    }
+}

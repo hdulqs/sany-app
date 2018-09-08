@@ -1,0 +1,35 @@
+<ion-view class="account-bind">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'account_bind.didi.travel'|translate}}<!--滴滴出行--></span>
+    </ion-nav-title>
+    <ion-content>
+        <div class="list">
+            <div class="alert account-mobile warns">
+                <img class="mobile-icon" src="img/mobile.png"/>
+                <p class="mobile-word">{{'bind_mobile.Binding.mobile.phone.number'|translate}}<!--绑定手机号--></p>
+            </div>
+                <div class="item item-text-wrap mobile-item" ng-hide="view.mobile.length>1||!view.mobileStatus"
+                     ng-click="showMobileDetails(view.mobile[0])">
+                    <div class="row row-center">
+                        <div class="col col-center col-33 mobile-name">{{'mobile_list.phone.number'|translate}}<!--手机号--></div>
+                        <label class="col col-center col-60 filed-value">{{view.mobile[0]}}</label>
+                        <span class="col col-center icon ion-ios-arrow-right mobile-arrow"></span>
+                    </div>
+                </div>
+                <div class="list" ng-show="view.mobile.length>1">
+                    <div class="item item-text-wrap mobile-item" ng-repeat="mobile in view.mobile"
+                         ng-click="showMobileDetails(mobile)">
+                        <div class="row row-center">
+                            <div class="col col-center col-33 mobile-name">{{'mobile_list.phone.number'|translate}}<!--手机号-->{{$index+1}}</div>
+                            <label class="col col-center col-60 filed-value">{{mobile}}</label>
+                            <span class="col col-center icon ion-ios-arrow-right mobile-arrow"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class=" button button-full button-positive ink" keyboard-attach ng-click="goTo('app.bind_didi_mobile')"
+                    ng-hide="view.functionProfileList['ma.didi.multiple.bind.disabled']">
+                {{'mobile_list.New.mobile.phone.number'|translate}}<!--新增手机号-->
+            </button>
+    </ion-content>
+</ion-view>

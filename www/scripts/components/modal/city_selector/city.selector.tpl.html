@@ -1,0 +1,73 @@
+<input ng-model="city" ng-click="self.showCity()" placeholder="{{holder}}" readonly><!--请选择-->
+<script id="city.selector.html" type="text/ng-template">
+    <ion-modal-view class="contact-quick">
+        <ion-header-bar align-title="center" class="bar-stable">
+            <div ng-if="self.hideFirstBotton" class="buttons">
+                <button class="button button-icon icon" ng-click="self.closeCity()">
+                    <span class="back-text color-style">{{'city_js.cancel'|translate}}</span>
+                </button>
+            </div>
+            <div class="transmit-search">
+                <div class="transmit-button">
+                    <i class="ion-ios-search search-i"></i>
+                </div>
+                <div class="like-input" ng-click="self.searchContacts()">{{'city_js.please.enter.the.city'|translate}}</div>
+            </div>
+            <div ng-if="!self.hideFirstBotton" class="buttons">
+                <button class="button button-icon icon"  ng-click="self.closeCity()">
+                    <span class="back-text color-style">{{'city_js.cancel'|translate}}</span>
+                </button>
+            </div>
+        </ion-header-bar>
+        <ion-subheader-bar class="bar bar-subheader">
+            <div class="row row-center head-tab">
+                <div class="col text-center" ng-repeat="item in self.tabs"
+                     ng-click="self.changeTab($index,item)">
+    <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[$index == self.tabIndex]">
+    {{item.name}}
+    </span>
+                </div>
+            </div>
+        </ion-subheader-bar>
+        <!--国内 飞机跟火车公用.overflow-scroll="true"不能去掉,会影响滚动-->
+        <ion-content  ion-sticky-city delegate-handle="contactQuick" overflow-scroll="true"
+                     class="contactQuickContent "
+                     style="right:20px;overflowY:hidden"
+                     ng-class="{true: 'has-subheader', false: 'has-header'}[self.hideFirstBotton]">
+            <div class="contact-list">
+                <div class="contact-item" ng-repeat="item in self.cityLists track by item.tag"  ng-if="item.customLocationDetailDTOS[0]">
+                    <ion-item ng-if="item.customLocationDetailDTOS[0]"  class="item-divider font-style" id="element{{item.tag}}" style="width: 100%" ng-cloak> {{::item.tag}}
+                    </ion-item>
+                <span class="contact-element row " ng-repeat="element in item.customLocationDetailDTOS track by element.code"
+                      ng-if="item.tag !==  self.history && item.tag !== self.popular"
+                      quick-repeat-list="elements" ng-click="self.chooseCity(element)">
+                <span ng-cloak> {{::element.city}}</span>
+                <span><i ng-if="element.code === code" class="icon ion-ios-checkmark-empty icon-style"></i></span>
+                </span>
+                    <div class="col" style="width: 96%;margin: auto;" ng-if="item.tag === self.history || item.tag === self.popular">
+                     <span style="width: 32%;float: left;margin-top: 5px;margin-bottom: 5px"
+                      ng-repeat="element in item.customLocationDetailDTOS"
+                      ng-click="self.chooseCity(element)">
+                        <span style="width: 100%;text-align: center">
+                        <button  class="button-white"
+                                 ng-class="{true:'selected-hot-city'}[element.code === code]">
+                            {{::element.city}}
+                        </button>
+                        </span>
+                     </span>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+        <!--索引-->
+        <contact-quick-bar
+            bar-element-size='12px'
+            bar-element-color="#0092DA"
+            bar-background="#fff"
+            show-Animate=true
+            bar-element-height='20'
+            bar-tab="{{view.tabIndex}}">
+        </contact-quick-bar>
+    </ion-modal-view>
+
+</script>

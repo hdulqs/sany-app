@@ -1,0 +1,307 @@
+/*审批上标：红色数字*/
+.hec-red-point {
+    position: absolute;
+    top: 10%;
+    left: 60%;
+    padding: 0px 5px;
+    min-width: 21px;
+    height: 21px;
+    border-radius: 10.5px;
+    background-color: red;
+    font-size: 0.8rem;
+    color: white;
+}
+/*行标题样式*/
+.hec-item-prompt{
+    white-space: normal;
+}
+/*页面操作按钮：查看单据历史、查看借款信息等等*/
+.hec-operation-row{
+    padding: 0px;
+    font-size: 15px;
+    .col{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        button{
+            min-height: 35px;
+            line-height: 35px;
+            margin: 5px 0px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
+/*页面提示（差旅同行人、设置页面订单信息提示）*/
+.hec-common-tip{
+    color: red;
+    text-align: left;
+    margin: 15px 10px;
+}
+/*申请关联借款列表样式 */
+.hec-ref-loan{
+    .tip{
+        padding: 8px 5px;
+        font-size: 16px;
+    }
+    .item{
+        width: 90%;
+        margin: 0.5rem auto;
+        font-size: 15px;
+        border: 1px solid #e2e2e2;
+        border-radius: 0.2rem;
+        .item-content {
+            padding: 8px 5px;
+            .special-text{
+                color: red;
+            }
+            .row{
+                padding: 0px;
+            }
+        }
+        .button-delete{
+            background-color: red;
+            color: white;
+        }
+    }
+}
+
+.hec-intercept{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*单据必输-选择项提示*/
+.hec-selector-placeholder{
+    color: #cdcdcd !important;
+}
+/*单据必输-选择项*/
+.hec-selector-required{
+    color: red;
+    margin: -4px;
+}
+/*单据必输-输入项*/
+.hec-input-required{
+    color: red;
+}
+/*红色文字*/
+.hec-text-red {
+    color: red;
+}
+/*lov右箭头样式*/
+.hec-selector-arrow-right{
+    text-align: right;
+    font-size: 20px;
+    color: #a1a1a1;
+    margin-top: 0px;
+    margin-left: 5px;
+}
+/*lov无数据*/
+.selector-nothing{
+    padding-top: 20%
+}
+.cost-center-name{
+    margin: 0;
+    font-size: 15px;
+    color: #4c4c4c;
+    /*white-space: normal;
+    overflow : hidden;
+    text-overflow: ellipsis;*/
+    //display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 25px;
+    line-height: 22px;
+    //white-space: nowrap;
+    //overflow: hidden;
+    //text-overflow: ellipsis;
+}
+
+.attachment-label{
+    margin:0px 5px 0px 15px;
+}
+.align-center{
+    align-self: center;
+}
+.description-tip{
+    padding-top: 0px
+}
+.description-content{
+    padding:0px 0px 0px 5px;
+    width: 100%;
+    font-size: 14px;
+    background-color: #fff;
+    white-space: normal;
+}
+
+.hec-ion-toggle{
+    font-size: 15px;
+    padding-left:17px;
+    //padding: 11px 17px;
+}
+
+/*
+
+.toggle-small.item-toggle .toggle {
+    top: 15px;
+}
+.item-toggle .toggle {
+    position: absolute;
+    top: 5px;
+    right: 16px;
+    z-index: 3;
+}*/
+
+/*单据填写公共样式*/
+.hec-common{
+    background-color: #f1f1f1;
+    .hec-content{
+        margin: 0px;
+        padding: 0px;
+        .item {
+            border: none;
+            border-bottom: 1px solid #e2e2e2;
+            margin-top: 1px;
+            padding: 6px 12px;
+            font-size: 15px;
+            .col {
+                padding: 0;
+            }
+            .text-value {
+                color: #4c4c4c;
+                text-align: right;
+                font-size: 15px;
+                height: 25px;
+                line-height: 25px;
+                .hec-money{
+                    color:red;
+                }
+            }
+            .form-logo {
+                margin-left: .5rem;
+                width: 1.2rem;
+                height: 1.2rem;
+            }
+        }
+        .hec-item-input{
+            padding: 6px 17px;
+            .row{
+                padding: 0px;
+            }
+            .col{
+                input {
+                    text-align: right;
+                    width: 100%;
+                    //height: 21px;
+                    font-size: 15px;
+                    background-color: #fff;
+                }
+            }
+        }
+        .item.item-toggle {
+            padding: 15px;
+        }
+        .text-tip {
+            font-size: 15px;
+            color: #444;
+            padding: 8px 0px 0px 17px;
+        }
+        .text-area {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px;
+            color: #959595;
+            font-size: 1em;
+            border-bottom: 1px solid #e2e2e2;
+        }
+        .line-item{
+            margin: 10px;
+            border: none;
+            padding: 0;
+            .item-content {
+                //padding: 2px 5px;
+                padding: 8px 5px;
+                .type-name {
+                    padding: 0;
+                    font-size: 15px;
+                    color: #4c4c4c;
+                    height: 16px;
+                    line-height: 16px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 100%;
+                }
+                .comment {
+                    padding: 0;
+                    font-size: 14px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 100%;
+                }
+                .amount{
+                    font-size: 15px;
+                    color: #ff6a10;
+                    text-align: right;
+                    .currency{
+                        font-size: 12px;
+                    }
+                }
+            }
+            .button-delete{
+                background-color: red;
+                color: white;
+            }
+        }
+    }
+    .hec-footer {
+        padding: 0;
+        .row {
+            padding: 0;
+            .col {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                line-height: 44px;
+            }
+            .expense-new {
+                background-color: #fff;
+                color: #0092da;
+                font-size: 1.2em;
+                height: 44px;
+                line-height: 44px;
+                border-top: thin solid #e2e2e2;
+            }
+            .expense-reject{
+                background-color: #e64e4e;
+                color: #fff;
+                font-size: 1.2em;
+                height: 44px;
+                line-height: 44px;
+            }
+            .expense-agree{
+                background-color: #50cd93;
+                color: #fff;
+                font-size: 1.2em;
+                height: 44px;
+                line-height: 44px;
+            }
+            .operation-all {
+                background-color: #0092da;
+                color: #fff;
+                font-size: 1.2em;
+                height: 44px;
+                line-height: 44px;
+            }
+            .disable-operation {
+                background-color: #cdcdcd;
+            }
+        }
+    }
+}
+.hec-button-delete{
+    background-color: red;
+    color: white;
+}

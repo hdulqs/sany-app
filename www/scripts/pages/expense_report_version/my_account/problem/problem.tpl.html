@@ -1,0 +1,23 @@
+<ion-view cache-view="false" class="account-problem">
+    <ion-nav-title>
+        <!--问题-->
+        <span class="expense-report-nav-title">{{"problem.question"|translate}}</span>
+    </ion-nav-title>
+    <ion-content class="account-content has-header">
+        <!--费用不同步？-->
+        <div class="problem-title">{{"problem.costDesynchrony"|translate}}</div>
+        <!--1.可能会有2小时-1天的延迟-->
+        <div class="problem-item">{{"problem.question_1"|translate}}</div>
+        <!--2.请前往APP检查是否勾选了企业报销-->
+        <div class="problem-item">{{"problem.question_2"|translate}}</div>
+        <!--3.若还是未收到费用推送，可前往我的-设置-滴滴同步 进行手动同步-->
+        <div class="problem-item">{{"problem.question_3"|translate}}</div>
+        <div class="problem-button">
+            <button class=" button button-full button-positive button-radius" keyboard-attach
+                    ng-click="goTo('app.didi_sync')">
+                <!--去滴滴同步费用-->
+                {{"problem.didiSynchronizationCost"|translate}}
+            </button>
+        </div>
+    </ion-content>
+</ion-view>

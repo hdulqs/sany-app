@@ -1,0 +1,19 @@
+.icon-list{
+    flex-flow: row wrap;
+
+    div{
+        border-bottom: thin solid #f1f1f1;
+    }
+}
+
+.icon-list-en{
+    p{
+        height: 2.7em;
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+}

@@ -1,0 +1,168 @@
+.application-item-directive {
+    border: 0;
+    .item-content {
+        padding: 0;
+    }
+    .row {
+        margin: 0;
+        padding: 5px 10px;
+        .col {
+            padding: 0;
+            margin: 0;
+        }
+    }
+    .header {
+        padding: 5px 10px 5px 5px;
+        border-left: 5px solid #58D8BA;
+        border-bottom: thin solid #e2e2e2;
+        background-color: #fff;
+        .col {
+            padding: 0;
+            p {
+                color: #959595;
+                font-size: 13px;
+                line-height: 13px;
+            }
+            .budget-cell {
+                background: #e5221b;
+                border: 1px solid #e5221b;
+                min-width: 45px;
+                height: 14px;
+                text-align: center;
+                display: inline-block;
+                color: #fff;
+                margin:0
+            }
+            .budget-color-cell{
+                background: #ffc636;
+                border: 1px solid #ffc636;
+                color: #fff;
+            }
+            .budget-business {
+                display: inline-block;
+            }
+        }
+    }
+    .travel-item-content {
+        padding: 5px 0;
+        border-bottom: thin solid #e2e2e2;
+        min-height: 63px;
+    }
+    .min-height {
+        min-height: 25px;
+    }
+    .row-middle {
+        padding: 0 10px;
+        //p {
+        //    color: #959595;
+        //    font-size: 12px;
+        //}
+        .total {
+            color: #ff6a10;
+            font-size: 1.1em;
+        }
+        .budget {
+            color: #ff6a10;
+            font-size: 15px;
+        }
+    }
+    .heading{
+        font-size: 16px;
+        color: #4c4c4c;
+    }
+    .title {
+        font-size: 14px;
+        color: #959595;
+    }
+    .total-budget{
+        color: #ff6a10;
+        font-size: 15px;
+        position: relative;
+        top: 15px;
+    }
+    .total-budget-no-title{
+        color: #ff6a10;
+        font-size: 15px;
+        position: relative;
+        top: 21px;
+    }
+    .route {
+        color: #959595;
+        font-size: 0.9em;
+    }
+    .travel-delete {
+        background-color: red !important;
+        .delete-text {
+            color: #fff;
+            font-size: 0.8em;
+        }
+    }
+    .travel-delete .activated {
+        background-color: red !important;
+    }
+    .travel-withdraw {
+        background-color: #ffaa46 !important;
+        .delete-text {
+            color: #fff;
+            font-size: 0.8em;
+        }
+    }
+    .travel-withdraw .activated {
+        background-color: #ffaa46 !important;
+    }
+    .reject-reason {
+        color: red !important;
+        font-size: 0.8em;
+    }
+    .approval-detail {
+        //border-top: 1px solid #e2e2e2;
+    }
+    .expense-reject {
+        background-color: #e64e4e !important;
+        .reject-text {
+            color: #fff;
+        }
+    }
+    .expense-agree {
+        background-color: #50cd93 !important;
+        .agree-text {
+            color: #fff;
+        }
+    }
+    .travel-close{
+        background-color: #cccccc !important;
+        .agree-text {
+            color: #fff;
+        }
+    }
+    .travel-restart{
+        background-color: #0092da !important;
+        .agree-text {
+            color: #fff;
+        }
+    }
+    .application-status {
+        position: absolute;
+        right: 10px;
+        display: block;
+        color: #fff;
+        border-radius: 3px;
+        font-size: 0.8em;
+        padding: 0 5px;
+        margin-top: -12px;
+    }
+    .application-status-no-title {
+        position: absolute;
+        right: 10px;
+        display: block;
+        color: #fff;
+        border-radius: 3px;
+        font-size: 0.8em;
+        padding: 0 5px;
+        margin-top: -5px;
+    }
+    .reject-total-budget{
+        color: #ff6a10;
+        font-size: 15px;
+    }
+}

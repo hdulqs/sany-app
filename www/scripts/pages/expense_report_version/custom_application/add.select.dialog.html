@@ -1,0 +1,54 @@
+<ion-modal-view class="additional-selector">
+    <ion-content scroll="false">
+        <div class="grey-mark" ng-click="addSelectDialog.hide()">
+        </div>
+        <div class="traffic-content">
+            <div>
+                <div class="row title">
+                    {{'custom.application.traffic.title' | translate}}
+                </div>
+                <div class="row row-center" ng-class="{true: 'traffic-pane', false: ''}[view.travelElementList.length > 0]">
+                    <div class="col traffic-icon">
+                        <img src="img/expense_report_version/travel/traffic/traffic-plane.png" ng-click="additional.closeTraffic(1001)">
+                        <p class="traffic-text">
+                            <span>{{'custom.application.traffic.plane' | translate}}</span>
+                        </p>
+                    </div>
+                    <div class="col traffic-icon" ng-if="view.functionProfileVenderJudge([1004])">
+                        <img ng-src="img/expense_report_version/travel/traffic/traffic-train.png" ng-click="additional.closeTraffic(1002)">
+                        <p class="traffic-text">
+                            <span>{{'custom.application.traffic.train' | translate}}</span>
+                        </p>
+                    </div>
+                    <div class="col traffic-icon" ng-hide="view.functionProfileList['ca.travel.other.disabled']">
+                        <img ng-src="img/expense_report_version/travel/traffic/traffic-other.png" ng-click="additional.closeTraffic(1003)">
+                        <p class="traffic-text">
+                            <span>{{'custom.application.traffic.other' | translate}}</span>
+                        </p>
+                    </div>
+                    <div class="col traffic-icon" ng-if="!view.functionProfileList || !view.functionProfileList['travel.allowance.disabled']">
+                        <img ng-src="img/travel-allowance.png" ng-click="additional.closeTraffic(1004)">
+                        <p class="traffic-text">
+                            <!--差旅补贴-->
+                            <span>{{"custom.application.allowance.travel.subsidies"|translate}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="view.travelElementList.length > 0">
+                <div class="row row-center title">
+                    {{'custom.application.travel.travel.element' | translate}}
+                </div>
+                <div class="row">
+                    <div class="col col-33 traffic-icon" ng-repeat="element in view.travelElementList">
+                        <img src="img/expense_report_version/travel/element/{{element.iconName}}.png" ng-click="additional.closeTraffic(element.formType, element.formOID)">
+                        <p class="traffic-text">
+                            <span>{{element.formName}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>
+

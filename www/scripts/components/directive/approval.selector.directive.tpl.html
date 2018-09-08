@@ -1,0 +1,79 @@
+<div ng-click="view.openApprovalChainDialog()">
+    <span class="value" ng-hide="selected !== null && selected.length > 0">{{'directive.Please.select.the.approver'|translate}}<!--请选择审批人--></span>
+    <span class="value" ng-if="selected !== null && selected.length > 0">{{ selected | approvalChainDisplay}}</span>
+    <!--<span class="value" ng-show="selected !== null && selected.length > 0">{{ selected | approvalChainDisplay}}</span>-->
+</div>
+<script id="approval.selector.html" type="text/ng-template">
+    <ion-modal-view class="approval-selector-modal">
+        <ion-header-bar>
+            <h3 class="title">{{'directive.Please.select.the.approver'|translate}}<!--请选择审批人--></h3>
+            <span class="city-ok" ng-click="view.closeApprovalChainDialog()">
+                {{'directive.determine'|translate}}<!--确定-->
+            </span>
+        </ion-header-bar>
+        <div class="search-approval">
+            <div class="row">
+                <label class="item-input-wrapper">
+                    <i class="icon ion-ios-search placeholder-icon"></i>
+                    <input type="search" placeholder="Search" ng-model="users.search.keyword">
+                </label>
+            </div>
+            <div class="list approval-chain" ng-hide="users.isSearching">
+                <div class="user-item" ng-if="view.selectingUsers.length === 0">
+                    <!--<div>一级审批人</div>-->
+                    <div class="user-info">
+                        <!--<user-avatar full-name="' '"></user-avatar>-->
+                        <div class="user-fullname">{{'directive.Please.select.a.user.of.examination.and.approval'|translate}}<!--请选择审批用户--></div>
+                    </div>
+                </div>
+                <div class="clear" ng-if="view.selectingUsers.length > 0">
+                    <ion-scroll direction="x">
+                        <div class="scroll-content-container">
+                            <div class="row invoice-img-expense-type">
+                                <div class="user-item"
+                                     ng-repeat="user in view.selectingUsers"
+                                     ng-click="view.removeUserFromChain(user)">
+                                    <div class="level">{{$index + 1 | chineseNumber }}{{'directive.Level.approver'|translate}}<!--级审批人--></div>
+                                    <div class="user-info row row-center">
+                                        <user-avatar full-name="user.fullName" icon-url="user.iconURL"
+                                                     employ-id="user.userOID"></user-avatar>
+                                        <div class="user-fullname">{{user.fullName}}</div>
+                                        <i class="ion ion-ios-arrow-thin-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-scroll>
+                </div>
+            </div>
+        </div>
+        <ion-content class="approval-content">
+            <div class="user-results list" ng-hide="users.isSearching">
+                <div class="user-result-item row row-center" ng-repeat="user in users.allUsers.get.data"
+                     ng-click="users.selectUser(user)">
+                    <user-avatar full-name="user.fullName" icon-url="user.iconURL"
+                                 employ-id="user.userOID"></user-avatar>
+                    <div class="user-full-name col-20 col-center">{{user.fullName}}</div>
+                    <div class="col col-center"></div>
+                    <div class="department-info col-50 col-center">
+                        <div class="row row-center">
+                            <p class="user-title">{{user.title}}</p>
+                        </div>
+                        <div class="row row-center">
+                            <p class="user-dep">{{user.departmentName}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ion-infinite-scroll
+                on-infinite="users.loadMore(users.allUsers.get.page +1)"
+                distance="1%"
+                ng-if="users.allUsers.lastPage > users.allUsers.get.page"
+                immediate-check="false"
+            >
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+

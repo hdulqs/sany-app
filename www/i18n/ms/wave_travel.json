@@ -1,0 +1,27 @@
+{
+    "error": {
+        "positioning.failure, after.submission.can.be.modified.manually.in.the.cost": "pernentuan gagal, perubahan manual selepas dikemukakan kos",
+        "seek.failed": "pernentuan gagal",
+        "this.type.is.not.available.please.contact.administrator": "jernis tidak boleh diguna, sila hubungi admin sistem",
+        "whether.to.clear.the.current.data": "sah untuk memadam data kini"
+    },
+    "wave": {
+        "cancel": "batal",
+        "city": "bandar",
+        "click.build.time.location": "pilih dan hasilkan masa berlepas dan lokasi",
+        "confirm": "sahkan",
+        "cost.creation.success": "berjaya untuk menghasilkan perbelanjaan",
+        "fare": "perbelanjaan",
+        "get.off": "sampai",
+        "get.on": "berlepas",
+        "place.of.arrival": "tempat sampaian",
+        "place.of.departure": "tempat berlepas",
+        "please.enter.the.fare": "sila masukan perbelanjaan",
+        "position": "dalam kedudukan..",
+        "submit": "hantar",
+        "time.of.arrival": "masa sampaian",
+        "time.of.departure": "masa berlepas",
+        "traffic": "trafik",
+        "wave.travel": "perlancongan yangzhao"
+    }
+}

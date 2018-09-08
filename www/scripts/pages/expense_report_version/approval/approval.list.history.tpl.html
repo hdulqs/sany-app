@@ -1,0 +1,49 @@
+<ion-view class="erv-approval-list">
+    <ion-nav-title>
+           <span class="expense-report-nav-title">
+           {{'approval.already' | translate}}
+        </span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div class="approval-already" ng-click="view.waitApproval()">{{'approval.not.approved' | translate}}</div>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true">
+        <ion-refresher on-refresh="view.refresh()" pulling-text="{{'approval.loading' | translate}}"></ion-refresher>
+        <div class="alert alert-warning warn" ng-if="view.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'approval.empty' | translate}}</p>
+            <p class="warning-word">{{'approval.no.approval' | translate}}</p>
+        </div>
+        <ion-list ng-if="!view.nothing">
+            <div ng-repeat="approval in view.apporvalList">
+                <ion-item class="approval-item">
+                    <div ng-if="approval.entityType === 1001">
+                        <div ng-if="approval.application.type === 1001">
+                            <invoice-apply-item item="approval.application" is-show-type="view.isShowType"
+                                                go-detail="view.goDetail(approval)">
+                            </invoice-apply-item>
+                        </div>
+                        <div ng-if="approval.application.type === 1002">
+                            <travel-item item="approval.application" is-show-type="view.isShowType"
+                                         go-detail="view.goDetail(approval)"
+                            >
+                            </travel-item>
+                        </div>
+
+                    </div>
+                    <div ng-if="approval.entityType === 1002">
+                        <expense-report-item item="approval.expenseReport" go-detail="view.goDetail(approval)"
+                                             is-hide-type="true" is-show-name="true"
+                        >
+                        </expense-report-item>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="view.pageable.page < view.dataNum.lastPage"
+            on-infinite="view.loadMore(view.pageable.page + 1)" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

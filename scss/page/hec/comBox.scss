@@ -1,0 +1,33 @@
+.comBox {
+    .checked-img {
+        float: right;
+        margin-top: -1.5rem;
+        width: 1.5rem;
+        height: 1rem;
+    }
+    .detail-info {
+        border: 1px solid black;
+        tr th,tr td{
+            width: 12rem;
+        }
+    }
+    .bg-white {
+        background-color: white;
+        border: 1px solid black;
+        width: 96%;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+    }
+    .combox-selector-new{
+        .combox-selector{
+            padding: 26px 0 0 0;
+            height: 52px;
+        }
+    }
+    .no_data_img {
+        border-radius: 50%;
+        border: 1px solid #f1f1f1;
+        height: 60px;
+        width: 60px;
+    }
+}

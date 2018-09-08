@@ -1,0 +1,50 @@
+<div class="cost-center-selector-new" ng-click="openModal()">
+    <p ng-if="name" class=" cost-center-name">
+        {{name}}
+    </p>
+    <p ng-hide="name" class=" select-name">
+        <span ng-if="prompt">
+            {{prompt}}
+        </span>
+        <span ng-hide="prompt">
+            {{'linkage.Please.select'|translate}}<!--请选择-->
+        </span>
+    </p>
+</div>
+<script id="corporation.entity.selector.html" type="text/ng-template">
+    <ion-modal-view class="cost-center-selector-new-modal">
+        <ion-header-bar class="bar-positive">
+            <h1 class="title">{{title}}</h1>
+            <span class="cancel" ng-click="modal.hide()">
+               {{'destination.cancel'|translate}}<!--取消-->
+            </span>
+        </ion-header-bar>
+        <ion-content>
+            <ion-list ng-if="view.corporationEntityItems.length === 0">
+                <ion-item>
+                    <div class="row row-center">
+                        <div class="col">
+                            {{'approval_selector.No.data'|translate}}<!--无数据-->
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-list ng-if="view.corporationEntityItems.length > 0">
+                <ion-item ng-repeat="item in view.corporationEntityItems" ng-click="view.selectCorporationEntity(item)">
+                    <p class="cost-center-name">
+                        {{item.companyName}}
+                    </p>
+                    <img src="img/expense_report_version/travel/select.png" alt="" ng-if="selected === item.companyReceiptedOID "
+                             class="arrow-checked">
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll
+                on-infinite="view.loadMore(view.page + 1)"
+                distance="1%"
+                ng-if="view.lastPage > view.page"
+                immediate-check="false"
+            >
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-modal-view>
+</script>

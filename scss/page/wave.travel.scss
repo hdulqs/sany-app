@@ -1,0 +1,87 @@
+.waveTravel {
+    .bar {
+        .button-icon:before {
+            font-size: 25px;
+        }
+    }
+    .scroll {
+        height: 100%;
+    }
+    .content {
+        height: 100%;
+        text-align: center;
+        .advisement-div {
+            height: 20%;
+            .advisement {
+                width: 100%;
+                text-align: center;
+            }
+            .img-div {
+                height: 2em;
+            }
+        }
+        .warn-message-div {
+            //margin-top: 1em;
+            font-size: 12px;
+            .warn-message {
+                width: 80%;
+                text-align: left;
+                color: #0092da;
+            }
+        }
+        .finish-button {
+            width: 40%;
+            color: white;
+        }
+        .finish-button.button:disabled {
+            background-color: white;
+            border: 1px solid #444;
+            color: #cdcdcd;
+        }
+        .amount-div {
+            //position: relative;
+            //bottom: 0;
+            margin-top: 5em;
+            width: 100%;
+            padding-bottom: 1em;
+            .amount-title {
+                margin-bottom: 0.5em;
+            }
+            .theme-finish-amount-title {
+                color: #ffaa46;
+            }
+            .amount {
+                margin-bottom: 1.5em;
+                .amount-col {
+                    border-bottom: 1.5px solid #cdcdcd;
+                }
+                .amount-input {
+                    margin: auto;
+                    text-align: center;
+                    width: 100%;
+                    font-size: 13px;
+                    box-shadow: none;
+                    padding: 0;
+                    border-radius: 0px;
+                    background-color: transparent;
+                }
+                .amount-input:disabled {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+    .button {
+        background-color: #0092da;
+        color: white;
+        width: 80%;
+        border-radius: 0px;
+        min-height: 40px;
+        font-size: 1em;
+    }
+    .button:disabled {
+        background-color: #cdcdcd;
+        color: white;
+        opacity: 1;
+    }
+}

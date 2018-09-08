@@ -1,0 +1,59 @@
+<ion-modal-view class="erv-approval-input-modal-view">
+    <ion-header-bar>
+        <a class="button button-icon button-clear ion-ios-arrow-left hide-button" ng-click="modal.inputModal.scanNext()"></a>
+        <h1 class="title title-center header-item">
+            <!--输入单号-->
+            <span>{{ 'approval.scan.inputModal.title' | translate }}</span>
+        </h1>
+    </ion-header-bar>
+    <ion-subheader-bar class="bar bar-subheader">
+        <!--单号输入-->
+        <div class="expense-search">
+            <div class="expense-input">
+                <!--请输入最少3位单据号-->
+                <input id="business-code-input" type="text" ng-model="modal.inputModal.view.keyword"
+                       placeholder="{{ 'approval.scan.inputModal.placeholder' | translate }}">
+                <!--点击img会触发input失焦,所以把img的z-index设置在input下面,并且在最外面div的上面,js中监听input右边区域的点击,
+                    从而达到清空输入框的效果.img只做显示,不做操作-->
+                <img ng-if="modal.inputModal.view.keyword" src="img/expense_report_version/scanner/clear.png"/>
+            </div>
+            <button class="button-search" ng-class="expenseScan.operation"
+                    ng-disabled="modal.inputModal.view.keyword.length<modal.inputModal.view.minLengthOfKeyword"
+                    ng-click="modal.inputModal.view.getScannerInfoByBusinessCode()">
+                {{ modal.inputModal.view.buttonContent[expenseScan.operation] }}
+            </button>
+        </div>
+    </ion-subheader-bar>
+    <ion-content class="has-subheader">
+        <!--审核驳回时的提示信息-->
+        <div class="reject-tip"
+             ng-if="modal.inputModal.view.isRejectTipShow && !modal.inputModal.view.noResult && expenseScan.operation===view.operations.AUDIT">
+            <!--如需通过键盘输入驳回理由，可在电脑游览器打开 <span>https://hly.xiaojukeji.com</span>，在<span>财务管理>单据审核</span>-->
+            <!--页面切换到<span>扫码审核模式</span>-->
+            {{ 'approval.scan.APPApproval.reject.tip1' | translate }}
+            <span>{{ 'approval.scan.APPApproval.reject.tip2' | translate }}</span>
+            {{ 'approval.scan.APPApproval.reject.tip3' | translate }}
+            <span>{{ 'approval.scan.APPApproval.reject.tip4' | translate }}</span>
+            {{ 'approval.scan.APPApproval.reject.tip5' | translate }}
+            <span>{{ 'approval.scan.APPApproval.reject.tip6' | translate }}</span>
+        </div>
+
+        <!--无搜索结果提示信息-->
+        <div class="reject-tip" ng-if="modal.inputModal.view.noResult">
+            <!--无搜索结果-->
+            {{ 'approval.scan.inputModal.noResult' | translate }}
+        </div>
+
+        <!--搜索时的loading-->
+        <search-loading ng-if="modal.inputModal.view.searchLoading"></search-loading>
+
+        <!--搜索出来的报销单号列表-->
+        <ion-list class="expense-report-list" ng-if="modal.inputModal.view.expenseReportData.length>0"
+                  on-drag="modal.inputModal.view.closeKeyboard()">
+            <ion-item class="expense-report-item" ng-repeat="item in modal.inputModal.view.expenseReportData"
+                      ng-click="modal.inputModal.view.selectExpenseReport(item)">
+                <span ng-repeat="substring in item.new" ng-class="{ 'highlight-font': substring.highlight }">{{ substring.data }}</span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-modal-view>

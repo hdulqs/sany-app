@@ -1,0 +1,59 @@
+<ion-view class="person-setting order-form-setting">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'order_form.order.information'|translate}}<!--订单信息--></span>
+    </ion-nav-title>
+    <ion-subheader-bar class="bar bar-subheader" ng-if="view.tabItem.length>1">
+        <div class="row row-center head-tab">
+            <div class="col text-center" ng-repeat="item in view.tabItem" ng-click="view.changeTab($index)">
+                <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[$index === view.tabIndex]">
+                    {{item.name}}
+                </span>
+            </div>
+        </div>
+    </ion-subheader-bar>
+    <ion-content ng-class="{'':view.tabItem.length === 1,'has-subheader':view.tabItem.length>1}">
+        <div class="list" ng-if="(view.tabItem.length === 1 || view.tabIndex===0) && view.functionProfileVenderJudge('vendor', [1002]) ">
+            <div class="item item-divider hot-line">
+                <div class=" row row-center">
+                    <div class="col-33">
+                        {{'order_form.Ctrip.hotline'|translate}}<!--携程热线-->
+                    </div>
+                    <div class="col-66">
+                        <a class="item-note" href="tel:4009806666">4009806666</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-text-wrap account-information"
+                 ng-click="jumpToCtrip('FlightOrder')">
+                <div class="row">
+                    <div class="col col-95 filed-name">{{'order_form.The.ticket.order'|translate}}<!--机票订单--></div>
+                    <span class="icon ion-ios-arrow-right"></span>
+                </div>
+            </div>
+            <div class="item item-text-wrap account-information"
+                 ng-click="jumpToCtrip('HotelOrder')">
+                <div class="row">
+                    <div class="col col-95 filed-name">{{'order_form.The.hotel.order'|translate}}<!--酒店订单--></div>
+                    <span class="icon ion-ios-arrow-right"></span>
+                </div>
+            </div>
+        </div>
+        <div class="list" ng-if="(view.tabItem.length === 1 || view.tabIndex===1) && view.functionProfileVenderJudge('vendor', [1008])">
+            <div class="item item-divider"></div>
+            <div class="item item-text-wrap account-information"
+                 ng-click="orderSecretary()">
+                <div class="row">
+                    <div class="col col-95 filed-name">{{'order_form.Order.secretary'|translate}}<!--订餐小秘书--></div>
+                    <span class="icon ion-ios-arrow-right"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="hec-common-tip">
+           {{'order_form.tip' |translate}}
+        </div>
+    </ion-content>
+</ion-view>
+
+

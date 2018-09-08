@@ -1,0 +1,45 @@
+<!--地图审批-->
+<ion-view view-title="{{'approval.mapApproval'|translate}}">
+    <div class="expense-list-container">
+        <div class="bottom-container">
+            <div class="dates">
+                <!--7月5号-->
+                <div class="date">{{'approval.OnJuly5'|translate}}</div>
+            </div>
+            <ul rn-carousel class="expense-carousel" rn-carousel-index="slides.currentExpenseIndex">
+                <li class="slide-container" ng-repeat="e in expense.data">
+                    <div class="slide item expense row">
+                        <div class="icon col col-20">
+                            <img ng-src="http://huilianyi-uat-static.oss-cn-shanghai.aliyuncs.com/expense_type/{{e.expenseTypeIconName}}.png">
+                        </div>
+                        <div class="col col-50">
+                            <h2>{{e.expenseTypeName}}</h2>
+                            <p ng-repeat="gps in e.markers">
+                                {{gps.address}}
+                            </p>
+                        </div>
+                        <div class="col col-25">
+                            <p>{{e.amount | currency}}</p>
+                            <!--有票-->
+                            <span ng-show="e.withReceipt">{{'approval.haveTicket'|translate}}</span>
+                            <!--无票-->
+                            <span ng-hide="e.withReceipt">{{'approval.noTicket'|translate}}</span>
+                        </div>
+                    </div>
+                    <div class="expense-detail">
+                        <div class="location-detail">
+                            TEST
+                        </div>
+                        <div class="amount-attachment-panel">
+                            123123.00
+                        </div>
+                        <div class="comment-panel">
+
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="MapCanvas"></div>
+</ion-view>

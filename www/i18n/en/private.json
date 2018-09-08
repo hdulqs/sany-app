@@ -1,0 +1,41 @@
+{
+    "error": {
+        "error": "Error",
+        "location.failed.please.try.again.or.manually.input": "Location failed to detect, please try again or manually input",
+        "network": "Network error!",
+        "no.unit.price.per.kilometer": "No unit price set per kilometer",
+        "server": "Server error,",
+        "system": "Technician is working on repairing!",
+        "this.type.is.not.available.please.contact.administrator": "Type is not available, please contact administrator"
+    },
+    "private": {
+        "arrival": "Arrival",
+        "city": "City",
+        "click.refresh": "Click refresh",
+        "click.start.time.place": "Click here to load your boarding time and location",
+        "data.from.Baidu.maps.according.to.departure/arrival.calculation": "Data from Baidu maps,according to departure/arrival calculation",
+        "departure": "Departure",
+        "distance": "Distance",
+        "import": "Enter",
+        "kilometer": "Kilometer",
+        "location.key": "Location keyword",
+        "meter": "Meter",
+        "mileage": "Mileage",
+        "mileage.must.be.greater.than.0": "Mileage must be greater than 0",
+        "mileage.to.retain.a.decimal": "Mileage to retain one decimal",
+        "place.of.arrival": "Place of arrival",
+        "place.of.departure": "Place of departure",
+        "please.contact.the.administrator": "Please contact the administrator",
+        "please.enter.a.valid.range": "Please enter a valid mileage",
+        "position": "Position",
+        "price": "Price",
+        "private.car.for.public": "Mileage Allowance",
+        "revise": "Modify",
+        "search": "Search",
+        "submit": "Submit",
+        "submitted": "Submitted",
+        "time.of.arrival": "Time of arrival",
+        "time.of.departure": "Time of departure",
+        "total": "Total"
+    }
+}

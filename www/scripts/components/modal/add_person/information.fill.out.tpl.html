@@ -1,0 +1,25 @@
+<ion-modal-view class="person-add-modal">
+    <ion-header-bar>
+        <h3 class="title">{{'fill.Add.personnel'|translate}}<!--添加人员--></h3>
+            <span class="check-cancel" ng-click="personForm.hide()">
+                {{'destination.cancel'|translate}}<!--取消-->
+            </span>
+    </ion-header-bar>
+    <ion-content>
+        <form name="personInfoForm" class="person-form">
+            <div class="row row-center">
+                <span>
+                    {{'fill.name'|translate}}<!--姓名-->
+                </span>
+                <div class="col">
+                    <input type="text" name="name" ng-model="view.user.name" placeholder="{{'linkage.Please.enter.the'|translate}}" required><!--请输入-->
+                </div>
+            </div>
+            <div class="add-btn">
+                <button ng-disabled="personInfoForm.$invalid" ng-click="view.addMember()">
+                    {{'directive.determine'|translate}}<!--确定-->
+                </button>
+            </div>
+        </form>
+    </ion-content>
+</ion-modal-view>

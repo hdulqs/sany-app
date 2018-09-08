@@ -1,0 +1,90 @@
+<ion-view cache-view="true" class="account-page" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{person.fullName}}</span>
+    </ion-nav-title>
+    <ion-content class="account-content has-header">
+        <div class="list">
+            <div class="row row-center person-information" ng-click="goTo('app.person_setting')">
+                <div class="avatar">
+                    <user-avatar full-name="person.fullName" icon-url="imgUrl" employId="person.userOID" bigger="true"></user-avatar>
+                </div>
+                <div class="info">
+                    <div>{{person.fullName}}</div>
+                    <div class="title">{{person.title}}</div>
+                </div>
+                <span class="erv-setting">{{'my.info'|translate}}</span>
+                <span class=" col  col-center icon ion-ios-arrow-right person-arrow"></span>
+            </div>
+        </div>
+        <!-- <div class="list ">
+            <div class="item item-divider"></div>
+            <div class="my-account  row row-center " ng-click="goTo('app.account_book')">
+                <div>
+                    <img src="img/expense_report_version/my_account/account-book.png" class="col col-center col-20 account-img"/>
+                </div>
+                <div>
+                    <div class="row row-center field">
+                        <div class="my">我的账本</div>
+                        <div class="field_name">(待处理费用)</div>
+                    </div>
+                    <div class="field-comment">这里有滴滴、携程等推送的费用，也可以快速记录消费。</div>
+                </div>
+            </div>
+        </div> -->
+        <div class="list">
+            <div class="item item-divider" ng-if="orderAuth || (showAccountBind && !view.functionProfileList['ma.feedback.account.bind.disabled']) || (!view.functionProfileList || !view.functionProfileList['ma.company.receipted.invoice.disabled'])"></div>
+            <!--<div class="item item-text-wrap row row-center" ng-click="goTo('app.borrow_money')" ng-hide="view.functionProfileList['loan.flow.disabled']">
+                <img src="img/borrow-money-icon.png" class="col col-center col-20 account-img"/>
+                <div class="col col-center col-75 filed-name">{{'my.Borrowing.and.verification'|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>-->
+            <div class="item item-text-wrap row row-center" ng-show="orderAuth" ng-click="goTo('app.order_form')">
+                <img src="img/order-icon.png" class="col col-center col-20 account-img"/>
+                <div class="col col-center col-75 filed-name">{{'my.order.information'|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+            <div class="item item-text-wrap row row-center" ng-click="goTo('app.company_receipts')" ng-hide="view.functionProfileList['ma.company.receipted.invoice.disabled']">
+                <img class="col col-center col-20 account-img" src="img/receipt-icon.png"/>
+                <div class="col col-center col-75 filed-name">{{'my.billing.information'|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+            <div class="item item-text-wrap row row-center" ng-click="goTo('app.account_bind')" ng-if="showAccountBind && !view.functionProfileList['ma.feedback.account.bind.disabled']">
+                <img src="img/bind-icon.png" class="col col-center col-20 account-img"/>
+                <div class="col col-center col-75 filed-name">{{'my.Account.binding'|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+            <div class="item item-text-wrap row row-center" ng-click="goTo('app.setting_list')">
+                <img class="col col-center col-20 account-img" src="img/setting-icon.png"/>
+                <div class="col col-center col-75 filed-name">{{'my.set'|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+        </div>
+        <!--<div class="list">
+            <div class="item item-divider"></div>
+            <div class="item item-text-wrap row row-center" ng-click="goTo('app.setting_list')">
+                <img class="col col-center col-20 account-img" src="img/setting-icon.png"/>
+                <div class="col col-center col-75 filed-name">{{'my.set'|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+        </div>-->
+        <div class="list">
+            <div class="item item-divider" ng-hide="view.functionProfileList['ma.feedback.disabled'] && view.functionProfileList['about.us.disabled'] && view.functionProfileList['ma.feedback.customer.service.disabled']"></div>
+            <!--<div class="item item-text-wrap row row-center" ng-click="contactOnline()" ng-hide="view.functionProfileList['ma.feedback.customer.service.disabled']">
+                <img class="col col-center col-20 account-img" src="img/contact_us/chat.png"/>
+                <div class="col col-center col-75 filed-name">{{'my.Online.customer.service'|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>-->
+            <!--<div class="item item-text-wrap row row-center" ng-click="goTo('app.help_list')" ng-hide="view.functionProfileList['ma.feedback.disabled']">
+                <img class="col col-center col-20 account-img" src="img/help-icon.png"/>
+                <div class="col col-center col-75 filed-name">{{'my.Help.and.feedback'|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>-->
+            <div class="item item-text-wrap row row-center" ng-click="goTo('app.about_us')" ng-hide="view.functionProfileList['about.us.disabled']">
+                <div class="version-tips" ng-show="view.hasNewVersion"></div>
+                <img class="col col-center col-20 account-img" src="img/about-hly.png"/>
+                <div class="col col-center col-75 filed-name">{{'my.About.huilianyi'|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

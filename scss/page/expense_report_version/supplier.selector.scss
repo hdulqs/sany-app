@@ -1,0 +1,19 @@
+.action-sheet-wrapper {
+    .action-sheet {
+        margin: 0;
+        max-height: 400px;
+        overflow: auto;
+        .action-sheet-group {
+            border-radius: 0;
+            margin: 0;
+            .action-sheet-title {
+                font-size: 16px;
+                color: #959595;
+            }
+        }
+        .button {
+            color: #4c4c4c;
+            font-size: 14px;
+        }
+    }
+}

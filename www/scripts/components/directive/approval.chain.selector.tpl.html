@@ -1,0 +1,92 @@
+<div class="approval-chain-selector" ng-class="{styleClass: styleClass === null}"
+     ng-click="approvalChain.openApprovalChainDialog()">
+    <span class="value" ng-hide="selected !== null && selected.length > 0">{{'directive.Please.select.the.approver'|translate}}<!--请选择审批人--></span>
+    <span class="value" ng-show="selected !== null && selected.length > 0">{{ selected | approvalChainDisplay}}</span>
+    <!--<span class="value" ng-show="selected !== null && selected.length > 0">{{ selected | approvalChainDisplay}}</span>-->
+</div>
+
+<script id="approval.chain.selector.html" type="text/ng-template">
+    <ion-modal-view class="approval-chain-selector-modal">
+        <ion-header-bar class="header bar-positive">
+            <h1 class="title">{{'directive.Select.the.approver'|translate}}<!--选择审批人--></h1>
+            <div class="buttons">
+                <button class="button button-clear" ng-click="approvalChain.closeApprovalChainDialog()">{{'directive.determine'|translate}}<!--确定--></button>
+            </div>
+        </ion-header-bar>
+        <div class="search-selected-bar">
+            <div class="bar bar-header item-input-inset search-box">
+                <label class="item-input-wrapper">
+                    <i class="icon ion-ios-search placeholder-icon"></i>
+                    <input type="search" placeholder="Search" ng-model="users.search.keyword"
+                           ng-focus="users.openSearchUserResultPanel()"
+                           ng-change="users.searchUsers(0)">
+                </label>
+            </div>
+            <div class="search-user-result" ng-if="users.isSearching">
+                <div class="user-result-item row" ng-repeat="user in users.allUsers.search.data"
+                     ng-click="users.selectUser(user)">
+                    <div class="user-full-name col-20">{{user.fullName}}</div>
+                    <div class="col"></div>
+                    <div class="department-info col-50">{{user.title}}<br/>{{user.departmentName}}</div>
+                </div>
+
+            </div>
+            <div class="list approval-chain" ng-hide="users.isSearching">
+                <div class="user-item" ng-show="approvalChain.selectingUsers.length === 0">
+                    <!--<div>一级审批人</div>-->
+                    <div class="user-info">
+                        <!--<user-avatar full-name="' '"></user-avatar>-->
+                        <div class="user-fullname">{{'directive.Please.select.a.user.of.examination.and.approval'|translate}}<!--请选择审批用户--></div>
+                    </div>
+                </div>
+                <div class="clear" ng-if="approvalChain.selectingUsers.length > 0">
+                    <ion-scroll direction="x">
+                        <div class="scroll-content-container">
+                            <div class="row invoice-img-expense-type">
+                                <div class="user-item"
+                                     ng-repeat="user in approvalChain.selectingUsers"
+                                     ng-click="approvalChain.removeUserFromChain(user)">
+                                    <div class="level">{{$index + 1 | chineseNumber }}{{'directive.Level.approver'|translate}}<!--级审批人--></div>
+                                    <div class="user-info">
+                                        <user-avatar full-name="user.fullName" icon-url="user.iconURL" employ-id="user.userOID"></user-avatar>
+                                        <div class="user-fullname">{{user.fullName}}</div>
+                                        <p class="arrow">
+                                            <i class="ion ion-ios-arrow-thin-right"></i>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-scroll>
+                </div>
+            </div>
+        </div>
+        <ion-content class="approval-chain-selector-body">
+            <div class="user-results list" ng-hide="users.isSearching">
+                <div class="user-result-item row row-center" ng-repeat="user in users.allUsers.get.data"
+                     ng-click="users.selectUser(user)">
+                    <user-avatar full-name="user.fullName" icon-url="user.iconURL" employ-id="user.userOID"></user-avatar>
+                    <div class="user-full-name col-20 col-center">{{user.fullName}}</div>
+                    <div class="col col-center"></div>
+                    <div class="department-info col-50 col-center">
+                        <div class="row row-center">
+                            <p class="user-title">{{user.title}}</p>
+                        </div>
+                        <div class="row row-center">
+                            <p class="user-dep">{{user.departmentName}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </ion-content>
+
+        <ion-infinite-scroll
+            on-infinite="users.loadMore(users.allUsers.firstPage+1)"
+            distance="1%"
+            ng-if="users.allUsers.lastPage > users.allUsers.firstPage"
+            immediate-check="false"
+        >
+        </ion-infinite-scroll>
+    </ion-modal-view>
+</script>

@@ -1,0 +1,138 @@
+{
+    "confirm.window.prompt":"Prompt",
+    "confirm.window.Information.report":"Do you want to save the information of this expense reimbursement bill?",
+    "confirm.window.cancel":"Cancel",
+    "confirm.window.ok":"Confirm to save",
+    "message": {
+        "query.failed": "Data query failed",
+        "delete.failed": "Delete failed",
+        "delete.success": "Deleted successfully",
+        "save.failed": "Save failed",
+        "save.success": "Saved successfully",
+        "submit.failed": "Failed to submit",
+        "select.book":"Select the corresponding application information to import the expense book!"
+    },
+    "over.standard": {
+        "title": "Superstandard event",
+        "req": {
+            "prompt": "Exceed the application standard",
+            "other":{
+                "req.amount": "Total amount of application forms",
+                "report.amount": "Total amount of associated reimbursement",
+                "current.amount": "This associated amount"
+            },
+            "travel":{
+                "req.amount":"Total application amount",
+                "report.amount":"Total reimbursement amount"
+            }
+        },
+        "travel": {
+            "prompt": "Exceed the requirements of travel policy",
+            "exp.item": "Expense item",
+            "standard.amount": "Standard amount of expenses",
+            "function.amount": "Amount of base currency reimbursement"
+        }
+    },
+    "myReqList":{
+        "My.application.list": "My application",
+        "Temporarily.no.req.information":"No application information temporarily",
+        "Reim.can.be.related.to.the.amount":"Associated reimbursement amount",
+        "report.type":"Type of reimbursement",
+        "application.item":"Application item",
+        "application.people":"Applicant",
+        "dept": "Department",
+        "center": "Expense center",
+        "total.amount":"Total application amount",
+        "comment":"Description",
+        "ass.book":"Associated account book",
+        "import.req.line.info":"Import the line information of application form",
+        "Click.the.refresh":"Click refresh",
+        "loading":"Loading"
+    },
+    "payment.plan":{
+        "list":"List of payment plan",
+        "add":"Add the scheduled payment line",
+        "nothing":"No line information of scheduled payment temporarily",
+        "Receipt.amount":"Amount collected",
+        "Total.amount":"Total amount",
+        "Off.amount":"Writeoff amount",
+        "Receipt.people":"Payee",
+        "Bank.name":"Bank Account",
+        "delete": "Delete",
+        "loading":"Loading"
+    },
+    "report": {
+        "title": "Reimbursement",
+        "refReq": "Associated application form",
+        "save": "Save",
+        "submit": "Submit",
+        "new.exp.report": "Create reimbursement",
+        "Nothing": "Absolutely empty",
+        "No.expense.account": "No reimbursement bill temporarily!",
+        "Click.the.refresh": "Click Refresh",
+        "waiting.approval": "To be approved",
+        "waiting.submit": "To be submitted",
+        "already.approved": "Approved",
+        "approved": "Approved",
+        "already.takeBack": "Withdrew",
+        "editing": "In editing",
+        "refused": "Rejected",
+        "delete": "Delete",
+        "takeBack": "Withdraw",
+        "from.book":"Import account book",
+        "new.exp":"Create expenses",
+        "from.req":"Import application lines",
+        "please.input": "Please enter",
+        "prompt":"Prompt",
+        "cancel": "Cancel",
+        "confirm":"Confirm",
+        "header":{
+            "company": "Company",
+            "dept": "Department",
+            "date": "Date of reimbursement",
+            "expenseDept": "Expense department",
+            "center": "Expense cente",
+            "job": "Post",
+            "level": "Rank",
+            "cadre": "Type of cadre",
+            "amount": "Reimbursement amount",
+            "exchange.rate": "(Receipt-base currency) exchange rate",
+            "contract.number": "Contract No",
+            "internal.title": "Internal title",
+            "business.attribute": "Business attributes",
+            "approval.leadership": "Approved by leader",
+            "approval.special": "Special approval or not",
+            "addApproval": "Need to add approvers",
+            "contract.payment.terms":"Terms of payment for contract",
+            "special.approval.note":"Description of special approval events",
+            "description":"Reimbursement cause",
+            "opinions": "Approval comments",
+            "record": "Record of approval",
+            "report.situation": "Check the reimbursement status",
+            "standard.situation": "Check standard",
+            "view.document.history":"Check history",
+            "new.plans":"Create or add the scheduled payment line",
+            "opinions_tip": "Less than 200 Chinese characters",
+            "nothing": "None",
+            "Attachment.information": "Attachment information (up to 9 photos can be uploaded)",
+            "makePlanContent":"There is no scheduled payment line according to the system detection, and the collection information will be generated automatically based on the bill information.",
+            "submit.tip":"Unable to submit due to lack of scheduled payment line; do you want to automatically generate the scheduled payment line?",
+            "submit.hotelTip":"Accommodation fee amount exceeds the standard limit, please check 'special approval' and clarify the 'special approval event' if you want to reimburse the actually incurred amount, will you continue to submit?",
+            "error": {
+                "required.unit_name": "Please select department",
+                "required.responsibility_center_name": "Please select the expense center",
+                "required.exp_report_date": "Please select the date of reimbursement",
+                "required.exp_report_currency_code": "Please select the currency of collection",
+                "required.business_attribute": "Please select the business attributes",
+                "required.description": "Please enter the reimbursement cause",
+                "required.exp_report_rate": "The exchange rate does not exist, please contact the administrator to maintain the exchange rate.",
+                "required.exp_report_payment_method":"Please select the way of payment",
+                "required.exp_report_payee_category_name":"Please select the collection object",
+                "required.contract_pay_term":"Please enter the terms of payment for the contract",
+                "query.failed":"Data query failed!",
+                "required.special.approval.note":"Please enter the description of special approval events"
+            }
+        }
+    }
+
+}

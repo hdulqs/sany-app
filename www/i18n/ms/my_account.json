@@ -1,0 +1,40 @@
+{
+    "dashboard": {
+        "Approval": "审批",
+        "Expect": "敬请期待",
+        "Hint": "提示",
+        "Report": "报表",
+        "Train": "火车",
+        "YoungRecruit": "扬招",
+        "airlineTicket": "机票",
+        "app": "应用",
+        "confirm": "确定",
+        "consumption": "消费",
+        "goingOut": "出行",
+        "hotel": "酒店",
+        "repast": "餐饮",
+        "travelApplication": "差旅申请"
+    },
+    "my": {
+        "About.huilianyi": "tentang Helios",
+        "Account.binding": "pengikatan akaun",
+        "Borrowing.and.verification": "pinjaman dan pengesahan",
+        "Help.and.feedback": "bantuan dan maklum balas",
+        "Online.customer.service": "perkhidmatan pelanggan atas talian",
+        "aboutHuiLianYi": "关于汇联易",
+        "back.to.HuiLianYi": "Back to Helios",
+        "billing.information": "informasi bil",
+        "helpAndFeedback": "帮助与反馈",
+        "my": "saya",
+        "order.information": "informasi pesanan",
+        "set": "tetapan"
+    },
+    "problem": {
+        "costDesynchrony": "费用不同步？",
+        "didiSynchronizationCost": "去滴滴同步费用",
+        "question": "问题",
+        "question_1": "1.可能会有2小时-1天的延迟",
+        "question_2": "2.请前往APP检查是否勾选了企业报销",
+        "question_3": "3.若还是未收到费用推送，可前往我的-设置-滴滴同步 进行手动同步"
+    }
+}

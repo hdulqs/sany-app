@@ -1,0 +1,197 @@
+<ion-view class="invoice-apply-next-erv">
+    <ion-nav-title>
+        <span class="expense-report-nav-title"> {{'invoice.cost.application' | translate}}<!--费用申请--></span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <!--<div class="create-expense-report" ng-if="view.content === 'hasPass'" ng-click="view.exportExpense()">-->
+            <!--生成报销单-->
+        <!--</div>-->
+        <div class="create-expense-report" ng-if="view.content === 'waitApproval' && !view.functionProfileList['ea.opt.withdraw.disabled']"
+             ng-click="view.withdrawInvoiceApply()">
+            {{'invoice.withdraw' | translate}}<!--撤回-->
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="invoice-apply-next-content"
+                 ng-class="{true: 'has-footer',false: ''}[ view.content === 'hasPass' || (view.content === 'approval' && !view.functionProfileList['ea.opt.approval.disabled'])]">
+        <div ng-if="view.isNotFound">
+            <not-found-text title="view.notFoundText" icon="view.notFoundIcon">
+            </not-found-text>
+        </div>
+        <div ng-if="!view.isNotFound">
+            <div class="create-base-message">
+                <img src="img/expense_report_version/travel/edit.png" alt="" class="base-edit"
+                     ng-click="view.editBase()"
+                     ng-if="view.content === 'next' || view.content === 'hasReject'">
+
+                <p class="text-center invoice-apply-comment">
+                    {{view.invoiceApply.title}}
+                </p>
+                <p class="text-center invoice-apply-department">
+                    {{view.invoiceApply.expenseApplication.departmentName}}
+                </p>
+                <p class="text-center invoice-apply-department">
+                    {{view.invoiceApply.expenseApplication.costCenterItemName}}
+                </p>
+
+                <div>
+                    <div class="join-member-list" ng-if="view.showInvoiceApplyMember">
+                        <div class="join-member"
+                             ng-repeat="avater in view.invoiceApply.applicationParticipants">
+                            <user-avatar full-name="avater.fullName" icon-url="avater.avatar"
+                                         employ-id="avater.participantOID"></user-avatar>
+                            <!--<img ng-src="{{avater.headPortrait}}" alt="">-->
+                            <p>
+                                {{avater.fullName}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--如果是外币需要显示两种-->
+                <div class="row row-center">
+                    <div class="col invoice-apply-money text-center">
+                        <!-- 总预算-->
+                        {{'invoice.total.budget' | translate}}:
+                        {{ view.originCurrencyCode}}
+                        {{view.invoiceApply.expenseApplication.baseCurrencyAmount | number : 2 }}
+                    </div>
+                </div>
+
+
+                <div class="row row-center">
+                    <div class="col invoice-apply-money text-center">
+                        <!-- 总预算-->
+                        {{'invoice.total.budget' | translate}}:
+                        {{ view.invoiceApply.expenseApplication.currencyCode}}
+                        {{view.invoiceApply.expenseApplication.totalBudget | number : 2 }}
+                    </div>
+                </div>
+                <!--备注-->
+                <p class="invoice-apply-remark" ng-if="view.invoiceApply.remark && view.showInvoiceApplyMember">
+                    {{'invoice.remark' | translate}}:{{view.invoiceApply.remark}}
+                </p>
+            </div>
+            <div class="expand-member-list" ng-click="view.expandInvoiceApplyMember()">
+                <img src="img/expense_report_version/travel/expand-arrow.png" alt=""
+                     ng-class="{true: 'rotate',false: ''}[view.showInvoiceApplyMember]">
+            </div>
+            <div class="row row-center">
+                <p class="invoice-list-title">
+                    <!-- 预算列表-->
+                    {{'invoice.budget.list' | translate}}
+                </p>
+            </div>
+            <div class="invoice-apply-list">
+                <div ng-repeat="expense in view.invoiceApply.expenseApplication.expenseBudgetList track by $index">
+                    <ion-item class="item-invoice-list">
+                        <div class="row row-center">
+                            <img class="consume-icon" ng-src="{{expense.expenseType.iconURL}}" alt="" ng-if="expense.expenseType.iconURL">
+                            <img class="consume-icon" ng-src="img/expensetypes/{{expense.expenseType.iconName}}.png" alt=""
+                                 ng-hide="expense.expenseType.iconURL">
+
+                            <div class="col col-50">
+                                <h2 class="consume-item">{{expense.expenseType.name}}</h2>
+                            </div>
+                            <div class="col text-right invoice-money"
+                                 ng-class="{true: '', false: 'text-no-input'}[ expense.amount > 0]">
+                                {{expense.amount | currency : code}}
+                            </div>
+                        </div>
+                    </ion-item>
+                </div>
+            </div>
+            <div class="invoice-apply-approval-histroy">
+                <p class="invoice-apply-tips">
+                    <!-- 审批历史-->
+                    {{'invoice.history.of.examination.and.approval' | translate}}
+                </p>
+
+                <div class="approval-history-pane history-block">
+                    <div class="line"></div>
+                    <div class="approval-history">
+                        <div class="row" ng-if="view.invoiceApply.approvalChains.length > 0">
+                            <span class="history-dot-wait"></span>
+
+                            <div class="col padding-0">
+                                <div class="row padding-5-0">
+                                    <div class="col padding-0">
+                                        <p class="approval-time approval-name operation-title">
+                                            {{'invoice.wait' | translate}}<!--等待-->
+                                            <span ng-if="view.language === 'zh_cn'">{{'invoice.approve' | translate}}</span><!--审批-->
+                                        </p>
+                                    </div>
+                                    <div class="col padding-0">
+                                        <p class="approval-time txt-right operation-date">
+                                            {{view.invoiceApply.approvalChains[0].lastModifiedDate | dateTimeFilter}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="approval-time">
+                                    <span ng-repeat="chain in view.invoiceApply.approvalChains">
+                                        {{chain.approverName}}&nbsp;{{chain.approverEmployeeID}} <span ng-if="$index != (view.invoiceApply.approvalChains.length -1)">，</span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-repeat="history in view.invoiceApply.approvalHistorys">
+                            <span class="history-dot-wait" ng-if="history.operation === 3004 || history.operation === 4000"></span>
+                            <span class="history-dot-success" ng-if="history.operation === 1001 ||
+                            history.operation === 2001 || history.operation === 3001 || history.operation === 3003 ||
+                            history.operation === 4001 || history.operation === 4011 || history.operation === 5000 ||
+                            history.operation === 5001 || history.operation === 5002 || history.operation === 5004 || history.operation === 5007"></span>
+                            <span class="history-dot-reject" ng-if="history.operation === 2002 || history.operation === 3002 ||
+                            history.operation === 4012 || history.operation === 5003 || history.operation === 5005 || history.operation === 5006 || history.operation === 5008"></span>
+                            <span class="history-dot-withdraw" ng-if="history.operation === 1002"></span>
+
+                            <div class="col padding-0">
+                                <div class="row padding-5-0">
+                                    <div class="col padding-0">
+                                        <p class="approval-time operation-title">
+                                            <span ng-hide="history.operation == 2001 && history.operationType == 1001">
+                                                {{history.operation | operation}}
+                                            </span>
+                                            <span ng-if="history.operation == 2001 && history.operationType == 1001">
+                                                {{'filter_js.selfApproval' | translate}}
+                                                <!--自审批通过-->
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col padding-0">
+                                        <p class="approval-time txt-right operation-date">
+                                            {{history.createdDate | dateTimeFilter}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="approval-time">
+                                    {{history.operator.fullName}}&nbsp;{{history.operator.employeeID}}
+                                </p>
+                                <p class="approval-time" ng-class="{'reject-remark': history.operation == 2002 || history.operation == 3002 || history.operation == 4012 || history.operation == 5003}">
+                                    {{history.operationDetail}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+    <ion-footer-bar class="invoice-apply-next-footer"
+                    ng-if="(view.content === 'hasReject' || (view.content === 'approval' && !view.functionProfileList['ea.opt.approval.disabled'])) && !view.isNotFound"
+                    >
+        <div class="row row-center" ng-if="view.content === 'approval' && view.invoiceApply.status === 1002">
+            <div class="col text-center invoice-apply-reject" ng-click="view.showOpinionPopup()">
+                {{'invoice.reject' | translate}}<!--驳回-->
+            </div>
+            <div class="col text-center invoice-apply-agree" ng-click="view.agree()">
+                {{'invoice.pass' | translate}}<!--通过-->
+            </div>
+        </div>
+        <div class="row row-center" ng-if="view.content === 'hasReject'">
+            <div class="col text-center invoice-apply-edit" ng-click="view.edit()">
+                {{'invoice.revise' | translate}}<!-- 修改-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

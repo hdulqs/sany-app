@@ -1,0 +1,60 @@
+<p ng-click="view.openSelector()" class="text-value-directives custom-value-directive-text">
+    {{selected.valueKey}}
+    <span ng-if="!selected.valueKey && selected.enabledStatus" class="text-placeholder">{{'linkage.Please.select'|translate}}<!--请选择--></span>
+    <span ng-if="!selected.valueKey && !selected.enabledStatus">{{'linkage.not.enabled'|translate}}<!--未启用--></span>
+</p>
+<script id="value.selector.html" type="text/ng-template">
+    <ion-modal-view class="value-selector-directive">
+        <ion-header-bar>
+            <h3 class="title">{{'value_tpl.Select.value'|translate}}{{selected.name}}<!--选择值--></h3>
+            <span class="city-cancel" ng-click="valueSelector.hide()">
+                {{'destination.cancel'|translate}}<!--取消-->
+            </span>
+        </ion-header-bar>
+        <!--外部值列表不需要搜索-->
+        <div class="bar bar-subheader">
+            <div class="search">
+                <label class="item-input-wrapper">
+                    <input class="header-input" placeholder="{{'cost.Please.enter.the.keywords'|translate}}" ng-model-options="{debounce:500}" ng-model="view.keyword" ng-change="view.showItemCount = 0">
+                </label><!--请输入关键字-->
+            </div>
+        </div>
+        <ion-content overflow-scroll="true" class="has-subheader">
+            <div class="alert alert-warning warn" ng-if="view.showItemCount == 0">
+                <img class="warning-icon" src="img/nothing.png"/>
+                <p class="warning-word">{{'value_tpl.No.results'|translate}}<!--暂无结果!--></p>
+            </div>
+            <div ng-if="view.networkError && view.valueList.length === 0">
+                <not-found-text title="view.networkErrorText" icon="view.networkErrorIcon">
+                </not-found-text>
+                <div class="text-center">
+                    <button class="create-travel-btn" ng-click="view.doRefresh()">
+                        {{'value_tpl.Click.the.refresh'|translate}}<!--点击刷新-->
+                    </button>
+                </div>
+            </div>
+            <ion-refresher on-refresh="view.doRefresh()" pulling-text="{{'common.loading'|translate}}"></ion-refresher><!--加载中...-->
+            <ion-list>
+                <ion-item ng-repeat="item in view.valueList track by $index"
+                          ng-click="view.closeSelector(item)" ng-if="view.showItem(item)">
+                    <div class="row row-center">
+                        <span class="col col-85 content-outer">
+                            {{item.messageKey}}
+                            <br ng-if="item.name && item.managerFullName">
+                            <b ng-if="item.name && item.managerFullName">{{item.name + "-" + item.managerFullName}}</b>
+                        </span>
+                        <div class="col col-10">
+                            <img ng-if="item.value === selected.value" class="select" ng-src="img/travel/select.png">
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll
+                ng-if="!view.pageable.isEnd"
+                on-infinite="view.loadMore(view.pageable.page + 1)" immediate-check="false"
+                distance="1%">
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-modal-view>
+</script>
+

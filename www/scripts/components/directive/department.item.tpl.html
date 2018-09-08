@@ -1,0 +1,36 @@
+{{selected.path}}
+    <div class="department-item level-{{level}} row row-center">
+        <div class="col" ng-class="{'leaf': !data.hasChildrenDepartments}"
+             ng-click="toggleItem(data)">
+            {{data.name}}
+            <i class="ion ion-ios-arrow-right" ng-class="{'expanded': expanded}"></i>
+        </div>
+    </div>
+
+    <department-item
+        class="child-item"
+        ng-repeat="dep in data.children"
+        selected="selected"
+        data="dep"
+        mode="mode"
+        ng-show="data.hasChildrenDepartments && expanded && (!search || search && searchDepartment.indexOf(dep.departmentOID) == -1)"
+        callback="callback"
+        search="isSearch"
+        search-department="searchDepartment"
+    ></department-item>
+
+
+<!--{{selected.path}}-->
+<!--<div class="department-item level-{{level}}">-->
+    <!--<a ng-class="{'leaf': !data.hasChildrenDepartments}" ng-click="toggleItem(data)">-->
+        <!--<i class="ion-arrow-right-b" ng-class="{'expanded': expanded}"></i>{{data.name}}-->
+    <!--</a>-->
+<!--</div>-->
+<!--<department-item-->
+    <!--class="child-item"-->
+    <!--ng-repeat="dep in data.children"-->
+    <!--selected="selected"-->
+    <!--data="dep"-->
+    <!--ng-show="data.hasChildrenDepartments && expanded"-->
+    <!--callback="callback"-->
+<!--&gt;</department-item>-->

@@ -1,0 +1,65 @@
+{
+    "base": {
+        "Jingdong.application": "京东申请",
+        "Please.enter.a.note": "请输入备注(非必填,不得超过200个字符)",
+        "Please.enter.the.reason": "请输入事由(必填,不得超过50个字符)",
+        "delete": "删除",
+        "save": "保存",
+        "submit": "提交"
+    },
+    "base_js": {
+        "After.deleting.will.cancel.the.jingdong.orders.at.the.same.time": "删除后将同时取消京东订单",
+        "Application.form.is.invalid": "申请单无效",
+        "Confirm.to.delete": "是否确认删除？",
+        "Cost.center.is.not.configured": "成本中心未配置，请联系管理员",
+        "Delete.failed": "删除失败",
+        "Delete.the.success": "删除成功",
+        "Has.been.submitted": "已提交",
+        "Jingdong.order.is.invalid": "京东订单无效",
+        "Jingdong.order.time.error": "京东订单时间出错",
+        "Please.enter.the": "请输入",
+        "Please.select.a": "请选择",
+        "Save.failed": "保存失败",
+        "The.order.was.cancelled": "订单已取消，该申请不可提交",
+        "The.saved": "已保存",
+        "cancel": "取消",
+        "day": "天",
+        "determine": "确定",
+        "hours": "小时",
+        "submit.failure": "提交失败"
+    },
+    "detail": {
+        "Go.to.the.payment": "去付款",
+        "The.examination.and.approval.of.history": "审批历史",
+        "To.view.the.order.details": "查看订单详情",
+        "Waiting": "等待",
+        "examine.and.approve": "审批",
+        "pass": "通过",
+        "reject": "驳回",
+        "withdraw": "撤回"
+    },
+    "detail_js": {
+        "Has.been.rejected": "已驳回",
+        "Has.withdrawn": "已撤回",
+        "Have.been.through": "审批通过",
+        "Please.enter.the.reject.reason": "请输入驳回理由",
+        "Reason.for.rejection": "驳回理由",
+        "Withdraw.the.failure": "撤回失败",
+        "cancel": "取消",
+        "failed": "失败了",
+        "ok": "确认"
+    },
+    "order": {
+        "Check.the.details": "查看详情",
+        "Has.been.cancelled": "已取消",
+        "Have.to.return": "已退货",
+        "Logistics.information": "物流信息",
+        "The.order.information": "订单信息",
+        "The.rest.payment": "剩余付款时间",
+        "Total.amount": "总计金额",
+        "freight": "运费",
+        "number": "数量",
+        "pleaseInputReason":"请输入理由",
+        "finished": "订单已付款"
+    }
+}

@@ -1,0 +1,234 @@
+<ion-view class="dashboard" ng-cloak="">
+    <ion-nav-title>
+        <span class="logo">
+            <img ng-src="{{ view.homepageLogoUrl }}" alt="">
+        </span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <!--<a ng-click="view.goTo('app.erv_approval_expense_scanner')">-->
+       <!-- <a ng-click="view.validatePermission()"
+           ng-if="view.hasFinanceRole && !view.functionProfileList['finance.scan.disabled']">
+            <img class="dashboard-scanner-icon" src="img/homepage/scanner_icon.png"/>
+        </a>-->
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <!--<a ng-click="view.goTo('app.erv_notification')">-->
+        <a ng-click="view.goTo('app.erv_notification')">
+            <img class="dashboard-message-icon" src="img/homepage/message_icon.png"/>
+            <div class="message-tips" ng-if="hasMessageTips"></div>
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <div ng-if="view.hasInit">
+            <ion-slide-box show-pager="true" class="slide-content" ng-if="data.carouselList.length > 0"
+                           auto-play="true" does-continue="true">
+                <ion-slide ng-repeat="image in data.carouselList" ng-click="goToContent($event, $index)">
+                    <!--on-swipe-left="goFirstSlide($index)" >-->
+                    <div class="first-div" align="center">
+                        <img class="first-img" ng-src="{{image.attachmentDTO.fileURL}}">
+                    </div>
+                    <div class="slide-title">
+                        <p>
+                            {{image.title}}
+                        </p>
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+
+            <ion-slide-box show-pager="false" class="slide-content" ng-if="view.defaultBanner"
+                           auto-play="true">
+                <ion-slide>
+                    <div class="first-div" align="center">
+                        <img class="first-img" src="img/homepage/new/banner2.png">
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
+            <div ng-if="view.blankBanner" class="banner-default">
+                <img class="first-img" src="img/homepage/new/blank-banner.png">
+            </div>
+
+            <div class="icon-pane" ng-if="view.functionProfileList">
+                <div class="row row-center row-title">
+                    <div class="col">
+                        {{'vendor.consume' | translate}}<!--消费-->
+                    </div>
+                </div>
+
+                <div class="row row-center row-icon icon-list"
+                     ng-class="{true: 'icon-list-en',false: ''}[view.language === 'en']">
+                    <!-- ng-if="view.functionProfileVenderJudge('vendor', [1001])"-->
+                    <div class="col col-25 text-center" ng-click="getDiDi()"
+                         ng-if="false">
+                        <img src="img/homepage/new/car.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.taxi' | translate}}
+                            <!--<a href="didies://passenger">滴滴</a>-->
+                        </p>
+                    </div>
+                    <!--<a href="http://common.diditaxi.com.cn/general/webEntry?app_type=es&page=jump">打开滴滴</a></div>-->
+                    <div class="col col-25 text-center" ng-click="view.goTo('app.waveTravel')"
+                         ng-if="!view.functionProfileList || !view.functionProfileList['wave.taxi.disabled']">
+                        <img src="img/homepage/new/wave.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.yangzhao' | translate}}<!--扬招-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="jumpToCtrip('FlightSearch')"
+                         ng-if="view.functionProfileVenderJudge('vendor', [1002, 1007])">
+                        <img src="img/homepage/new/plane.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.ticket' | translate}}<!--机票-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="orderTrain()"
+                         ng-if="view.functionProfileVenderJudge('vendor', [1004])">
+                        <img src="img/homepage/new/train.png" alt="">
+                        <p class="text-center">{{'vendor.train' | translate}}<!--同程火车--></p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="jumpToCtrip('HotelSearch')"
+                         ng-if="view.functionProfileVenderJudge('vendor', [1002])">
+                        <img src="img/homepage/new/hotel.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.hotel' | translate}}<!-- 携程酒店-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="jumpToCtrip('TrainSearch')"
+                         ng-if="view.functionProfileVenderJudge('vendor', [1010])">
+                        <img src="img/homepage/new/ctrip_train.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.ctripTrain' | translate}}<!--火车-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="jumpToBestTo()"
+                         ng-if="view.functionProfileVenderJudge('vendor', [1003])">
+                        <img src="img/homepage/new/sport.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.venue' | translate}} <!--场馆-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="getYget()"
+                         ng-if="view.functionProfileVenderJudge('vendor', [1006])">
+                        <img src="img/homepage/new/mobile-money.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.oil.card.fee' | translate}}<!--油卡话费-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="orderSecretary()"
+                         ng-if="view.functionProfileVenderJudge('vendor', [1008])">
+                        <img src="img/homepage/new/order-secretary.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.ordering.secretary' | translate}}<!--订餐小秘书-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="jumpJD()"
+                         ng-if="view.functionProfileVenderJudge('vendor', [1009])">
+                        <img src="img/homepage/new/jingdong.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.purchase' | translate}}<!--采购-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="view.goTo('app.private_car_for_public')"
+                         ng-if="!view.functionProfileList || !view.functionProfileList['private.car.for.public.disabled']">
+                        <img src="img/homepage/new/private-car.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.private.car.for.public' | translate}}<!--里程补贴-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center"
+                         ng-repeat="thirdPart in view.functionProfileList['thridParties'].vendor"
+                         ng-click="jumpThirdPart(thirdPart)">
+                        <img ng-src="{{ thirdPart.icon }}" alt="">
+                        <p class="text-center">
+                            {{ thirdPart.messageKey | translate }}
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center"
+                         ng-if="view.functionProfileVenderJudge('vendor', [1019])" ng-click="jumpToCas()">
+                        <img src="img/homepage/new/china-air-service.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.cas' | translate}}<!-- 中航服-->
+                        </p>
+                    </div>
+                    <!--<div class="col text-center no-border-right">-->
+                    <!--</div>-->
+                </div>
+                <div class="row row-center row-title">
+                    <div class="col">
+                        {{'vendor.use' | translate}} <!--应用-->
+                    </div>
+                </div>
+                <div class="row row-center row-icon icon-list"
+                     ng-class="{true: 'icon-list-en',false: ''}[view.language === 'en']">
+                    <div class="col col-25 text-center" ng-click="view.goTo('app.erv_travel_list')"
+                         ng-if="!view.functionProfileList || !view.functionProfileList['ta.disabled']">
+                        <img src="img/homepage/new/travel-apply.png" alt="">
+                        <p>
+                            {{'vendor.travel.request' | translate}}<!--差旅申请-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="view.goTo('app.erv_invoice_apply_list')"
+                         ng-if="!view.functionProfileList || !view.functionProfileList['ea.disabled']">
+                        <img src="img/homepage/new/expense-apply.png" alt="">
+                        <p>
+                            {{'vendor.cost.application' | translate}}<!--费用申请-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="otherApply()"
+                         ng-if="!view.functionProfileList || !view.functionProfileList['external.application.disabled']">
+                        <img src="img/homepage/new/expense-apply.png" alt="">
+                        <p>
+                            {{'vendor.other.applications' | translate}}<!--其它申请-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center"
+                         ng-repeat="thirdPart in view.functionProfileList['thridParties'].applications"
+                         ng-click="jumpThirdPart(thirdPart)">
+                        <img ng-src="{{ thirdPart.icon }}" alt="">
+                        <p class="text-center">
+                            {{ thirdPart.messageKey | translate }}
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="view.goTo('app.expList')"
+                         ng-if="!view.functionProfileList || !view.functionProfileList['account.book.disabled']">
+                        <img src="img/homepage/account-book.png" alt="">
+                        <p>
+                            {{'vendor.my.account' | translate}}<!--我的账本-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="view.goTo('app.reqList')"
+                         ng-if="!view.functionProfileList || !view.functionProfileList['ca.disabled']">
+                        <img src="img/homepage/new/custom-application.png">
+                        <p>
+                            {{'vendor.application' | translate}}<!--申请-->
+                        </p>
+                    </div>
+                    <div class="col col-25 text-center " ng-click="view.goTo('app.approvalList')"
+                         ng-if="!view.functionProfileList || (!view.functionProfileList['approval.disabled'] || !view.functionProfileList['approval.external.disabled'])"
+                         style="position: relative">
+                        <img src="img/homepage/new/approval.png" alt="">
+                        <p class="text-center">
+                            {{'vendor.approval' | translate}}<!--审批-->
+                            <!--<span class="total-num" ng-if="hecTotalApproval > 0 && (!view.functionProfileList || !view.functionProfileList['approval.disabled'])">
+                                ({{hecTotalApproval}})
+                            </span>-->
+                        </p>
+                        <div class="hec-red-point"
+                             ng-if="hecTotalApproval > 0 && (!view.functionProfileList || !view.functionProfileList['approval.disabled'])">
+                            {{hecTotalApproval}}
+                        </div>
+                    </div>
+                    <div class="col col-25 text-center" ng-click="view.goTo('app.chooseTravelTrip')"
+                         ng-if="!view.functionProfileList || !view.functionProfileList['report.disabled']">
+                        <img src="img/homepage/new/report.png" alt="">
+                        <p> {{'vendor.travel.confirmation' | translate}}<!--}报表--></p>
+                    </div>
+                    <!--<div class="col col-25 text-center" ng-click="view.goTo('app.test')">
+                        <img src="img/homepage/new/report.png" alt="">
+                        <p> 测试 </p>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

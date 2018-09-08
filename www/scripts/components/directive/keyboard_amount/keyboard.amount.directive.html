@@ -1,0 +1,68 @@
+<div class="keyboard-amount-directive">
+    <div class="row row-center keyboard">
+        <div class="col" ng-click="view.push($event, '7')">
+            7
+        </div>
+        <div class="col" ng-click="view.push($event, '8')">
+            8
+        </div>
+        <div class="col" ng-click="view.push($event, '9')">
+            9
+        </div>
+        <div class="col" ng-click="view.push($event, '/')">
+            <!--除号-->
+            &divide;
+        </div>
+        <div class="col border-right" ng-click="view.clearOne($event)">
+            <img src="img/expense/delete-one.png" alt="" class="delete-one">
+        </div>
+    </div>
+    <div class="row row-center keyboard">
+        <div class="col" ng-click="view.push($event, '4')">
+            4
+        </div>
+        <div class="col" ng-click="view.push($event, '5')">
+            5
+        </div>
+        <div class="col" ng-click="view.push($event, '6')">
+            6
+        </div>
+        <div class="col" ng-click="view.push($event, '+')">
+            +
+        </div>
+        <div class="col border-right" ng-click="view.push($event, '-')">
+            -
+        </div>
+    </div>
+    <div class="row row-center keyboard">
+        <div class="col" ng-click="view.push($event, '1')">
+            1
+        </div>
+        <div class="col" ng-click="view.push($event, '2')">
+            2
+        </div>
+        <div class="col" ng-click="view.push($event, '3')">
+            3
+        </div>
+        <div class="col" ng-click="view.push($event, 'x')">
+            x
+        </div>
+        <div class="col border-right" ng-click="view.calculate($event)">
+            =
+        </div>
+    </div>
+    <div class="row row-center keyboard">
+        <div class="col" ng-click="view.clear($event)">
+            C
+        </div>
+        <div class="col" ng-click="view.push($event, '0')">
+            0
+        </div>
+        <div class="col" ng-click="view.push($event, '.')">
+            .
+        </div>
+        <div class="col col-40 back-ok" ng-click="view.calculationOver($event)">
+            ok
+        </div>
+    </div>
+</div>

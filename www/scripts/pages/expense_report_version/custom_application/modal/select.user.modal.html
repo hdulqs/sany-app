@@ -1,0 +1,20 @@
+<ion-modal-view class="together-book-ticket">
+    <ion-content class="block-content">
+        <div class="white-bg">
+            <div class="row row-center booker-title">
+                <div class="col col-100 text-center">
+                    {{ 'custom.application.tip.select_booker' | translate }}
+                </div>
+            </div>
+            <ion-scroll direction="y" class="scroll-booker-name">
+                <div class="scroll-content-container">
+                    <div class="row row-center booker-row" ng-repeat="user in view.selectParicipantList" ng-click="view.selectBookerName($index)">
+                        <p class="row-name">
+                            {{user.text}}
+                        </p>
+                    </div>
+                </div>
+            </ion-scroll>
+        </div>
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="day_name_format">EEE</string>
+    <string name="invalid_date">Date must be between %1$s and %2$s.</string>
+    <string name="month_name_format">yyyy年M月</string>
+    <string name="YYYY_MM_DD_format">yyyy-MM-DD</string>
+	<string name="cancel">取消</string>
+    <string name="select_date">选择日期</string>
+    <string name="ok">确定</string>
+    <string name= "Sun">日</string>
+    <string name= "Mon">一</string>
+    <string name= "Tues">二</string>
+    <string name= "Wed">三</string>
+    <string name= "Thur">四</string>
+    <string name= "Fri">五</string>
+    <string name= "Sat">六</string>
+</resources>

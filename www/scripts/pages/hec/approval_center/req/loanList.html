@@ -1,0 +1,30 @@
+<!--查看借款信息
+    Created by Dawn on 2017/8/7-->
+<ion-view hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title"><!--查看借款信息-->{{'approval.req.loanInfo' | translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content>
+        <div ng-repeat="reqLoan in vm.reqLoanList" ng-click="vm.goDetail(reqLoan)" style="width: 90%;margin: .5rem auto;border: 1px solid #e2e2e2;border-radius: .2rem;">
+            <div class="row">
+                <div class="col"><!--单据编号-->{{'approval.req.loan.number' | translate}}：{{reqLoan.requisition_number}}</div>
+            </div>
+            <div class="row">
+                <div class="col" style="color: red;"><!--申请人-->{{'approval.req.loan.applyer' | translate}}：{{reqLoan.employee_nname}}</div>
+            </div>
+            <div class="row">
+                <div class="col"><!--申请日期-->{{'approval.req.loan.date' | translate}}：{{reqLoan.requisition_date}}</div>
+            </div>
+            <div class="row">
+                <div class="col"><!--借款金额-->{{'approval.req.loan.amount' | translate}}：{{reqLoan.amount|amountFilter}}</div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

@@ -1,0 +1,34 @@
+<ion-popover-view class="check-budget-popover">
+    <div class="header">
+        检查结果
+    </div>
+    <ion-scroll scrollbar-y="false">
+        <div class="check-budget-popover-content" ng-repeat="item in budgetError">
+            <div class="popover-row row row-center" ng-if="item.externalPropertyName !=='1003'">
+                <div class="budget-icon col-top"></div>
+                <div class="col col-center budget-name" ng-cla="{'budget-color-name':item.externalPropertyName ==='1002'}">
+                    <span ng-if="item.externalPropertyName ==='1002' || item.externalPropertyName ==='1004'">超预算</span>
+                    <span ng-if="item.externalPropertyName ==='2001'">超差标</span>
+                    <span ng-if="item.externalPropertyName ==='1001' || item.externalPropertyName ==='2002'">超申请</span>
+                    ：
+                </div>
+            </div>
+            <div class="popover-row row row-center" ng-repeat="msg in item.errorMsg">
+                <!--<div class="col col-center budget-value" >-->
+                    <p>{{msg.msg}}</p>
+                <!--</div>-->
+            </div>
+        </div>
+    </ion-scroll>
+    <ion-footer-bar>
+        <div class="row row-center">
+            <!-- bug修改  code为2002时候 可以返回  aginCheck为true-->
+            <div class="col col-center  text-center sure" ng-if="!isSubmit || aginCheck" ng-click="view.budgetCancel()">
+                返回
+            </div>
+            <div class="col col-center text-center sure-create" ng-if="isSubmit || aginCheck " ng-click="view.budgetSubmit()">
+                确认
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-popover-view>

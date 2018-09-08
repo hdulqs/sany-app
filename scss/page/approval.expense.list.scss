@@ -1,0 +1,124 @@
+.approval-expense-list {
+    background-color: #f1f1f1;
+
+    .platform-android .checkbox-platform input:before,
+    .platform-android .checkbox-platform .checkbox-icon:before,
+    .checkbox-square input:before,
+    .checkbox-square .checkbox-icon:before{
+        border-radius: 50%;
+    }
+
+    .checkbox input, .checkbox-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .checkbox input:after, .checkbox-icon:after {
+        top: 23%;
+        left: 18%;
+    }
+    .platform-android .checkbox-platform .checkbox-icon:after,
+    .platform-android .checkbox-platform .checkbox input:after{
+        top: 10%;
+    }
+    .checkbox input:checked:before,
+    .checkbox input:checked + .checkbox-icon:before {
+        background-color: #32deb9;
+        border-color: #32deb9;
+    }
+
+    .expense-list-content {
+        .time-node {
+            p {
+                margin: 5px 0 5px 10px;
+                color: #959595;
+                font-size: 1.2em;
+            }
+        }
+        .expense-item {
+            padding: 0;
+            margin: 0;
+            background-color: #fff;
+            border-bottom: 1px solid #cdcdcd;
+            width: 100%;
+            .col {
+                padding: 0;
+            }
+            label.item {
+                border: none;
+                background-color: transparent;
+            }
+            .item-checkbox {
+                padding-left: 20px;
+            }
+        }
+
+    }
+    .approval-list-footer {
+        padding: 0;
+        .row {
+            padding: 0;
+
+            .col {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                line-height: 44px;
+            }
+            .expense-new {
+                background-color: #8ecfef;
+                color: #fff;
+                font-size: 1.2em;
+            }
+            .operation-all {
+                background-color: #0092da;
+                color: #fff;
+                font-size: 1.2em;
+                height: 44px;
+                line-height: 44px;
+            }
+            .expense-agree{
+                background-color: #50cd93;
+                color: #fff;
+                font-size: 1.2em;
+                height: 44px;
+                line-height: 44px;
+            }
+            .expense-reject{
+                background-color: #e64e4e;
+                color: #fff;
+                font-size: 1.2em;
+                height: 44px;
+                line-height: 44px;
+            }
+
+            .disable-operation {
+                background-color: #cdcdcd;
+            }
+            .expense-checkbox-btn {
+                background-color: #fff;
+                border-top: 1px solid #cdcdcd;
+                border-right: 1px solid #cdcdcd;
+                color: #959595;
+                font-size: 16px;
+                height: 44px;
+                line-height: 44px;
+                .item-checkbox .checkbox {
+                    margin-top: -18px;
+                }
+                .item {
+                    padding: 0;
+                    border: none;
+                    margin: 11px 0 0 0;
+                }
+                .item-checkbox {
+                    padding-left: 22px;
+                }
+                .item-content {
+                    color: #959595;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+}

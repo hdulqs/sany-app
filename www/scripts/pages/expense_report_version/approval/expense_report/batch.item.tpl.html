@@ -1,0 +1,28 @@
+<ion-modal-view class="traffic-selector">
+    <ion-content class="approval-operation">
+        <div class="grey-mark" ng-click="view.closeBatchItem()">
+        </div>
+        <div class="batch-opertion" ng-if="view.showBatchIcon" ng-click="view.closeBatchItem()">
+            <img src="img/expense_report_version/approval/operation-batch.png" alt="">
+        </div>
+        <div class="batch-reject animated2s linear" ng-click="view.showBatchOperation()"
+             ng-if="!view.functionProfileList['app.approval.reject.batch.disabled']">
+               <span class="operate-text">
+                   {{'approval.batch.reject' | translate}}
+               </span>
+            <img src="img/expense_report_version/approval/reject-batch.png" alt="">
+        </div>
+        <div class="reject-all animated2s linear" ng-click="!view.disable && view.rejectAll()">
+                <span class="operate-text">
+                     {{'approval.all.rejected' | translate}}
+                </span>
+            <img src="img/expense_report_version/approval/reject-all.png" alt="">
+        </div>
+        <div class="pass-all animated2s linear" ng-click="!view.disable && view.agreeAll()">
+                <span class="operate-text">
+                    {{'approval.all.through' | translate}}
+                </span>
+            <img src="img/expense_report_version/approval/agree-all.png" alt="">
+        </div>
+    </ion-content>
+</ion-modal-view>

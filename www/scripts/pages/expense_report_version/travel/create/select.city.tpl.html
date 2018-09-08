@@ -1,0 +1,46 @@
+<ion-modal-view class="check-city-erv">
+    <ion-header-bar>
+        <h3 class="title">{{'create.select.Select.the.city'|translate}}<!--选择城市--></h3>
+        <span class="city-cancel" ng-click="selectCity.hide()">
+            {{'create.arrange.cancel'|translate}}<!--取消-->
+        </span>
+    </ion-header-bar>
+    <ion-content>
+        <div class="search">
+            <label class="item-input-wrapper">
+                <a class="button button-clear ion-ios-search"></a>
+                <input class="headerInput" placeholder="{{'create.select.Please.enter.the.city'|translate}}" ng-model="view.cityInfo.searchName"><!--请输入城市-->
+            </label>
+        </div>
+
+        <ion-list ng-if="view.cityInfo.searchName === ''">
+            <ion-item>
+                <div class="row row-center">
+                    <div class="col">
+                        {{'create.select.There.is.no.city'|translate}}<!--无城市-->
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+
+        <div class="row search" ng-if="view.cityInfo.searchName === ''">
+            <div class="col city">{{'create.select.Hot.city'|translate}}<!--热门城市--></div>
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="item in view.cityInfo.citys track by $index" ng-repeat-done="cityInfoDataLoaded"
+                      ng-click="citySelector.closeCity(item)">
+                <div class="row row-center">
+                    <div class="col">
+                        {{item}}
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            distance="1%"
+            on-infinite="citySelector.loadMore(view.cityInfo.currentPage + 1)"
+            ng-if="view.cityInfo.links['last'] > view.cityInfo.currentPage"
+            immediate-check="false">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-modal-view>

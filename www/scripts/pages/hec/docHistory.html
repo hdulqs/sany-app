@@ -1,0 +1,43 @@
+<ion-view class="hec-approval" hide-back-button="true" >
+    <ion-nav-title>
+        <span class="expense-report-nav-title"><!--单据历史-->{{'document.history.title'|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="hec-approval-history-page" style="border: none;">
+            <!--<p class="expense-tips">审批记录{{"approval.record"|translate}}</p>-->
+            <div class="approval-history-pane ">
+                <div class="line"></div>
+                <div class="approval-history">
+                    <div class="row" ng-repeat="docHistory in  vm.docHistoryList">
+                        <span class="history-dot-success"></span>
+                        <div class="col padding-0" >
+                            <div class="row row-head">
+                                <div class="col padding-0">
+                                    <p class="approval-time operation-title">{{docHistory.operation_time}}</p>
+                                    <div>{{docHistory.operater}}</div>
+                                </div>
+                                <div class="col-40 padding-0">
+                                    <p></p>
+                                    <div>{{docHistory.operation}}</div>
+                                </div>
+                            </div>
+                            <div class="row row-desc">
+                                <div class="col padding-0">
+                                    <p class="approval-time">{{docHistory.description}}</p>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

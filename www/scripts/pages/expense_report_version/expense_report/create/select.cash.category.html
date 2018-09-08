@@ -1,0 +1,23 @@
+<ion-modal-view class="select-cash-model">
+    <ion-header-bar class="header bar-positive">
+        <h1 class="title">{{'expense.Select the currency'|translate}}</h1>
+        <span class="select-cash-cancel" ng-click="modal.hide()">
+            {{'expense.cancel'|translate}}
+        </span>
+    </ion-header-bar>
+    <ion-content>
+        <ionlist>
+            <ion-item ng-repeat="item in view.expenseFirstStep.cashCategoryList"
+                      ng-click="selectCash(item.name)">
+                <div class="row row-center select-cash">
+                    <div class="col">
+                        {{item.name}}
+                    </div>
+                    <div class="col text-right selected" ng-if="item.code === view.expenseFirstStep.code">
+                        <img src="img/expense_report_version/travel/select.png" alt="">
+                    </div>
+                </div>
+            </ion-item>
+        </ionlist>
+    </ion-content>
+</ion-modal-view>

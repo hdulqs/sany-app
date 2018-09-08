@@ -1,0 +1,92 @@
+<!--航班明细页面
+Created by Dawn on 2017/8/7.
+-->
+<ion-view class="hec-fly" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'flyinfo.title.fly.detail'| translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="has-header travel-reimb-content">
+        <div class="order-status">
+            <div class="row">
+                <div class="col col-25 status-img">
+                    <img src="img/expense_report_version/travel/element/ticket_allowance.png" alt="">
+                </div>
+                <div class="col">
+                    <div>{{vm.flyItem.place_from}} - {{vm.flyItem.place_to}}</div>
+                    <div>{{'flyinfo.passenger'| translate}}：{{vm.flyItem.passenger_name}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="hec-center">
+            <ion-toggle ng-model="vm.info.expense_flag" toggle-class="toggle-positive" class="hec-no-border"
+                        ng-true-value="'Y'" ng-false-value="'N'">
+                {{'flyinfo.Whether.the.cost.has.occurred'| translate}}<!--费用是否发生-->
+            </ion-toggle>
+            <ion-item  class="hec-no-border" style="padding: 0px 5px;">
+                <div class="row row-center">
+                    <div class="col description-tip">
+                        {{'flyinfo.The.cost.of.the.matter'| translate}}<!--费用发生事由-->
+                    </div>
+                </div>
+                <div class="row row-center">
+                    <div class="col">
+                    <textarea class="description-content"  ng-model="vm.info.expense_note" placeholder="{{'flyinfo.The.cost.of.the.matter'|translate}}">
+                    </textarea>
+                    </div>
+                </div>
+            </ion-item>
+        </div>
+        <div class="hec-center fly-process" ng-repeat="item in vm.flyItem.list">
+            <div class="blue-space"></div>
+            <div class="last-logo">
+                <div class="fly-padding hec-item-prompt">{{'flyinfo.order.number'| translate}}：{{item.order_id}}</div>
+                <div class="hec-item-prompt" ng-if="$index === 0" style="background: #FFA500;color: #fff;">{{'flyinfo.new.record'|translate}}</div>
+            </div>
+            <div class="fly-padding hec-item-prompt">{{'flyinfo.departure.date'| translate}}：{{item.take_off_time}}</div>
+            <div class="fly-padding hec-item-prompt">{{'flyinfo.business.type'| translate}}：{{item.order_detail_type}}</div>
+            <div class="fly-padding hec-item-prompt">{{vm.flyItem.vendor_name}} {{item.flightno}}</div>
+            <div class="fly-padding hec-item-prompt">{{'flyinfo.accommodation' | translate}}：{{item.cabin}}</div>
+
+        </div>
+
+        <div class="exp-detail">{{'flyinfo.exp.detail'| translate}}
+            <table class="detail-info">
+                <tr><th>{{'flyinfo.order.project'| translate}}</th><th>{{'flyinfo.order.amount'| translate}}</th></tr>
+                <tr>
+                    <td>{{'flyinfo.ticket.price'| translate}}</td><!--票款-->
+                    <td>{{vm.flyItem.price | amountFilter}}</td>
+                </tr>
+                <tr>
+                    <td>{{'flyinfo.tax'| translate}}</td>
+                    <td>{{vm.flyItem.tax | amountFilter}}</td>
+                </tr>
+                <tr>
+                    <td>{{'flyinfo.service.fee'| translate}}</td>
+                    <td>{{vm.flyItem.service_fee |amountFilter}}</td>
+                </tr>
+                <tr>
+                    <td>{{'flyinfo.change.fee'| translate}}</td>
+                    <td>{{vm.flyItem.rebook_query_fee |amountFilter}}</td>
+                </tr>
+                <tr>
+                    <td>{{'flyinfo.refund.fee'| translate}}</td>
+                    <td>{{vm.flyItem.refund | amountFilter}}</td>
+                </tr>
+            </table>
+            {{'flyinfo.total.amount'| translate}}：RMB {{vm.flyItem.amount | amountFilter}}
+        </div>
+    </ion-content>
+    <ion-footer-bar class="expense-create-footer">
+        <div class="row row-center submit-btn">
+            <div class="col col-center submit-btn" ng-click="vm.save()">
+                {{'flyinfo.save'| translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,10 @@
+<ion-popover-view id="relative-choice-popover" class="relative-choice-popover">
+    <ion-scroll >
+        <div class="relative-container row row-center responsive-sm">
+            <!--ng-if="item.enable"-->
+            <div class="col col-center relative-item" ng-click="selectReqType(item)" ng-repeat="item in reqTypeList" >
+                <span>{{item.formName}}</span>
+            </div>
+        </div>
+    </ion-scroll>
+</ion-popover-view>

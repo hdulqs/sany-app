@@ -1,0 +1,9 @@
+<div class="grey-mark" ng-click="differentObjPopoer.hide()">
+</div>
+<ion-popover-view class="different-obj">
+    <ion-list>
+        <ion-item ng-repeat="item in view.differentObjArr" ng-click="changeTotalFlag(item)">
+            {{item}}
+        </ion-item>
+    </ion-list>
+</ion-popover-view>

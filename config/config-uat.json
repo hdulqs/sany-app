@@ -1,0 +1,21 @@
+{
+    "name": "huilianyi",
+    "constants": {
+        "InitialServiceBaseURL": {
+            "url": "http://113.247.241.66:9083"
+        },
+        "ServiceHttpURL": "http://113.247.241.66:9083",
+        "JingDongURL": "http://jd.huilianyi.com",
+        "ClientCredential": {
+            "id": "ArtemisApp",
+            "secret": "nLCnwdIhizWbykHyuZM6TpQDd7KwK9IXDK8LGsa7SOW"
+        },
+        "updateVersionUrl": {
+            "android": "https://www.pgyer.com/79l4",
+            "ios": "https://www.pgyer.com/79l4"
+        },
+        "ENV": "uat",
+        "LANG": "zh_cn"
+    }
+}
+

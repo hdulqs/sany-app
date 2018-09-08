@@ -1,0 +1,39 @@
+{
+    "choose_type": {
+        "create.exp.application": "新建费用申请",
+        "create.loan.application": "新建借款/预付款申请",
+        "create.exp.reimb": "新建费用报销",
+        "daily.application": "日常申请",
+        "travel.application": "差旅申请",
+        "item.emp.required": "请选择经办人",
+        "item.company.required": "请选择公司",
+        "item.expType.required": "请选择单据类型"
+    },
+    "attachment":{
+      "label":"附件信息："
+    },
+    "message": {
+        "error.query": "数据查询失败!",
+        "error.save.data.first":"请先保存单据数据",
+        "no.save":"没有修改数据，无需保存!"
+    },
+    "confirm.window": {
+        "Information.travel": "是否保存该差旅申请单信息?",
+        "Information.travel.line": "是否保存该差旅申请单行信息?",
+        "Information.report": "是否保存该费用报销单信息?",
+        "Information.req": "是否保存该申请单信息?",
+        "Information.req.line": "是否保存该申请单行信息?",
+        "Information.loan": "是否保存该借款申请单信息?",
+        "Information.loan.line": "是否保存该借款申请单行信息?",
+        "cancel": "取消",
+        "ok": "确认保存",
+        "prompt": "提示"
+    },
+    "document.history":{
+        "title":"单据历史"
+    },
+    "button": {
+        "ok": "确定",
+        "cancel": "取消"
+    }
+}

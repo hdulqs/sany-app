@@ -1,0 +1,176 @@
+<ion-item class="expense-directive">
+    <div class="class-for-standard-warn" ng-if="dataItem.warning">{{dataItem.warningMesage}}</div>
+    <div class="class-for-standard-error" ng-if="dataItem.reject">{{dataItem.rejectMesage}}</div>
+    <div class="row row-center expense-main" ng-click="goDetail()">
+
+        <div  class="expense-directive-left-icon">
+            <img ng-src="{{dataItem.expenseTypeIconURL}}" alt="" class="expense-icon">
+        </div>
+        <div class="col col-50">
+            <p class="type-name"
+               ng-class="{true: 'type-name-small', false: ''}[dataItem.expenseTypeName.length>=4]">
+                {{dataItem.expenseTypeName}}
+            </p>
+            <div
+                ng-if="dataItem.expenseTypeIconName === 'didi' || dataItem.expenseTypeIconName === 'transportation' || dataItem.expenseTypeIconName === 'privateCarForPublic' ">
+                <p class="type-name">
+                    <img src="img/expense/start.png" alt="" class="location-grey" ng-if="showStartIcon()">
+                    <span ng-if="(field.messageKey === 'start.time' || field.messageKey === 'depart.time') && field.value" ng-repeat="field in dataItem.data">
+                        {{field.value | timeFilter}}
+                    </span>
+                    <span ng-if="field.messageKey === 'departure.location' || field.messageKey === 'depart.place' || field.messageKey === 'DEPARTURE_LOCATION'" ng-repeat="field in dataItem.data">
+                        {{field.value}}
+                    </span>
+                </p>
+                <p class="type-name">
+                    <img src="img/expense/end.png" alt="" class="location-grey" ng-if="showEndIcon()">
+                    <span ng-if="(field.messageKey === 'end.time' || field.messageKey === 'arrive.time') && field.value" ng-repeat="field in dataItem.data">
+                        {{field.value | timeFilter}}
+                    </span>
+                    <span ng-if="field.messageKey === 'destination.location' || field.messageKey === 'ARRIVAL_LOCATION' || field.messageKey === 'destination'" ng-repeat="field in dataItem.data">
+                        {{field.value}}
+                    </span>
+                </p>
+            </div>
+
+            <div ng-if="dataItem.expenseTypeIconName === 'office'">
+                <p class="type-name">
+                    <span ng-if="field.messageKey === 'name'" ng-repeat="field in dataItem.data">
+                        {{field.value}}
+                    </span>
+                </p>
+            </div>
+            <div ng-if="dataItem.expenseTypeIconName === 'foodbeverage'">
+                <p class="type-name">
+                    <span ng-if="field.messageKey === 'location'" ng-repeat="field in dataItem.data">
+                        {{field.value}}
+                    </span>
+                </p>
+            </div>
+
+            <div ng-if="dataItem.expenseTypeIconName === 'hotel'">
+                <p class="type-name">
+                    <span ng-if="field.messageKey === 'hotel.name'" ng-repeat="field in dataItem.data">
+                        {{field.value}}
+                    </span>
+                </p>
+            </div>
+            <div ng-if="dataItem.expenseTypeIconName === 'airTickets'">
+                <p class="type-name">
+                    <img src="img/expense/start.png" alt="" class="location-grey" ng-if="showStartIcon()">
+                    <span ng-if="field.messageKey === 'departure.location'" ng-repeat="field in dataItem.data">
+                        {{field.value}}
+                    </span>
+                </p>
+                <p class="type-name">
+                    <img src="img/expense/end.png" alt="" class="location-grey" ng-if="showEndIcon()">
+                    <span ng-if="field.messageKey === 'destination.location'" ng-repeat="field in dataItem.data">
+                        {{field.value}}
+                    </span>
+                </p>
+            </div>
+            <p class="comment" ng-hide="dataItem.receiptFailType!=null">
+                {{dataItem.comment}}
+            </p>
+            <p class="receipt-comment" ng-show="dataItem.receiptFailType===1005">
+                {{'eid.Have.a.refund'|translate}}<!--有退款-->{{receiptFailReason.orgValue-receiptFailReason.curValue|currency:code}},{{'eid.The.actual.audit'|translate}}<!--实际审核-->{{receiptFailReason.curValue|currency:code}}
+            </p>
+        </div>
+        <div class="col">
+            <p class="type-name text-right">
+                <span ng-if="field.value && field.messageKey === 'city' && dataItem.expenseTypeIconName === 'privateCarForPublic'" ng-repeat="field in dataItem.data">
+                    <img src="img/expense/location-icon.png" alt="" class="location-colorful">
+                        {{field.value}}
+                </span>
+                <span ng-hide="dataItem.expenseTypeIconName === 'privateCarForPublic' || !dataItem.location.address">
+                    <img src="img/expense/location-icon.png" alt="" class="location-colorful">
+                    {{dataItem.location.address}}
+                </span>
+            </p>
+
+
+            <div   ng-if="dataItem.currencyCode==originCurrencyCode">
+                <!--显示金额:多币种-->
+                <p class="text-right expense-money "
+                   ng-class="{true: '', false: 'text-no-input'}[ dataItem.amount > 0]"
+                >
+                    <span>{{dataItem.currencyCode}}</span>
+                    <span>{{dataItem.amount|number:2}}</span>
+                </p>
+            </div>
+            <div  ng-if="dataItem.currencyCode!=originCurrencyCode">
+                <!--显示金额:多币种-->
+                <p class="text-right expense-money invoice-money-foreign"
+                   ng-class="{true: '', false: 'text-no-input'}[ dataItem.amount > 0]"
+                >
+                    <span>{{dataItem.currencyCode}}</span>
+                    <span>{{dataItem.amount|number:2}}</span>
+                </p>
+                <p class="text-right expense-money"
+                   ng-class="{true: '', false: 'text-no-input'}[ dataItem.amount > 0]"
+                   ng-if="dataItem.currencyCode!=originCurrencyCode"
+                >
+                    <span>{{originCurrencyCode}}</span>
+                    <span>{{dataItem.baseAmount|number:2}}</span>
+                </p>
+            </div>
+
+
+
+
+            <p class="text-right">
+                <span ng-if="dataItem.withReceipt && !dataItem.vatInvoice && !dataItem.invoiceInstead" class="expense-tip">
+                    {{'item.Have.a.ticket'|translate}}<!--有票-->
+                </span>
+                <span ng-if="dataItem.withReceipt && !dataItem.vatInvoice && !dataItem.invoiceInstead && language === 'en'"><br /></span>
+                <span ng-if="dataItem.withReceipt && dataItem.vatInvoice" class="expense-tip">
+                    {{'item.Special.ticket'|translate}}<!--专票-->
+                </span>
+                <span ng-if="dataItem.withReceipt && dataItem.vatInvoice && language === 'en'"><br /></span>
+                <span ng-if="dataItem.withReceipt && dataItem.invoiceInstead" class="expense-tip">
+                    {{'item.For.the.ticket'|translate}}<!--替票-->
+                </span>
+                <span ng-if="dataItem.withReceipt && dataItem.invoiceInstead && language === 'en'"><br /></span>
+                <span ng-if="!dataItem.withReceipt" class="expense-tip">
+                    {{'item.There.is.no.ticket'|translate}}<!--无票-->
+                </span>
+                <span ng-if="dataItem.apportionUsed && language === 'en'"><br /></span>
+                <span ng-if="dataItem.apportionUsed" class="expense-tip">
+                    {{'item.apportion'|translate}}<!--分摊-->
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <ion-option-button class="button-assertive expense-delete" ng-if="showDelete" ng-click="deleteExpense()">
+        <div class="column" >
+            <div class="delete-text">{{'item.delete'|translate}}<!--删除--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive expense-withdraw" ng-if="showWithdraw" ng-click="withdrawExpense()">
+        <div class="column" >
+            <div class="delete-text">{{'item.withdraw'|translate}}<!--撤回--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive expense-reject" ng-if="showApproval" ng-click="rejectExpense()">
+        <div class="column" >
+            <div class="reject-text">{{'item.rejected'|translate}}<!--驳回--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive expense-agree" ng-if="showApproval" ng-click="agreeExpense()">
+        <div class="column" >
+            <div class="agree-text">{{'item.through'|translate}}<!--通过--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive expense-agree" ng-if="showEdit" ng-click="goDetail()">
+        <div class="column" >
+            <div class="agree-text">{{'eid.Modify'|translate}}<!--修改--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive expense-reject" ng-if="canReject" ng-click="reject()">
+        <div class="column" >
+            <div class="reject-text">{{'item.rejected'|translate}}<!--驳回--></div>
+        </div>
+    </ion-option-button>
+</ion-item>
+

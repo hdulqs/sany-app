@@ -1,0 +1,46 @@
+<div class="jingdong-order-header">
+    <div class="message-header">{{'order.The.order.information'|translate}}<!--订单信息--></div>
+    <div class="detail-link" ng-hide="view.content==='approval'" ng-click="view.jumpJD()">{{'order.Check.the.details'|translate}}<!--查看详情--></div>
+    <div ng-class="{true:'cancel', false:'remain-time'}[view.lessThanOneDay]"
+         ng-if="view.application.jingDongOrderApplication.jingDongOrder.status===1001 ||
+         view.application.jingDongOrderApplication.jingDongOrder.status===1002">
+        {{'order.The.rest.payment'|translate}}<!--剩余付款时间-->:{{ view.remainTime }}
+    </div>
+    <div class="cancel" ng-if="view.application.jingDongOrderApplication.jingDongOrder.status===1003">{{'order.Has.been.cancelled'|translate}}<!--已取消--></div>
+    <div class="finished" ng-if="view.application.jingDongOrderApplication.jingDongOrder.status===1004">
+        <!--订单已付款-->
+        {{'order.finished'|translate}}
+    </div>
+</div>
+
+<ion-list ng-repeat="field in view.application.jingDongOrderApplication.jingDongOrder.jingDongCommodities" >
+    <ion-item>
+        <div class="jingdong-order-item">
+            <div class="product-content">
+                <div class="product-name">{{field.name}}</div>
+                <div class="product-detail">
+                    <div class="product-style">
+                        <div class="product-size" ng-if="field.specifications">{{field.specifications}}</div>
+                        <div>{{'order.number'|translate}}<!--数量-->: {{field.count}}</div>
+                    </div>
+                    <div class="product-right">
+                        <div class="product-price">{{field.count*field.amount | currency:code}}</div>
+                        <div class="product-cancel" ng-if="false">{{'order.Have.to.return'|translate}}<!--已退货--></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </ion-item>
+</ion-list>
+
+<div class="jingdong-order-footer">
+    <!--运费-->
+    <div class="jingdong-order-freight">{{'order.freight'|translate}}: {{ view.application.jingDongOrderApplication.jingDongOrder.freight | currency:code }}</div>
+    <!--总计金额-->
+    <div class="jingdong-order-totalAmount">{{'order.Total.amount'|translate}}: {{ (view.application.jingDongOrderApplication.jingDongOrder.totalAmount+view.application.jingDongOrderApplication.jingDongOrder.freight) | currency:code }}</div>
+    <div class="jingdong-order-logistics" ng-if="view.application.jingDongOrderApplication.jingDongOrder.status===1004">
+        <div class="header">{{'order.Logistics.information'|translate}}<!--物流信息--></div>
+        <div class="content"></div>
+    </div>
+</div>

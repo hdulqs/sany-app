@@ -1,0 +1,125 @@
+<div class="join-member-list-directive">
+    <div class="join-member text-center" ng-repeat="avater in memberList">
+        <!--<img ng-src="{{avater.headPortrait}}" alt="">-->
+        <user-avatar full-name="avater.fullName" employ-id="avater.participantOID" icon-url="avater.avatar"></user-avatar>
+        <p>
+            {{avater.fullName}}
+        </p>
+    </div>
+    <div class="join-member" ng-click="person.openPersonSelector()" ng-if="!readonly">
+        <img src="img/expense_report_version/travel/add-member.png" alt="">
+        <p class="person-add-text">
+            {{'invoice_type.add'|translate}}<!--添加-->
+        </p>
+    </div>
+</div>
+<script id="member.selector.html" type="text/ng-template">
+    <ion-modal-view class="check-member-erv">
+        <ion-header-bar>
+            <h3 class="title">{{'person_tpl.Select.personnel'|translate}}<!--选择人员--></h3>
+            <span class="city-cancel" ng-click="person.cancel()">
+                {{'destination.cancel'|translate}}<!--取消-->
+            </span>
+            <span class="check-ok" ng-click="person.sure()">
+                {{'directive.determine'|translate}}<!--确定-->({{memberList.length}})
+            </span>
+        </ion-header-bar>
+        <div class="select-bar">
+            <div class="search">
+                <label class="item-input-wrapper">
+                    <!--<i class="ion ion-ios-search"></i>-->
+                    <input class="headerInput" placeholder={{holder}} ng-model="person.memberInfo.searchName" ng-model-options="{debounce:500}"
+                    ><!--搜索-->
+                </label>
+            </div>
+            <div class="select-member-icon-list" ng-if="memberList.length > 0">
+                <ion-scroll direction="x">
+                    <div class="scroll-content-container">
+                        <div class="row invoice-img-expense-type">
+                            <div class="repeat-div"
+                                 ng-repeat="avater in memberList track by $index">
+                                <div class="member-item text-center">
+                                    <user-avatar full-name="avater.fullName" employ-id="avater.participantOID"
+                                                 icon-url="avater.avatar"
+                                                 ng-click="person.removeMember(avater,$index)"></user-avatar>
+                                    <!--<img class="icon-image-select"-->
+                                    <!--ng-src="{{avater.headPortrait}}"-->
+                                    <!--ng-click="person.removeMember(avater,$index)"-->
+                                    <!--/>-->
+                                </div>
+                                <p class="text-center member-fullname">
+                                    {{avater.fullName}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <ion-content ng-class="{true: 'top-max',false: ''}[memberList.length > 0]">
+            <!--<div class="search">-->
+            <!--<label class="item-input-wrapper">-->
+            <!--<i class="ion ion-ios-search"></i>-->
+            <!--<input class="headerInput" placeholder="搜索" ng-model="person.memberInfo.searchName">-->
+            <!--</label>-->
+            <!--</div>-->
+            <div ng-if="person.memberInfo.nothing">
+                <div class="text-center no-itinerary">
+                    <img src="img/expense_report_version/travel/no-itinerary.png" alt="">
+                    <p class="text-center">
+                        <!--无可选人员，请联系管理员-->
+                        {{'common.appliant.no_user'|translate}}～</p>
+                    <div ng-if="adminList.length > 0" class="admin-list">
+                        <div class="row row-center" ng-repeat="item in adminList" ng-if="$index <= 2">
+                            <div class="col col-50 text-right text-name">
+                                {{item.fullName}}{{'common.telephone'|translate}}:
+                                <!--电话-->
+                            </div>
+                            <div class="col col-50 text-left text-login">
+                                <a href="tel:{{item.login}}">{{item.login}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--如果 showEmptyMember 为-->
+            <ion-list ng-if="showEmptyMember ? person.memberInfo.searchName : true">
+                <ion-item ng-repeat="item in person.member" ng-repeat-done="memberDataLoaded">
+                    <div class="row row-center" ng-click="person.addMember(item, $index)">
+                        <div class="col col-5 checked-box">
+                            <img src="img/expense_report_version/travel/select.png" alt="" ng-if="item.checked"
+                                 class="arrow-checked">
+                            <!--<ion-checkbox ng-model="item.checked" onclick="return false" ng-if="item.userOID === person.defaultOID"></ion-checkbox>-->
+                            <!--<ion-checkbox ng-model="item.checked" ng-if="item.userOID !== person.defaultOID" ng-click="person.selectPerson(item, $index)"></ion-checkbox>-->
+                        </div>
+                        <div class="col col-10">
+                            <user-avatar full-name="item.fullName" employ-id="item.userOID"
+                                         icon-url="item.avatar"></user-avatar>
+                        </div>
+                        <div class="col col-33">
+                            <p class="member-name">
+                                {{item.fullName}}
+                            </p>
+                        </div>
+                        <div class="col col-50 text-right">
+                            <p class="text-right">
+                                {{item.title}}
+                                <br/>
+                                {{item.departmentName}}
+                            </p>
+                        </div>
+
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll
+                distance="1%"
+                on-infinite="person.loadMore(person.memberInfo.currentPage + 1)"
+                ng-if="person.memberInfo.lastPage > person.memberInfo.currentPage"
+                immediate-check="false">
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+

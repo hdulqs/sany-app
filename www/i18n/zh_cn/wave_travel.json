@@ -1,0 +1,27 @@
+{
+    "error": {
+        "positioning.failure, after.submission.can.be.modified.manually.in.the.cost": "定位失败，提交后可在费用中手动修改",
+        "seek.failed": "定位失败",
+        "this.type.is.not.available.please.contact.administrator": "该类型不可用，请联系管理员",
+        "whether.to.clear.the.current.data": "是否清除当前数据"
+    },
+    "wave": {
+        "cancel": "取消",
+        "city": "城市",
+        "click.build.time.location": "点击生成上车时间、地点",
+        "confirm": "确定",
+        "cost.creation.success": "费用创建成功",
+        "fare": "车费金额",
+        "get.off": "下车",
+        "get.on": "上车",
+        "place.of.arrival": "目的地",
+        "place.of.departure": "出发地",
+        "please.enter.the.fare": "请输入车费金额",
+        "position": "定位中..",
+        "submit": "提交",
+        "time.of.arrival": "到达时间",
+        "time.of.departure": "出发时间",
+        "traffic": "交通",
+        "wave.travel": "扬招出行"
+    }
+}

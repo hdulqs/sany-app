@@ -1,0 +1,237 @@
+<ion-view class="didi-refund-detail-page">
+    <ion-nav-title>
+        <span class="title">{{view.title}}</span>
+    </ion-nav-title>
+    <ion-content  class="didi-refund-detail-content has-header" overflow-scroll="true" ng-class="{true: 'has-footer',false: ''}[!view.isReadOnly]" ng-click="hideKeyboard($event)">
+        <div ng-if="view.refundData.type!=='0'">
+            <div class="item item-divider upload-tips" ng-if="!view.isReadOnly">{{'didi_detail.Please.upload.transfer.water.capture.and.up.to.three.copies'|translate}}<!--请上传转账流水截图，最多三张--></div>
+            <div class="row row-center item item-divider upload-tips" ng-if="view.isReadOnly">
+                <div class="col col-center text-left">{{'didi_detail.Payment.order'|translate}}<!--还款单号-->：{{view.refundData.businessCode}}</div>
+                <div class="col col-center text-right refund-status col-25">
+                    <p class="ongoing">{{view.refundData.status | statusFilter}}</p>
+                </div>
+            </div>
+            <upload-image attachment-src="view.refundData.repayAttchment" delete-attachment="view.deleteAttachment" max-length="3"
+                          ng-if="!view.isReadOnly" upload-finish="view.uploadFinish"></upload-image>
+            <div class="row row-center expense-image"
+                 ng-if="view.isReadOnly && view.refundData.repayAttchment.length>0">
+                <div class="col col-33 image-list" ng-repeat="pic in view.refundData.repayAttchment">
+                    <div>
+                        <img ng-src="{{pic.thumbnailUrl}}" zoom-src="{{pic.fileURL}}" zoom-view class="selected-pic"/>
+                    </div>
+                </div>
+            </div>
+            <div ng-class="{'item item-divider':!view.isReadOnly}"></div>
+            <div class="reimbursement-detail">
+                <div class="reimbursement-title">
+                    <p class="reimbursement-tips">{{'didi_detail.Reimbursement.party.information'|translate}}<!--还款方信息--></p>
+                </div>
+                <div class="row row-center reimbursement-item" ng-class="{'readonly-class':view.isReadOnly}">
+                    <label class="item item-input item-floating-label label-item">
+                        <span class="input-label">{{'didi_detail.To.open.an.account.name'|translate}}<!--开户名--></span>
+                        <input type="text" placeholder={{'didi_detail.To.open.an.account.name'|translate}} ng-model="view.refundData.payAccountName"
+                               ng-readonly="keyboardStatus ? true : view.isReadOnly">
+                    </label>
+                    <div ng-click="view.clearData('payAccountName')"
+                         ng-if="view.refundData.payAccountName && !view.isReadOnly">
+                        <img class="clear-icon" src="img/Clear.png"/>
+                    </div>
+                </div>
+                <div class="row row-center reimbursement-item" ng-class="{'readonly-class':view.isReadOnly}">
+                    <label class="item item-input item-floating-label label-item">
+                        <span class="input-label">{{'didi_detail.Account.opening.an.account'|translate}}<!--开户账号--></span>
+                        <input card-input type="text" placeholder={{'didi_detail.Account.opening.an.account'|translate}} ng-model="view.refundData.payAccount"
+                               account-data="view.refundData.payAccount"  ng-readonly="keyboardStatus ? true : view.isReadOnly"/>
+                    </label>
+                    <div ng-click="view.clearData('payAccount')"
+                         ng-if="view.refundData.payAccount && !view.isReadOnly">
+                        <img class="clear-icon" src="img/Clear.png"/>
+                    </div>
+                </div>
+                <div class="row row-center reimbursement-item" ng-class="{'readonly-class':view.isReadOnly}">
+                    <bank-item title="view.accountPlaceholder"  read-only="view.isReadOnly"
+                               bank-data="view.refundData.payBankName"></bank-item><!--开户银行-->
+                </div>
+                <div class="row row-center reimbursement-item" ng-class="{'readonly-class':view.isReadOnly}">
+
+
+                    <label class="item item-input item-floating-label label-item" ng-if="!view.isReadOnly && view.functionProfileList['app.didi.refund.amount.disabled']">
+                        <span class="input-label">{{'didi_detail.Reimbursement.amount'|translate}}({{originCurrencyCode}})<!--还款金额(本位币)--></span>
+                        <input type="text" placeholder="{{'didi_detail.Enter.the.reimbursement.amount'|translate}}" ng-click="showKeyboard($event)"
+                               ng-model="view.refundData.repaymentValue" readonly="true"/><!--输入还款金额-->
+                    </label>
+                    <label class="item item-input item-stacked-label label-item" ng-if="view.isReadOnly || !view.functionProfileList['app.didi.refund.amount.disabled']">
+                        <span class="input-label">{{'didi_detail.Reimbursement.amount'|translate}}({{originCurrencyCode}})<!--还款金额(本位币)--></span>
+                        <p class="text-left refund-money">
+                            {{view.refundData.repaymentValue | number : 2 }}
+                        </p>
+                    </label>
+
+
+                    <label class="item item-input item-stacked-label label-item-sure"
+                           ng-if="view.isFinish&&(view.refundData.status==='1003'||view.refundData.status==='1002')">
+                        <span class="input-label sure-refund">{{'didi_detail.Confirm.the.payment.amount.RMB'|translate}}({{originCurrencyCode}})<!--确认还款金额(本位币)--></span>
+                        <p class="text-left refund-money-status" ng-if="view.refundData.status==='1003'">
+                            {{'didi_detail.Not.yet.received'|translate}}<!--未收到-->
+                        </p>
+                        <p class="text-left refund-money-status" ng-if="view.refundData.status==='1002'">
+                            {{originCurrencyCode}}
+                            {{view.refundData.actRepayAmount | number : 2 }}
+                        </p>
+                    </label>
+                    <ion-toggle ng-model="view.refundData.allAmount" toggle-class="toggle-calm"
+                                ng-if="!view.isReadOnly && view.functionProfileList['app.didi.refund.amount.disabled']">
+                        {{'didi_detail.The.full.amount'|translate}}<!--全部金额-->
+                    </ion-toggle>
+                </div>
+            </div>
+            <div class="item item-divider" ng-class="{'readonly-divider':view.isReadOnly}"></div>
+            <div class="receive-detail">
+                <div class="receive-title">
+                    <p class="receive-tips">{{'didi_detail.But.the.information'|translate}}<!--收款方信息--></p>
+                </div>
+                <select-account account-data="view.refundData" read-only="view.isReadOnly"></select-account>
+                <div class="row row-center tips" ng-if="!view.isReadOnly">
+                    <div class="col col-center">
+                        {{'didi_detail.please.click.account.money.money.and.then.click.the.informed.financial.payment.button.below'|translate}}<!--*请按收款方账号打款，打款后点击下方【通知财务已还款】按钮-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="view.refundData.type==='0'">
+            <div class="row row-center item item-divider upload-tips" ng-if="view.isReadOnly">
+                <div class="col col-center text-left">{{'didi_detail.Payment.order'|translate}}<!--还款单号-->：{{view.refundData.businessCode}}</div>
+                <div class="col col-center text-right refund-status col-25">
+                    <p class="ongoing">{{view.refundData.status | statusFilter}}</p>
+                </div>
+            </div>
+            <div class="cash-content">
+                <div class="cash-failed" ng-if="view.refundData.status==='1003'">
+                    <div class="row row-center">
+                        <div class="col col-center text-left failed-date">
+                            {{view.refundData.updateDate | dateFilter}}
+                        </div>
+                        <div class="col col-center col-67 text-left failed-date">
+                            {{'didi_detail.Financial.delete.repayment.history'|translate}}<!--财务删除还款记录-->
+                        </div>
+                    </div>
+                    <!--<div class="row row-center" ng-if="view.refundData.reason">-->
+                        <!--<div class="col col-center text-left failed-date">-->
+                            <!--{{'didi_detail.Operation.reason'|translate}} 操作原因：-->
+                        <!--</div>-->
+                        <!--<div class="col col-center col-67 text-left failed-date">-->
+                            <!--{{view.refundData.reason}}-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+                <div class="cash-success">
+                    <div class="row row-center" ng-class="{'decoration-line': view.refundData.status==='1003'}">
+                        <div class="col col-center text-left success-date">
+                            {{'didi_detail.Repayment.date'|translate}}<!--还款日期-->
+                        </div>
+                        <div class="col col-center col-67 text-left success-date">
+                            {{view.refundData.updateDate | dateFilter}}
+                        </div>
+                    </div>
+                    <div class="row row-center " ng-class="{'decoration-line': view.refundData.status==='1003'}">
+                        <div class="col col-center text-left success-date">
+                            {{'didi_detail.Reimbursement.amount'|translate}}<!--还款金额-->
+                        </div>
+                        <div class="col col-center col-67 text-left success-date">
+                            {{originCurrencyCode}}
+                            {{view.refundData.repaymentValue | number : 2 }}
+                        </div>
+                    </div>
+                    <div class="decoration-line"></div>
+                    <div class="row row-center" ng-class="{'decoration-line': view.refundData.status==='1003'}" ng-if="view.refundData.remark">
+                        <div class="col col-center text-left success-date">
+                            {{'didi_detail.note'|translate}}<!--备注-->
+                        </div>
+                        <div class="col col-center col-67 text-left success-date">
+                            {{view.refundData.remark}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item item-divider" ng-if="view.isReadOnly"></div>
+        <div class="refund-detail-history" ng-if="view.isReadOnly">
+            <div class="refund-tips">
+                {{'didi_refund.Payment.history'|translate}}<!--还款历史-->
+            </div>
+            <div class="refund-history-pane history-block">
+                <div class="line"></div>
+                <div class="refund-history">
+                    <div class="row" ng-if="view.refundData.approvalChain">
+                        <span class="history-dot-wait"></span>
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        {{'didi_detail.Waiting.for.financial.confirm'|translate}}<!--等待财务确认-->
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        {{view.refundData.approvalChain.createdDate | dateTimeFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="history in view.refundData.approvalHistoryDTOs">
+                        <span class="history-dot-wait" ng-if="history.operation === 3004 || history.operation === 4000"></span>
+                        <span class="history-dot-success" ng-if="history.operation === 1001 ||
+                            history.operation === 2001 || history.operation === 3001 || history.operation === 3003 ||
+                            history.operation === 4001 || history.operation === 4011 || history.operation === 5000 ||
+                            history.operation === 5001 || history.operation === 5002 || history.operation === 5004 || history.operation === 5007"></span>
+                        <span class="history-dot-reject" ng-if="history.operation === 2002 || history.operation === 3002 ||
+                            history.operation === 4012 || history.operation === 5003 || history.operation === 5005 || history.operation === 5006 || history.operation === 5008"></span>
+                        <span class="history-dot-withdraw" ng-if="history.operation === 1002"></span>
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time operation-title">
+                                        <span ng-hide="history.operation == 2001 && history.operationType == 1001">
+                                            {{history.operation | operation}}
+                                        </span>
+                                        <span ng-if="history.operation == 2001 && history.operationType == 1001">
+                                            {{'filter_js.selfApproval' | translate}}
+                                        <!--自审批通过-->
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        {{history.lastModifiedDate | dateTimeFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                <span ng-if="history.operation === 5002|| history.operation === 5003">{{"didi_detail.finance"|translate}}</span>
+                                <span ng-if="history.operation !== 5002 && history.operation !== 5003">{{history.operator.fullName}}&nbsp;{{history.operator.employeeID}}</span>
+                            </p>
+                            <p class="approval-time" ng-class="{'reject-remark': history.operation == 2002 || history.operation == 3002 || history.operation == 4012 || history.operation == 5003}">
+                                {{history.operationDetail}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-digit-keyboard settings="keyboardSettings" ng-show="view.keyboardVisible"></ion-digit-keyboard>
+    <ion-footer-bar  class="button-footer" ng-if="!view.isReadOnly">
+        <div class="row row-center text-center message-button" ng-click="!view.disabled && view.commit()"
+             ng-if="!view.isApproval">
+            <div class="col col-center">
+                {{'didi_detail.Informed.financial.reimbursement'|translate}}<!--通知财务已还款-->
+            </div>
+        </div>
+        <!--<div class="row row-center text-center" ng-if="view.isApproval">-->
+        <!--<div class="col col-center refund-cancel-button" ng-click="view.cancel()">未收到</div>-->
+        <!--<div class="col col-center refund-save-button" ng-click="view.confirmReceipt()">确认收款</div>-->
+        <!--</div>-->
+    </ion-footer-bar>
+</ion-view>

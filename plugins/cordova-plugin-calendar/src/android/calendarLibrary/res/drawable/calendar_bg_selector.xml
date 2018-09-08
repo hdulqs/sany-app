@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2012 Square, Inc. -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <!-- 工作休息背景选中-->
+  <item app:tsquare_state_range_middle="true"
+      app:tsquare_state_current_month="true"
+      app:tsquare_state_work="true"
+      android:drawable="@drawable/selected_work">
+  </item>
+  <item android:state_selected="true"
+      app:tsquare_state_current_month="true"
+      app:tsquare_state_work="true"
+      android:drawable="@drawable/selected_work">
+  </item>
+  <item android:state_pressed="true"
+      app:tsquare_state_current_month="true"
+      app:tsquare_state_work="true"
+      android:drawable="@drawable/selected_work">
+  </item>
+  <item app:tsquare_state_range_middle="true"
+      app:tsquare_state_current_month="true"
+      app:tsquare_state_relax="true"
+      android:drawable="@drawable/selected_relax">
+  </item>
+  <item android:state_selected="true"
+      app:tsquare_state_current_month="true"
+      app:tsquare_state_relax="true"
+      android:drawable="@drawable/selected_relax">
+  </item>
+  <item android:state_pressed="true"
+      app:tsquare_state_current_month="true"
+      app:tsquare_state_relax="true"
+      android:drawable="@drawable/selected_relax">
+  </item>
+  <!-- 工作休息背景选中-->
+
+  <!-- 普通日子选中背景-->
+  <item app:tsquare_state_range_middle="true"
+      app:tsquare_state_current_month="true"
+      app:tsquare_state_relax="false"
+      app:tsquare_state_work="false"
+      android:drawable="@drawable/selected">
+  </item>
+  <item android:state_selected="true"
+      app:tsquare_state_current_month="true"
+      app:tsquare_state_relax="false"
+      app:tsquare_state_work="false"
+      android:drawable="@drawable/selected">
+  </item>
+  <item android:state_pressed="true"
+      app:tsquare_state_current_month="true"
+      app:tsquare_state_relax="false"
+      app:tsquare_state_work="false"
+      android:drawable="@drawable/selected">
+  </item>
+  <!-- 普通日子选中背景-->
+
+
+    <!-- 补班休息日未选时背景-->
+    <item app:tsquare_state_range_middle="false"
+        app:tsquare_state_current_month="true"
+        app:tsquare_state_work="true"
+        android:drawable="@drawable/unselected_work">
+    </item>
+    <item android:state_selected="false"
+        app:tsquare_state_current_month="true"
+        app:tsquare_state_work="true"
+        android:drawable="@drawable/unselected_work">
+    </item>
+    <item app:tsquare_state_range_middle="false"
+        app:tsquare_state_current_month="true"
+        app:tsquare_state_relax="true"
+        android:drawable="@drawable/unselected_relax">
+    </item>
+    <item android:state_selected="false"
+        app:tsquare_state_current_month="true"
+        app:tsquare_state_relax="true"
+        android:drawable="@drawable/unselected_relax">
+    </item>
+    <!-- 补班休息日未选时背景-->
+
+
+  <item app:tsquare_state_current_month="false">
+    <color android:color="@color/calendar_inactive_month_bg"/>
+  </item>
+  <item app:tsquare_state_highlighted="true">
+    <color android:color="@color/calendar_highlighted_day_bg"/>
+  </item>
+  <item app:tsquare_state_today="true">
+    <color android:color="@color/calendar_text_active1"/>
+  </item>
+
+  <item>
+    <color android:color="@color/calendar_active_month_bg"/>
+  </item>
+</selector>

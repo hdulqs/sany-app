@@ -1,0 +1,110 @@
+<ion-modal-view class="didi-expense-modal">
+    <ion-header-bar>
+        <h3 class="title">
+            <!--选择借款单-->
+            {{"expense.ChioceBorrowingForm"|translate}}
+        </h3>
+        <div class="buttons buttons-left" style="transition-duration: 0ms;">
+            <span class="left-buttons">
+                <a ng-click="expenseRefundModal.hide()">
+                    <img src="img/back.png" class="save-btn">
+                </a>
+            </span>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="sub-header row row-cneter"
+             ng-if="!view.functionProfileList['ca.report.expense.compulsory.repayment']">
+            <div class="col col-center text-left sub-title">{{"expense.compulsoryRePayment"|translate}}<!--如您无需还款，请点击此处直接提交报销单--></div>
+            <button class="btn-post"
+                    ng-click="expenseRefund.redirectCommit()">{{"expense.directSubmit"|translate}}<!--
+                    直接提交--></button>
+        </div>
+        <div class="modal-header">
+            <div class="row row-center">
+                <div class="col col-center text-left refund-amount">
+                    <!--报销单个人支付金额-->
+                    {{"expense.expenseAccountIndividualPayment"|translate}}:
+                </div>
+                <div class="col col-center text-right refund-amount">
+                    <!--{{view.personalPaymentAmount|currency:code}}-->
+                    {{view.originCurrencyCode + ' '}}{{view.personalPaymentAmount|number: 2}}
+                </div>
+            </div>
+            <div class="row row-center" ng-if="view.reimbursementAmount <= 0">
+                <div class="col col-center text-left tips-content">
+                    <!--您可选择以下单据进行还款-->
+                    {{"expense.select.one.option"|translate}}
+                </div>
+            </div>
+            <div class="row row-center" ng-if="view.reimbursementAmount>0">
+                <div class="col col-center text-left refund-amount">
+                    <!--还款金额-->
+                    <span>{{"expense.repaymentMoney"|translate}}:</span>
+                </div>
+                <div class="col col-center text-right refund-amount">
+                    <span>
+                        <!--{{view.reimbursementAmount|currency:code}}-->
+                        {{view.originCurrencyCode + ' '}}{{view.reimbursementAmount|number: 2}}
+                    </span>
+                </div>
+            </div>
+            <div class="row row-center" ng-if="view.reimbursementAmount>0">
+                <div class="col col-center text-left refund-amount">
+                    <!--报销实发金额-->
+                    <span>{{"expense.reimbursementMoney"|translate}}:</span>
+                </div>
+                <div class="col col-center text-right refund-amount">
+                    <span class="real-payment">
+                        {{view.originCurrencyCode + ' '}}{{view.realPaymentAmount|number: 2}}
+                        <!--{{view.realPaymentAmount|currency:code}}-->
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="item item-divider"></div>
+        <div class="row row-center choice-refund">
+            <!--选择借款单-->
+            <div class="col col-center text-left refund-amount">{{"expense.ChioceBorrowingForm"|translate}}</div>
+            <!--可还款金额-->
+            <div class="col col-center col-33 text-right refund-amount">{{"expense.KrepaymentMoney"|translate}}</div>
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="item in expenseRefund.expenseRefundList" ng-click="expenseRefund.selectRefund(item,$index)">
+                <img ng-if="expenseRefund.refundIndex!==$index" src="img/expense_report_version/travel/radio.png" alt="" class="select-icon">
+                <img ng-if="expenseRefund.refundIndex===$index" src="img/expense_report_version/travel/radio-checked.png" alt="" class="select-icon" ng-if="expenseRefund.refundIndex===$index" >
+                    <div class="row row-center">
+                        <div class="col col-center col-67 refund-time text-left">{{item.lastModifiedDate|dateFilter}}</div>
+                        <div class="col col-center refund-amount text-right">
+                            <!--{{item.writeoffArtificialDTO.stayWriteoffAmount | currency:code}}-->
+                            {{view.originCurrencyCode + ' '}}{{item.writeoffArtificialDTO.stayWriteoffAmount | number:2}}
+                        </div>
+                    </div>
+                    <div class="row row-center">
+                        <div class="col col-center col-67 text-left refund-reason">
+                            <span>{{"expense.loanApplication"|translate}}<!--借款单申请--><span ng-if="item.remark"> －</span></span>
+                            {{item.remark}}
+                        </div>
+                        <div class="col col-center refund-amount text-right reduce-amount" ng-if="expenseRefund.refundIndex===$index">
+                            {{'- ' + view.originCurrencyCode + ' '}}{{expenseRefund.choiceAmount
+                            | number: 2}}
+                        </div>
+                    </div>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="expenseRefund.page.current < expenseRefund.page.lastPage"
+            on-infinite="expenseRefund.loadMore(expenseRefund.page.current + 1)" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+    <ion-footer-bar keyboard-attach>
+        <div class="row row-center text-center submit-button"
+             ng-click="expenseRefund.choiceRefund && expenseRefund.choiceRefund.applicationOID ? expenseRefund.commit() : null" ng-class="{'disabled': !(expenseRefund.choiceRefund && expenseRefund.choiceRefund.applicationOID)}">
+            <div class="col col-center">
+                <!--提交-->
+                {{"expense.submit"|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

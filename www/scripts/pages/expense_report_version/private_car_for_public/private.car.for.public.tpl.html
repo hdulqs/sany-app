@@ -1,0 +1,179 @@
+<ion-view class="private-car-for-public">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'private.private.car.for.public' | translate}}<!--里程补贴--></span>
+    </ion-nav-title>
+    <ion-content class="content" ng-class="{true: '', false: 'has-footer'}[content.noSetting || content.networkErrorText || content.systemErrorText]">
+        <div ng-if="content.networkError">
+            <not-found-text title="content.networkErrorText" icon="content.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="doRefresh()">
+                    {{'private.click.refresh' | translate}} <!--点击刷新-->
+                </button>
+            </div>
+        </div>
+        <div ng-if="content.systemError">
+            <not-found-text title="content.systemErrorText" sub-title="content.systemErrorSubText"
+                            icon="content.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <div class="alert alert-warning warn" ng-if="content.noSetting">
+            <img class="warning-icon" src="img/expense/nothing-icon.png"/>
+            <p class="warning-word">{{public.errorText}}</p>
+            <p class="warning-word"> {{'private.please.contact.the.administrator' | translate}}<!--请联系管理员--></p>
+        </div>
+        <div ng-hide="content.noSetting || content.networkError || content.systemError">
+            <div class="row row-center text-center">
+                <div class="col col-10"></div>
+                <div class="col col-80">
+                    <p ng-if="!view.privateData.startLocation.address && !view.isStartError" class="text-center text-placeholder">
+                        {{'private.click.start.time.place' | translate}}<!--点击生成出发时间、地点-->
+                    </p>
+                    <p ng-if="!view.privateData.startLocation.address && view.isStartError" class="text-center text-location">
+                        {{view.privateData.startTime | dateTimeFilter}}
+                        <br>
+                        <span class="text-error">
+                            {{content.errorText}}
+                        </span>
+                    </p>
+                    <p ng-if="view.privateData.startLocation.address" class="text-center text-location">
+                        {{view.privateData.startTime | dateTimeFilter}}
+                        <br>
+                        {{view.privateData.startLocation.address}}
+                    </p>
+                </div>
+                <div class="col col-10"></div>
+            </div>
+            <div class="row row-center text-center" ng-hide="view.isStartError">
+                <div class="col col-10"></div>
+                <div class="col col-80">
+                    <div class="btn-get-location" ng-class="{true: 'btn-active', false: 'btn-disabled'}[view.isStart]" ng-click="view.isStart && public.getStartLocation()">
+                        {{'private.departure' | translate}}<!-- 出发-->
+                    </div>
+                </div>
+                <div class="col col-10"></div>
+            </div>
+            <div class="row row-center text-center" ng-if="view.isStartError">
+                <div class="col col-10">
+                </div>
+                <div class="col col-40">
+                    <div class="btn-get-location" ng-class="{true: 'btn-active', false: 'btn-disabled'}[view.isStart]" ng-click="view.isStart && public.getStartLocation()">
+                        {{'private.departure' | translate}}<!-- 出发-->
+                    </div>
+                </div>
+                <div class="col col-40">
+                    <div class="btn-location-modify" ng-click="public.modifyStartLocation()">
+                        <span ng-if="!view.privateData.startLocation.address">
+                           {{'private.import' | translate}}<!-- 输入-->
+                        </span>
+                        <span ng-if="view.privateData.startLocation.address">
+                            {{'private.revise' | translate}}<!--修改-->
+                        </span>
+                    </div>
+                </div>
+                <div class="col col-10">
+                </div>
+            </div>
+            <div class="row row-center text-center">
+                <div class="col col-10"></div>
+                <div class="col col-80">
+                    <p ng-if="!view.privateData.endLocation.address && !view.isEndError" class="text-center text-placeholder">
+                        {{'private.click.start.time.place' | translate}}<!--点击生成下车时间、地点-->
+                    </p>
+                    <p ng-if="!view.privateData.endLocation.address && view.isEndError" class="text-center text-location">
+                        {{view.privateData.endTime | dateTimeFilter}}
+                        <br>
+                        <span class="text-error">
+                            {{content.errorText}}
+                        </span>
+                    </p>
+                    <p ng-if="view.privateData.endLocation.address" class="text-center text-location">
+                        {{view.privateData.endTime | dateTimeFilter}}
+                        <br>
+                        {{view.privateData.endLocation.address}}
+                    </p>
+                </div>
+                <div class="col col-10"></div>
+            </div>
+            <div class="row row-center text-center" ng-hide="view.isEndError">
+                <div class="col col-10"></div>
+                <div class="col col-80">
+                    <div class="btn-get-location" ng-click="view.isEnd && public.getEndLocation()" ng-class="{true: 'btn-active', false: 'btn-disabled'}[view.isEnd]">
+                        {{'private.arrival' | translate}}<!--到达-->
+                    </div>
+                </div>
+                <div class="col col-10"></div>
+            </div>
+            <div class="row row-center text-center" ng-if="view.isEndError">
+                <div class="col col-10">
+                </div>
+                <div class="col col-40">
+                    <div class="btn-get-location" ng-click="view.isEnd && public.getEndLocation()" ng-class="{true: 'btn-active', false: 'btn-disabled'}[view.isEnd]">
+                        {{'private.arrival' | translate}} <!--到达-->
+                    </div>
+                </div>
+                <div class="col col-40" ng-if="view.isEndError">
+                    <div class="btn-location-modify" ng-click="public.modifyEndLocation()">
+                        <span ng-if="!view.privateData.endLocation.address">
+                             {{'private.import' | translate}}<!--输入-->
+                        </span>
+                        <span ng-if="view.privateData.endLocation.address">
+                             {{'private.revise' | translate}}<!--修改-->
+                        </span>
+                    </div>
+                </div>
+                <div class="col col-10">
+                </div>
+            </div>
+            <div ng-if="view.isFinish">
+                <div class="row row-center">
+                    <div class="col col-80 distance-text">
+                        {{'private.distance' | translate}}<span ng-if="view.language === 'en'">&nbsp;</span><!--参考里程-->{{view.privateData.distance}}<span ng-if="view.language === 'en'">&nbsp;</span>km
+                    </div>
+                    <div class="col col-10">
+                        <img src="img/private_car/tips.png" alt="" class="tips" ng-click="public.showTips($event)">
+                    </div>
+                </div>
+                <div class="row row-center">
+                    <div class="col col-40 text-right text-message-label">
+                        {{'private.mileage' | translate}} <!--里程-->
+                    </div>
+                    <div class="col col-15">
+                        <input ng-model="view.privateData.mileage" class="text-disance">
+                    </div>
+                    <div class="col col-45 text-price">
+                        km
+                    </div>
+                </div>
+                <div class="row row-center">
+                    <div class="col col-40 text-right text-message-label">
+                        {{'private.price' | translate}}<!-- 单价-->
+                    </div>
+                    <div class="col col-60 text-price">
+                        {{view.privateData.price | currency: code}}/km
+                    </div>
+                </div>
+                <div class="row row-center">
+                    <div class="col col-40 text-right text-message-label">
+                        {{'private.total' | translate}} <!--总额-->
+                    </div>
+                    <div class="col col-60 text-money">
+                        {{view.privateData.total | currency: code}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--获取距离的地图div,禁止删除和移动-->
+        <div id="getDistance">
+        </div>
+    </ion-content>
+    <ion-footer-bar class="private-car-for-public-footer" keyboard-attach ng-hide="content.noSetting || content.networkError || content.systemError">
+        <div class="row row-center">
+            <div class="col text-center submit" ng-click="!content.disabled && view.isFinish && public.submit()" ng-class="{true: 'btn-active', false: 'btn-disabled'}[view.isFinish]">
+                {{'private.submit' | translate}} <!--提交-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+

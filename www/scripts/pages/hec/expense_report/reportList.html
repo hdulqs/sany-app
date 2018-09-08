@@ -1,0 +1,265 @@
+<ion-view class="erv-expense-page feeApplication" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'report.title'|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="vm.goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-subheader-bar class="bar bar-subheader">
+        <div class="row row-center head-tab">
+            <div class="col text-center"  ng-click="vm.changeTab('waitSubmit')">
+                <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[vm.status === 'waitSubmit']">
+                    {{'report.waiting.submit'|translate}}
+                </span>
+            </div>
+            <div class="col text-center" ng-click="vm.changeTab('waitApproval')">
+                <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[vm.status === 'waitApproval']">
+                    {{'report.waiting.approval'|translate}}
+                </span>
+            </div>
+            <div class="col text-center"  ng-click="vm.changeTab('hasApproval')">
+                <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[vm.status === 'hasApproval']">
+                    {{'report.already.approved'|translate}}
+                </span>
+            </div>
+        </div>
+    </ion-subheader-bar>
+    <ion-content class="travel-list-content has-subheader">
+        <div class="alert alert-warning warn-expense" ng-if="vm.nothing &&!vm.networkError">
+            <img class="warning-icon" src="img/expense/nothing-icon.png"/>
+            <p class="warning-word">{{'report.Nothing'|translate}}<!--空空如也--></p>
+            <p class="warning-word">{{'report.No.expense.account'|translate}}<!--暂无报销单!--></p>
+        </div>
+        <div ng-if="vm.networkError && vm.reportList.length === 0">
+            <not-found-text title="vm.networkErrorText" icon="vm.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="vm.doRefresh(vm.status)">
+                    {{'report.Click.the.refresh'|translate}}<!--点击刷新-->
+                </button>
+            </div>
+        </div>
+        <div ng-if="vm.systemError && vm.reportList.length === 0">
+            <not-found-text title="vm.systemErrorText" sub-title="vm.systemErrorSubText"
+                            icon="vm.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="vm.doRefresh(vm.status)"
+                       pulling-text="{{'common.loading' | translate}}...">
+        </ion-refresher>
+
+        <!--待提交-->
+        <div ng-if="vm.status == 'waitSubmit'">
+            <ion-list>
+                <div class="item application-info" ng-repeat="report in vm.reportList">
+                    <ion-item class="expense-directive item item-complex item-right-editable">
+                        <div ng-click="vm.goDetail(report,'waitSubmit')">
+                            <div class="row row-center header">
+                                <div class="color-block"></div>
+                                <div class="col col-70 error-col">
+                                    <p>
+                                        No.{{report.exp_report_number}}&nbsp;&nbsp;&nbsp;
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p class="text-right ng-binding">
+                                        {{report.creation_date1 | limitTo:10}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="expense-item-content">
+                                <div class="row row-center expense-item-title">
+                                    <div class="col col-center col-75">
+                                        <h2 class="daily-expense ng-binding">
+                                            {{report.type_description}}
+                                        </h2>
+                                    </div>
+                                    <div class="col col-center text-right expenses-types">
+                                        <p class="approval-status bg-has-reject"  ng-show="report.report_status_value=='REJECTED'">
+                                            <!--已拒绝-->{{'report.refused'|translate}}
+                                        </p>
+                                        <p class="approval-status bg-withdraw"  ng-show="report.report_status_value=='TAKEN_BACK'">
+                                            <!--已收回-->{{'report.already.takeBack'|translate}}
+                                        </p>
+                                        <p class="approval-status bg-editing"  ng-show="report.report_status_value=='GENERATE'">
+                                            <!--编辑中-->{{'report.editing'|translate}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row row-middle">
+                                    <div class="col col-center col-60">
+                                        <p class="text-left">
+                                            ({{report.description|convertNothing}})
+                                        </p>
+                                    </div>
+                                    <div class="col col-center col-40 text-right expenses-types">
+                                        <p class="text-right invoice-money">
+                                                    <span class="ng-binding">
+                                                        {{report.currency_code |currencyFilter }}
+                                                    </span>
+                                            <span class="ng-binding">
+                                                    {{report.quarter_num | amountFilter}}
+                                                </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--report.report_status_value=='GENERATE'||report.report_status_value=='REJECTED'-->
+                        <ion-option-button class="hec-button-delete"
+                                           ng-if="true"
+                                           ng-click="vm.deleteReport(report.exp_report_header_id)">
+                            <!--删除-->{{'report.delete'|translate}}
+                        </ion-option-button>
+                        <ion-reorder-button class="ion-navicon"
+                                            on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+                    </ion-item>
+                </div>
+            </ion-list>
+        </div>
+
+        <!--待审批-->
+        <div ng-if="vm.status == 'waitApproval'">
+            <ion-list>
+                <div class="item application-info" ng-repeat="report in vm.reportList|filter:{workflow_category:'EXP_REPORT'}">
+                    <ion-item class="expense-directive item item-complex item-right-editable">
+                        <div ng-click="vm.goDetail(report,'waitApproval')">
+                            <div class="row row-center header">
+                                <div class="color-block"></div>
+                                <div class="col col-70 error-col">
+                                    <p>
+                                        No.{{report.order_no}}&nbsp;&nbsp;&nbsp;
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p class="text-right ng-binding">
+                                        {{report.creation_date|limitTo:10 }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="expense-item-content">
+                                <div class="row row-center expense-item-title">
+                                    <div class="col col-center col-60">
+                                        <h2 class="daily-expense ng-binding">
+                                            {{report.document_type}}
+                                        </h2>
+                                    </div>
+                                    <div class="col col-center text-right expenses-types">
+                                        <p class="approval-status bg-wait-approval ng-binding">
+                                            <!--待审批-->
+                                            {{'report.waiting.approval'|translate}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row row-middle">
+                                    <div class="col col-center col-60">
+                                        <p class="text-left">
+                                            ({{report.order_description |convertNothing}})
+                                        </p>
+                                    </div>
+                                    <div class="col col-center col-40 text-right expenses-types">
+                                        <p class="text-right invoice-money">
+                                                <span class="ng-binding">
+                                                    {{report.currency_code |currencyFilter }}
+                                                </span>
+                                            <span class="ng-binding">
+                                                {{report.instance_amount | amountFilter}}
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ion-option-button class="hec-button-delete" ng-if="true"
+                                           ng-click="vm.takeBack(report.instance_id)">
+                            <!--收回-->
+                            {{'report.takeBack'|translate}}
+                        </ion-option-button>
+                        <ion-reorder-button class="ion-navicon"
+                                            on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+                    </ion-item>
+                </div>
+            </ion-list>
+        </div>
+
+        <!--审批通过-->
+        <div ng-if="vm.status == 'hasApproval'">
+            <ion-list>
+                <div class="item application-info" ng-repeat="report in vm.reportList">
+                    <ion-item class="expense-directive item item-complex item-right-editable">
+                        <div ng-click="vm.goDetail(report,'hasApproval')">
+                            <div class="row row-center header">
+                                <div class="color-block"></div>
+                                <div class="col col-70 error-col">
+                                    <p>
+                                        No.{{report.exp_requisition_number}}&nbsp;&nbsp;&nbsp;
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p class="text-right ng-binding">
+                                        {{report.last_update_date|limitTo:10 }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="expense-item-content">
+                                <div class="row row-center expense-item-title">
+                                    <div class="col col-center col-60">
+                                        <h2 class="daily-expense ng-binding">
+                                            {{report.type_description}}
+                                        </h2>
+                                    </div>
+                                    <div class="col col-center text-right expenses-types">
+                                        <p class="approval-status bg-has-pass ng-binding">
+                                            <!--审批通过-->{{'report.approved'|translate}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row row-middle">
+                                    <div class="col col-center col-60">
+                                        <p class="text-left">
+                                            ({{report.description |convertNothing}})
+                                        </p>
+                                    </div>
+                                    <div class="col col-center col-40 text-right expenses-types"
+                                         ng-if="(item.currencyCode==originCurrencyCode)">
+                                        <p class="text-right invoice-money">
+                                            <span class="ng-binding">
+                                                {{report.currency_code |currencyFilter }}
+                                            </span>
+                                            <span class="ng-binding">
+                                                {{report.quarter_num | amountFilter }}
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ion-option-button class="hec-button-delete"
+                                           ng-if="false">
+                        </ion-option-button>
+                        <ion-reorder-button class="ion-navicon"
+                                            on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+                    </ion-item>
+                </div>
+            </ion-list>
+        </div>
+
+        <ion-infinite-scroll
+            on-infinite="vm.loadMore(vm.status,vm.page+1)"
+            ng-if="vm.page < vm.pageCnt"
+            distance="1%"
+            immediate-check="false"
+        ></ion-infinite-scroll>
+    </ion-content>
+
+    <!--ng-if:vm.status === 'waitSubmit'-->
+    <div ng-click="vm.toCreateReim()" ng-if="vm.status === 'waitSubmit'" class="buttons buttons-center button-positive">
+        <img src="img/expense_report_version/expense_report/add.png"
+             ng-class="{true: 'pic-ten', false: 'pic-rotate-ten'}[!vm.markStatus]"/>
+    </div>
+</ion-view>
+

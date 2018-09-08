@@ -1,0 +1,52 @@
+.head-card{
+     padding: 0px;
+    .head-img{
+        padding: 0;
+        align-self: center;
+        img{
+            height: 50px;
+            width: 50px;
+        }
+        .div-radius{
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+    }
+    .head-img-has{
+        padding: 0;
+        align-self: center;
+        text-align: center;
+        img{
+            height: 30px;
+            width: 30px;
+        }
+        .div-radius{
+            margin: 0 auto;
+            text-align: center
+        }
+    }
+
+    .col{
+        padding: 0px;
+    }
+}
+.row-but{
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: small;
+    background-color: #f8f8f8;
+    color: #444;
+    margin: 5px;
+    text-align: center;
+    width: 90%;
+    margin-left: 5%;
+    height: 30px;
+    line-height: 30px
+}
+.list-number{
+    text-align: center;
+    align-self: center;
+    color: red;
+}

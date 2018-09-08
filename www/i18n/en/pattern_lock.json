@@ -1,0 +1,16 @@
+{
+    "pattern": {
+        "Cancel.the.gestures.password": "Cancel the gestures password",
+        "Enter.the.password.for.gestures": "Enter gestures password",
+        "Gestures.password.authentication.failed.please.login.again": "Gestures password authenticationfailed,pleaseloginagain",
+        "Gestures.password.canceled.successfully": "Gestures password canceled successfully",
+        "Gestures.password.shall.not.be.less.than.four.points": "Gestures password shall not be less than four points",
+        "Gestures.password.successfully": "Gestures password setting successfully",
+        "Gestures.to.lock": "Gesture Password",
+        "Password.Settings.gestures": "Set gestures password",
+        "Please.input.gesture.password.again": "Input again",
+        "Verify.password": "Verify Password",
+        "You.can.also.input": "Incorrect.",
+        "times": "chance(s) remaining."
+    }
+}

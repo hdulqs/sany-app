@@ -1,0 +1,60 @@
+<div class="cost-center-selector-new" ng-click="openModal()">
+    <p ng-if="name" class="cost-center-name">
+        {{name}}
+        <!--<img src="img/expense_report_version/travel/arrow.png" alt="" class="arrow">-->
+    </p>
+    <p ng-hide="name" class="select-name">
+        {{'linkage.Please.select'|translate}}<!--请选择-->
+    </p>
+</div>
+<script id="cost.center.selector.html" type="text/ng-template">
+    <ion-modal-view class="cost-center-selector-new-modal">
+        <ion-header-bar class="bar-positive">
+            <h1 class="title">{{'linkage.My'|translate}}<!--我的-->{{title}}</h1>
+            <span class="cancel" ng-click="modal.hide()">
+                {{'destination.cancel'|translate}}<!--取消-->
+            </span>
+        </ion-header-bar>
+        <ion-content>
+            <div class="search">
+                <label class="item-input-wrapper">
+                    <!--<a class="button button-clear ion-ios-search"></a>-->
+                    <input class="header-input" placeholder="{{'linkage.Please.enter.keyword'|translate}}" ng-model="view.searchName"><!--请输入成本中心名称-->
+                </label>
+            </div>
+            <ion-list ng-if="view.myCostCenterItems.length === 0">
+                <ion-item>
+                    <div class="row row-center">
+                        <div class="col">
+                            {{'approval_selector.No.data'|translate}}<!--无数据-->
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-list ng-if="view.myCostCenterItems.length > 0">
+                <!--增加一项不选择,选中后清空成本中心-->
+                <ion-item ng-click="view.selectNone()">
+                    <p class="cost-center-name">
+                        <!--不选择-->
+                        {{'common.selectNone'|translate}}
+                    </p>
+                </ion-item>
+                <ion-item ng-repeat="item in view.myCostCenterItems" ng-click="view.selectCostCenter(item)">
+                    <p class="cost-center-name">
+                        {{item.name}}
+                    </p>
+                    <img src="img/expense_report_version/travel/select.png" alt=""
+                         class="arrow-checked"
+                         ng-if="selected === item.costCenterItemOID">
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll
+                on-infinite="view.loadMore(view.page + 1)"
+                distance="1%"
+                ng-if="view.lastPage > view.page"
+                immediate-check="false"
+            >
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-modal-view>
+</script>

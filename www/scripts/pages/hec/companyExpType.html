@@ -1,0 +1,93 @@
+<ion-view class="hec-common" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{vm.title}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="has-header hec-content">
+        <!-- 费用申请单(差旅申请)-->
+        <ion-list ng-if="vm.type == 'ExpReq'">
+            <ion-item>
+                <heccompany-selector employee-id="vm.sessionEmployeeId" company-name="vm.companyName"
+                                     selected="vm.companyId" readonly="vm.isReadOnly" unit-id="vm.unitId"
+                                     unit-name="vm.unitName" resp-center-id="vm.respId"
+                                     resp-center-name="vm.respName"
+                                     function-cry="vm.functionCry"></heccompany-selector>
+            </ion-item>
+
+            <ion-item>
+                <hecemp-selector type="vm.type" emp-name="vm.employeeName" selected="vm.employeeId"
+                                 company-id="{{vm.companyId}}" readonly="vm.isReadOnly"></hecemp-selector>
+            </ion-item>
+
+            <ion-item>
+                <hecdoctype-selector type="vm.type" company-id="vm.companyId" doc-type-name="vm.docTypeName"
+                                     selected="vm.docTypeId" readonly="vm.isReadOnly"
+                                     doc-type-code="vm.docTypeCode"
+                                     cry-code="vm.cryCode" ></hecdoctype-selector>
+            </ion-item>
+        </ion-list>
+
+        <!-- 借款申请单-->
+        <ion-list ng-if="vm.type == 'LoanReq'||vm.type === 'reqRefLoan'">
+            <ion-item>
+                <heccompany-selector employee-id="vm.sessionEmployeeId" company-name="vm.companyName"
+                                     selected="vm.companyId" readonly="vm.isReadOnly || vm.type == 'reqRefLoan'" unit-id="vm.unitId"
+                                     unit-name="vm.unitName" resp-center-id="vm.respId"
+                                     resp-center-name="vm.respName"
+                                     function-cry="vm.functionCry"></heccompany-selector>
+            </ion-item>
+
+            <ion-item>
+                <hecemp-selector type="vm.type" emp-name="vm.employeeName" selected="vm.employeeId"
+                                 company-id="{{vm.companyId}}" readonly="vm.isReadOnly || vm.type == 'reqRefLoan'"></hecemp-selector>
+            </ion-item>
+
+            <ion-item>
+                <hecdoctype-selector type="vm.type" company-id="vm.companyId" doc-type-name="vm.docTypeName"  employee-id="{{vm.employeeId}}"
+                                     selected="vm.docTypeId" readonly="vm.isReadOnly"
+                                     doc-type-code="vm.docTypeCode" bus-attr-code="vm.busAttrCode"
+                                     payment-method-id="vm.paymentMethodId"
+                                     payment-method-display="vm.paymentMethodDisplay"
+                                     cry-code="vm.cryCode" ></hecdoctype-selector>
+            </ion-item>
+        </ion-list>
+
+        <!-- 费用报销单-->
+        <ion-list ng-if="vm.type == 'ExpReport'">
+            <ion-item>
+                <heccompany-selector employee-id="vm.sessionEmployeeId" company-name="vm.companyName"
+                                     selected="vm.companyId" readonly="vm.isReadOnly" unit-id="vm.unitId"
+                                     unit-name="vm.unitName" resp-center-id="vm.respId"
+                                     resp-center-name="vm.respName"
+                                     function-cry="vm.functionCry"></heccompany-selector>
+            </ion-item>
+
+            <ion-item>
+                <hecemp-selector type="vm.type" emp-name="vm.employeeName" selected="vm.employeeId"
+                                 company-id="{{vm.companyId}}" readonly="vm.isReadOnly"></hecemp-selector>
+            </ion-item>
+
+            <ion-item>
+                <hecdoctype-selector type="vm.type" company-id="vm.companyId" employee-id="{{vm.employeeId}}"
+                                     doc-type-name="vm.docTypeName" doc-type-code="vm.docTypeCode"
+                                     selected="vm.docTypeId" req-required-flag="vm.reqRequiredFlag"
+                                     cry-code="vm.cryCode" readonly="vm.isReadOnly"
+                                     document-page-type="vm.documentPageType"
+                                     ></hecdoctype-selector>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+
+    <ion-footer-bar class="hec-footer">
+        <div class="row row-center">
+            <div class="col text-center operation-all" ng-click="vm.goPage()">
+                {{vm.title}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

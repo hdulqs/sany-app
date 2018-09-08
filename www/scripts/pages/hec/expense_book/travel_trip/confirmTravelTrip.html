@@ -1,0 +1,156 @@
+<!--差旅行程确认
+    Created by Dawn on 2017/8/7.
+-->
+<ion-view class="hec-confirm-trip account-book feeApplication" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'confirm_travel_trip.title'| translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <div ng-click="vm.confirm()" ng-if="vm.ImportFlag">
+            <span class="recall-expense">{{'confirm_travel_trip.Complete.confirmation'| translate}}</span>
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="has-header confirm-trip-content has-footer">
+        <ion-list>
+             <ion-item>
+                 <div class="row row-center hec-padding">
+                     <span class="hec-item-prompt">{{'confirm_travel_trip.Requisition.number'| translate}}</span>
+                     <div class="col">
+                         <p class="text-right text-content">
+                             <span>{{vm.head.exp_requisition_number}}</span>
+                         </p>
+                     </div>
+                 </div>
+             </ion-item>
+             <ion-item>
+                 <div class="row row-center hec-padding">
+                     <span class="hec-item-prompt">{{'confirm_travel_trip.Requisition.date'| translate}}</span>
+                     <div class="col">
+                         <p class="text-right expense-money">
+                             <span>{{vm.head.requisition_date}}</span>
+                         </p>
+                     </div>
+                 </div>
+             </ion-item>
+             <ion-item>
+                 <div class="row row-center hec-padding">
+                     <span class="hec-item-prompt">{{'confirm_travel_trip.Last.approval.date'| translate}}</span>
+                     <div class="col">
+                         <p class="text-right expense-money">
+                             <span>{{vm.head.last_approve_date}}</span>
+                         </p>
+                     </div>
+                 </div>
+             </ion-item>
+             <ion-item style="padding: 4px 10px;font-size: 15px;">
+                 <heccry-selector prompt-name="receipt" is-red="{{false}}" selected="vm.head.currency_code" readonly="vm.ImportFlag"></heccry-selector>
+             </ion-item>
+             <ion-item>
+                 <div class="row row-center hec-padding">
+                     <div class="col description-tip hec-item-prompt">
+                         {{'confirm_travel_trip.Requisition.comment'| translate}}<!--<span class="hec-input-required" ng-if="!vm.isReadOnly">*</span>-->
+                     </div>
+                 </div>
+                 <div class="row row-center hec-padding">
+                     <div class="col">
+                    <textarea class="description-content" readonly>{{vm.head.requisition_note |convertNothing}}
+                    </textarea>
+                     </div>
+                 </div>
+             </ion-item>
+
+            <ion-toggle ng-model="vm.head.special_type_code" toggle-class="toggle-positive"
+                        ng-true-value="'Y'" ng-false-value="'N'"style="padding: 1rem;">
+                {{'subsidy_info.Special.type' | translate}}
+            </ion-toggle>
+         </ion-list>
+
+        <div class="row" ng-click="vm.toAddSubsidy()">
+            <button type="button" class="next-button col-96 button button-block button-positive">
+                {{'confirm_travel_trip.Fill.in.basic.information.and.subsidies'| translate}} <!--填写基本信息及补贴-->
+            </button>
+        </div>
+
+        <!--航班信息-国内显示-->
+        <div class="row line-info" ng-click="showFlyInfo()" ng-if="vm.confirmTripParams.expReqTypeCode === '1010'" style="background-color: #e2e2e2">
+            <div class="col">
+                <div class="row">
+                    <div class="col hec-item-prompt">
+                        {{'confirm_travel_trip.Flight.order.information'| translate}}
+                        <div>{{'confirm_travel_trip.total' | translate}}{{vm.flyList.length}}{{'confirm_travel_trip.number'|translate}}</div>
+                    </div>
+                    <i class="col-10 col-center ion-ios-arrow-right" ng-class="{true:'transform-down'}[vm.showFlyList && vm.flyList.length > 0]"></i>
+                </div>
+                <div ng-if="vm.showFlyList && vm.flyList.length > 0">
+                        <div ng-repeat="item in vm.flyList" ng-click="vm.toFlyDetail(item)" class="bg-white fly-info" style="width:100%;">
+                            <div class="row text-center">
+                                <div class="col hec-item-prompt">{{item.place_from}}{{item.place_to?("-"+ item.place_to):""}}</div>
+                                <div class="col hec-item-prompt">RMB {{item.amount}}</div>
+                                <i class="col-20 col-center ion-ios-arrow-right"></i>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!--自导入费用-->
+        <div>
+            <div class="row line-info" ng-click="showOtherInfo()" ng-if="vm.selfExpInfo" style="background-color: #e2e2e2">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            {{'confirm_travel_trip.employee.import.exp.info'| translate}}<!--员工自垫费用导入信息 -->
+                            <div>{{'confirm_travel_trip.total' | translate}}{{vm.selfExpInfo.length}}{{'confirm_travel_trip.number'|translate}}</div>
+                        </div>
+                        <i class="col-10 col-center ion-ios-arrow-right" ng-class="{true:'transform-down'}[vm.showSelfList && vm.selfExpInfo.length>0]"></i>
+                    </div>
+                    <div class="row">
+                        <ion-list can-swipe="true" ng-if="vm.showSelfList && vm.selfExpInfo.length>0" class="item-width">
+                            <ion-item  ng-repeat="exp in vm.selfExpInfo" class="exp-item">
+                                <div class="row exp-info"  ng-click="vm.toExpBookDetail(exp)">
+                                    <div class="col col-70 hec-intercept">
+                                        <span>
+                                            {{exp.exp_expense_item}}
+                                        </span>
+                                        <div class="exp-desc hec-intercept">
+                                            ({{exp.notes | convertNothing}})
+                                        </div>
+                                    </div>
+                                    <div class="col exp-money">
+                                        <span>{{exp.reference_currency_code | currencyFilter}}</span>
+                                        <span>{{exp.reference_amount | amountFilter}}</span>
+                                    </div>
+                                </div>
+                                <ion-option-button class="exp-delete" ng-if="true" ng-click="vm.deleteExpense(exp)">
+                                    <div class="column">
+                                        <div class="delete-text">{{'confirm_travel_trip.delete'|translate}}</div>
+                                    </div>
+                                </ion-option-button>
+                            </ion-item>
+                        </ion-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-click="vm.toCancelTrip()">
+            <button type="button" class="next-button col-96 button button-block button-positive" ng-class="{true: 'hec-gray', false: ''}[vm.selfExpInfo.length>0 || vm.ImportFlag]">
+                {{'confirm_travel_trip.Cancel.the.current.trip'| translate}} <!--取消当前行程-->
+            </button>
+        </div>
+
+
+    </ion-content>
+    <ion-footer-bar class="expense-create-footer">
+        <div class="row row-center submit-btn" ng-class="{true: '', false: 'hec-gray'}[vm.ImportFlag]">
+            <div class="col col-center" ng-click="vm.importBookExp()">
+                {{'confirm_travel_trip.Import.self.fee'|translate}}<!--导入自垫费用-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

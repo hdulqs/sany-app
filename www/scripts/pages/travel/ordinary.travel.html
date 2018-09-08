@@ -1,0 +1,330 @@
+<ion-view class="ordinary-application">
+    <ion-nav-title>
+        <span>
+           {{view.type}}
+        </span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <img id="dustbin-img" ng-src="img/travel/delete-icon.png"
+             ng-show="view.ordinaryMsg === 'hasReject'||view.ordinaryMsg === 'editting'
+             || view.ordinaryMsg === 'TravelRejectFromMsg'"
+             ng-click="dustbin()">
+        <img id="revoke-img" ng-src="img/travel/recall-icon.png" ng-show="view.ordinaryMsg === 'waitApproval'"
+             ng-click="revoke()">
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <ion-list ng-if="view.hasHeader" class="travel-header">
+            <div class="item item-divider"></div>
+            <ion-item class="no-border-bottom travel-top">
+                <div class="row row-center">
+                    <div class="col col-67 travel-detail">
+                        <p class="travel-top-title">
+                            {{view.checkDetails.applicantMessage.userName}}
+                            <span class="header-name">
+                                <!--提交-->
+                                {{"create.next.submit"|translate}}
+                            </span>
+                            {{view.type}}
+                        </p>
+                        <p class="travel-dep">
+                            <!--至-->
+                            {{view.checkDetails.trafficPlanDTOs[0].departDate|limitTo:10}}&nbsp;&nbsp;{{"ordinary.to"|translate}}&nbsp;&nbsp;{{view.checkDetails.trafficPlanDTOs[0].returnDate|limitTo:10}}
+                        </p>
+                    </div>
+
+                    <div class="col  expenses-types">
+                        <p class="approval-top-status bg-has-pass"
+                           ng-if="view.ordinaryMsg === 'hasPass' ||
+                           view.ordinaryMsg === 'approvalHistoryHasPass' ||
+                            view.ordinaryMsg === 'TravelPassFromMsg'">
+                            <!--已通过-->
+                            {{"list_js.Have.been.through"|translate}}
+                        </p>
+                        <p class="approval-top-status bg-wait-approval"
+                           ng-if="view.ordinaryMsg === 'waitApproval'">
+                            <!--待审批-->
+                            {{"ordinary.stayApproval"|translate}}
+                        </p>
+                        <p class="travel-top-time">
+                            {{view.checkDetails.lastMessage.createdDate | dateFilter}}
+                        </p>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-list>
+            <div class="item item-divider"></div>
+            <ion-item class="create-ordinary-list" ng-show="view.ordinaryMsg=='create'">
+                <div class="row row-center">
+                    <div class="col col-center col-25 filed-name">
+                        <!--开始日期-->
+                        {{"create.base.Start.date"|translate}}
+                    </div>
+                    <div class="col col-center value-col" ng-click="datePicker.selectDate('startTime')">
+                        <span ng-show="view.startTime==''" class="start-time">
+                            <!--请选择开始日期-->
+                            {{"ordinary.pleaseChioceStartDate"|translate}}
+                        </span>
+                        <span ng-show="view.startTime!==''" ng-model="view.startTime">{{view.startTime|dateFilter}}</span>
+                        <!--<input class="choice-start-time" type="date" ng-model="view.startTime"/>-->
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="create-ordinary-list" ng-show="view.ordinaryMsg=='create'">
+                <div class="row row-center">
+                    <div class="col col-center col-25 filed-name">
+                        <!--结束日期-->
+                        {{"create.base.End.date"|translate}}
+                    </div>
+                    <div class="col col-center value-col">
+                        <div class="col col-center value-col" ng-click="datePicker.selectDate('finishTime')">
+                            <span ng-show="view.finishTime==''" class="finish-time">
+                                <!--请选择开始日期-->
+                                {{"ordinary.pleaseChioceStartDate"|translate}}
+                            </span>
+                            <span ng-show="view.finishTime!==''" ng-model="view.finishTime">{{view.finishTime|dateFilter}}</span>
+                            <!--<input class="choice-start-time" type="date" ng-model="view.startTime"/>-->
+                        </div>
+                        <!--<input class="choice-finish-time" type="date" ng-model="view.finishTime"/>-->
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="create-ordinary-list" ng-show="view.ordinaryMsg=='editting'
+            ||view.ordinaryMsg=='hasReject'||view.ordinaryMsg=='TravelRejectFromMsg'">
+                <div class="row row-center">
+                    <div class="col col-center col-25 filed-name">
+                        <!--日期-->
+                        {{"ordinary.date"|translate}}
+                    </div>
+                    <div class="row row-center date-start">
+                        <div class="col"></div>
+                        <div class="item-input col-center">
+                            <div class="input item-icon-left date-start-detail">
+                                {{view.statusInfo.trafficPlanDTOs[0].departDate |limitTo:10}}
+                            </div>
+                        </div>
+                        <!--至-->
+                        <div class="col-center">&nbsp;{{"ordinary.to"|translate}}&nbsp;</div>
+                        <div class="item-input col-center">
+                            <div class="input item-icon-left date-finish-detail">
+                                {{view.statusInfo.trafficPlanDTOs[0].returnDate | limitTo:10}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="create-ordinary-list" ng-show="view.ordinaryMsg=='approvalList'
+            ||view.ordinaryMsg=='TravelApprovalFromMsg'">
+                <div class="row row-center">
+                    <div class="col col-center col-25 filed-name">
+                        <!--日期-->
+                        {{"ordinary.date"|translate}}
+                    </div>
+                    <div class="row row-center date-start">
+                        <div class="col"></div>
+                        <div class="item-input col-center">
+                            <div class="input item-icon-left date-start-detail">
+                                {{view.checkDetails.trafficPlanDTOs[0].departDate |limitTo:10}}
+                            </div>
+                        </div>
+                        <!--至-->
+                        <div class="col-center">&nbsp;{{'ordinary.to'|translate}}&nbsp;</div>
+                        <div class="item-input col-center">
+                            <div class="input item-icon-left date-finish-detail">
+                                {{view.checkDetails.trafficPlanDTOs[0].returnDate | limitTo:10}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="no-border-bottom row row-center">
+                    <div class="col col-center col-25 filed-name">
+                        <!--事由-->
+                        {{"create.base.reason"|translate}}
+                    </div>
+                    <div class="col col-center">
+                        <!--*请输入-->
+                        <input ng-model="view.comment" placeholder="{{'ordinary.pleaseInput'|translate}}" ng-show="view.checkDetails===''">
+                        <input ng-readonly="true" ng-model="view.checkDetails.comment" ng-show="view.checkDetails!==''">
+                    </div>
+                </div>
+            </ion-item>
+            <!--<ion-item  ng-show="view.ordinaryMsg === 'create'||-->
+                                               <!--view.ordinaryMsg === 'editting'-->
+        <!--||view.ordinaryMsg === 'hasReject' || view.ordinaryMsg === 'TravelRejectFromMsg'">-->
+                    <!--<cost-center-item-selector class="cost-center-container"-->
+                                               <!--filter-by-code="travel"-->
+                                               <!--selected="view.costCenterItemOID">-->
+                    <!--</cost-center-item-selector>-->
+            <!--</ion-item>-->
+        </ion-list>
+        <ion-list>
+            <ion-item>
+                <div class="row row-center">
+                    <div class="col col-25 filed-name">
+                        <!--出差行程-->
+                        {{"ordinary.businessTrip"|translate}}
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item class="trip no-border-bottom">
+                <div class="start-city">
+                    <p class="start">
+                        <!--出发地-->
+                        {{"ordinary.placeOfDeparture"|translate}}
+                    </p>
+                    <div class="clear" ng-show="view.checkDetails===''">
+                        <span ng-repeat="item in view.ordinaryApplication.routeCity">
+                            <p class="departdure">
+                                <span class="departdure-city" ng-click="changeCity($index,item)">{{item.value}}</span>
+                            </p>
+                            <p class="arrow">
+                                <i class="ion ion-ios-arrow-thin-right"></i>
+                            </p>
+                        </span>
+                       <span>
+                            <p class="departdure">
+                                <!--添加城市-->
+                                <span class="departdure-addcity"
+                                      ng-click="goCheckCity('ordinaryApplication')">{{"ordinary.AddCity"|translate}}</span>
+
+                            </p>
+                        </span>
+                    </div>
+                    <div class="clear" ng-show="view.checkDetails!==''">
+                        <span ng-repeat="item in view.checkDetails.trafficPlanDTOs[0].airRoute track by $index">
+                            <p class="departdure">
+                                <span class="departdure-city">{{item}}</span>
+                            </p>
+                            <p class="arrow"
+                               ng-hide="$index === view.checkDetails.trafficPlanDTOs[0].airRoute.length-1">
+                                <i class="ion ion-ios-arrow-thin-right"></i>
+                            </p>
+                        </span>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+
+        <ion-list class="approval-history"
+            ng-show="view.ordinaryMsg === 'waitApproval'||view.ordinaryMsg === 'hasPass'||view.ordinaryMsg === 'TravelPassFromMsg'
+                    ||view.ordinaryMsg === 'approvalHistoryReject'||view.ordinaryMsg === 'approvalHistoryHasPass' || view.ordinaryMsg === 'TravelApprovalFromMsg' || view.ordinaryMsg === 'approvalList'">
+            <div class="item item-divider"></div>
+            <div class="row approval-row">
+                <div class="col message-text">
+                    <!--审批历史-->
+                    {{"ordinary.approveHistory"|translate}}
+                </div>
+            </div>
+            <div class="row history-detail" ng-repeat="message in view.checkDetails.messages"
+                 ng-if="message.operation != 'draft'">
+                <div class="history-line"></div>
+                <div class="col col-10 message-icon">
+                    <img ng-src={{message.operationImgSrc}} class="{{message.operationClass}}" />
+                </div>
+                <div class="col col-33 approval-time-col">
+                    {{message.createdDate | date:"yyyy-MM-dd HH:mm"}}
+                    <p ng-if="message.operation === 'approval_reject'">{{message.comment}}</p>
+                </div>
+                <div class="col approval-description-col" ng-if="message.operation === 'apply'">
+                    <!--送审给-->
+                    {{view.checkDetails.applicantMessage.userName}}&nbsp;{{"ordinary.sendCautiously"|translate}}&nbsp;{{message.userName}}
+                </div>
+                <div class="col approval-description-col" ng-if="message.operation === 'auto_approval'">
+                    <!--自审批-->
+                    {{view.checkDetails.applicantMessage.userName}}&nbsp;{{"ordinary.AutomaticApproval"|translate}}
+                </div>
+                <div class="col approval-description-col" ng-if="message.operation === 'approval_pass'">
+                    <!--审批通过-->
+                    {{message.userName}}&nbsp;{{"ordinary.ApprovalPass"|translate}}
+                </div>
+                <div class="col approval-description-col"
+                     ng-if="message.operation === 'approval_reject'&&view.checkDetails.applicantMessage.userName !== message.userName">
+                    <!--审批驳回-->
+                    {{message.userName}}&nbsp;{{"ordinary.ApprovalReject"|translate}}
+                </div>
+                <div class="col approval-description-col"
+                     ng-if="message.operation === 'recall'||(message.operation === 'approval_reject'&&view.checkDetails.applicantMessage.userName === message.userName)">
+                    <!--撤回-->
+                    {{message.userName}}&nbsp;{{"create.next.withdraw"|translate}}
+                </div>
+            </div>
+        </ion-list>
+
+        <ion-list class="approval-history"
+            ng-show="view.ordinaryMsg === 'hasReject'||view.ordinaryMsg === 'editting' || view.ordinaryMsg === 'TravelRejectFromMsg'">
+            <div class="item item-divider"></div>
+            <div class="row approval-row">
+                <div class="col message-text">
+                    <!--审批历史-->
+                    {{"ordinary.approveHistory"|translate}}</div>
+            </div>
+            <div class="row history-detail" ng-repeat="message in view.statusInfo.messages "
+                 ng-if="message.operation != 'draft'">
+                <div class="history-line"></div>
+                <div class="col col-10 message-icon">
+                    <img ng-src={{message.operationImgSrc}} class="{{message.operationClass}}" />
+                </div>
+                <div class="col col-33 approval-time-col">
+                    {{message.createdDate | date:"yyyy-MM-dd HH:mm"}}
+                    <p ng-if="message.operation === 'approval_reject'">{{message.comment}}</p>
+                </div>
+                <div class="col approval-description-col" ng-if="message.operation === 'apply'">
+                    <!--送审给-->
+                    {{view.statusInfo.applicantMessage.userName}}&nbsp;{{"ordinary.sendCautiously"|translate}}&nbsp;{{message.userName}}
+                </div>
+                <div class="col approval-description-col" ng-if="message.operation === 'approval_pass'">
+                    <!--审批通过-->
+                    {{message.userName}}&nbsp;{{"ordinary.ApprovalPass"|translate}}
+                </div>
+                <div class="col approval-description-col"
+                     ng-if="message.operation === 'approval_reject'&&view.statusInfo.applicantMessage.userName !== message.userName">
+                    <!--审批驳回-->
+                    {{message.userName}}&nbsp;{{"ordinary.ApprovalReject"|translate}}
+                </div>
+                <div class="col approval-description-col"
+                     ng-if="message.operation === 'recall'||(message.operation === 'approval_reject'&&view.statusInfo.applicantMessage.userName === message.userName)">
+                    <!--撤回-->
+                    {{message.userName}}&nbsp;{{"create.next.withdraw"|translate}}
+                </div>
+            </div>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar
+        ng-show="view.ordinaryMsg === 'create'||view.ordinaryMsg === 'hasPass'
+        ||view.ordinaryMsg === 'editting'
+        ||view.ordinaryMsg === 'hasReject'||view.ordinaryMsg === 'approvalList'
+        || view.ordinaryMsg === 'TravelApprovalFromMsg' || view.ordinaryMsg === 'TravelRejectFromMsg'
+         || view.ordinaryMsg === 'TravelPassFromMsg'">
+        <!--立即购票-->
+        <a class="button save-button" ng-click="!view.disabled && buyTicket()"
+           ng-show="(view.ordinaryMsg === 'hasPass' || view.ordinaryMsg === 'TravelPassFromMsg') && view.isExpiration">{{"ordinary.immediatelyBuyTicket"|translate}}</a>
+        <!--立即购票-->
+        <span class="save-button-disable"
+              ng-show="(view.ordinaryMsg === 'hasPass'|| view.ordinaryMsg === 'TravelPassFromMsg') && !view.isExpiration">{{"ordinary.immediatelyBuyTicket"|translate}}</span>
+        <div class="row bottom-btn"
+             ng-show="view.ordinaryMsg != 'hasPass'&& view.ordinaryMsg != 'TravelPassFromMsg' && view.ordinaryMsg != 'approvalList'
+             && view.ordinaryMsg != 'TravelApprovalFromMsg'">
+            <div class="col col-50 preserve-btn" ng-click="!view.disabled && saveApplication()">
+                <!--保存-->
+                {{"create.base.save"|translate}}
+            </div>
+            <div class="col col-50 submit-btn" ng-click="!view.disabled && ordinaryCommit()">
+                <!--提交-->
+                {{"create.next.submit"|translate}}
+            </div>
+        </div>
+        <div class="row bottom-btn"
+             ng-show="(view.ordinaryMsg === 'approvalList')||(view.ordinaryMsg === 'TravelApprovalFromMsg' && view.userMatch)">
+            <div class="col col-50 disagree-btn" ng-click="showOpinionPopup()">
+                <!--驳回-->
+                {{'ordinary.reject'|translate}}
+            </div>
+            <div class="col col-50 agree-btn" ng-click="agree()">
+                <!--同意-->
+                {{'ordinary.consent'|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

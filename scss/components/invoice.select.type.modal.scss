@@ -1,0 +1,49 @@
+.invoice-select-type-model-directive{
+    color: #4c4c4c;
+    .expense-item{
+        border-bottom: thin solid #e2e2e2 !important;
+    }
+    .item-invoice-type{
+        .row{
+            padding: 7px 15px !important;
+            .consume-icon{
+                width: 25px;
+                height: 25px;
+            }
+            .consume-item{
+                color: #959595;
+            }
+            .money{
+                color: #959595;
+            }
+        }
+        .item{
+            border-bottom: thin solid #e1e6eb;
+        }
+    }
+    .invoice-apply-zero{
+        font-size: 16px;
+        color: #cdcdcd;
+        text-align: left;
+        padding: 0 10px;
+    }
+    .invoice-apply-money{
+        color: #ff6a10;
+    }
+    .invoice-apply-start{
+        font-size: 16px;
+        color: #ff6a10;
+        text-align: right;
+    }
+
+    .invoice-type-add{
+        border-bottom: thin solid #e1e6eb;
+        .consume-item {
+            color: #959595 !important;
+        }
+    }
+    .input-label{
+        color: #959595;
+        padding: 0 10px;
+    }
+}

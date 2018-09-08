@@ -1,0 +1,39 @@
+<ion-modal-view class="appointment-modal">
+    <ion-header-bar>
+        <h3 class="title">
+            {{'modal.Add.reservations'|translate}}<!--添加预约单-->
+        </h3>
+        <div class="buttons buttons-left" style="transition-duration: 0ms;">
+            <span class="left-buttons">
+                <a ng-click="appointmentModal.hide()">
+                    <img src="img/back.png" class="save-btn">
+                </a>
+            </span>
+        </div>
+        <!--<i class="ion ion-ios-arrow-left cancel" ng-click="bookDetail.hide()"></i>-->
+    </ion-header-bar>
+    <ion-content class="book-ticket-content">
+        <p class="choice-name">
+           {{'modal.To.choose.time'|translate}}<!-- 选择时间（可多选）-->
+        </p>
+        <div class="journey">
+            <div class="row row-center date-list" ng-repeat="date in  view.travel.travelApplication.travelItinerarys" ng-click="view.selectDay($index)">
+                <img src="img/expense_report_version/travel/select.png" alt="" class="select-icon" ng-if="view.currentDay === $index">
+                <p class="date-index">
+                    {{'modal.the'|translate}}<!--第--> {{date.dayNumber}} {{'modal.day'|translate}}<!--天-->
+                </p>
+                <p class="date-week">
+                    {{date.itineraryDate | dayDotFilter}}
+                </p>
+                <p class="date-week">
+                   {{date.week | weekFilter}}
+                </p>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="arrange-sure" ng-click="view.saveRefund()">
+            {{'modal.determine'|translate}}<!--确定-->
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

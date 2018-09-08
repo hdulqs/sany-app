@@ -1,0 +1,72 @@
+<!--<label class="item item-input item-stacked-label select-destination-label" ng-click="selectCity()">-->
+<!--<span class="input-label">{{title}}</span>-->
+<!--<input ng-model="city"placeholder="请选择" readonly>-->
+<!--</label>-->
+<div class="row row-center select-destination-label" ng-click="view.openCity()">
+    <div class="col col-center">{{title}}</div>
+    <div class="col col-center col-60 text-right choice-select" ng-if="!city.value">{{'linkage.Please.select'|translate}}<!--请选择--></div>
+    <div class="col col-center col-60 text-right choice-select"  ng-if="city.value">{{city.value}}</div>
+    <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+</div>
+<script type="text/ng-template" id="select.destination.modal.html">
+    <ion-modal-view class="select-destination-modal">
+        <ion-header-bar>
+            <h3 class="title">{{'destination.Select.the.city'|translate}}<!--选择城市--></h3>
+        <span class="city-cancel" ng-click="selectCity.hide()">
+            {{'destination.cancel'|translate}}<!--取消-->
+        </span>
+        </ion-header-bar>
+        <ion-content>
+            <!--<div class="search">-->
+                <div class="search" layout="row">
+                    <label for="search-input">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <span class="sr-only">{{'destination.Please.enter.the.keywords'|translate}}<!--请输入关键词--></span>
+                    </label>
+                    <input id="search-input" placeholder="{{'destination.Please.enter.the.keywords'|translate}}"  ng-model="view.keyword"/><!--请输入关键词-->
+                    <a class="fa fa-times-circle search-clear"
+                       ng-class="{'hide': !view.keyword.length}" ng-click="view.clearKeyword()">
+                        <span class="sr-only">Clear search</span>
+                    </a>
+                </div>
+            <!--</div>-->
+            <!--<div class="search">-->
+                <!--<label class="item-input-wrapper">-->
+                    <!--<a class="button button-clear ion-ios-search"></a>-->
+                    <!--<input class="headerInput" placeholder="请输入城市" ng-model="view.keyword">-->
+                <!--</label>-->
+            <!--</div>-->
+
+            <ion-list ng-if="view.keyword !== '' && view.hotCity.length === 0">
+                <ion-item>
+                    <div class="row row-center">
+                        <div class="col">
+                            {{'destination.There.is.no.city'|translate}}<!--无城市-->
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+
+            <div class="row hot-city" ng-if="view.keyword === ''">
+                <div class="col city">{{'destination.Hot.city'|translate}}<!--热门城市--></div>
+            </div>
+            <ion-list>
+                <ion-item ng-repeat="item in view.hotCity track by $index"
+                          ng-click="view.closeCity(item)">
+                    <div class="row row-center">
+                        <div class="col">
+                            {{item.value}}
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <!--<ion-infinite-scroll-->
+                <!--distance="1%"-->
+                <!--on-infinite="view.loadMore(view.cityInfo.currentPage + 1)"-->
+                <!--ng-if="view.page.currentPage < view.page.lastPage"-->
+                <!--immediate-check="false">-->
+            <!--</ion-infinite-scroll>-->
+        </ion-content>
+    </ion-modal-view>
+
+</script>

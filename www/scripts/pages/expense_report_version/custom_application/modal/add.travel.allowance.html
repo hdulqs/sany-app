@@ -1,0 +1,109 @@
+<ion-modal-view class="travel-allowance-modal">
+    <ion-header-bar>
+        <h3 class="title">
+           {{'custom.application.allowance.add.title' | translate}}
+        </h3>
+        <div class="buttons buttons-left" style="transition-duration: 0ms;">
+            <span class="left-buttons">
+                <a ng-click="travel.cancel()">
+                    <img src="img/back.png" class="save-btn">
+                </a>
+            </span>
+        </div>
+    </ion-header-bar>
+    <div ng-if="!travel.showAllowanceDetail">
+    <ion-content class="travel-allowance-content">
+            <ion-list>
+                <div>
+                    <div class="item item-divider allowance-divider">
+                     {{'custom.application.allowance.travel.subsidies' | translate}}
+                    </div>
+                    <div class="allowance-destination" ng-click="travel.selectDestination()">
+                        <!--出差目的地-->
+                        <select-destination city="travel.city" title="travel.title"></select-destination>
+                    </div>
+                </div>
+                <div>
+                    <div class="item item-divider row row-center allowance-divider ">
+                        <div class="col col-center col-75">
+                            {{'custom.application.allowance.choice.all.time' | translate}}
+                        </div>
+                        <div class="col col-center" ng-click="travel.selectAllAllowance()">
+                            <!--全选-->
+                            <ion-checkbox ng-model="travel.selectAll" class="allowance-checkbox">{{'custom.application.allowance.select.all'|translate}}</ion-checkbox>
+                        </div>
+
+                    </div>
+                    <div class="allowance-journey">
+                        <div class="row row-center allowance-date-list"
+                             ng-repeat="date in view.applicationData.travelApplication.travelItinerarys"
+                             ng-click="!date.disabled && travel.selectAllowanceDate($index)"
+                             ng-class="{'allowance-date-disabled':date.disabled}">
+                            <img src="img/expense_report_version/travel/select.png" alt="" class="select-icon"
+                                 ng-if="date.checked">
+                            <p class="date-index">
+                                {{'custom.application.travel.number' | translate}} {{date.dayNumber}} {{'custom.application.travel.day' | translate}}
+                            </p>
+                            <p class="date-week">
+                                {{date.itineraryDate | dayDotFilter}}
+                            </p>
+                            <p class="date-week">
+                                {{date.week | weekFilter}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </ion-list>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="allowance-sure" ng-click="!travel.errorStatus && travel.sure()">
+            {{'custom.application.allowance.sure' | translate}}
+        </div>
+    </ion-footer-bar>
+    </div>
+    <div ng-if="travel.showAllowanceDetail" class="travel-allowance-detail-modal">
+        <ion-content class="travel-allowance-detail-content">
+            <ion-list delegate-handle="exercise-list">
+                <div class="alert alert-warning warn" ng-if="view.allowanceList.length === 0">
+                    <img class="warning-icon" src="img/nothing.png"/>
+                    <p class="warning-word">{{'custom.application.allowance.empty'| translate}}</p>
+                    <p class="warning-word">{{'custom.application.allowance.no.travel.subsidies'| translate}}</p>
+                </div>
+                <div class="item item-divider allowance-detail-divider" ng-if="view.allowanceList.length >  0">
+                   {{'custom.application.allowance.subsidies.detail'| translate}}
+                </div>
+                <ion-item class="allowance-detail-list"  ng-if="view.allowanceList.length > 0" ng-click="travel.editAllowance(item)" ng-repeat="item in view.allowanceList track by $index">
+                    <div>
+                        <div class="row row-center">
+                            <img class="col col-center col-10 destination-icon" src="img/allowance-destination.png">
+                            <div class="col col-center label">{{'custom.application.allowance.destination' | translate}}:</div>
+                            <div class="col col-center col-67 data">{{item.city.value}}</div>
+                        </div>
+                        <div class="row row-center">
+                            <img class="col col-center col-10 destination-icon" src="img/allowance-time.png">
+                            <div class="col col-center label">{{'custom.application.allowance.date' | translate}}:</div>
+                            <div class="col col-center col-67 data">{{item.date | getContinueDays}}</div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row row-center" ng-repeat="name in item.detailList">
+                            <!--/人/天:-->
+                            <div class="col col-center text-left allowance-category">{{name.expenseTypeName}}&nbsp;{{name.amount |currency:code}}{{'custom.application.allowance.renDay'|translate}}</div>
+                            <div class="col col-center allowance-category">{{name.name}}</div>
+                        </div>
+                    </div>
+                    <ion-option-button class="button-assertive travel-delete" ng-click="travel.deleteAllowance(item,$index)" >
+                        <div class="column">
+                            <div class="delete-text">{{'common.delete' | translate}}</div>
+                        </div>
+                    </ion-option-button>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+        <ion-footer-bar>
+            <div class="row row-center">
+                <div class="col col-center allowance-create" ng-click="travel.createAllowance()">{{'custom.application.allowance.create.travel.subsidies' | translate}}</div>
+                <div class="col col-center allowance-sure" ng-click="travel.sureAllowance()">{{'custom.application.allowance.sure' | translate}}</div>
+            </div>
+        </ion-footer-bar>
+    </div>
+</ion-modal-view>

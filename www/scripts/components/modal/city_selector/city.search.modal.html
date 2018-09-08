@@ -1,0 +1,52 @@
+ <ion-modal-view class="contact-quick">
+    <ion-header-bar align-title="center" class="bar-stable">
+        <div class="transmit-search">
+            <div class="transmit-button">
+                <i class="ion-ios-search search-i"></i>
+            </div>
+            <input
+                detect-focus
+                ng-maxlength="160"
+                on-focus="self.scrollContentToOne()"
+                on-blur="self.scrollContentToTwo()"
+                focus-on-blur="self.focusOnBlur"
+                id="employeeInputSearch" placeholder="{{'city_js.please.enter.the.city'|translate}}"
+                autofocus="true"
+                ng-model="self.getValue"
+                ng-change="self.searchCitys(self.getValue)">
+            <img ng-if="self.getValue" src="img/city_selector/login-clear.png" class="employee-clear-img"
+                 ng-click="self.clearData()"/>
+        </div>
+        <div class="buttons">
+            <button class="button button-icon icon" ng-click="self.closeSearchCitys()">
+                <span class="back-text color-style">{{'city_js.cancel'|translate}}</span>
+            </button>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header">
+        <ion-list>
+            <div ng-hide="showSerch" class="waiting-data">
+                <ion-spinner icon="lines" class="spinner-calm"></ion-spinner>
+            </div>
+            <div class="row row-city" ng-show="showSerch" ng-repeat="item in self.searchCityDatas track by $index" ng-click="self.chooseSearchCity(item)" ng-if="self.searchCityDatas[0]">
+                <!--<span ng-bind="city.city" ng-if="city.city!==''"></span>-->
+                <span class="button-style-city">{{'city_js.city'|translate}}</span>
+                <span ng-bind="item.district" ></span>
+                <span ng-bind="item.city" ng-if="!item.district"></span>
+                <span ng-bind="item.state" ng-if="!item.city"></span>
+                <span ng-bind="item.country" ng-if="!item.city && !item.state"></span>
+                <span class="span-style" ng-bind="item.state"        ng-if="item.country ===self.country"></span>
+                <span class="span-style" ng-bind="item.country"       ng-if="item.country !==self.country"></span>
+                <i ng-if="item.code === code"
+                   class="icon ion-ios-checkmark-empty icon-style"></i>
+            </div>
+            </ion-list>
+        <!--上拉加载更多-->
+        <ion-infinite-scroll
+            ng-if="view.page < view.lastPage"
+            on-infinite="view.loadMore(view.page + 1)" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+        </ion-content>
+</ion-modal-view>

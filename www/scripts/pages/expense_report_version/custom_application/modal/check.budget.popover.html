@@ -1,0 +1,32 @@
+<ion-popover-view class="check-budget-popover">
+    <div class="header">
+        检查结果
+    </div>
+    <ion-scroll>
+        <div class="check-budget-popover-content" ng-repeat="item in budgetError ">
+            <div class="popover-row row row-center" ng-if="item.externalPropertyName !=='1003'" >
+                <div class="budget-icon col-top"></div>
+                <div class="col col-center budget-name ">
+                    <span ng-if="item.externalPropertyName ==='1002'">超预算</span>
+                    <span ng-if="item.externalPropertyName ==='1001'">超差标</span>
+                    ：
+                </div>
+            </div>
+            <div class="popover-row row row-center" ng-repeat="msg in item.errorMsg">
+                <!--<div class="col col-center budget-value" ng-repeat="msg in item.errorMsg">-->
+                    <p>{{msg.msg}}</p>
+                <!--</div>-->
+            </div>
+        </div>
+    </ion-scroll>
+    <ion-footer-bar>
+        <div class="row row-center">
+            <div class="col  text-center sure" ng-click="view.budgetCancel()">
+                返回
+            </div>
+            <!--<div class="col col-50 text-center sure-create" ng-click="view.budgetSubmit()">-->
+                <!--继续提交-->
+            <!--</div>-->
+        </div>
+    </ion-footer-bar>
+</ion-popover-view>

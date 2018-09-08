@@ -1,0 +1,13 @@
+{
+    "interface_my": {
+        "Amount.to.be.cancel.after.verification:": "Amount to be cancel:",
+        "Borrowing.and.cancel.after.verification": "My Loan",
+        "Click.the.refresh": "Click Refresh",
+        "Loading.in": "Loading",
+        "There.is.no.cost.information.for.the.time.being": "No record.",
+        "month": "Month",
+        "network": "Network error!",
+        "server": "Server error,",
+        "system": "Technician is working on repairing!"
+    }
+}

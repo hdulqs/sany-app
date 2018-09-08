@@ -1,0 +1,33 @@
+<ion-view view-title="{{'help.feedback.The.problem.of.feedback'|translate}}">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'help.feedback.The.problem.of.feedback'|translate}}<!--问题反馈--></span>
+    </ion-nav-title>
+    <ion-content class="has-footer feedback">
+        <form name="feedbackForm" novalidate enctype="multipart/form-data">
+            <div class="list">
+                <div class="item item-divider"></div>
+                <!--您遇到什么系统问题？或者对功能有什么意见？欢迎告诉我们，谢谢！-->
+                <textarea rows="20" placeholder={{"help.feedback.What.system.you.have.problem"|translate}} ng-model="data.message"
+                          name="message"></textarea>
+                <div class="upload-buttons" align="center">
+                    <div class="image-div" ng-repeat="picFile in data.picFiles">
+                        <img class="img-choose" ng-src="{{picFile}}" ng-click="showPicture(picFile)"/>
+                        <div class="remove-button-div">
+                            <div ng-click="removePic(picFile)" class="remove-button" ng-show="picFile">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="upload-button" name="picFiles" ng-click="addFiles()"
+                         ng-show="data.picFiles.length < data.maxPicCount">
+                        <img class="add-img" src="./img/feed_back/add_picture.png"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+    <div class="bar bar-footer bar-positive row expense-create-next-footer no-padding no-margin">
+        <div class="col ink col-center footer-submit no-padding no-margin" ng-click="sendFeedback()" ng-disabled="true">
+            <span class="submit-text">{{'help.feedback.send'|translate}}<!--发送--></span>
+        </div>
+    </div>
+</ion-view>

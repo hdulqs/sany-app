@@ -1,0 +1,61 @@
+<ion-view class="travel-list-erv">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'list.Travel.application'|translate}}<!--差旅申请--></span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div class="travel-list-add" ng-hide="view.functionProfileList['ta.opt.upsert.disabled']">
+            <img src="img/expense_report_version/travel/add.png" alt="" ng-click="view.goTo('app.erv_create_travel_base', $event)">
+        </div>
+    </ion-nav-buttons>
+
+    <ion-subheader-bar class="bar bar-subheader">
+        <div class="row row-center head-tab">
+            <div class="col text-center" ng-repeat="item in view.tabItem" ng-click="view.changeTab($index)">
+                <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[$index === view.tabIndex]">
+                    {{item.name}}
+                </span>
+            </div>
+        </div>
+    </ion-subheader-bar>
+    <ion-content class="travel-list-content has-subheader">
+        <div class="alert alert-warning warn" ng-if="view.nothing && !view.networkError">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'list.Empty'|translate}}<!--空空如也!--></p>
+            <p class="warning-word">{{'list.Temporarily.no.travel.application'|translate}}<!--暂时无差旅申请!--></p>
+            <button class="create-travel-btn" ng-click="view.goTo('app.erv_create_travel_base', $event)"
+                    ng-if="view.travelStatus === 'init' && !view.functionProfileList['ta.opt.upsert.disabled']">
+                {{'list.The.new.travel.application'|translate}}<!--新建差旅申请-->
+            </button>
+        </div>
+        <div ng-if="view.networkError && view.travelList.length === 0">
+            <not-found-text title="view.networkErrorText" icon="view.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="create-travel-btn" ng-click="view.doRefresh()">
+                    {{'list.Click.the.refresh'|translate}}<!--点击刷新-->
+                </button>
+            </div>
+        </div>
+        <div ng-if="view.systemError && view.travelList.length === 0">
+            <not-found-text title="view.systemErrorText" sub-title="view.systemErrorSubText"
+                            icon="view.systemErrorIcon">
+            </not-found-text>
+        </div>
+
+        <ion-refresher on-refresh="view.doRefresh()" pulling-text="{{'list.loading'|translate}}"></ion-refresher><!--加载中...-->
+        <ion-list>
+            <div ng-repeat="travel in view.travelList" class="travel-list">
+                <travel-item item="travel" can-delete="view.canDelete" withdraw="view.canWithdraw"
+                             is-show-type="view.isShowType" delete-travel="view.deleteTravel(travel.applicationOID)"
+                             withdraw-travel="view.withdrawTravel(travel.applicationOID)"
+                             go-detail="view.goDetail(travel)">
+                    </travel-item>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="view.pageable.page < view.dataNum.lastPage"
+            on-infinite="view.getTravelList(view.pageable.page + 1)" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

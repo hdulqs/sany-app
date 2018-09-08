@@ -1,0 +1,53 @@
+<ion-view class="welcome-tpl">
+    <ion-content class="welcome-content" scroll="false">
+        <ion-slide-box show-pager="true">
+            <ion-slide>
+                <div class="first-div" align="center">
+                    <img class="first-img" ng-src="{{'expense.welcome.img01'|translate}}">
+                    <div class="content-text text-center">
+                        <p class="title">
+                            {{'expense.Extremely.brief.sales.experience'|translate}}<!--极简报销体验-->
+                        </p>
+                        <p class="text">
+                            {{'expense.Integrating.travel.service.process'|translate}}<!--整合差旅服务流程-->
+                        </p>
+                        <p class="text">
+                            {{'expense.Define.expense.experience'|translate}}<!--定义费用报销体验-->
+                        </p>
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide>
+                <div class="first-div" align="center">
+                    <img class="second-img" src="img/welcome/2.png">
+                    <div class="content-text text-center">
+                        <p class="title">
+                            {{'expense.Booking.service.platform'|translate}}<!--预订服务平台-->
+                        </p>
+                        <p class="text">
+                            {{'expense.High.quality.enterprise.mainstream.providers'|translate}}<!--优质企业主流服务商-->
+                        </p>
+                        <p class="text">
+                            {{'expense.Universal.coverage.business.activity'|translate}}<!--全面覆盖企业活动-->
+                        </p>
+                    </div>
+                </div>
+            </ion-slide>
+            <ion-slide class="first-div" align="center" on-swipe-left='goLogin()'>
+                <img class="last-img" src="img/welcome/3.png">
+                <div class="content-text text-center">
+                    <p class="title-last">
+                        {{'expense.Effective.cost.management'|translate}}<!--高效费用管理-->
+                    </p>
+                    <p class="text-last">
+                        {{'expense.Rapid.mobile.office.for.examination.and.approval'|translate}}<!--移动办公快速审批-->
+                    </p>
+                    <p class="text-last">
+                        {{'expense.Real-time.control.of.costs'|translate}}<!--实时掌控费用支出-->
+                    </p>
+                    <a ng-click="goLogin()" class="login-btn">{{'expense.Start.to.experience'|translate}}<!--开始体验--></a>
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+</ion-view>

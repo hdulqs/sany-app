@@ -1,0 +1,60 @@
+<div ng-show="hideCostName" class="item item-input" ng-class="{'has-icon': iconUrl}" ng-click="openModal()">
+    <img ng-src="{{iconUrl}}" ng-show="iconUrl !== null" ng-class="{true:'icon',false:''}[!iconUrl]"/>
+    <span class="value item-note" ng-hide="selected" >{{'linkage.Please.select'|translate}}<!--请选择-->{{costCenterName}}</span>
+    <div class="value" ng-show="selected">{{getCostCenterName()}}</div>
+</div>
+<div ng-hide="hideCostName" class="item item-input" ng-class="{'has-icon': iconUrl}" ng-click="openModal()">
+    <img ng-src="{{iconUrl}}" ng-show="iconUrl !== null" ng-class="{true:'icon',false:''}[!iconUrl]"/>
+    <div class="input-label" id="cost-name" >{{costCenterName}}</div>
+    <span class="value item-note" ng-hide="selected" >{{'linkage.Please.select'|translate}}<!--请选择-->{{costCenterName}}</span>
+    <div class="value selected-value" ng-show="selected">{{getCostCenterName()}}</div>
+</div>
+<script id="cost.center.item.selector.html" type="text/ng-template">
+    <ion-modal-view class="cost-center-selector-new-modal">
+        <ion-header-bar class="bar-positive">
+            <h1 class="title">{{'linkage.My'|translate}}<!--我的-->{{costCenterName}}</h1>
+            <span class="cancel" ng-click="modal.hide()">
+                {{'destination.cancel'|translate}}<!--取消-->
+            </span>
+        </ion-header-bar>
+        <ion-content id="cost-center-modal">
+            <div class="search">
+                <label class="item-input-wrapper">
+                    <!--<a class="button button-clear ion-ios-search"></a>-->
+                    <input class="header-input" placeholder="{{'cost.Please.enter.the.keywords'|translate}}" ng-model-options="{debounce:500}" ng-model="keyword"><!--请输入关键字-->
+                </label>
+            </div>
+            <div class="list">
+                <div class="item item-divider prefer-item" ng-show="myPreferredCostCenterItems !== null && myPreferredCostCenterItems.length > 0">{{'cost.Last.choice'|translate}}{{costCenterName}}</div>
+                <a class="item-label prefer-cost" ng-repeat="preferred in myPreferredCostCenterItems | filter:costCenterItemFilter"
+                   ng-click="selectCostCenterItem(preferred)"
+                   ng-show="myPreferredCostCenterItems !== null && myPreferredCostCenterItems.length > 0">
+                    <span ng-if="preferred.name.indexOf(meikeCCISeparator) < 0">{{preferred.name}}</span>
+                    <p ng-if="preferred.name.indexOf(meikeCCISeparator) >= 0" class="cci-content">
+                        {{preferred.name.split(meikeCCISeparator)[0]}}
+                    </p>
+                    <p ng-if="preferred.name.indexOf(meikeCCISeparator) >= 0" class="cci-title">
+                        {{preferred.name.split(meikeCCISeparator)[1]}}
+                    </p>
+                </a>
+                <div class="item item-divider prefer-item" ng-if="myCostCenterItems.length > 0">{{'linkage.My'|translate}}<!--我的-->{{costCenterName}}</div>
+                <a class="item-label prefer-cost"
+                   ng-repeat="item in myCostCenterItems | orderBy: '-createdDate' | filter:costCenterItemFilter"
+                   ng-click="selectCostCenterItem(item)">
+                    {{item.name}}
+                </a>
+                <div ng-show="publicCenterItems.length > 0" class="item item-divider prefer-item">{{'cost.public'|translate}}<!--公共-->{{costCenterName}}</div>
+                <a class="item-label prefer-cost" ng-repeat="item in publicCenterItems | orderBy: 'name' | filter:costCenterItemFilter | filter: keyword"
+                   ng-click="selectCostCenterItem(item)">
+                    <span ng-if="item.name.indexOf(meikeCCISeparator) < 0">{{item.name}}</span>
+                    <p ng-if="item.name.indexOf(meikeCCISeparator) >= 0" class="cci-content">
+                        {{item.name.split(meikeCCISeparator)[0]}}
+                    </p>
+                    <p ng-if="item.name.indexOf(meikeCCISeparator) >= 0" class="cci-title">
+                        {{item.name.split(meikeCCISeparator)[1]}}
+                    </p>
+                </a>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

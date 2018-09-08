@@ -1,0 +1,38 @@
+{
+    "account": {
+        "Click.the.refresh": "Klik refresh",
+        "Cost.type": "Jenis Kos",
+        "Date.selection": "pemilihan tarikh",
+        "Future.generations": "Pilih Semua",
+        "Temporarily.no.cost.information": "tiada maklumat kos buat sementara!",
+        "The.custom.time": "masa adat",
+        "all": "semua",
+        "article": "Perkara",
+        "import": "import",
+        "loading": "Loading ...",
+        "my.account": "buku akaun saya",
+        "ok": "menentukan",
+        "reset": "Reset",
+        "screening": "pemeriksaan",
+        "to": "Sampai",
+        "week": "minggu"
+    },
+    "account_js": {
+        "ake.a.mistake": "出错了",
+        "Delete.success": "Berjaya dipadamkan",
+        "End.time.is.not.less.than.start.time": "Masa tamat tidak boleh kurang daripada masa mula",
+        "End.time.is.today.at.the.latest": "Masa tamat lewat daripada hari ini",
+        "Expense.account.added.at.200": "tuntutan bayaran ditambah sehingga 200 caj",
+        "Please.select.a.cost": "Sila pilih kos",
+        "Please.try.again.later": "Sila cuba lagi kemudian!",
+        "Submitted.successfully": "Penghantar berjaya",
+        "Withdraw.success": "Pengeluaran berjaya",
+        "according_to_PDF_stick_ticket": "Sila stem mengikut PDF",
+        "cancel": "dibatalkan",
+        "nearly.a.month": "sebulan yang lalu",
+        "nearly.two.month": "dua bulan yang lalu",
+        "ok.know": "Okay, telah diketahui!",
+        "send_to_mailbox": "PDF akan dihantar ke peti emel",
+        "submit.failure": "Penghantaran gagal"
+    }
+}

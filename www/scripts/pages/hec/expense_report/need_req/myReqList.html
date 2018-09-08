@@ -1,0 +1,120 @@
+<!--我的申请
+Created by Dawn on 2017/8/2.-->
+<ion-view class="hec-account-book" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'myReqList.My.application.list' | translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content class="expense-list-content" ng-class="{true:'has-footer'}[vm.isImport]">
+        <!--账本没有信息-->
+        <div class="alert alert-warning warn" ng-if="vm.nothing && !vm.networkError">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'myReqList.Temporarily.no.req.information' | translate}}</p>
+        </div>
+        <!--点击刷新-->
+        <div ng-if="vm.networkError && vm.expList.length === 0" class="hec-nothing">
+            <not-found-text title="vm.networkErrorText" icon="vm.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="vm.doRefresh()">
+                    {{'myReqList.button.Click.the.refresh' | translate}}
+                </button>
+            </div>
+        </div>
+        <div ng-if="vm.systemError && vm.expList.length === 0" class="hec-nothing">
+            <not-found-text title="vm.systemErrorText" sub-title="vm.systemErrorSubText"
+                            icon="vm.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <ion-refresher on-refresh="vm.doRefresh()" pulling-text="{{'myReqList.loading' | translate}}"></ion-refresher>
+
+        <ion-list can-swipe="!vm.isImport" class="req-item" >
+            <!--导入费用-->
+            <div ng-repeat="req in vm.reqList" style="margin-bottom: 5px;">
+                    <div class="row row-center expense-item" style="margin-bottom: 5px;">
+                        <div class="col">
+                            <ion-item class="erv-invoice-directive">
+                               <!-- <ion-radio ng-value="req" ng-model="vm.reqItem" name="reqItem">-->
+                                <ion-checkbox ng-model="req.checked" ng-click="vm.countSelect($index,req)">
+                                    <div class="row row-center">
+                                        <div class="col">
+                                            <div class="erv-invoice-directive-content-gap">
+                                                <p class="comment" style="color: #0092da;font-size: 15px;margin-bottom: 5px;">
+                                                    {{req.exp_requisition_number}}({{req.line_number}})
+                                                </p>
+                                                <p class="comment" style="font-size: 15px;color: red;">
+                                                    <span class="hec-item-prompt">{{'myReqList.Reim.can.be.related.to.the.amount'|translate}}：{{req.exp_report_currency_code |currencyFilter}}{{req.this_amount|amountFilter}}</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <div class="row row-center" style="padding-top: 8px;border-top: 1px solid #e2e2e2;margin-bottom: 5px;">
+                                    <div class="col">
+                                        <div class="erv-invoice-directive-content-gap">
+                                            <p class="comment hec-item-prompt" style="font-size: 15px;margin-bottom: 5px;">
+                                                <span class="hec-item-prompt">{{'myReqList.report.type'|translate}}：{{req.expense_type_name}}</span>
+                                            </p>
+                                            <p class="comment" style="font-size: 15px;margin-bottom: 5px;">
+                                                <span class="hec-item-prompt">{{'myReqList.application.item'|translate}}：{{req.exp_req_item_name}}</span>
+                                            </p>
+                                            <p class="comment" style="font-size: 15px;margin-bottom: 5px;">
+                                                <span class="hec-item-prompt">{{'myReqList.application.people'|translate}}：{{req.expense_employee_name}}</span>
+                                            </p>
+                                            <p class="comment" style="font-size: 15px;margin-bottom: 5px;">
+                                                <span class="hec-item-prompt">{{'myReqList.dept'|translate}}：{{req.unit_name}}</span>
+                                            </p>
+                                            <p class="comment" style="font-size: 15px;margin-bottom: 5px;">
+                                                <span class="hec-item-prompt">{{'myReqList.center'|translate}}：{{req.responsibility_center_name}}</span>
+                                            </p>
+                                            <p class="comment" style="font-size: 15px;margin-bottom: 5px;">
+                                                <span class="hec-item-prompt">{{'myReqList.total.amount'|translate}}：{{req.requisition_amount|amountFilter}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row row-center" style="padding-top: 8px;border-top: 1px solid #e2e2e2;">
+                                    <div class="col">
+                                        <div class="erv-invoice-directive-content-gap">
+                                            <p class="comment" style="font-size: 15px;">
+                                                <span class="hec-item-prompt">{{'myReqList.comment'|translate}}：{{req.description}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                </ion-checkbox>
+                                <div class="row row-center">
+                                        <button type="button" ng-click="vm.goPage(req.checked)" class="button button-block button-stable" ng-class="{'button-positive':req.checked}"
+                                                style="min-height: 35px; font-size: 15px;line-height: 35px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                                            {{'myReqList.ass.book'|translate}}
+                                        </button>
+                                </div>
+                            </ion-item>
+                        </div>
+                    </div>
+            </div>
+        </ion-list>
+
+        <ion-infinite-scroll
+            on-infinite="vm.loadMore(vm.page+1)"
+            ng-if="vm.page < vm.pageCnt"
+            distance="5%"
+            immediate-check="false"
+        ></ion-infinite-scroll>
+    </ion-content>
+    <ion-footer-bar class="expense-create-footer">
+        <div class="row row-center submit-btn">
+            <div class="col col-center submit-btn" ng-click="vm.goPage('new')">
+               {{'myReqList.import.req.line.info'|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+
+

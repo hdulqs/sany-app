@@ -1,0 +1,28 @@
+<ion-view view-title="滴滴出行" class="didi-view">
+    <ion-nav-buttons side="left">
+        <span class="left-buttons">
+            <button class="header-item back-button button-icon icon ion-ios-arrow-left" ng-click="$ionicGoBack()"></button>
+        </span>
+    </ion-nav-buttons>
+  <ion-content class="padding">
+    <h2>您好,您现在要去哪?</h2>
+    <p>最快<span>6分钟</span>接驾</p>
+
+    <div class="out-form">
+        <label class="item item-input">
+            <input type="text" placeholder="手机号" ng-model="phoneNum" />
+        </label>
+      <label class="item item-input">
+        <i></i>
+        <input type="text" placeholder="First Name" value="天地科技广场">
+      </label>
+      <label class="item item-input">
+        <i class="circus-label"></i>
+        <input type="text" placeholder="Last Name" value="虹桥火车站">
+      </label>
+    </div>
+    <button class="button button-block button-clear btn-taking" ng-click="takingATaxi(phoneNum);">呼叫快车</button>
+
+  </ion-content>
+</ion-view>
+

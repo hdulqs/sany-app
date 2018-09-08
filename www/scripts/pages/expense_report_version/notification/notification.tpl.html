@@ -1,0 +1,625 @@
+<ion-view class="erv-notification-page" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'news.message'|translate}}<!--消息--></span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="view.goBack()" class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <div class="create-travel-save" ng-click="news.cleanMessage()">
+            {{'news.empty'|translate}}<!--清空-->
+        </div>
+    </ion-nav-buttons>
+    <ion-content overflow-scroll="true">
+        <ion-refresher on-refresh="news.doRefresh()" pulling-text="{{'news.Loading.in'|translate}}"></ion-refresher>
+        <ion-list>
+            <ion-item ng-repeat="news in news.view.newsDetail" ng-repeat-done="newsListDataLoaded">
+                <div class="row">
+                    <div ng-if="!news.read">
+                        <img src="img/notification/read-point.png" alt="" class="read-point">
+                    </div>
+                    <div class="col">
+                        <!--三一费控消息-->
+                        <div ng-if="news.messageKey === 'SANY_HEC'" ng-click="goSanyNew(news)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}<!--您有一条新的费用生成--></p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{news.content}}<!--请及时处理-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--新的费用生成-->
+                        <div ng-if="news.messageType === 'INVOICE'" ng-click="invoice.goInvoice(news)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{'news.Do.you.have.a.new.fees.generated'|translate}}<!--您有一条新的费用生成--></p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.timely.processing'|translate}}<!--请及时处理-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--预报销申请 待审批-->
+                        <!--<div  ng-click="expense.goPreInvoiceDetail(news)"
+                             ng-if="news.messageType==='CUSTOM_PROCESS_APPROVAL'">
+                            <div class="notice">您有一笔预报销申请需要审批</div>
+                            <div class="col row">
+                                <span class="operation-note">
+                                    请及时处理
+                                </span>
+                                <span class="text-right message-date">
+                                    {{news.createdDate | dayCharFilter}}
+                                </span>
+                            </div>
+                        </div>-->
+                        <!--预报销申请 通过 -->
+                        <div ng-click="expense.goPreInvoiceDetail(news)"
+                             ng-if="news.messageType === 'CUSTOM_PROCESS_PASS'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{'news.Pin.your.forecast.application.approved'|translate}}<!--您的预报销申请审批通过--></p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.generate.the.expense.account'|translate}}<!--请及时生成报销单-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--预报销申请 驳回 -->
+                        <div ng-click="expense.goPreInvoiceDetail(news)"
+                             ng-if="news.messageType === 'CUSTOM_PROCESS_REJECT'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{'news.Your.forecast.pin.application.was.rejected'|translate}}<!--您的预报销申请被驳回--></p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.revise.and.resubmit.in.a.timely.manner'|translate}}<!--请及时修改后重新提交-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--费用申请 待审批-->
+                        <!--<div  ng-click="expense.goExpenseApplicationDetail(news)"
+                             ng-if="news.messageType==='EXPENSE_APPLICATION_APPROVAL'">
+                            <div class="notice">{{news.title}}</div>
+                            <div class="col row">
+                                <span class="operation-note">
+                                    请及时处理
+                                </span>
+                                <span class="text-right message-date">
+                                    {{news.createdDate | dayCharFilter}}
+                                </span>
+                            </div>
+                        </div>-->
+                        <!--费用申请 通过 -->
+                        <div ng-click="expense.goExpenseApplicationDetail(news)"
+                             ng-if="news.messageType === 'EXPENSE_APPLICATION_PASS'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{'news.Your.expense.request.has.been.approved'|translate}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.generate.the.expense.account'|translate}}<!--请及时生成报销单-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--费用申请 驳回 -->
+                        <div ng-click="expense.goExpenseApplicationDetail(news)"
+                             ng-if="news.messageType === 'EXPENSE_APPLICATION_REJECT'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.revise.and.resubmit.in.a.timely.manner'|translate}}<!--请及时修改后重新提交-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--报销单审批 通过-->
+                        <div ng-click="expense.goExpenseDetail(news)"
+                             ng-if="news.messageType === 'EXPENSE_REPORT_PASS'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{'news.Your.expense.claim.has.been.approved'|translate}}<!--您的报销单已审批通过--></p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.print.in.time'|translate}}<!--请及时打印贴票-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--报销单审批 驳回-->
+                        <div ng-click="expense.goExpenseDetail(news)"
+                             ng-if="news.messageType === 'EXPENSE_REPORT_REJECT'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{'news.Your.expense.claim.has.been.rejected'|translate}}<!--您的报销单被驳回--></p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.resubmit.after.timely.treatment'|translate}}<!--请及时处理后重新提交-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--报销单审批 费用驳回-->
+                        <div ng-click="expense.goExpenseDetail(news)"
+                             ng-if="news.messageType === 'EXPENSE_REPORT_INVOICE_REJECT'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--报销单审批 金额发生变化-->
+                        <div ng-click="expense.goExpenseDetail(news)"
+                             ng-if="news.messageType === 'EXPENSE_REPORT_INVOICE_RECEIPT_AMOUNT_CHANGE'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--报销单审核 通过-->
+                        <div ng-click="expense.goExpenseDetail(news)"
+                             ng-if="news.messageType === 'EXPENSE_REPORT_AUDIT_PASS'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.print.in.time'|translate}}<!--请及时打印贴票-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--报销单审核 驳回-->
+                        <div ng-click="expense.goExpenseDetail(news)"
+                             ng-if="news.messageType === 'EXPENSE_REPORT_AUDIT_REJECT'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row row-center">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.resubmit.after.timely.treatment'|translate}}<!--请及时处理后重新提交-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--报销单审核 费用驳回-->
+                        <div ng-click="expense.goExpenseDetail(news)"
+                             ng-if="news.messageType === 'EXPENSE_REPORT_INVOICE_AUDIT_REJECT'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--报销单申请 待审批-->
+                        <!--<div  ng-click="expense.goExpenseDetail(news)"
+                             ng-if="news.messageType==='EXPENSE_REPORT_APPROVAL'">
+                            <div class="notice">{{news.title}}</div>
+                                <div class="col row">
+                                <span class="operation-note">
+                                    请及时生成报销单
+                                </span>
+                                <span class="text-right message-date">
+                                    {{news.createdDate | dayCharFilter}}
+                                </span>
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--差旅申请 通过-->
+                        <div ng-click="expense.goTravelDetail(news)"
+                             ng-if="news.messageType === 'TRAVEL_APPLICATION_PASS'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{'news.Your.travel.request.has.been.approved'|translate}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.generate.the.expense.account'|translate}}<!--请及时生成报销单-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--差旅申请 驳回-->
+                        <div ng-click="expense.goTravelDetail(news)"
+                             ng-if="news.messageType === 'TRAVEL_APPLICATION_REJECT' ">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{'news.Your.travel.request.has.been.rejected'|translate}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.revise.and.resubmit.in.a.timely.manner'|translate}}<!--请及时修改后重新提交-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--差旅申请 待审批-->
+                        <div ng-click="expense.goTravelDetail(news)"
+                             ng-if="news.messageType ==='TRAVEL_APPLICATION_APPROVAL'">
+                            <div class="notice">{{news.title}}</div>
+                            <div class="col row">
+                                <span class="operation-note">
+                                    请及时处理
+                                </span>
+                                <span class="text-right message-date">
+                                    {{news.createdDate | dayCharFilter}}
+                                </span>
+                            </div>
+                        </div>
+                        <!--费用驳回-->
+                        <div class="row row-center expense-item is-reject" ng-if="news.messageType === 'INVOICE_REJECT'"
+                             ng-click="expense.goRejectExpense(news)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{'news.The.cost.of.your.approval.was.rejected'|translate}}<!--您的费用审批被驳回--></p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.please.revise.and.resubmit.in.a.timely.manner'|translate}}<!--请及时修改后重新提交-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--费用 通过-->
+                        <div class="row row-center com-expense-pass" ng-click="expense.goApproval(news)"
+                             ng-if="news.messageType === 'INVOICE_PASS'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{'news.The.cost.of.your.approved'|translate}}<!--您的费用审批通过--></p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.check.in.time.printing.paste'|translate}}<!--请及时查看，打印贴票-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--费用 待审批-->
+                        <div ng-click="expense.goApproval(news)"
+                             ng-if="news.messageType === 'INVOICE_APPROVAL'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.timely.processing'|translate}}<!--请及时处理-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--第三方费用 滴滴、携程-->
+                        <div class="row row-center other-expense" ng-if="new.messageType === 'INVOICE'">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{'news.Do.you.have.a.new.order.in.didi'|translate}}<!--您有一笔新的滴滴订单--></p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{'news.Please.timely.processing'|translate}}<!--请及时处理-->
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--美克-->
+                        <div ng-if="news.messageType === 'OUT_EXPENSE_REPORT_APPROVAL'" ng-click="expense.goSSOApproval(news, $index)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{news.content}}
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="news.messageType === 'OUT_EXPENSE_REPORT_NOT_H5' || news.messageType === 'OUT_APPLICATION_NOT_H5'" ng-click="expense.hasRead(news, $index)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{news.content}}
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="news.messageType === 'TRAVEL_BOOKER_APPLY' || news.messageType === 'TRAVEL_BOOKER_REFUND' || news.messageType === 'TRAVEL_BOOKER_ENDORSE'" ng-click="expense.showBookDetail(news, $index)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{news.dataSource.subtitle}}
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--订票-->
+                        <div ng-if="view.isBooker(news)" ng-click="expense.getBookDetail(news, $index)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{news.dataSource.subtitle}}
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--flyback-->
+                        <div ng-if="news.messageType === 'OUT_APPLICATION_H5'" ng-click="expense.goFlyback(news)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{news.dataSource.subtitle}}
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--借款-->
+                        <div ng-if="news.messageType === 'LOAN_APPLICATION_PASS' || news.messageType === 'LOAN_APPLICATION_REJECT' || news.messageType === 'LOAN_APPLICATION_APPROVAL'" ng-click="expense.getLoadDetail(news, $index)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{news.dataSource.subtitle}}
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--还款-->
+                        <div ng-if="news.messageType === 'REPAYMENT_REJECT' || news.messageType === 'REPAYMENT_PASS' || news.messageType === 'REPAYMENT_PROCESS'" ng-click="expense.getRepaymentDetail(news, $index)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{news.dataSource.subtitle}}
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--京东-->
+                        <div ng-if="view.isJingDong(news)" ng-click="expense.getJingDongDetail(news, $index)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{news.dataSource.subtitle}}
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--汉得版报销单-->
+                        <div ng-if="view.isHandExpense(news)" ng-click="expense.getHandExpenseDetail(news, $index)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row row-center">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{news.content}}
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--瑞好 报销单金额消息提醒 EXPENSE_REPORT_USER_AMOUNT_MESSAGE(提交人)  EXPENSE_REPORT_AUDIT_USER_AMOUNT_MESSAGE（审批人）-->
+                        <div ng-if="news.messageType === 'EXPENSE_REPORT_USER_AMOUNT_MESSAGE' || news.messageType === 'EXPENSE_REPORT_AUDIT_USER_AMOUNT_MESSAGE'" ng-click="expense.goExpenseDetail(news, $index)">
+                            <p class="notice" ng-class="{true: '', false: 'margin-left'}[news.read]">{{news.title}}</p>
+                            <div class="row row-center">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                        {{news.dataSource.subtitle}}
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--知会-->
+                        <div ng-if="news.messageType === 'APPROVAL_CHAIN_NOTICE'" ng-click="expense.goChainNotice(news, $index)">
+                            <div class="row">
+                                <img src="img/notification/notice.png" alt="" class="notice-icon" ng-class="{true: '', false: 'margin-left'}[news.read]">
+                                <div class="row">
+                                    <div class="col col-60">
+                                        <p class="notice notice-text">{{news.title}}</p>
+                                    </div>
+                                    <div class="col col-40 text-right text-money">
+                                        <span ng-if="news.dataSource.formType === 2005 && news.dataSource.amount">
+                                             {{'news.borrowing'|translate}}<!--借款-->：{{news.dataSource.currencyCode}}{{news.dataSource.amount | number:2}}
+                                        </span>
+                                            <span ng-if="(news.dataSource.formType === 2004  || news.dataSource.formType === 3001 || news.dataSource.formType === 3002 || news.dataSource.formType === 3003) && news.dataSource.amount">
+                                             {{'news.money'|translate}}<!--金额-->：{{news.dataSource.currencyCode}}{{news.dataSource.amount | number:2}}
+                                        </span>
+                                            <span ng-if="(news.dataSource.formType === 2001 || news.dataSource.formType === 2002 || news.dataSource.formType === 2003 || news.dataSource.formType === 2005) && news.dataSource.amount">
+                                             {{'news.budget'|translate}}<!--预算-->：{{news.dataSource.currencyCode}}{{news.dataSource.amount | number:2}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margin-top-5">
+                                <div class="col col-80">
+                                    <p class="message-text" ng-class="{true: 'margin-left-32', false: 'margin-left-50'}[news.read]">
+                                        {{news.dataSource.subtitle}}
+                                    </p>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="text-right message-date">
+                                        {{news.createdDate | dayCharFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ion-option-button class="delete-news"
+                                   ng-click="invoice.deleteNews(news,news.invoiceOID)">
+                    <div class="column">
+                        <div class="delete-text">{{'news.delete'|translate}}<!--删除--></div>
+                    </div>
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="news.data.page < news.data.lastPage"
+            on-infinite="news.loadData()" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+        <div class="alert alert-warning warn"
+             align="center"
+             ng-if="news.view.noData === true">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'news.Temporarily.no.new.messages'|translate}}<!--暂时没有新的消息-->!</p>
+        </div>
+        <div ng-if="view.networkError && news.view.newsDetail.length === 0">
+            <not-found-text title="view.networkErrorText" icon="view.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="news.doRefresh()">
+                    {{'news.Click.the.refresh'|translate}}<!--点击刷新-->
+                </button>
+            </div>
+        </div>
+        <div ng-if="view.systemError && news.view.newsDetail.length === 0">
+            <not-found-text title="view.systemErrorText" sub-title="view.systemErrorSubText"
+                            icon="view.systemErrorIcon">
+            </not-found-text>
+        </div>
+    </ion-content>
+
+</ion-view>

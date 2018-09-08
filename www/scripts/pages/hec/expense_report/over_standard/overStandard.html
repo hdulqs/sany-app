@@ -1,0 +1,69 @@
+<ion-view class="hec-over-standard" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'over.standard.title' | translate}}</span> <!--超标准情况-->
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="text-center">
+        <!--超差旅政策-->
+        <div class="detail-status">
+            <p>{{'over.standard.travel.prompt' | translate}}</p>
+            <div>
+                <table class="detail-info text-center">
+                    <tr>
+                        <th>{{'over.standard.travel.exp.item' | translate}}</th>
+                        <th>{{'over.standard.travel.standard.amount' | translate}}</th>
+                        <th>{{'over.standard.travel.function.amount' | translate}}</th>
+                    </tr>
+                    <tr ng-repeat="item in vm.overTravelList">
+                        <td>{{item.p_exp_expense_item}}</td>
+                        <td>{{item.expense_standard_amount | amountFilter}}</td>
+                        <td>{{item.report_function_amount | amountFilter}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="item item-divider" ng-if="vm.overTravelList.length >0 && vm.overOtherReqList.length > 0"></div>
+        <!--超差旅申请情况-->
+        <div class="detail-status" ng-if="vm.type === 'travel'">
+            <p>{{'over.standard.req.prompt' | translate}}</p>
+            <div>
+                <table class="detail-info text-center">
+                    <tr>
+                        <th>{{'over.standard.req.travel.req.amount' | translate}}</th>
+                        <th>{{'over.standard.req.travel.report.amount' | translate}}</th>
+                    </tr>
+                    <tr ng-repeat="item in vm.overTravelReqList">
+                        <td>{{item.requisition_amount | amountFilter}}</td>
+                        <td>{{item.report_amount | amountFilter}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!--超其他申请情况-->
+        <div class="detail-status" ng-if="vm.type === 'other'">
+            <p>{{'over.standard.req.prompt' | translate}}</p>
+            <div ng-repeat="item in vm.overOtherReqList" class="detail-wrap">
+                <div class="row detail-bottom">
+                    <p class="detail-font">{{item.exp_requisition_number}}</p>
+                </div>
+                <div class="row">
+                    <div class="col text-left">{{'over.standard.req.other.req.amount' | translate}}</div>
+                    <div class="col text-right">{{item.requisition_amount |amountFilter}}</div>
+                </div>
+                <div class="row">
+                    <div class="col text-left">{{'over.standard.req.other.report.amount' | translate}}</div>
+                    <div class="col text-right">{{item.report_amount |amountFilter}}</div>
+                </div>
+                <div class="row">
+                    <div class="col text-left">{{'over.standard.req.other.current.amount' | translate}}</div>
+                    <div class="col text-right">{{item.current_report_amount |amountFilter}}</div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

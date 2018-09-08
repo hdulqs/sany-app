@@ -1,0 +1,79 @@
+<ion-modal-view class="book-ticket-detail-modal">
+    <ion-header-bar>
+        <h3 class="title">{{view.messageDetail.title}}</h3>
+        <div class="buttons buttons-left" style="transition-duration: 0ms;">
+            <span class="left-buttons">
+                <a ng-click="bookDetail.hide()">
+                    <img src="img/back.png" class="save-btn">
+                </a>
+            </span>
+        </div>
+        <!--<i class="ion ion-ios-arrow-left cancel" ng-click="bookDetail.hide()"></i>-->
+    </ion-header-bar>
+    <ion-content class="book-ticket-content">
+        <div class="row row-center">
+            <div class="col col-40">
+                {{'news.request.code'|translate}}<!--申请单号-->
+            </div>
+            <div class="col col-60 text-right message-date">
+                {{view.messageDetail.dataSource.businessCode}}
+            </div>
+        </div>
+        <div class="row row-center">
+            <div class="col col-40">
+                {{'news.date'|translate}}<!--日期-->
+            </div>
+            <div class="col col-60 text-right message-date">
+                {{view.messageDetail.createdDate | dateFilter}}
+            </div>
+        </div>
+        <!--<div class="col col-33 text-right message-date">-->
+            <!--{{view.messageDetail.createdDate | dateFilter}}-->
+        <!--</div>-->
+        <div class="row row-center">
+            <div class="col col-33">
+                {{'news.proposer'|translate}}<!--申请人-->
+            </div>
+            <div class="col col-67 text-right message-date">
+                {{view.messageDetail.dataSource.applicantName}}
+            </div>
+        </div>
+        <div class="row row-center" ng-if="view.messageDetail.messageType === 'TRAVEL_BOOKER_APPLY'">
+            <div class="col col-33">
+                {{'news.Passengers'|translate}}<!--乘机人-->
+            </div>
+            <div class="col col-67 text-right message-date">
+                {{view.messageDetail.dataSource.applicationParticipantName}}
+            </div>
+        </div>
+        <div class="row row-center" ng-if="view.messageDetail.messageType === 'TRAVEL_BOOKER_APPLY'">
+            <div class="col col-33">
+                {{'news.External.up.passengers'|translate}}<!--外部乘机人-->
+            </div>
+            <div class="col col-67 text-right message-date">
+                {{view.messageDetail.dataSource.externalParticipantNumber}}
+            </div>
+        </div>
+        <div class="row row-center" ng-if="view.messageDetail.messageType === 'TRAVEL_BOOKER_APPLY'">
+            <div class="col col-33">
+                {{'news.budget'|translate}}<!--预算-->
+            </div>
+            <div class="col col-67 text-right message-date">
+                {{view.messageDetail.dataSource.totalBudget ｜ code}}
+            </div>
+        </div>
+        <div class="row row-textarea">
+            {{view.messageDetail.messageType | bookMessageTitle}}{{'news.note'|translate}}<!--备注-->
+        </div>
+        <div class="row">
+            <textarea ng-model="view.messageDetail.dataSource.remark" readonly class="remark"></textarea>
+        </div>
+    </ion-content>
+    <!--<ion-footer-bar class="footer-button" keyboard-attach>-->
+        <!--<div class="row row-center">-->
+            <!--<div class="col text-center invoice-apply-create-new" ng-click="bookDetail.hide()">-->
+                <!--确定-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</ion-footer-bar>-->
+</ion-modal-view>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no" />
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href='lib/patternLock/patternLock.css' rel='stylesheet' type='text/css'/>
+    <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="css/LCalendar.css" rel="stylesheet">
+    <link href="lib/ion-datetime-picker/release/ion-datetime-picker.min.css" rel="stylesheet">
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/angular-carousel/dist/angular-carousel.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/angular-szn-autocomplete/src/angular-szn-autocomplete.css" />
+    <link href="lib/ion-gallery/dist/ion-gallery.css" rel="stylesheet">
+    <link href="css/mobiscroll.custom-2.17.0.min.css" rel="stylesheet">
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+
+</head>
+<body ng-app="huilianyi" class="hly" ng-class="$root.pageClass">
+<!--
+  The nav bar that will be updated as we navigate between views.
+-->
+<!--
+  The views will be rendered in the <ion-nav-view> directive below
+  Templates are in the /templates folder (but you could also
+  have templates inline in this html file if you'd like).
+-->
+<ion-nav-bar align-title="center" ng-class="{'erv-approval-expense-scanner-color':('app.erv_approval_expense_scanner' | includedByState)}">
+    <ion-nav-back-button class="no-text">
+    </ion-nav-back-button>
+</ion-nav-bar>
+<ion-nav-view name="main"></ion-nav-view>
+<script src="lib/jquery/dist/jquery.min.js"></script>
+<script src='lib/patternLock/patternLock.js'></script>
+<script src="lib/ionic/js/ionic.bundle.js"></script>
+<!-- third party scripts -->
+<script src="lib/angular-resource/angular-resource.min.js"></script>
+<script src="lib/angular-messages/angular-messages.min.js"></script>
+<script src="lib/angular-touch/angular-touch.min.js"></script>
+<script src="lib/angular-carousel/dist/angular-carousel.min.js"></script>
+<script src="lib/angular-load/angular-load.min.js"></script>
+<script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="lib/ion-gallery/dist/ion-gallery.min.js"></script>
+
+<!--mocks-->
+<!--<script src="lib/angular-mocks/angular-mocks.js"></script>-->
+<!--<script src="scripts/mockData.js"></script>-->
+
+<script src="lib/angular-local-storage/dist/angular-local-storage.min.js"></script>
+<script src="lib/angular-szn-autocomplete/src/angular-szn-autocomplete.js"></script>
+<script src="lib/moment/min/moment.min.js"></script>
+<script src="lib/angular-timer/dist/angular-timer.min.js"></script>
+<script src="lib/humanize-duration/humanize-duration.js"></script>
+<script src="lib/ionic-zoom-view/dist/ionic-zoom-view.js"></script>
+<script src="lib/ion-datetime-picker/release/ion-datetime-picker.min.js"></script>
+<script src="lib/nzh/nzh.js"></script>
+<script src="lib/SHA-1/sha1.js"></script>
+
+<script src="lib/ionic-timepicker/dist/ionic-timepicker.bundle.min.js"></script>
+<script src="lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
+<script src="lib/ngstorage/ngStorage.min.js"></script>
+<script src="lib/ng-currency/dist/ng-currency.js"></script>
+
+<script src="lib/angulartics/dist/angulartics.min.js"></script>
+<script src="lib/angulartics-piwik/dist/angulartics-piwik.min.js"></script>
+<script src="lib/angulartics-piwik/dist/piwik.js"></script>
+
+<script src="lib/raven-js/dist/raven.js"></script>
+<script src="lib/raven-js/dist/plugins/angular.js"></script>
+
+<script src="lib/angular-translate/angular-translate.js"></script>
+<script src="lib/messageformat/messageformat.js"></script>
+<script src="lib/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+<script src="lib/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+<script src="lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="lib/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+
+<!-- cordova script (this will be a 404 during development) -->
+<script src="cordova.js"></script>
+<script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+<script src="lib/angular-svg-round-progressbar/build/roundProgress.min.js"></script>
+<script src="lib/ionic-cache-src/ionic-cache-src.js"></script>
+<script src="assets/ionic-modal-select.js"></script>
+<script src="assets/Chart.js/Chart.js"></script>
+<script src="assets/Chart.js/src/Chart.Line.js"></script>
+<script src="assets/LCalendar.js"></script>
+<script src="lib/pinyin/pinyin_dict_firstletter.js"></script>
+<script src="lib/pinyin/pinyin_dict_notone.js"></script>
+<script src="lib/pinyin/pinyin_dict_polyphone.js"></script>
+<script src="lib/pinyin/pinyin_dict_withtone.js"></script>
+<script src="lib/pinyin/pinyinUtil.js"></script>
+
+<!-- your app's js -->
+<script src="scripts/services/service.js"></script>
+<script src="scripts/pages/pages.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/constants.js"></script>
+<script src="scripts/app.constants.js"></script>
+<script src="scripts/server.js"></script>
+<script src="scripts/pages/login/login.js"></script>
+<script src="scripts/pages/pattern_lock/pattern.lock.js"></script>
+<script src="scripts/pages/pattern_lock/pattern.lock.gesture.js"></script>
+<script src="scripts/pages/pattern_lock/pattern.lock.setting.js"></script>
+<script src="scripts/pages/account/change_password/change.password.js"></script>
+<script src="scripts/pages/account/activate/activate.user.js"></script>
+<script src="scripts/pages/account/forgot_password/forgot.password.js"></script>
+<script src="scripts/pages/dashboard/dashboard.js"></script>
+<script src="scripts/pages/expense/create.expense.js"></script>
+<script src="scripts/pages/expense/expense.list.js"></script>
+
+<script src="scripts/pages/notification/notification.js"></script>
+<script src="scripts/pages/my_account/my.account.js"></script>
+<script src="scripts/pages/company_receipted_invoice/company.receipts.list.js"></script>
+<script src="scripts/pages/company_receipted_invoice/company.receipted.invoice.js"></script>
+<script src="scripts/components/tabs.js"></script>
+<script src="scripts/components/tabs.erv.js"></script>
+<script src="scripts/pages/approval/map.view.js"></script>
+<script src="scripts/pages/settings/setting.list.js"></script>
+<script src="scripts/pages/settings/person.setting.js"></script>
+<script src="scripts/pages/settings/photo.setting.js"></script>
+<script src="scripts/pages/settings/order.form.js"></script>
+<script src="scripts/pages/settings/expense.time.submit.js"></script>
+<script src="scripts/pages/settings/didi.order.sync.js"></script>
+<script src="scripts/pages/settings/account.bind.js"></script>
+<script src="scripts/pages/settings/security.center.js"></script>
+<script src="scripts/pages/help/faq/login/faq.login.detail.js"></script>
+<script src="scripts/pages/help/faq/login/faq.login.list.js"></script>
+<script src="scripts/pages/help/faq/faq.list.js"></script>
+<script src="scripts/pages/help/feedback/feedback.js"></script>
+<script src="scripts/pages/help/help.list.js"></script>
+<script src="scripts/pages/about_us/contact_us/contact.us.js"></script>
+<script src="scripts/pages/about_us/function_introduction/function.introduction.js"></script>
+<script src="scripts/pages/about_us/protocol/protocol.js"></script>
+<script src="scripts/pages/about_us/about.us.js"></script>
+<script src="scripts/pages/register/check.user.detail.js"></script>
+<script src="scripts/pages/register/set.password.js"></script>
+<script src="scripts/pages/register/register.company.js"></script>
+<script src="scripts/pages/waveTravel/wave.travel.js"></script>
+<script src="scripts/pages/demo/didi.fake.js"></script>
+<script src="scripts/pages/approval/approval.js"></script>
+<script src="scripts/pages/approval/approval.list.js"></script>
+<script src="scripts/pages/approval/approval.expense.list.js"></script>
+<script src="scripts/pages/approval/approval.other.expense.js"></script>
+<script src="scripts/components/directive/location.selector.directive.js"></script>
+<script src="scripts/components/modal/expense_select_type/select.type.js"></script>
+<script src="scripts/components/modal/expense.item.directive.js"></script>
+<script src="scripts/components/directive/erv.invoice.item.directive.js"></script>
+<script src="scripts/components/directive/department.selector.directive.js"></script>
+<script src="scripts/components/directive/department.item.directive.js"></script>
+<script src="scripts/components/directive/approval.chain.selector.directive.js"></script>
+<script src="scripts/components/directive/approval.selector.directive.js"></script>
+<script src="scripts/components/directive/search_loading/search.loading.directive.js"></script>
+<script src="scripts/components/modal/expense_item/expense.report.item.directive.js"></script>
+<script src="scripts/components/modal/upload_picture/upload.picture.js"></script>
+<script src="scripts/components/directive/gallery/hly.gallery.js"></script>
+<script src="scripts/pages/travel/travel.list.js"></script>
+<script src="scripts/pages/travel/ordinary.travel.js"></script>
+<script src="scripts/components/modal/cost.center.item.selector.directive.js"></script>
+<script src="scripts/pages/expense_report_version/travel/travel.list.js"></script>
+<script src="scripts/pages/expense_report_version/invoice_apply/invoice.apply.list.js"></script>
+<script src="scripts/pages/expense_report_version/invoice_apply/invoice.apply.create.js"></script>
+<script src="scripts/pages/expense_report_version/invoice_apply/select.invoice.type.js"></script>
+<script src="scripts/components/modal/invoice_apply/invoice.apply.item.directive.js"></script>
+<script src="scripts/components/modal/travel_item/travel.item.directive.js"></script>
+<script src="scripts/pages/expense_report_version/travel/create/create.travel.base.js"></script>
+<script src="scripts/pages/expense_report_version/travel/create/create.travel.next.js"></script>
+<script src="scripts/pages/expense_report_version/homepage/homepage.js"></script>
+<script src="scripts/pages/expense_report_version/application/application.list.js"></script>
+<script src="scripts/pages/expense_report_version/my_account/my.account.js"></script>
+<script src="scripts/pages/expense_report_version/my_account/account_book/account_book.js"></script>
+<script src="scripts/components/modal/person_selector/person.selector.directive.js"></script>
+<script src="scripts/components/modal/city_selector/city.selector.directive.js"></script>
+<script src="scripts/pages/expense_report_version/my_account/problem/problem.js"></script>
+<script src="scripts/components/directive/user.avatar.directive.js"></script>
+<script src="scripts/pages/expense_report_version/invoice_apply/invoice.apply.detail.js"></script>
+<script src="scripts/pages/expense_report_version/invoice_apply/invoice.apply.success.js"></script>
+<script src="scripts/pages/expense_report_version/welcome/welcome.js"></script>
+<!-- config -->
+<script src="scripts/config/auth.config.js"></script>
+<script src="scripts/config/http.timeout.config.js"></script>
+<script src="scripts/config/localstorage.config.js"></script>
+<!-- services -->
+<script src="scripts/services/auth/principal.js"></script>
+<script src="scripts/services/auth/account.service.js"></script>
+<script src="scripts/services/auth/auth.oauth2.service.js"></script>
+<script src="scripts/services/auth/auth.service.js"></script>
+<script src="scripts/services/auth/principal.js"></script>
+<script src="scripts/services/auth/pattern.lock.service.js"></script>
+<script src="scripts/services/auto.update.service.js"></script>
+<script src="scripts/services/interceptor/auth.interceptor.js"></script>
+<script src="scripts/services/interceptor/http.timeout.interceptor.js"></script>
+<script src="scripts/services/interceptor/errorhandler.interceptor.js"></script>
+<script src="scripts/services/invoice.service.js"></script>
+<script src="scripts/services/ctrip.service.js"></script>
+<script src="scripts/services/push.service.js"></script>
+<script src="scripts/services/company.configuration.service.js"></script>
+<script src="scripts/services/expense.sheet.service.js"></script>
+<script src="scripts/services/feedback.service.js"></script>
+<script src="scripts/services/version.service.js"></script>
+<script src="scripts/services/upload.file.service.js"></script>
+<script src="scripts/services/filter.js"></script>
+<script src="scripts/services/expense.service.js"></script>
+<script src="scripts/services/wave.travel.service.js"></script>
+<script src="scripts/services/travel.service.js"></script>
+<script src="scripts/services/cost.center.service.js"></script>
+<script src="scripts/services/workflow.service.js"></script>
+<script src="scripts/services/notification.service.js"></script>
+<script src="scripts/services/approval.service.js"></script>
+<script src="scripts/services/popup.approval.service.js"></script>
+<script src="scripts/services/scanner.service.js"></script>
+<script src="scripts/services/location.service.js"></script>
+<script src="scripts/services/map.service.js"></script>
+<script src="scripts/services/carousel.service.js"></script>
+<script src="scripts/services/company.service.js"></script>
+<script src="scripts/services/img.auto.recognition.service.js"></script>
+<script src="scripts/services/place.service.js"></script>
+<script src="scripts/services/services_erv/travel.erv.service.js"></script>
+<script src="scripts/services/user.service.js"></script>
+<script src="scripts/services/services_erv/approval.erv.service.js"></script>
+<script src="scripts/services/services_erv/invoice.apply.service.js"></script>
+<script src="scripts/services/services_erv/expense.report.service.js"></script>
+<script src="scripts/services/network.information.service.js"></script>
+<script src="scripts/services/function.profile.service.js"></script>
+<script src="scripts/services/judge.https.service.js"></script>
+
+<!-- remote js -->
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=1.5&ak=i6Ft7l8flPNq7Ub6O2vmcuGx&s=1"></script>
+<script src="https://webapi.amap.com/maps?v=1.3&key=a248914765f4a9ebeabd1dbda40d42d5&plugin=AMap.Driving"></script>
+
+<!-- util -->
+<script src="scripts/services/util/base64.service.js"></script>
+<script src="scripts/services/util/parse-links.service.js"></script>
+<script src="scripts/services/util/ng.repeat.done.directive.js"></script>
+<script src="scripts/services/util/img.size.convert.js"></script>
+<!--<script src="scripts/plugins/location.plugins.js"></script>-->
+<script src="scripts/services/util/recursive.helper.util.js"></script>
+<!--erv js-->
+<script src="scripts/pages/expense_report_version/notification/notification.js"></script>
+<script src="scripts/pages/expense_report_version/approval/approval.list.js"></script>
+<script src="scripts/pages/expense_report_version/expense_report/expense.report.js"></script>
+<script src="scripts/pages/expense_report_version/approval/scanner/approval.expense.scanner.js"></script>
+<script src="scripts/pages/expense_report_version/expense_report/detail/expense.report.detail.js"></script>
+<script src="scripts/pages/expense_report_version/expense_report/detail/expense.consume.js"></script>
+<script src="scripts/pages/expense_report_version/expense_report/detail/relative.expense.detail.js"></script>
+<script src="scripts/pages/expense_report_version/expense_report/create/create.expense.sheet.js"></script>
+<script src="scripts/pages/expense_report_version/approval/expense_report/approval.expense.report.js"></script>
+<script src="scripts/pages/expense_report_version/approval/approval.list.history.js"></script>
+<script src="scripts/pages/expense_report_version/travel/export_success/export.travel.success.js"></script>
+<script src="scripts/components/modal/approval_selector/approval.selector.modal.js"></script>
+<script src="scripts/pages/expense_report_version/expense_report/create/create.expense.first.js"></script>
+<script src="scripts/pages/expense_report_version/expense_report/create/create.expense.second.js"></script>
+<script src="scripts/components/modal/value_list/value.selector.directive.js"></script>
+<script src="scripts/components/modal/select_rental/select.rental.modal.js"></script>
+<script src="scripts/pages/expense_report_version/carousel_detail/carousel.detail.js"></script>
+<script src="scripts/pages/expense_report_version/report_form/report_form.analysis.js"></script>
+<script src="scripts/components/directive/not_found_text/not.found.text.js"></script>
+<script src="scripts/components/modal/select_supplier/supplier.selector.js"></script>
+<script src="scripts/components/modal/add_person/person.add.js"></script>
+<!--erv services js-->
+<script src="scripts/services/services_erv/department.service.js"></script>
+<script src="scripts/services/services_erv/user.service.js"></script>
+<script src="scripts/services/services_erv/filters/number.filter.js"></script>
+<script src="scripts/services/services_erv/expense.report.service.js"></script>
+<script src="scripts/services/currency.code.service.js"></script>
+<script src="scripts/services/custom.value.service.js"></script>
+<script src="scripts/services/services_erv/report_form.analysis.service.js"></script>
+<script src="scripts/services/third.part.service.js"></script>
+<script src="scripts/services/baoku.service.js"></script>
+<script src="scripts/services/public.service.js"></script>
+<script src="scripts/services/jingdong.service.js"></script>
+<script src="scripts/services/agency.service.js"></script>
+<script src="scripts/services/server.service.js"></script>
+<script src="scripts/pages/expense_report_version/homepage/supplier/supplier.list.js"></script>
+<script src="scripts/pages/expense_report_version/self_define_expense_report/self.define.expense.report.base.js"></script>
+<script src="scripts/pages/expense_report_version/self_define_expense_report/self.define.expense.report.next.js"></script>
+<script src="scripts/services/self.define.expense.report.service.js"></script>
+<script src="scripts/components/modal/cost_center/cost.center.selector.modal.js"></script>
+<script src="scripts/components/modal/applicant_selector/applicant.selector.modal.js"></script>
+<script src="scripts/pages/expense_report_version/custom_application/custom.application.base.js"></script>
+<script src="scripts/pages/register/service.agreement.js"></script>
+<script src="scripts/components/modal/break_expense/break.expense.directive.js"></script>
+<script src="scripts/services/custom.application.service.js"></script>
+<script src="scripts/pages/expense_report_version/custom_application/custom.application.list.js"></script>
+<script src="scripts/pages/expense_report_version/custom_application/custom.application.detail.js"></script>
+<script src="scripts/pages/expense_report_version/custom_application/jingdong/jingdong.application.base.js"></script>
+<script src="scripts/pages/expense_report_version/custom_application/jingdong/jingdong.application.detail.js"></script>
+<script src="scripts/components/directive/application_item/application.item.directive.js"></script>
+<script src="scripts/components/modal/invoice_select_type/invoice.select.type.model.js"></script>
+<script src="scripts/pages/expense_report_version/my_account/borrow_money/borrow_money.js"></script>
+<script src="scripts/components/modal/borrow_money_item/borrow.money.item.directive.js"></script>
+<script src="scripts/services/borrow.money.service.js"></script>
+<script src="scripts/components/modal/select_corporation_entity/select.corporation.entity.modal.js"></script>
+<script src="scripts/services/services_erv/corporation.entity.service.js"></script>
+<script src="scripts/components/directive/linkage_switch/linkage.switch.directive.js"></script>
+<script src="scripts/components/directive/select_destination/select.destination.directive.js"></script>
+<script src="scripts/components/modal/select_box/select.box.directive.js"></script>
+<script src="scripts/components/directive/money.input.js"></script>
+<script src="scripts/pages/expense_report_version/custom_application/didi_refund/didi.refund.base.js"></script>
+<script src="scripts/pages/expense_report_version/custom_application/didi_refund/didi.refund.detail.js"></script>
+<script src="scripts/components/directive/card.input.directive.js"></script>
+<script src="scripts/components/directive/select_account/select.account.directive.js"></script>
+<!--<script src="scripts/plugins/ion-digital-keyboard.js"></script>-->
+<script src="lib/ion-digital-keyboard/dist/ion-digital-keyboard.js"></script>
+<script src="lib/ion-digital-keyboard/location.plugins.js"></script>
+<script src="scripts/components/directive/bank_item/bank.item.directive.js"></script>
+<script src="scripts/pages/expense_report_version/private_car_for_public/private.car.for.public.js"></script>
+<script src="scripts/services/private.car.for.public.service.js"></script>
+<script src="scripts/components/modal/bank_account/bank.account.model.js"></script>
+<script src="scripts/pages/expense_report_version/homepage/ctrip_no_card/ctrip.no.card.js"></script>
+<script src="scripts/components/directive/focus.directive.js"></script>
+<script src="scripts/components/directive/keyboard_amount/keyboard.amount.directive.js"></script>
+<script src="scripts/components/directive/range_time/range.time.directive.js"></script>
+<script src="scripts/pages/expense_report_version/custom_application/modal/mobiscroll.custom-2.17.0.min.js"></script>
+<script src="scripts/components/directive/finishRender.directive.js"></script>
+<script src="scripts/components/directive/expense_apportion/expense.apportion.directive.js"></script>
+<script src="scripts/components/directive/vat_special/vat.special.directive.js"></script>
+<script src="scripts/components/modal/city_selector/city-ion-sticky.js"></script>
+<script src="scripts/components/modal/city_selector/city-words-directive.js"></script>
+<script src="scripts/components/modal/city_selector/city-kepp-focus.js"></script>
+<script src="scripts/components/modal/roommate_selector/roommate.selector.modal.js"></script>
+
+<!--for hec component(lov)-->
+<script src="scripts/components/hec/unit/hecunit.selector.directive.js"></script>
+<script src="scripts/components/hec/resp/hecresp.selector.directive.js"></script>
+<script src="scripts/components/hec/cry/heccry.selector.directive.js"></script>
+<script src="scripts/components/hec/expitem/hecexpitem.selector.directive.js"></script>
+<script src="scripts/components/hec/bemp/hecbemp.selector.directive.js"></script>
+<script src="scripts/components/hec/cashplan/heccashplan.selector.directive.js"></script>
+<script src="scripts/components/hec/company/heccompany.selector.directive.js"></script>
+<script src="scripts/components/hec/common/hecflex.selector.directive.js"></script>
+<script src="scripts/components/hec/location/heclocation.selector.directive.js"></script>
+<script src="scripts/components/hec/doctype/hecdoctype.selector.directive.js"></script>
+<script src="scripts/components/hec/cabin/heccabin.selector.directive.js"></script>
+<script src="scripts/components/hec/emptype/hecemptype.selector.directive.js"></script>
+<script src="scripts/components/hec/loantype/hecloantype.selector.directive.js"></script>
+<script src="scripts/components/hec/account/hecaccount.selector.directive.js"></script>
+<script src="scripts/components/hec/invitem/hecinvitem.selector.directive.js"></script>
+<script src="scripts/components/hec/syscode/hec.syscode.selector.directive.js"></script>
+
+<!--for hec component(com box)-->
+<script src="scripts/components/hec/rate/hecrate.selector.directive.js"></script>
+<script src="scripts/components/hec/period/hecperiod.selector.directive.js"></script>
+<script src="scripts/components/hec/invcate/hecinvcate.selector.directive.js"></script>
+<script src="scripts/components/hec/exptype/hecexptype.selector.directive.js"></script>
+<script src="scripts/components/hec/employee/hecemp.selector.directive.js"></script>
+<script src="scripts/components/hec/reimtype/hecreimtype.selector.directive.js"></script>
+<script src="scripts/components/hec/dimension/hecdimension.selector.directive.js"></script>
+<script src="scripts/components/hec/reqitem/hecreqitem.selector.directive.js"></script>
+<script src="scripts/components/hec/payment-method/hecpayway.selector.directive.js"></script>
+<script src="scripts/components/hec/beneficiary/hecbeneficiary.selector.directive.js"></script>
+
+<!--for hec service-->
+<script src="scripts/services/hec/hecemployee.service.js"></script>
+<script src="scripts/services/hec/heccompany.service.js"></script>
+<script src="scripts/services/hec/hecunit.service.js"></script>
+<script src="scripts/services/hec/hecresp.service.js"></script>
+<script src="scripts/services/hec/heccry.service.js"></script>
+<script src="scripts/services/hec/hecperiod.service.js"></script>
+<script src="scripts/services/hec/hecrate.service.js"></script>
+<script src="scripts/services/hec/hecexptype.service.js"></script>
+<script src="scripts/services/hec/hecexpitem.service.js"></script>
+<script src="scripts/services/hec/hecinvcate.service.js"></script>
+<script src="scripts/services/hec/hecbemp.service.js"></script>
+<script src="scripts/services/hec/hecreimtype.service.js"></script>
+<script src="scripts/services/hec/heccashplan.service.js"></script>
+<script src="scripts/services/hec/hecimage.service.js"></script>
+<script src="scripts/services/hec/hecflex.service.js"></script>
+<script src="scripts/services/hec/heclocation.service.js"></script>
+<script src="scripts/services/hec/hecdimension.service.js"></script>
+<script src="scripts/services/hec/hectravelquery.service.js"></script>
+<script src="scripts/services/hec/hecreqitem.service.js"></script>
+<script src="scripts/pages/hec/expense_book/my_book/expense/create.exp.service.js"></script>
+<script src="scripts/pages/hec/expense_book/travel_trip/chooseTravelTrip.service.js"></script>
+<script src="scripts/pages/hec/expense_book/travel_trip/confirmTravelTrip.service.js"></script>
+<script src="scripts/pages/hec/expense_book/travel_trip/subsidyInfo/subsidyList.service.js"></script>
+<script src="scripts/pages/hec/expense_book/travel_trip/subsidyInfo/subsidyAddList.js"></script>
+<script src="scripts/pages/hec/expense_book/travel_trip/flyInfo/flyInfo.service.js"></script>
+<script src="scripts/pages/hec/expense_report/report.header.service.js"></script>
+<script src="scripts/services/hec/hecpayway.service.js"></script>
+<script src="scripts/services/hec/hecbeneficiary.service.js"></script>
+<script src="scripts/pages/hec/expense_report/need_req/my.req.service.js"></script>
+<script src="scripts/pages/hec/expense_req/req.header.service.js"></script>
+<script src="scripts/pages/hec/expense_req/req.line.service.js"></script>
+<script src="scripts/services/hec/hecdoctype.service.js"></script>
+<script src="scripts/services/hec/hecsyscode.service.js"></script>
+<script src="scripts/services/hec/hecinvitem.service.js"></script>
+<script src="scripts/services/hec/heccabin.service.js"></script>
+<script src="scripts/services/hec/hecemptype.service.js"></script>
+<script src="scripts/services/hec/hecloantype.service.js"></script>
+<script src="scripts/services/hec/hecaccount.service.js"></script>
+<script src="scripts/pages/hec/approval.record.service.js"></script>
+<script src="scripts/pages/hec/expense_book/my_book/exp.list.service.js"></script>
+<script src="scripts/pages/hec/expense_req/req.list.service.js"></script>
+<script src="scripts/pages/hec/approval_center/approval.service.js"></script>
+<script src="scripts/pages/hec/expense_report/report.list.service.js"></script>
+<script src="scripts/services/cas.service.js"></script>
+<script src="scripts/pages/hec/expense_req/req.loan.service.js"></script>
+<script src="scripts/pages/hec/loan_req/loan.header.service.js"></script>
+
+<!--for hec controller-->
+<script src="scripts/pages/test/demo.js"></script>
+<script src="scripts/pages/test/test.js"></script>
+<script src="scripts/pages/hec/expense_book/my_book/expList.js"></script>
+<script src="scripts/pages/hec/expense_book/my_book/expense/createExp.js"></script>
+<script src="scripts/pages/hec/expense_report/reportList.js"></script>
+<script src="scripts/pages/hec/expense_report/over_standard/overStandard.js"></script>
+<script src="scripts/pages/hec/expense_book/travel_trip/confirmTravelTrip.js"></script>
+<script src="scripts/pages/hec/expense_book/travel_trip/chooseTravelTrip.js"></script>
+<script src="scripts/pages/hec/expense_book/travel_trip/subsidyInfo/subsidyInfo.js"></script>
+<script src="scripts/pages/hec/expense_book/travel_trip/hotelInfo/hotelInfo.js"></script>
+<script src="scripts/pages/hec/expense_book/travel_trip/flyInfo/flyInfo.js"></script>
+<script src="scripts/pages/hec/expense_req/reqList.js"></script>
+<script src="scripts/pages/hec/expense_req/wait_approve/travelReqDetail.js"></script>
+<script src="scripts/pages/hec/expense_req/wait_approve/dailyReqDetail.js"></script>
+<script src="scripts/pages/hec/expense_req/daily/dailyReqLine.js"></script>
+<script src="scripts/pages/hec/expense_req/complete_info/completeInfo.js"></script>
+<script src="scripts/pages/hec/companyExpType.js"></script>
+<script src="scripts/pages/hec/expense_report/need_req/myReqList.js"></script>
+<script src="scripts/pages/hec/expense_report/plan_payment/paymentList.js"></script>
+<script src="scripts/pages/hec/expense_book/travel_trip/subsidyInfo/subsidyList.js"></script>
+<script src="scripts/pages/hec/approval_center/req/loanList.js"></script>
+<script src="scripts/pages/hec/loan_req/loanReqHeader.js"></script>
+<script src="scripts/pages/hec/loan_req/loanReqLine.js"></script>
+<script src="scripts/pages/hec/approval_center/approvalList.js"></script>
+<script src="scripts/pages/hec/approval_center/req/approvalReq.js"></script>
+<script src="scripts/pages/hec/approval_center/req/budgetItem.js"></script>
+<script src="scripts/pages/hec/approval_center/loan/approvalLoan.js"></script>
+<script src="scripts/pages/hec/approval_center/loan/loanItem.js"></script>
+<script src="scripts/pages/hec/approval_center/report/approvalReport.js"></script>
+<script src="scripts/pages/hec/approval_center/report/expenseItem.js"></script>
+<script src="scripts/pages/hec/approval_center/report/payPlan.js"></script>
+<script src="scripts/pages/hec/approval_center/payment/approvalPayment.js"></script>
+<script src="scripts/pages/hec/approval_center/payment/paymentItem.js"></script>
+<script src="scripts/pages/hec/expense_req/travel/travelReqHeader.js"></script>
+<script src="scripts/pages/hec/expense_req/travel/travelReqLine.js"></script>
+<script src="scripts/pages/hec/docHistory.js"></script>
+<script src="scripts/pages/hec/expense_req/daily/dailyReqHeader.js"></script>
+<script src="scripts/pages/hec/expense_req/reqRefLoanList.js"></script>
+<script src="scripts/pages/hec/expense_report/reportHeader.js"></script>
+
+</body>
+</html>

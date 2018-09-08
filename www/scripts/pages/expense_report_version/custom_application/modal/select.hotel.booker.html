@@ -1,0 +1,71 @@
+<ion-modal-view class="together-book-ticket">
+    <ion-content class="block-content" has-bouncing="false">
+        <!--<div class="fix-bg" ng-click="view.hideHotelBooker()">-->
+        <!--</div>-->
+        <div class="white-bg">
+            <div class="row row-center booker-title">
+                <span class="booker-cancel" ng-click="view.hideHotelBooker()">
+                    {{"common.cancel"|translate}}
+                    <!--取消-->
+                </span>
+                <div class="col col-100 text-center">
+                    <!--选择预订人-->
+                    {{'modal.select_booker' | translate}}
+                </div>
+                <div class="random" ng-click="view.getRandomClerk()">
+                    <span class="random-text">
+                        <!--随机-->
+                        {{'custom.application.tip.random' | translate}}
+                    </span>
+                    <img src="img/expense_report_version/travel/random.png" alt="" class="random-image">
+                </div>
+                <span class="booker-sure" ng-click="view.hideHotelBooker(true)"
+                      ng-class="{'booker-sure-blue': view.applicationData.travelApplication.travelHotelBookingFemaleClerks.length == view.hotelRoomData.femaleRoomNumber &&
+                      view.applicationData.travelApplication.travelHotelBookingMaleClerks.length == view.hotelRoomData.maleRoomNumber}">
+                    {{"common.sure"|translate}}
+                    <!--确认-->
+                </span>
+            </div>
+            <ion-scroll direction="y" class="scroll-booker">
+                <div  ng-if="view.hotelRoomData.maleUsers.length > 0">
+                    <div class="row row-center">
+                        <div class="col col-50">
+                        <span class="sex-block">
+                            <!--男士-->
+                            {{'custom.application.tip.male' | translate}}
+                        </span>
+                        </div>
+                        <div class="col col-50 text-right select-number">
+                            {{view.applicationData.travelApplication.travelHotelBookingMaleClerks.length}}/{{view.hotelRoomData.maleUsers.length}}
+                        </div>
+                    </div>
+                    <div class="row row-center border-bottom row-name" ng-repeat="item in view.hotelRoomData.maleUsers"
+                         ng-click="view.selectHotelBook('male', item.userOID)">
+                        {{item.fullName}}
+                        <img src="img/expense_report_version/travel/select.png" alt="" class="arrow-checked"
+                        ng-if="view.applicationData.travelApplication.travelHotelBookingMaleClerks.indexOf(item.userOID) > -1">
+                    </div>
+                </div>
+                <div>
+                    <div class="row row-center">
+                        <div class="col col-50">
+                        <span class="sex-block">
+                            {{'custom.application.tip.female' | translate}}
+                            <!--女士-->
+                        </span>
+                        </div>
+                        <div class="col col-50 text-right select-number">
+                            {{view.applicationData.travelApplication.travelHotelBookingFemaleClerks.length}}/{{view.hotelRoomData.femaleUsers.length}}
+                        </div>
+                    </div>
+                    <div class="row row-center border-bottom row-name" ng-repeat="item in view.hotelRoomData.femaleUsers"
+                    ng-click="view.selectHotelBook('female', item.userOID)">
+                        {{item.fullName}}
+                        <img src="img/expense_report_version/travel/select.png" alt="" class="arrow-checked"
+                             ng-if="view.applicationData.travelApplication.travelHotelBookingFemaleClerks.indexOf(item.userOID) > -1">
+                    </div>
+                </div>
+            </ion-scroll>
+        </div>
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,36 @@
+<ion-view class="register-success">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'register.registered'|translate}}<!--注册--></span>
+    </ion-nav-title>
+    <ion-content class="password-logo animated slideInUp">
+        <img src="img/register/success.png" class="logo-icon"/>
+        <div>
+            <p class="register-text">{{'register.Congratulations.on.your.successful.registration'|translate}}<!--恭喜您注册成功-->!</p>
+        </div>
+        <div>
+            <p class="register-text">{{'register.You.will.have.permanent.free.20.accounts'|translate}}<!--您将拥有20个永久免费账户--></p>
+        </div>
+        <button class="button confirm-button"
+                ng-click="registerSuccess()">
+            {{'register.complete'|translate}}<!--完成-->
+        </button>
+        <div>
+            <p class="contact-text">
+                {{'register.If.you.have.more.demand.on.the.function.please.contact'|translate}}<!--如您在功能上有更多需求，请联系-->
+            </p>
+        </div>
+        <div class="row row-center contact-way">
+            <img class="col col-center col-10 contact-img" src="img/register/phone.png">
+            <a class="col col-center" href="tel:021-52921523">021-52921532</a>
+            <img class="col col-center col-10 contact-img" src="img/register/email.png">
+            <a class="col col-center" href="mailto: service@yunmart.com">service@yunmart.com</a>
+        </div>
+        <div class="row separate-line"></div>
+        <div class="row responsive-sm other-information">
+            <div class="col information-item">{{'register.If.you.need.to.modify.the.configuration.please.visit.the.following.address.in.PC'|translate}}<!--如您需要修改配置,请在PC端访问以下地址--></div>
+            <div class="col information-item">
+                <a>www.huilianyi.com</a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

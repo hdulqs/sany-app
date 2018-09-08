@@ -1,0 +1,351 @@
+<div class="invoice-select-type-model-directive">
+    <div class="item-invoice-type">
+        <div>
+
+            <ion-item ng-repeat="expense in invoiceList track by $index"
+                      class="expense-item">
+                <div class="row row-center"
+                     ng-click="changeDialog($index,expense)">
+                    <img class="consume-icon"
+                         ng-src="{{expense.expenseType.iconURL}}"
+                         alt=""
+                         ng-if="expense.expenseType.iconURL">
+                    <img class="consume-icon"
+                         ng-src="img/expensetypes/{{expense.expenseType.iconName}}.png"
+                         alt=""
+                         ng-hide="expense.expenseType.iconURL">
+                    <div class="col col-50">
+                        <h2 class="consume-item">{{expense.expenseType.name}}</h2>
+                    </div>
+                    <div class="col text-right money"
+                         ng-if="expense.currencyCode==originCurrencyCode"
+                         ng-class="{true: '', false: 'text-no-input'}[ expense.amount > 0]">
+                        <p>
+                            <span>{{expense.currencyCode}}</span>
+                            <span>{{expense.amount | number:2}}</span>
+                        </p>
+                    </div>
+                    <!--如果不是本位币会显示两种类型-->
+                    <div class="col text-right money"
+                         ng-if="expense.currencyCode!=originCurrencyCode"
+                         ng-class="{true: '', false: 'text-no-input'}[ expense.amount > 0]">
+                        <p class="invoice-money-foreign">
+                            <span>{{expense.currencyCode}}</span>
+                            <span>{{expense.amount | number:2}}</span>
+                        </p>
+                        <p ng-if="expense.currencyCode!=originCurrencyCode">
+                            <span>{{originCurrencyCode}}</span>
+                            <span>{{expense.baseCurrencyAmount | number:2}}</span>
+                        </p>
+                    </div>
+
+                </div>
+                <!--可以修改汇率:如果设定的汇率与企业不一样,会显示差异与企业汇率-->
+                <!--expense.currencyCode == null代码以前非多币种的数据-->
+                <div class="expense-rate-wrap" ng-if="!!(expense.actualCurrencyRate &&
+    expense.actualCurrencyRate != '' &&
+    expense.actualCurrencyRate != 0 &&
+    expense.actualCurrencyRate != null &&
+    expense.actualCurrencyRate != undefined) && expense.companyCurrencyRate != expense.companyCurrencyRate || (expense.currencyCode != null && rateCanChangeAble&&expense.currencyCode!=originCurrencyCode)">
+                    <!--当显示不是本位币的时候,才允许修改汇率-->
+                    <p class="expense-rate"
+                       ng-if="expense.actualCurrencyRate"
+                       ng-class="{true: 'expense-rate-button', false: ''}[rateCanChangeAble]"
+                       ng-click="rateCanChangeAble && showinputrate(expense)"
+                    >
+                        汇率 {{expense.actualCurrencyRate|number:4}} <span ng-if="rateCanChangeAble">&gt;</span>
+                    </p>
+                    <p class="expense-rate"
+                       ng-if="expense.actualCurrencyRate!=expense.companyCurrencyRate"
+                    >
+                        汇率差 {{expense.selfCurrencyRateCurrencyRate}}
+                    </p>
+                    <p class="expense-rate"
+                       ng-if="expense.actualCurrencyRate!=expense.companyCurrencyRate"
+                    >
+                        企业汇率 {{expense.companyCurrencyRate|number:4}}
+                    </p>
+                </div>
+                <!--不可以修改汇率且不是显示本位币的时候:需显示企业汇率:::::没有手动汇率-->
+                <div class="expense-rate-wrap" ng-if="!(expense.actualCurrencyRate &&
+    expense.actualCurrencyRate != '' &&
+    expense.actualCurrencyRate != 0 &&
+    expense.actualCurrencyRate != null &&
+    expense.actualCurrencyRate != undefined) && expense.currencyCode != null && !rateCanChangeAble&&expense.currencyCode!=originCurrencyCode">
+                    <p class="expense-rate">
+                        企业汇率 {{expense.companyCurrencyRate|number:4}}
+                    </p>
+                </div>
+                <!--删除-->
+                <ion-option-button class="button-assertive invoice-apply-directive-delete"
+                                   ng-click="view.deleteInvoice($index, expense)">
+                    <div class="column">
+                        <div class="delete-text">{{'item.delete'|translate}}</div>
+                    </div>
+                </ion-option-button>
+
+
+            </ion-item>
+
+        </div>
+        <div class="row row-center invoice-type-add"
+             ng-click="openDialog()">
+            <img class="consume-icon"
+                 src="img/expense_report_version/invoice_apply/add_invoice_type.png"/>
+
+            <div class="col col-70">
+                <!--添加-->
+                <h2 class="consume-item">{{'invoice_type.add'|translate}}</h2>
+            </div>
+            <div class="col text-right">
+            </div>
+        </div>
+    </div>
+
+    <!--总计金额-->
+    <div class="row row-center">
+        <div class="col input-label">
+            {{'invoice_type.Total.amount'|translate}}
+        </div>
+    </div>
+    <div class="row row-center">
+        <div class="col">
+            <div class="invoice-apply-zero" readonly
+                 ng-class="{'invoice-apply-money': expenseTotalAmount}">
+                {{originCurrencyCode}}
+                {{expenseTotalAmount | number : 2}}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script id="select.invoice.type.dialog.html" type="text/ng-template">
+    <ion-modal-view class="select-type">
+        <ion-header-bar align-title="center">
+            <p class="title">
+                {{'select_type.Cost.type.choice'|translate}}<!--费用类型选择-->
+            </p>
+            <span class="city-cancel" ng-click="view.cancel()">
+                {{'destination.cancel'|translate}}<!--取消-->
+            </span>
+        </ion-header-bar>
+        <ion-content ion-sticky="expenseType" delegate-handle="typeScroll" ng-class="{'has-full-footer': view.isShowKeyboard || expense.valid}">
+            <div class="type-list-pane">
+                <div class="expense-list" ng-if="historyList.length > 0">
+                    <ion-item  class="category-name item-divider">
+                        {{'select_type.histroy.select'|translate}}
+                        <!--历史选择-->
+                    </ion-item>
+
+                    <div class="row row-center expense-item"
+                         ng-repeat="type in historyList | orderBy: 'sequence'"
+                         ng-click="view.selectType(type)"
+                         ng-if="!type.readonly" alt="">
+                        <img ng-src="{{type.expenseTypeIconURL}}"
+                             alt="" class="icon">
+                        <p class="type-list-text">{{type.expenseTypeName}}</p>
+                        <img src="img/travel/select.png"
+                             alt=""
+                             ng-if="expense.expenseTypeOID == type.expenseTypeOID"
+                             class="select-icon">
+                    </div>
+                </div>
+                <div ng-repeat="category in categoryList"
+                     ng-if="category.hasExpense"
+                     class="expense-list">
+                    <ion-item
+                        class="category-name item-divider">
+                        {{category.name}}
+                    </ion-item>
+
+
+                    <div class="row row-center expense-item"
+                         ng-repeat="type in expenseTypeList | orderBy: 'sequence'"
+                         ng-click="view.selectType(type)"
+                         ng-if="!type.valid && !type.readonly && type.expenseTypeCategoryOID == category.expenseTypeCategoryOID" alt="">
+                        <img ng-src="{{type.iconURL}}"
+                             alt=""
+                             class="icon"
+                             ng-if="type.iconURL">
+                        <img ng-src="img/expensetypes/{{type.iconName}}.png" alt="" class="icon" ng-hide="type.iconURL">
+                        <p class="type-list-text">{{type.name}}</p>
+                        <img src="img/travel/select.png" alt=""
+                             ng-if="expense.expenseTypeOID == type.expenseTypeOID"
+                             class="select-icon">
+                    </div>
+                </div>
+                <div ng-if="hasValid" class="expense-list">
+                    <p class="category-name">
+                        {{'select_type.subsidies'|translate}}<!--补贴-->
+                    </p>
+                    <div class="row row-center expense-item"
+                         ng-repeat="type in expenseTypeList | orderBy: 'sequence'"
+                         ng-click="view.selectType(type)"
+                         ng-if="type.valid && !type.readonly" alt="">
+                        <img ng-src="{{type.iconURL}}" alt="" class="icon"
+                             ng-if="type.iconURL">
+                        <img ng-src="img/expensetypes/{{type.iconName}}.png"
+                             alt="" class="icon" ng-hide="type.iconURL">
+                        <p class="type-list-text">{{type.name}}</p>
+                        <img src="img/travel/select.png"
+                             alt=""
+                             ng-if="expense.expenseTypeOID == type.expenseTypeOID"
+                             class="select-icon">
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+        <!--弹窗键盘下的灰色背景-->
+        <div ng-if="view.isShowKeyboard" class="black-ground" ng-click="view.showKeyboard()">
+
+        </div>
+        <ion-footer-bar keyboard-attach keyboard-attach ng-class="{'full-height': view.isShowKeyboard || expense.valid}">
+            <div class="allowance" ng-if="expense.valid">
+                <div class="row row-center result">
+                    <img ng-src="{{expense.expenseType.iconURL}}" alt="" class="expense-type" ng-if="expense.expenseType.iconURL">
+                    <img ng-src="img/expensetypes/{{expense.expenseType.iconName}}.png" alt="" class="expense-type" ng-hide="expense.expenseType.iconURL">
+                    <div class="col type-name">
+                        {{expense.expenseType.name}}
+                    </div>
+                    <p class="text-right equational">
+                        <span class="total">
+                            {{expense.amount | currency : code }}
+                        </span>
+                    </p>
+                </div>
+                <div class="row row-center currency-code"
+                     ng-click="view.selectCurrencyCode()">
+                    <div class="currency-name">
+                        {{ currencyCode }}
+                    </div>
+                    <p class="full-name" ng-if="currencyName">
+                        ({{ currencyName }})
+                    </p>
+                </div>
+                <div class="row row-center input-number">
+                    <div class="col col-center border-right">
+                        <p class="text-center text-label">
+                            {{'select_type.money'|translate}}<!--金额-->/{{expense.unit}}
+                        </p>
+                        <input type="number" ng-model="expense.unitPrice" pattern="[0-9.]*" class="text-value"
+                               placeholder="{{'select_type.Enter.the.amount'|translate}}"><!--输入金额-->
+                    </div>
+                    <div class="col col-center">
+                        <p class="text-center text-label">
+                            {{expense.unit}}{{'select_type.number'|translate}}<!--数-->
+                        </p>
+                        <input type="number" ng-model="expense.number" pattern="[0-9.]*" class="text-value"
+                               placeholder="{{'select_type.Enter.the.number'|translate}}"><!--输入天数-->
+                    </div>
+
+                </div>
+                <div class="row row-center">
+                    <div class="col col-20"></div>
+                    <div class="col col-60">
+                        <a href="" class="finish" ng-click="view.finish()">
+                            {{'select_type.complete'|translate}}<!--完成-->
+                        </a>
+                    </div>
+                    <div class="col col-20"></div>
+                </div>
+            </div>
+            <div class="calculation" ng-if="!expense.valid">
+                <div class="row row-center result" ng-click="view.showKeyboard()">
+                    <img ng-src="{{expense.expenseType.iconURL}}" alt="" class="expense-type" ng-if="expense.expenseType.iconURL">
+                    <img ng-src="img/expensetypes/{{expense.expenseType.iconName}}.png" alt="" class="expense-type" ng-hide="expense.expenseType.iconURL">
+                    <!--非补贴-->
+                    <div class="col type-name">
+                        {{expense.expenseType.name}}
+                    </div>
+                    <p class="text-right equational">
+                        <span class="caculation-string">{{view.equational}}</span>
+                        <br/>
+                        <span class="total">
+                         {{ currencyCode }} {{expense.amount | number:2}}
+                        </span>
+                    </p>
+                </div>
+                <div class="row row-center currency-code"
+                     ng-click="view.selectCurrencyCode()">
+                <!--<div class="row row-center currency-code" ng-click="view.selectCurrencyCode()">-->
+                    <div class="currency-name"
+                         >
+                        {{ currencyCode }}
+                    </div>
+                    <p class="full-name" ng-if="currencyName">
+                        ({{ currencyName }})
+                    </p>
+                </div>
+                <div ng-if="view.isShowKeyboard">
+                    <div class="row row-center keyboard">
+                        <div class="col" ng-click="view.push('7')">
+                            7
+                        </div>
+                        <div class="col" ng-click="view.push('8')">
+                            8
+                        </div>
+                        <div class="col" ng-click="view.push('9')">
+                            9
+                        </div>
+                        <div class="col" ng-click="view.push('/')">
+                            /
+                        </div>
+                        <div class="col border-right" ng-click="view.clearOne()">
+                            <img src="img/expense/delete-one.png" alt="" class="delete-one">
+                        </div>
+                    </div>
+                    <div class="row row-center keyboard">
+                        <div class="col" ng-click="view.push('4')">
+                            4
+                        </div>
+                        <div class="col" ng-click="view.push('5')">
+                            5
+                        </div>
+                        <div class="col" ng-click="view.push('6')">
+                            6
+                        </div>
+                        <div class="col" ng-click="view.push('+')">
+                            +
+                        </div>
+                        <div class="col border-right" ng-click="view.push('-')">
+                            -
+                        </div>
+                    </div>
+                    <div class="row row-center keyboard">
+                        <div class="col" ng-click="view.push('1')">
+                            1
+                        </div>
+                        <div class="col" ng-click="view.push('2')">
+                            2
+                        </div>
+                        <div class="col" ng-click="view.push('3')">
+                            3
+                        </div>
+                        <div class="col" ng-click="view.push('x')">
+                            x
+                        </div>
+                        <div class="col border-right" ng-click="view.calculate()">
+                            =
+                        </div>
+                    </div>
+                    <div class="row row-center keyboard">
+                        <div class="col" ng-click="view.clear()">
+                            C
+                        </div>
+                        <div class="col" ng-click="view.push('0')">
+                            0
+                        </div>
+                        <div class="col" ng-click="view.push('.')">
+                            .
+                        </div>
+                        <div class="col col-40 back-ok" ng-click="view.calculationOverDisable && view.calculationOver()">
+                            ok
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-footer-bar>
+    </ion-modal-view>
+</script>
+

@@ -1,0 +1,20 @@
+{
+    "company": {
+        "Bank.name": "开户行",
+        "Copy.success": "复制成功",
+        "Network.failure.please.try.again.later": "网络故障，请稍后再试",
+        "No.information.of.make.out.an.invoice.for.the.time.being": "暂时没有开票信息",
+        "Taxpayer.identification.number": "纳税人识别号",
+        "The.information.of.make.out.an.invoice": "开票信息",
+        "The.name.of.the.company": "公司名称",
+        "address": "地址",
+        "bank.account": "银行账号",
+        "error": "出错了",
+        "phone": "电话",
+        "my.company": "我所在的公司",
+        "my.company.closed": "法人已失效",
+        "other.company": "其他开票信息",
+        "has.no.company": "无法人",
+        "has.no.more.other.company": "没有更多其他开票信息"
+    }
+}

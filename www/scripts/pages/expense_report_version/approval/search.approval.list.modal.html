@@ -1,0 +1,77 @@
+<ion-modal-view class="approval-list-modal">
+    <ion-header-bar class="search" id="approval-modal-search">
+        <div class="row">
+            <div class="search-input">
+                <label><i class="fa fa-search" aria-hidden="true"></i></label>
+                <!--请输入-->
+                <input class="header-input" placeholder="{{'approval.please.enter' | translate}}" ng-model="view.searchName"
+                       ng-model-options="{ debounce: 500 }" ng-change="modal.search()"
+                       set-focus trigger="modal.focus">
+            </div>
+            <div class="col cancel" >
+                <!--取消-->
+                <div class="clear-div">
+                    <i class="fa fa-plus-circle" ng-show="view.searchName" ng-click="modal.clear()"></i>
+                </div>
+                <div ng-click="modal.closeSearchModal()">{{'approval.cancel' | translate}}</div>
+            </div>
+        </div>
+    </ion-header-bar>
+    <div class="nothing-div" ng-if="view.searchName && !modal.loading && !filterResults.length">
+        <div>
+            <img src="img/nothing.png" alt="nothing">
+        </div>
+        <div class="comment">无数据</div>
+    </div>
+    <ion-content id="approval-modal-content">
+        <ion-list ng-if="filterResults.length > 0">
+            <div ng-repeat="approval in filterResults" on-finish-render="ngRepeatFinished">
+                <ion-item class="approval-item"
+                          ng-if="approval.entityType === 1001 && approval.application.type === 1001 && !approval.application.formOID">
+                    <invoice-apply-item item="approval.application" is-show-type="view.isShowType"
+                                        is-hide-state="true"
+                                        go-detail="view.goDetail(approval)"
+                                        can-approval="!view.functionProfileList['ea.opt.approval.disabled']"
+                                        agree="view.agree($index, approval.entityOID, 1001)"
+                                        reject="view.showOpinionPopup($index, approval.entityOID, 1001)">
+                    </invoice-apply-item>
+                </ion-item>
+                <ion-item class="approval-item"
+                          ng-if="approval.entityType === 1001 && approval.application.type === 1002 && !approval.application.formOID">
+                    <travel-item item="approval.application" is-show-type="view.isShowType" is-hide-state="true"
+                                 can-approval="!view.functionProfileList['ta.opt.approval.disabled']"
+                                 go-detail="view.goDetail(approval)"
+                                 agree="view.agree($index, approval.entityOID, 1001)"
+                                 reject="view.showOpinionPopup($index, approval.entityOID, 1001)">
+                    </travel-item>
+                </ion-item>
+                <ion-item class="approval-item" ng-if="approval.entityType === 1002">
+                    <expense-report-item item="approval.expenseReport" go-detail="view.goDetail(approval)"
+                                         is-hide-state="true"
+                                         is-hide-type="true" is-show-name="true"
+                                         agree="view.agree($index, approval.entityOID, 1002)"
+                                         can-approval="!view.functionProfileList['er.opt.approval.disabled']"
+                                         reject="view.showOpinionPopup($index, approval.entityOID, 1002)">
+                    </expense-report-item>
+                </ion-item>
+                <ion-item class="approval-item"
+                          ng-if="approval.formType == 4100 || approval.formType == '4100' || approval.entityType === 1001 && (approval.application.type === 1003 || approval.application.type === 1004 || approval.application.type === 2005 || approval.application.type === 1001 || approval.application.type === 1002) && approval.application.formOID">
+                    <application-item item="approval.application"
+                                      origin-currency-code="OriginCurrencyCode"
+                                      is-show-type="true" is-hide-state="true"
+                                      go-detail="view.goDetail(approval)"
+                                      can-approval="true"
+                                      agree="view.agree($index, approval.entityOID, 1001)"
+                                      reject="view.showOpinionPopup($index, approval.entityOID, 1001)" code="code">
+                    </application-item>
+                </ion-item>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="searchPagination.page < searchPagination.lastPage"
+            on-infinite="modal.loadApprovals(searchPagination.page + 1)" immediate-check="false"
+            distance="1%"
+            immediate-check="false">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-modal-view>

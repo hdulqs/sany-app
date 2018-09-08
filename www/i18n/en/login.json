@@ -1,0 +1,39 @@
+{
+    "login": {
+        "activate": {
+            "title": "Active"
+        },
+        "button": {
+            "active.account": "Activate",
+            "forget.password": "Forgot Password",
+            "login": "Login",
+            "user.register": "Register"
+        },
+        "cloud.helios": "Cloud Helios",
+        "errors": {
+            "maxlength.text": "{{name}} not more then {{maxlength}}",
+            "mobile.maxlength": "Mobile.max length not more then 11 digits",
+            "pattern": "{{name}}incorrect format",
+            "request.error": "Request error",
+            "required": "{{name}}cannot be empty",
+            "user.is.locked1": "Login failed, please try again",
+            "user.is.locked2": "You had key in 3 times wrong password,account lock, please reset password",
+            "user.not.activated": "Your account is not activate, please use mobile access to activate it.",
+            "user.not.found": "User not found",
+            "wrong.password": "Wrong password, please try again"
+        },
+        "fields": {
+            "cellphone": "Mobile Number",
+            "password": "Password"
+        },
+        "register": {
+            "title": "Register"
+        },
+        "tips": {
+            "message": "The mobile number had ",
+            "please": " Please",
+            "times": "time(s)"
+        },
+        "title": "Login"
+    }
+}

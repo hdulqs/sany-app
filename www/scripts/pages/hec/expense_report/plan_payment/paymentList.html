@@ -1,0 +1,66 @@
+<!--计划付款行维护
+ Created by Dawn on 2017/11/02.
+-->
+<ion-view class="hec-paymentList" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'payment.plan.list'|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content>
+        <!--操作按钮-->
+        <div ng-click="vm.updateReportPlan()" style="padding: 0px 5px">
+            <button type="button" class="button button-block button-positive"
+                    style="min-height: 35px; font-size: 15px;line-height: 35px">
+                {{'payment.plan.add'|translate}}
+            </button>
+        </div>
+        <div class="alert alert-warning warn" ng-if="vm.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">
+                {{'payment.plan.nothing'|translate}}
+            </p>
+        </div>
+        <ion-refresher on-refresh="vm.doRefresh()" pulling-text="{{'payment.plan.loading'|translate}}"></ion-refresher>
+        <ion-list class="hec-pay">
+            <ion-item ng-repeat="reportPlan in vm.reportPlanList" class="hec-payItem">
+                <div  ng-click="vm.updateReportPlan(reportPlan)" >
+                    <div style="border-bottom: 1px solid #e2e2e2;">
+                        <div class="row no-padding">
+                            <div class="col hec-intercept"><span class="hec-text-red">{{reportPlan.schedule_line_number}}</span> {{'payment.plan.Receipt.amount'|translate}}：{{reportPlan.currency}} {{reportPlan.payment_amount  | amountFilter}}</div>
+                        </div>
+                    </div>
+                    <div class="row no-padding">
+                        <div class="col hec-intercept">{{'payment.plan.Total.amount'|translate}}：{{reportPlan.currency}} {{reportPlan.due_amount | amountFilter}}</div>
+                    </div>
+                    <div class="row no-padding">
+                        <div class="col hec-intercept">{{'payment.plan.Off.amount'|translate}}：{{reportPlan.currency}} {{reportPlan.write_off_amount1 | amountFilter}}</div>
+                    </div>
+                    <div class="row no-padding">
+                        <div class="col hec-intercept">{{'payment.plan.Receipt.people'|translate}}：{{reportPlan.payee_partner_name}}</div>
+                    </div>
+                    <div class="row no-padding">
+                        <div class="col hec-intercept">{{'payment.plan.Bank.name'|translate}}：{{reportPlan.account_number}}</div>
+                    </div>
+                </div>
+                <ion-option-button class="button-delete" ng-if="true"
+                                   ng-click="vm.deleteReportPlan($index,reportPlan)">
+                    <div class="column">
+                        <div class="delete-text">{{'payment.plan.delete'|translate}}</div>
+                    </div>
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            on-infinite="vm.getPlanList(vm.page+1)"
+            ng-if="vm.page < vm.pageCnt"
+            distance="5%"
+            immediate-check="false"
+        ></ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+

@@ -1,0 +1,44 @@
+<ion-view class="dashboard">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">
+            <!--更多应用-->
+            {{"expense.moreApp"|translate}}
+        </span>
+    </ion-nav-title>
+    <ion-content class="has-header">
+        <div class="icon-pane application-list">
+            <div class="row row-center row-icon">
+                <div class="col text-center" ng-click="goTo('app.erv_travel_list')">
+                    <img src="img/homepage/travel-apply.png" alt="">
+                    <p>
+                        <!--差旅申请-->
+                        {{"expense.TravelApplication"|translate}}
+                    </p>
+                </div>
+                <div class="col text-center" ng-click="goTo()">
+                    <img src="img/homepage/report.png" alt="">
+                    <p class="text-center">
+                        <!--报表-->
+                        {{"expense.statement"|translate}}
+                    </p>
+                </div>
+                <div class="col text-center no-border-right" ng-click="goTo('app.erv_approval_list')">
+                    <img src="img/homepage/approval.png" alt="">
+                    <p class="text-center">
+                        <!--审批-->
+                        {{"expense.approval"|translate}}
+                    </p>
+                </div>
+            </div>
+            <div class="row row-center row-icon">
+                <div class="col col-33 text-center" ng-click="goTo('app.erv_invoice_apply_list')">
+                    <img src="img/homepage/expense.png" alt="">
+                    <p>
+                        <!--费用-->
+                        {{"expense.money"|translate}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

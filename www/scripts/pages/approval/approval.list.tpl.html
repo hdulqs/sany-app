@@ -1,0 +1,42 @@
+<ion-content class="approval-list">
+        <!--加载中...-->
+        <ion-refresher
+            pulling-text="{{'approval.uploadCentre'|translate}}"
+            on-refresh="refresh()">
+        </ion-refresher>
+        <ion-list class="list">
+            <div class="alert alert-warning warn" ng-if="view.nothing">
+                <img class="warning-icon" src="img/nothing.png"/>
+                <!--暂时没有费用信息!-->
+                <p class="warning-word">{{"approval.TemporarilyNotMessge"|translate}}</p>
+            </div>
+            <ion-item class="item item-text-wrap row" ng-if="view.unApproved" ng-repeat="item in data.waitForApprovalList"
+                 ng-click="goToUnApprovalDetail(item.userOid)">
+                <div class="col col-20 col-center">
+                    <img ng-src="{{item.iconUrl}}" ng-if="item.iconUrl"/>
+                    <img ng-src="img/expensetypes/{{item.iconName}}.png" ng-hide="item.iconUrl"/>
+                </div>
+                <div class="col-50 col-center col-name">{{item.fullName}}</div>
+                <div class="col col-center wait-for-approval">
+                    <div class="invoiceAmount">{{item.invoiceAmount | currency: '￥'}}</div>
+                    <div class="invoiceNum">{{item.invoice}}</div>
+                </div>
+            </ion-item>
+            <ion-item class="item item-text-wrap row" ng-if="!view.unApproved" ng-repeat="item in data.passedApprovalList"
+                ng-click="goToApprovedExpense(item.userOid)">
+                <div class="col col-20 col-center">
+                    <img ng-src="{{item.iconUrl}}"  ng-if="item.iconUrl"/>
+                    <img ng-src="img/expensetypes/{{item.iconName}}.png" ng-hide="item.iconUrl"/>
+                </div>
+                <div class="col-50 col-center col-name">{{item.fullName}}</div>
+                <div class="col approval-create-date">
+                    <!--最近审批-->
+                    <div>{{"approval.recentlyApproval"|translate}}</div>
+                    <div>{{item.latestInvoiceUpdateTime | dateFilter}}</div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll distance="1%" on-infinite="loadMore()" ng-if='data.lastPage>data.page'
+                             immediate-check="false"></ion-infinite-scroll>
+</ion-content>
+

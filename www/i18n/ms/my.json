@@ -1,0 +1,13 @@
+{
+    "interface_my": {
+        "Amount.to.be.cancel.after.verification:": "jumlah yang hendak dipadamkan:",
+        "Borrowing.and.cancel.after.verification": "pinjaman dan penesahan",
+        "Click.the.refresh": "tekan refresh",
+        "Loading.in": "loading",
+        "There.is.no.cost.information.for.the.time.being": "tiada informasi kos",
+        "month": "bulan",
+        "network": "rangkaian bermasalah!",
+        "server": "server bermasalah,",
+        "system": "juruteknik sedang berusaha membaiki!"
+    }
+}

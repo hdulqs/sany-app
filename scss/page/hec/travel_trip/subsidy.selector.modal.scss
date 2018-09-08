@@ -1,0 +1,24 @@
+.subsidy-selector-modal{
+    .subsidy-list {
+        text-align: left;
+        width: 90%;
+        margin: 1rem auto;
+        .subsidy-item {
+            border: 1px solid #e2e2e2;
+            padding: .5rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            .item-head {
+                border-bottom: 1px solid #e2e2e2;
+                padding-bottom: 0px;
+                margin-bottom: .5rem;
+                .col-20, .col-30{
+                    padding-top: 1rem;
+                }
+            }
+            .row {
+                padding-bottom: 0px;
+            }
+        }
+    }
+}

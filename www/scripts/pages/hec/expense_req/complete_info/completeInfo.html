@@ -1,0 +1,96 @@
+<ion-view class="create-expense feeApplication" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">新建费用申请</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="about-us">
+        <div class="about-us-content">
+            <div class="list clear ">
+                <div class="item row row-center in-item">
+                    <span class="text">公司：</span>
+                    <i class="col col-center ion-ios-arrow-down item-note icon"></i>
+                   <!-- <select name="company" style="height: 29px;width: 100px;">
+                        <option value="三一集团">三一集团</option>
+                        <option value="公司">公司</option>
+                    </select>-->
+                </div>
+                <div class="item row row-center in-item">
+                    <span class="text">部门：</span>
+                    <input class="col col-center item-note" type="text" value="销售部">
+                </div>
+                <div class="item row row-center in-item">
+                    <span class="text">单据类型：</span>
+                    <i class="col col-center ion-ios-arrow-down item-note icon"></i>
+                    <!--<select name="invoiceType" style="height: 29px;width: 100px;">
+                        <option value="差旅申请">差旅申请</option>
+                        <option value="日常申请">日常申请</option>
+                        <option value="借款申请">借款申请</option>
+                    </select>-->
+                </div>
+                <div class="item row row-center in-item">
+                    <span class="text">申请日期：</span>
+                    <input class="col col-center item-note" type="text" value="2017-07-02">
+                </div>
+                <div class="item row row-center in-item">
+                    <span class="text">岗位：</span>
+                    <input class="col col-center item-note" type="text" value="xx岗位兼职">
+                </div>
+                <div class="item row row-center in-item">
+                    <span class="text">经办人：</span>
+                    <i class="col col-center ion-ios-arrow-right item-note icon"></i>
+                </div>
+                <div class="item row row-center in-item">
+                    <span class="text">制单人：</span>
+                    <input class="col col-center item-note" type="text" value="A员工">
+                </div>
+                <div class="item row row-center in-item">
+                    <span class="text">总金额：</span>
+                    <input class="col col-center item-note" type="text" value="">
+                </div>
+                <div class="item row row-center in-item">
+                    <span class="text">申请事由：</span>
+                    <textarea class="col col-center item-note" name="" id="" cols="30" rows="3" value="说明"></textarea>
+                </div>
+            </div>
+            <div class="row" ui-sref="app.reqList">
+                <button type="button" class="next-button col-96 button button-block button-stable" style="border: 1px solid;">
+                    借款申请
+                </button>
+            </div>
+        </div>
+
+        <div class="item item-divider">
+            附件信息
+        </div>
+        <div class="col col-33 no-border">
+            <img src="img/expense/add-pic.png" class="selected-pic" alt="">
+        </div>
+        <hr>
+        <ion-list>
+            <ion-item class="item-remove-animate">
+                费用项目名A   ￥1,200
+                <ion-option-button class="bg-delete" ng-click="onItemDelete(item)">删除</ion-option-button>
+            </ion-item>
+            <ion-item class="item-remove-animate">
+                费用项目名B   ￥1,200
+                <ion-option-button class="bg-delete" ng-click="onItemDelete(item)">删除</ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar class="expense-create-footer">
+        <div class="row row-center">
+            <div class="col text-center expense-new" ng-click="vm.save()">
+                保存
+            </div>
+            <div class="col text-center operation-all" ng-click="vm.addApplicationInfo()">
+                添加申请信息
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+

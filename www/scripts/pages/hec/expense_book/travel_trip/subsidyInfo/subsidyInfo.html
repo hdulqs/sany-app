@@ -1,0 +1,312 @@
+<!--补贴信息
+Created by Dawn on 2017/8/7.-->
+<ion-view class="hec-subsidyInfo feeApplication" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'subsidy_info.title' | translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="showPopup();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="has-header create-expense-content has-footer">
+            <ion-list>
+                <!--开始时间-->
+                <ion-item ng-click="datePicker.selectHandDate('dateFrom')">
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">
+                            {{'subsidy_info.Travel.start.time' | translate}}<span class="hec-input-required" ng-if="!vm.isReadOnly">*</span>
+                        </span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                {{vm.subsidy.travel_start_date | limitTo:10 |date:'yyyy-MM-dd'}}
+                            </p>
+                        </div>
+                        <img class="form-logo" src="img/hec/form/calendar.png" alt="">
+                    </div>
+                </ion-item>
+                <!--结束时间-->
+                <ion-item ng-click="datePicker.selectHandDate('dateTo')">
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">
+                            {{'subsidy_info.Travel.start.time' | translate}}<span class="hec-input-required" ng-if="!vm.isReadOnly">*</span>
+                        </span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                {{vm.subsidy.travel_end_date | limitTo:10 |date:'yyyy-MM-dd'}}
+                            </p>
+                        </div>
+                        <img class="form-logo" src="img/hec/form/calendar.png" alt="">
+                    </div>
+                </ion-item>
+                <!--总出差天数-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'subsidy_info.Total.number.of.trips' | translate}}</span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <span>{{vm.subsidy.travel_days}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+                <!--出发地-->
+                <ion-item>
+                    <heclocation-selector loc-type="from" readonly="vm.isReadOnly" loc-name="vm.subsidy.place_from" req-type-code="vm.expReqTypeCode"
+                                       place-id="vm.subsidy.place_from_id"   selected="vm.place_from_code"></heclocation-selector>
+                </ion-item>
+                <!--到达地-->
+                <ion-item>
+                    <heclocation-selector loc-type="to" readonly="vm.isReadOnly" loc-name="vm.subsidy.place_to" req-type-code="vm.expReqTypeCode"
+                                          place-id="vm.subsidy.place_to_id" selected="vm.place_to_code" state-flag="vm.subsidy.to_state_flag"></heclocation-selector>
+                </ion-item>
+                <ion-toggle ng-model="vm.subsidy.end_date_flag" toggle-class="toggle-positive"
+                            ng-true-value="'Y'" ng-false-value="'N'"style="padding: 1rem;">
+                    {{'subsidy_info.End.the.trip.day' | translate}}
+                </ion-toggle>
+            </ion-list>
+            <br>
+            <ion-list>
+                <!--应住天数-输入-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'subsidy_info.Number.of.days.to.live' | translate}}</span><span style="color:#ff0000">*</span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <input type="number" ng-model="vm.subsidy.planned_days" ng-change="vm.expReqTypeCode ==='1015'&&vm.onChange()" placeholder="{{ 'form.please.input' | translate}}" style="text-align: right;width: 100%; height: 20px">
+                            </p>
+                        </div>
+                        <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                    </div>
+                </ion-item>
+                <!--实住天数-输入-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'subsidy_info.Live.days' | translate}}</span><span style="color:#ff0000">*</span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <input type="number" ng-model="vm.subsidy.actual_days" ng-change="vm.onChange()" placeholder="{{ 'form.please.input' | translate}}" style="text-align: right;width: 100%; height: 20px">
+                            </p>
+                        </div>
+                        <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                    </div>
+                </ion-item>
+                <!--待遇级别类型-->
+                <ion-item ng-if="vm.expReqTypeCode ==='1015'&& vm.subsidyParam.actualTreatmentLevelFlag ==='Y'&& vm.subsidy.to_state_flag ==='Y'">
+                    <hec-syscode-selector sys-code-name="vm.subsidy.treatment_level_type" sys-code-type="TREATMENT_LEVEL_TYPE"
+                                          selected="vm.subsidy.treatment_level_type_code" readonly="vm.readOnly"
+                                          sys-code-id="vm.sysCodeId"></hec-syscode-selector>
+                </ion-item>
+                <!--是否同住-->
+                <ion-toggle ng-model="vm.subsidy.travel_standard" ng-if="vm.subsidy.to_state_flag ==='N'"
+                            ng-true-value="'Y'" ng-false-value="'N'" toggle-class="toggle-positive">
+                    {{'subsidy_info.travel_tandadrd' | translate}}
+                </ion-toggle>
+                <!--同住人-->
+                <ion-item  ng-if="vm.subsidy.to_state_flag ==='N'&&vm.subsidy.travel_standard ==='Y'">
+                    <hecbemp-selector prompt-name="vm.roommate_tip" emp-name="vm.subsidy.roommate_name" emp-id="vm.subsidy.roommate_id"
+                                      selected="vm.subsidy.employee_code"
+                                      readonly="vm.readOnly"></hecbemp-selector>
+                </ion-item>
+                <!--同时报销-->
+                <ion-toggle ng-model="vm.subsidy.meanwhile_report_flag" ng-if="vm.subsidy.to_state_flag ==='N'&&vm.subsidy.travel_standard ==='Y'"
+                            ng-true-value="'Y'" ng-false-value="'N'" toggle-class="toggle-positive">
+                    {{'subsidy_info.whether.reimbursement.at.the.same.time' | translate}}<!--是否同时报销-->
+                </ion-toggle>
+                <!--住宿标准币种--->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'subsidy_info.Standard.accommodation.currency' | translate}}</span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <span>{{vm.subsidy.accom_subsidy_currency_name | convertNothing}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+                <!--住宿标准金额-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span>{{'subsidy_info.Standard.accommodation.amount' | translate}}</span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <span>{{vm.subsidy.accom_subsidy_amount | amountFilter}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <br>
+            <div  ng-if="vm.expReqTypeCode ==='1015'">
+                <!--国外：通讯币种、金额-->
+                <ion-list>
+                    <ion-item>
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'subsidy_info.Communication.subsidy.currency' | translate}}</span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <span>{{vm.subsidy.com_subsidy_currency_name | convertNothing}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'subsidy_info.Communication.subsidy.amount' | translate}}</span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <span>{{vm.subsidy.com_subsidy_amount | amountFilter}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+                <br>
+                <!--国外：路途天数、币种、金额-->
+                <ion-list>
+                    <ion-item>
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'subsidy_info.Number.of.road.days' | translate}}</span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <span>{{vm.subsidy.journey_days}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'subsidy_info.Road.subsidy.currency' | translate}}</span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <span>{{vm.subsidy.journey_subsidy_currency_name | convertNothing}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'subsidy_info.Road.subsidy.amount' | translate}}</span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <span>{{vm.subsidy.journey_subsidy_amount | amountFilter}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+                <br>
+            </div>
+            <!--国内字段-->
+            <div ng-if="vm.expReqTypeCode ==='1010'">
+                <ion-list>
+                    <!--补贴天数-输入-->
+                    <ion-item>
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'subsidy_info.Allowance.days' | translate}}</span><span style="color:#ff0000">*</span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <input type="number" ng-change="vm.onChange()" ng-model="vm.subsidy.subsidy_days" placeholder="{{ 'form.please.input' | translate}}" style="text-align: right;width: 100%; height: 20px">
+                                </p>
+                            </div>
+                            <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                        </div>
+                    </ion-item>
+                    <!--补贴币种-头上-->
+                    <ion-item>
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'subsidy_info.Allowance.currency' | translate}}</span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <span>{{vm.subsidy.subsidy_currency_name | convertNothing}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                    <!--补贴金额-->
+                    <ion-item>
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'subsidy_info.Allowance.amount' | translate}}</span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <span>{{vm.subsidy.subsidy_amount | amountFilter }}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+                <br>
+            </div>
+            <!--国外伙食天数等等字段-->
+            <ion-list ng-if="vm.expReqTypeCode ==='1015'">
+                <!--伙食天数-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'subsidy_info.Number.of.meals' | translate}}</span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <span>{{vm.subsidy.meals_days}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+                <!--已提供伙食天数-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'subsidy_info.Number.of.meals.available' | translate}}</span><span style="color:#ff0000">*</span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <input type="number" ng-change="vm.onChange()" ng-model="vm.subsidy.provided_meals_days" placeholder="{{ 'form.please.input' | translate}}" style="text-align: right;width: 100%; height: 20px">
+                            </p>
+                        </div>
+                        <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                    </div>
+                </ion-item>
+                <!--招待用餐次数-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'subsidy_info.Number.of.entertainments' | translate}}</span><span style="color:#ff0000">*</span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <input type="number" ng-change="vm.onChange()" ng-model="vm.subsidy.meals_number" placeholder="{{ 'form.please.input' | translate}}" style="text-align: right;width: 100%; height: 20px">
+                            </p>
+                        </div>
+                        <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                    </div>
+                </ion-item>
+                <!--伙食补贴币种-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'subsidy_info.Food.subsidy.currency' | translate}}</span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <span>{{vm.subsidy.meals_subsidy_currency_name | convertNothing }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+                <!--伙食补贴金额-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'subsidy_info.Food.subsidy.amount' | translate}}</span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <span>{{vm.subsidy.meals_subsidy_amount | amountFilter }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+    </ion-content>
+    <ion-footer-bar class="expense-create-footer">
+        <div class="row row-center">
+            <div class="col text-center expense-new" ng-click="vm.save()">
+                {{'subsidy_info.save'|translate}}<!--保存-->
+            </div>
+            <div class="col text-center operation-all" ng-click="vm.saveAndMore()">
+                {{'subsidy_info.Save.and.add.new.subsidy.information'|translate}}<!--保存并新增补贴信息-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

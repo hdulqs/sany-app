@@ -1,0 +1,100 @@
+<ion-view class="erv-approval-expense-scanner">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">
+            <!--扫一扫-->
+            {{ 'approval.scan.title' | translate }}
+        </span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a class="button button-icon button-clear ion-ios-arrow-left back-button" ng-click="view.goBack($event)"></a>
+    </ion-nav-buttons>
+    <ion-content>
+        <!--收到-->
+        <div class="approval-receive" ng-if="view.hasReceivePermission" ng-click="view.scan(view.operations.RECEIVE)">
+            <div class="approval-scanner" ng-class="{ 'touched': view.receiveIsTouched }"
+                 on-touch="view.receiveIsTouched=true;" on-release="view.receiveIsTouched=false;">
+                <img src="img/expense_report_version/scanner/approve-receive.png"/>
+                <div class="function-info">
+                    <!--收到-->
+                    <h2>{{ 'approval.scan.receive.title' | translate }}</h2>
+                    <!--自动收到扫描到的报销单-->
+                    <p>{{ 'approval.scan.receive.tip' | translate }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!--分割符-->
+        <div class="function-split" ng-if="view.hasReceivePermission && view.hasFinancePermission"></div>
+
+        <!--审核-->
+        <div ng-if="view.hasFinancePermission">
+            <!--APP端审核-->
+            <div class="approval-audit">
+                <!--标题:APP端审核-->
+                <div class="approval-title">{{ 'approval.scan.APPApproval.title' | translate }}</div>
+                <!--审核通过-->
+                <div class="approval-pass" ng-click="view.scan(view.operations.AUDIT_PASS)">
+                    <div class="approval-scanner" ng-class="{ 'touched': view.webIsTouched }"
+                         on-touch="view.webIsTouched=true;" on-release="view.webIsTouched=false;">
+                        <img src="img/expense_report_version/scanner/approval-success.png"/>
+                        <div class="function-info">
+                            <!--审核通过-->
+                            <h2>{{ 'approval.scan.APPApproval.pass.title' | translate }}</h2>
+                            <!--自动通过扫描到的报销单-->
+                            <p>{{ 'approval.scan.APPApproval.pass.tip' | translate }}</p>
+                        </div>
+                    </div>
+                </div>
+                <!--审核驳回-->
+                <div class="approval-reject" ng-click="view.scan(view.operations.AUDIT)">
+                    <div class="approval-scanner" ng-class="{ 'touched': view.rejectIsTouched }"
+                         on-touch="view.rejectIsTouched=true;" on-release="view.rejectIsTouched=false;">
+                        <img src="img/expense_report_version/scanner/approval-reject.png"/>
+                        <div class="function-info">
+                            <!--审核驳回-->
+                            <h2>{{ 'approval.scan.APPApproval.reject.title' | translate }}</h2>
+                            <!--<p>如需通过键盘输入驳回理由，可在电脑游览器打开 <span>https://hly.xiaojukeji.com</span>，在<span>财务管理>单据审核</span>
+                                页面切换到<span>扫码审核模式</span></p>-->
+                            <p>
+                                {{ 'approval.scan.APPApproval.reject.tip1' | translate }}
+                                <span>{{ 'approval.scan.APPApproval.reject.tip2' | translate }}</span>
+                                {{ 'approval.scan.APPApproval.reject.tip3' | translate }}
+                                <span>{{ 'approval.scan.APPApproval.reject.tip4' | translate }}</span>
+                                {{ 'approval.scan.APPApproval.reject.tip5' | translate }}
+                                <span>{{ 'approval.scan.APPApproval.reject.tip6' | translate }}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--分割符-->
+            <div class="function-split"></div>
+
+            <!--PC端审核-->
+            <div class="approval-audit">
+                <!--标题:网页端审核-->
+                <div class="approval-title">{{ 'approval.scan.WebApproval.title' | translate }}</div>
+                <!--审核通过-->
+                <div class="approval-web" ng-click="view.scan(view.operations.REVIEW)">
+                    <div class="approval-scanner" ng-class="{ 'touched': view.passIsTouched }"
+                         on-touch="view.passIsTouched=true;" on-release="view.passIsTouched=false;">
+                        <img src="img/expense_report_version/scanner/approval-web.png"/>
+                        <div class="function-info">
+                            <!--<p>请先在电脑游览器打开 <span>https://hly.xiaojukeji.com</span>,进入-->
+                                <!--<span>财务管理>单据审核</span>页面，使用APP进行扫码审核</p>-->
+                            <p>
+                                {{ 'approval.scan.WebApproval.tip1' | translate }}
+                                <span>{{ 'approval.scan.WebApproval.tip2' | translate }}</span>
+                                {{ 'approval.scan.WebApproval.tip3' | translate }}
+                                <span>{{ 'approval.scan.WebApproval.tip4' | translate }}</span>
+                                {{ 'approval.scan.WebApproval.tip5' | translate }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

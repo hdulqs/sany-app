@@ -1,0 +1,260 @@
+<ion-view class="hec-common hec-travel-requisition" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'req.line.travel.title'|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="vm.goBack();" class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header hec-content has-footer">
+        <ion-list>
+            <!--公司-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.company'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value"> {{vm.line.company_short_name}} </p>
+                    </div>
+                </div>
+            </ion-item>
+            <!--币种-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.cry_name'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value"> {{vm.line.currency_code|currencyFilter}} </p>
+                    </div>
+                </div>
+            </ion-item>
+            <!--汇率-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.rate'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value"> {{vm.line.exchange_rate}} </p>
+                    </div>
+                </div>
+            </ion-item>
+            <!--报销类型-->
+            <ion-item>
+                <hecreimtype-selector doc-type-id="vm.header.exp_requisition_type_id"
+                                      company-id="vm.line.company_id"
+                                      reim-type-name="vm.line.expense_type_display"
+                                      selected="vm.line.expense_type_id"
+                                      reim-data-type="report_type"
+                                      readonly="vm.isReadOnly"></hecreimtype-selector>
+            </ion-item>
+        </ion-list>
+        <div class="item item-divider"></div>
+        <ion-list>
+            <div class="row no-padding">
+                <div class="col no-padding">
+                    <!--出发日期-->
+                    <ion-item ng-click="datePicker.selectHandDate('dateFrom')">
+                        <div class="row row-center">
+                            <span class="text hec-item-prompt">{{'req.line.start_date'|translate}}<span class="hec-input-required" ng-if="!readonly">*</span></span>
+                            <div class="col text-value">
+                                <span ng-if="vm.line.date_from"> {{vm.line.date_from | dateFilter}} </span>
+                                <span ng-if="!vm.line.date_from" class="hec-selector-placeholder"> {{'form.please.select'|translate}} </span>
+                            </div>
+                            <img class="form-logo" src="img/hec/form/calendar.png" alt="">
+                        </div>
+                    </ion-item>
+                    <!--离开日期-->
+                    <ion-item ng-click="datePicker.selectHandDate('dateTo')">
+                        <div class="row row-center">
+                            <span class="text hec-item-prompt">{{'req.line.leave_date'|translate}}<span class="hec-input-required" ng-if="!readonly">*</span></span>
+                            <div class="col text-value">
+                                <span ng-if="vm.line.date_to"> {{vm.line.date_to | dateFilter}} </span>
+                                <span ng-if="!vm.line.date_to" class="hec-selector-placeholder"> {{'form.please.select'|translate}} </span>
+                            </div>
+                            <img class="form-logo" src="img/hec/form/calendar.png" alt="">
+                        </div>
+                    </ion-item>
+                </div>
+                <div class="col-20 total-day">
+                    <div> {{vm.line.date_total}}{{'req.line.day'|translate}}</div>
+                </div>
+            </div>
+            <!--出发、到达地-->
+            <ion-item>
+                <heclocation-selector loc-type="from" readonly="vm.isReadOnly" loc-name="vm.line.place_from"
+                                      selected="vm.line.place_from_code"
+                                      req-type-code="vm.header.exp_requisition_type_code"
+                                      state-flag="vm.line.from_state_flag"
+                                      city-name="vm.line.abroad_place_from"></heclocation-selector>
+            </ion-item>
+            <!--出发城市-->
+            <ion-item class="hec-item-input" ng-if="vm.line.from_state_flag === 'Y'">
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.abroad.place.from'|translate}}<span class="hec-input-required">*</span></span>
+                    <div class="col">
+                        <input type="text" placeholder="{{ 'form.please.input' | translate}}"
+                                   ng-model="vm.line.abroad_place_from">
+                    </div>
+                    <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                </div>
+            </ion-item>
+            <ion-item>
+                <heclocation-selector loc-type="to" readonly="vm.isReadOnly" loc-name="vm.line.place_to"
+                                      selected="vm.line.place_to_code"
+                                      req-type-code="vm.header.exp_requisition_type_code"
+                                      state-flag="vm.line.to_state_flag"
+                                      city-name="vm.line.abroad_place_to"></heclocation-selector>
+            </ion-item>
+            <!--到达城市-->
+            <ion-item  class="hec-item-input" ng-if="vm.line.to_state_flag === 'Y'">
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.abroad.place.to'|translate}}<span class="hec-input-required">*</span></span>
+                    <div class="col">
+                        <input type="text" placeholder="{{ 'form.please.input' | translate}}"
+                                   ng-model="vm.line.abroad_place_to">
+                    </div>
+                    <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                </div>
+            </ion-item>
+        </ion-list>
+        <div class="item item-divider"></div>
+        <ion-list>
+            <!--航班申请金额-->
+            <ion-item class="hec-item-input">
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.air.amount'|translate}}</span>
+                    <div class="col">
+                        <input type="number" placeholder="{{ 'form.please.input' | translate}}"
+                                   ng-model="vm.line.fly_requisition_amount">
+                    </div>
+                    <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                </div>
+            </ion-item>
+            <!--航班本币金额-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.air.transfer.amount'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value">
+                            <span ng-if="vm.line.fly_requisition_amount && vm.line.exchange_rate">{{(vm.line.fly_requisition_amount *  vm.line.exchange_rate)|amountFilter}}</span>
+                        </p>
+                    </div>
+                </div>
+            </ion-item>
+            <!--机票供应商-->
+            <ion-item>
+                <hec-syscode-selector sys-code-name="vm.line.flight_vender_desc" sys-code-type="AIRPLANE_VENDER"
+                                      selected="vm.line.flight_vender" readonly="vm.readOnly"></hec-syscode-selector>
+            </ion-item>
+            <!--机票舱位-->
+            <ion-item>
+                <heccabin-selector selected="vm.line.flight_class" readonly="vm.isReadOnly"
+                                   code-value-name="vm.line.flight_class_desc"></heccabin-selector>
+            </ion-item>
+            <!--机票往返-->
+            <ion-toggle ng-model="vm.line.return_flag" style="font-size: 15px" ng-if="vm.header.exp_requisition_type_code =='1010'"
+                        ng-true-value="'Y'" ng-false-value="'N'">
+                {{'req.line.flight.go.and.back' | translate}}
+            </ion-toggle>
+            <ion-item>
+                <hec-syscode-selector sys-code-name="vm.line.hotel_vender_desc" sys-code-type="HOTEL_VENDER"
+                                      selected="vm.line.hotel_vender" readonly="vm.readOnly"></hec-syscode-selector>
+            </ion-item>
+            <!--酒店申请金额-->
+            <ion-item class="hec-item-input">
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.hotel.amount'|translate}}</span>
+                    <div class="col">
+                        <input type="number" placeholder="{{ 'form.please.input' | translate}}"
+                                   ng-model="vm.line.hotel_requisition_amount">
+                    </div>
+                    <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                </div>
+            </ion-item>
+            <!--酒店本币金额-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.hotel.transfer.amount'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value">
+                            <span ng-if="vm.line.hotel_requisition_amount && vm.line.exchange_rate">{{(vm.line.hotel_requisition_amount * vm.line.exchange_rate) |amountFilter}}</span>
+                        </p>
+                    </div>
+                </div>
+            </ion-item>
+            <!--其他申请金额-->
+            <ion-item class="hec-item-input">
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.other.amount'|translate}}</span>
+                    <div class="col">
+                        <input type="number" placeholder="{{ 'form.please.input' | translate}}"
+                                   ng-model="vm.line.other_requisition_amount">
+                    </div>
+                    <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                </div>
+            </ion-item>
+            <!--其他本币金额-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.other.transfer.amount'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value">
+                            <span ng-if="vm.line.other_requisition_amount && vm.line.exchange_rate">{{(vm.line.other_requisition_amount * vm.line.exchange_rate)|amountFilter}}</span>
+                        </p>
+                    </div>
+                </div>
+            </ion-item>
+            <p class="text-tip">{{'req.line.description'|translate}}</p>
+            <div> <textarea class="text-area" maxlength="200" ng-model="vm.line.description"
+                            placeholder="{{'req.message.infor.travel.lessThan200Characters' | translate}}"> </textarea>
+            </div>
+        </ion-list>
+        <div class="item item-divider"></div>
+        <ion-list>
+            <!--是否园区入住-->
+            <ion-item>
+                <hec-syscode-selector sys-code-name="vm.line.settled_park_desc" sys-code-type="SETTLED_PARK"
+                                      selected="vm.line.settled_park" readonly="vm.isReadOnly"></hec-syscode-selector>
+            </ion-item>
+            <!--项目-->
+            <ion-item>
+                <hecdimension-selector dim-desc="vm.line.d2" selected="vm.line.e2" dim-prompt="vm.dimPrompt"
+                                       company-id="{{vm.line.company_id}}"
+                                       readonly="vm.isReadOnly"></hecdimension-selector>
+            </ion-item>
+        </ion-list>
+        <div class="item item-divider"></div>
+        <!--同行人-->
+        <div class="travel-partner">
+            <div class="travel-title">{{'req.line.beneficiary.emp'|translate}}</div>
+            <div>
+                <div class="traveler-name" ng-repeat="traveler in vm.travelerList track by $index"
+                     ng-click="!vm.isDelete && vm.updateTraveler(traveler)">
+                    {{traveler.employee_name}}
+                    <img src="img/expense/delete-icon.png" ng-show="vm.isDelete" alt=""
+                         ng-click="vm.deleteTraveler(traveler.beneficiary_id)">
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col col-50 text-center" ng-click="vm.addTraveler()">
+                    <p class="add-partner">{{'req.button.add.bemp'|translate}}</p>
+                </div>
+                <div class="col col-50 text-center" ng-click="vm.travelerList.length > 0 && vm.showDeleteTraveler()">
+                    <p class="delete-operation" ng-show="!vm.isDelete">{{'req.button.delete.bemp'|translate}}</p>
+                    <p class="delete-operation" ng-show="vm.isDelete">{{'req.button.delete.bemp'|translate}}</p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="hec-footer">
+        <div class="row row-center">
+            <div class="col text-center expense-new" ng-click="vm.saveReqLine('M')">
+                {{'req.button.save'|translate}}
+            </div>
+            <div class="col text-center operation-all" ng-click="vm.addNewLine()">
+                {{'req.button.add.other.detail'|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+
+

@@ -1,0 +1,16 @@
+{
+    "pattern": {
+        "Cancel.the.gestures.password": "Batal kata laluan gerak isyarat",
+        "Enter.the.password.for.gestures": "Masukkan kata laluan gerak isyarat",
+        "Gestures.password.authentication.failed.please.login.again": "kata laluan Gerak isyarat gagal dikesan, sila cuba lagi",
+        "Gestures.password.canceled.successfully": "kata laluan Gerak isyarat berjaya membatalkan",
+        "Gestures.password.shall.not.be.less.than.four.points": "Password Gerak isyarat tidak boleh kurang daripada empat mata",
+        "Gestures.password.successfully": "kata laluan Gerak isyarat menetapkan berjaya",
+        "Gestures.to.lock": "kata laluan Gerak isyarat",
+        "Password.Settings.gestures": "Set gerak isyarat Kata Laluan",
+        "Please.input.gesture.password.again": "Sila masukan kata laluan isyarat lagi",
+        "Verify.password": "Sahkan kata laluan",
+        "You.can.also.input": "Anda juga boleh memasukkan",
+        "times": "Kali"
+    }
+}

@@ -1,0 +1,185 @@
+<ion-view class="pane" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{"approval.report.item.title"|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="hec-approval-card">
+            <div class="row">
+                <div class="col text-right">
+                    <!--公司-->
+                    {{"approval.company"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.company_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--部门-->
+                    {{"approval.dept"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.unit_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--成本中心-->
+                    {{"approval.center"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.responsibility_center_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--业务期间-->
+                    {{"approval.report.item.period"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.period_name}}
+                </div>
+            </div>
+            <div class="row separate-row">
+                <div class="col text-right">
+                    {{vm.item.exp_req_item_name}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.reference_currency_code|currencyFilter}}-{{vm.item.reference_amount|amountFilter}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--结算币种-->
+                    {{"approval.report.item.currency"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.currency_code|currencyFilter}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--报销金额-->
+                    {{"approval.report.item.amount"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.report_amount|amountFilter}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--发票项目-->
+                    {{"approval.report.item.invoice.item"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.exp_invoice_category|convertNothing}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--发票类别-->
+                    {{"approval.report.item.invoice.type"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.invoice_category_name|convertNothing}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!-- 发票代码-->
+                    {{"approval.report.item.invoice.code"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.invoice_code|convertNothing}}
+                </div>
+            </div>
+            <div class="row separate-row">
+                <div class="col text-right">
+                    <!--发票号码-->
+                    {{"approval.report.item.invoice.number"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.invoice_number|convertNothing}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--发票日期-->
+                    {{"approval.report.item.invoice.date"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.invoice_date?(vm.item.invoice_date|limitTo:10):'approval.nothing'|translate}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--税率-->
+                    {{"approval.report.item.tax.rate"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.tax_type_rate|convertNothing}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--税额-->
+                    {{"approval.report.item.tax"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.tax_amount|convertNothing}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--项目-->
+                    {{"approval.report.item.dimension"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.d2|convertNothing}}
+                </div>
+            </div>
+            <div class="row separate-row">
+                <div class="col text-right">
+                    <!--费用明细-->
+                    {{"approval.report.item.detail"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    <span ng-if="vm.lineDetail.length==0">{{'approval.nothing'|translate}}</span>
+                    <div ng-repeat="detail in  vm.lineDetail">
+                        {{detail.flex_name}}-{{detail.value_name}}
+                    </div>
+                </div>
+            </div>
+            <!--
+                        <hr style="margin: 5px">
+            -->
+
+            <!--<div class="row">
+                <div class="col col-30 text-right">
+                    &lt;!&ndash;影像附件&ndash;&gt;
+                    {{'approval.attachment'|translate}}：
+                </div>
+                <div class="col text-left">
+                    XXX
+                </div>
+            </div>-->
+            <!--附件信息-->
+            <div class="row">
+                <div class="col col-95">
+                    <div ng-if="vm.attachments.length > 0">
+                        <p style="margin:0px 5px 0px 15px">{{'attachment.label' | translate}}</p>
+                        <upload-image attachment-src="vm.attachments" type-name="erl"
+                                      read-only-flag="true"></upload-image>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

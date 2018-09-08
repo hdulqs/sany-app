@@ -1,0 +1,44 @@
+<ion-modal-view class="erv-approval-reject-modal-view">
+    <ion-header-bar>
+        <a class="button button-icon button-clear ion-ios-arrow-left hide-button" ng-click="modal.rejectModal.scanNext()"></a>
+        <h1 class="title title-center header-item">
+            <!--审核驳回-->
+            <span>{{ 'approval.scan.rejectModal.title' | translate }}</span>
+        </h1>
+    </ion-header-bar>
+    <ion-content>
+        <form name="reject_reply_form">
+            <div class="divider-label">
+                <span>{{ modal.rejectModal.view.expenseReportData.applicantName }}</span>
+                <span>{{ modal.rejectModal.view.expenseReportData.businessCode }}</span>
+            </div>
+
+            <div class="reply-content">
+                <textarea name="replyContent" placeholder="{{ 'approval.scan.rejectModal.placeholder' | translate }}"
+                          maxlength="200" ng-model="modal.rejectModal.view.replyContent" required>
+                </textarea>
+            </div>
+            <div class="error" ng-if="!modal.rejectModal.view.replyContent && modal.rejectModal.view.emptyError">
+                <!--驳回理由不能为空-->
+                {{ 'approval.scan.rejectModal.emptyTip' | translate }}
+            </div>
+
+            <div class="divider-label">
+                <!--快捷回复-->
+                <span>{{ 'approval.scan.rejectModal.quickReply.title' | translate }}</span>
+            </div>
+
+            <ion-list class="auto-replies">
+                <ion-item class="item" ng-repeat="replay in modal.rejectModal.view.replies"
+                          ng-click="modal.rejectModal.view.selectReply(replay)">
+                    {{replay.content}}
+                </ion-item>
+            </ion-list>
+        </form>
+        <div class="btn-wrap">
+            <!--驳回-->
+            <button class="button btn-reject" ng-click="modal.rejectModal.view.rejectReply()"
+                    ng-disabled="!modal.rejectModal.view.replyContent">{{ 'approval.reject' | translate }}</button>
+        </div>
+    </ion-content>
+</ion-modal-view>

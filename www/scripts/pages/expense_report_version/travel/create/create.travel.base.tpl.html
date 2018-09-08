@@ -1,0 +1,187 @@
+<ion-view class="create-travel-erv">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{view.titleList[view.titleIndex].name}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div class="create-travel-save" ng-click="view.saveTravel()" ng-if="view.content !== 'edit'">
+            {{'create.base.save'|translate}}<!--保存-->
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="create-travel-content">
+        <ion-list>
+            <ion-item>
+                <div class="row row-center" ng-click="view.selectDate('startDate')">
+                    <div class="col input-label">
+                        {{'create.base.Start.date'|translate}}<!--开始日期-->
+                    </div>
+                    <div class="col">
+                        <p class="text-right time-input">
+                            {{view.travel.travelApplication.startDate | dateFilter}}
+                            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+
+                        </p>
+                    </div>
+                </div>
+                <div class="row row-center" ng-click="view.selectDate('endDate')">
+                    <div class="col input-label">
+                        {{'create.base.End.date'|translate}}<!--结束日期-->
+                    </div>
+                    <div class="col">
+                        <p class="text-right time-input">
+                            {{view.travel.travelApplication.endDate | dateFilter}}
+                            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                        </p>
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="row row-center">
+                    <div class="col input-label">
+                        {{'create.base.reason'|translate}}<!--事由-->
+                    </div>
+                    <div class="col">
+                        <input placeholder="{{'create.base.Up.to.50.Chinese.characters'|translate}}" class="travel-start-date" ng-model="view.travel.title"><!--最多50个汉字-->
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="row row-center department-select" ng-if="(!view.functionProfileList && $scope.view.showDepartment) || !view.functionProfileList['ta.department.selection.disabled']">
+                    <div class="col input-label">
+                        {{'create.base.department'|translate}}<!--部门-->
+                    </div>
+                    <div class="col">
+                        <department-selector class="select-department" selected="view.departmentInfo"
+                                             department-id="view.travel.travelApplication.departmentOID"
+                                             department-name="view.travel.travelApplication.departmentName"
+                                             readonly="view.readonly"
+                                             department-top-list="view.functionProfileList['ta.department.top']"
+                                             mode="view.functionProfileList['department.leaf.selection.required']"
+                                             own-dep="view.functionProfileList['only.own.department.selection']">
+                        </department-selector>
+                    </div>
+                </div>
+                <div class="cost-center-select" ng-if="(!view.functionProfileList && $scope.view.showCostcenter) || !view.functionProfileList['ta.costCenter.selection.disabled']">
+                    <cost-center-item-selector selected="view.travel.travelApplication.costCenterItemOID">
+                    </cost-center-item-selector>
+                </div>
+                <div class="row row-center no-border" ng-if="!view.functionProfileList || view.functionProfileList['ta.max.accompanies']!=0">
+                    <div class="col input-label">
+                        {{'create.base.participants'|translate}}<!--参与人员-->
+                    </div>
+                </div>
+                <person-selector member-list="view.travel.applicationParticipants"
+                                 holder="view.participantHolder"
+                                 readonly="view.readonly"
+                                 max-length="view.functionProfileList['ta.max.accompanies']"
+                                 ng-if="!view.functionProfileList || view.functionProfileList['ta.max.accompanies']!=0"
+                                 can-delete-ower="false"></person-selector>
+                <div class="row row-center" ng-if="(!view.functionProfileList && view.showExternalParticipant) || view.functionProfileList['ta.allow.external.guest']"
+                >
+                    <div class="col col-40 input-label">
+                        {{'create.base.External.participants'|translate}}<!--外部参与人员-->
+                    </div>
+                    <div class="col col-60">
+                        <input type="number" ng-model="view.travel.travelApplication.externalParticipantNumber"
+                               placeholder="{{'create.base.Please.fill.out.the.external.participation'|translate}}"
+                               class="travel-start-date external-person"><!--请填写外部参与人数-->
+                    </div>
+                </div>
+                <div class="row row-center row-min">
+                    <div class="col input-label">
+                        {{'create.base.Per.capita.budget'|translate}}<!--人均预算-->({{view.travel.travelApplication.currencyCode|currencyChineseName}})
+                    </div>
+                    <div class="col">
+                        <input type="number" ng-model="view.travel.travelApplication.averageBudget"
+                               placeholder="{{'create.base.Please.fill.in.the.amount.of.per.person'|translate}}"
+                               class="travel-start-date"><!--请填写金额/人-->
+                    </div>
+                </div>
+                <div class="row row-center">
+                    <div class="col input-label">
+                        {{'create.base.Total.amount'|translate}}<!--总计金额-->
+                    </div>
+                    <div class="col input-label text-right">
+                        {{view.travel.travelApplication.totalBudget | currency: view.code}}
+                        <!--<input class="travel-start-date" readonly ng-model="view.travel.travelApplication.totalBudget">-->
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <!--<div class="row" ng-if="view.isShowApproval">-->
+                <!--<div class="col input-label">-->
+                <!--订票专员-->
+                <!--</div>-->
+                <!--<div class="col">-->
+                <!--<approval-selector-modal title="view.orderTitle" selected-name="view.approvalSelectedName" selector="view.travel.travelApplication.approverOIDs" max-length="view.orderMaxLength" readonly="view.readonly">-->
+
+                <!--</approval-selector-modal>-->
+                <!--</div>-->
+
+                <!--</div>-->
+                <div class="row" ng-if="view.isShowApproval">
+                    <div class="col input-label">
+                        {{'create.base.The.approver'|translate}}<!--审批人-->
+                    </div>
+                    <div class="col">
+                        <approval-selector-modal text-right="true" selected-name="view.approvalSelectedName" selector="view.travel.travelApplication.approverOIDs" max-length="view.approvalMaxLength" readonly="view.readonly" title="view.approvalTitle">
+
+                        </approval-selector-modal>
+                    </div>
+
+                </div>
+                <div class="row" ng-if="(!view.functionProfileList && view.showSupplierList) || !view.functionProfileList['ta.vendor.disabled']">
+                    <div class="col input-label">
+                        {{'create.base.Ticket.vendors'|translate}}<!--机票供应商-->
+                    </div>
+                    <div class="col">
+                        <supplier-selector text-right="true" selected-supplier="view.selectedSupplier" supplier="view.SupplierList"
+                                           readonly="view.readonly">
+
+                        </supplier-selector>
+                    </div>
+                </div>
+                <!--<div class="load-contain">-->
+                    <!--<ion-toggle ng-model="view.travel.travelApplication.borrowFlag" toggle-class="toggle-calm">是否申请借款-->
+                    <!--</ion-toggle>-->
+                <!--</div>-->
+                <!--<div class="row row-center" ng-if="view.travel.travelApplication.borrowFlag">-->
+                    <!--<div class="col input-label">-->
+                        <!--借款金额-->
+                    <!--</div>-->
+                    <!--<div class="col">-->
+                        <!--<input class="travel-start-date" type="number" placeholder="请输入借款金额"-->
+                               <!--ng-model="view.travel.travelApplication.borrowAmount">-->
+                    <!--</div>-->
+                <!--</div>-->
+            </ion-item>
+            <!--<ion-item>-->
+            <!--<div class="row row-center">-->
+            <!--<div class="col input-label">-->
+            <!--更多设置-->
+            <!--</div>-->
+            <!--<div class="col text-right">-->
+            <!--<img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</ion-item>-->
+            <div class="create-travel-comment">
+                <textarea class="travel-comment" placeholder="{{'create.base.Please.enter.a.note'|translate}}" ng-model="view.travel.remark"
+                          maxlength="200"><!--请输入备注(最多200个汉字)-->
+                </textarea>
+            </div>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar class="travel-create-footer">
+        <div class="row row-center">
+            <div class="col text-center travel-create-new" ng-click="view.nextOperation('next')"
+                 ng-if="view.content === 'create' || view.content === 'init'">
+                {{'create.base.The.next.step'|translate}}<!--下一步-->
+            </div>
+            <div class="col text-center travel-create-new" ng-click="view.nextOperation('save')"
+                 ng-if="view.content === 'edit'">
+                {{'create.base.Save.the.changes'|translate}}<!--保存修改-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+

@@ -1,0 +1,142 @@
+<ion-view class="erv-approval-list" ng-cloak>
+    <ion-nav-title>
+        <span class="expense-report-nav-title">
+           {{view.head}}
+        </span>
+    </ion-nav-title>
+    <!--<ion-nav-buttons side="right">-->
+        <!--<div class="approval-already" ng-click="view.changeStatus()">{{view.subhead}}</div>-->
+    <!--</ion-nav-buttons>-->
+    <div class="search-div row" ng-if="view.status === 'waitApproval'">
+        <div class="search-bar" ng-click="openSearchModal()">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <!--搜索-->
+            {{'approval.search' | translate}}
+        </div>
+    </div>
+    <ion-subheader-bar class="bar bar-subheader"
+                       ng-class="{true: 'sub-has-search-bar', false: 'sub-no-search-bar'}[view.status === 'waitApproval']">
+        <div class="row head-tab">
+            <div class="approval-head-item" ng-click="view.changeStatus('waitApproval')"
+                 ng-class="{true: 'active', false: ''}[view.status === 'waitApproval']">
+                <span>
+                    <!--未审批-->
+                    {{'approval.pending' | translate}}
+                </span>
+            </div>
+            <div class="approval-head-item" ng-click="view.changeStatus('hasApproval')"
+                 ng-class="{true: 'active', false: ''}[view.status === 'hasApproval']">
+                <span>
+                    <!--已审批-->
+                    {{'approval.already' | translate}}
+                </span>
+            </div>
+        </div>
+    </ion-subheader-bar>
+    <ion-content overflow-scroll="true"
+                 ng-class="{true: 'content-has-search-bar', false: 'content-no-search-bar'}[view.status === 'waitApproval']">
+        <ion-refresher on-refresh="view.refresh()" pulling-text="{{'approval.loading' | translate}}"></ion-refresher>
+        <div class="alert alert-warning warn" ng-if="view.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'approval.empty' | translate}}</p>
+            <p class="warning-word">{{'approval.no.approval' | translate}}</p>
+        </div>
+        <div ng-if="view.networkError && view.apporvalList.length === 0">
+            <not-found-text title="view.networkErrorText" icon="view.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="view.refresh()">
+                    {{'approval.click.refresh' | translate}}
+                </button>
+            </div>
+        </div>
+        <div ng-if="view.systemError && view.apporvalList.length === 0">
+            <not-found-text title="view.systemErrorText" sub-title="view.systemErrorSubText"
+                            icon="view.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <ion-list ng-if="!view.nothing">
+            <div ng-repeat="approval in view.apporvalList" ng-if="view.status === 'waitApproval'">
+                <ion-item class="approval-item"
+                          ng-if="approval.entityType === 1001 && approval.application.type === 1001 && !approval.application.formOID">
+                    <invoice-apply-item item="approval.application" is-show-type="view.isShowType"
+                                        is-hide-state="true"
+                                        go-detail="view.goDetail(approval,$index)"
+                                        can-approval="!view.functionProfileList['ea.opt.approval.disabled']"
+                                        agree="view.agree($index, approval.entityOID, 1001)"
+                                        reject="view.showOpinionPopup($index, approval.entityOID, 1001)">
+                    </invoice-apply-item>
+                </ion-item>
+                <ion-item class="approval-item"
+                          ng-if="approval.entityType === 1001 && approval.application.type === 1002 && !approval.application.formOID">
+                    <travel-item item="approval.application" is-show-type="view.isShowType" is-hide-state="true"
+                                 can-approval="!view.functionProfileList['ta.opt.approval.disabled']"
+                                 go-detail="view.goDetail(approval,$index)"
+                                 agree="view.agree($index, approval.entityOID, 1001)"
+                                 reject="view.showOpinionPopup($index, approval.entityOID, 1001)">
+                    </travel-item>
+                </ion-item>
+                <ion-item class="approval-item" ng-if="approval.entityType === 1002">
+                    <expense-report-item item="approval.expenseReport"
+                                         go-detail="view.goDetail(approval,$index)"
+                                         origin-currency-code="OriginCurrencyCode"
+                                         is-hide-state="true"
+                                         is-hide-type="true"
+                                         is-show-name="true"
+                                         agree="view.agree($index, approval.entityOID, 1002)"
+                                         can-approval="!view.functionProfileList['er.opt.approval.disabled']"
+                                         reject="view.showOpinionPopup($index, approval.entityOID, 1002)">
+                    </expense-report-item>
+                </ion-item>
+                <ion-item class="approval-item"
+                    ng-if="approval.formType == 4100 || approval.formType == '4100' || approval.entityType === 1001 && (approval.application.type === 1003 || approval.application.type === 1004 || approval.application.type === 2005 || approval.application.type === 1001 || approval.application.type === 1002) && approval.application.formOID">
+                    <application-item item="approval.application"
+                                      origin-currency-code="OriginCurrencyCode"
+                                      is-show-type="true" is-hide-state="true"
+                                      go-detail="view.goDetail(approval,$index)"
+                                      can-approval="true"
+                                      agree="view.agree($index, approval.entityOID, 1001)"
+                                      reject="view.showOpinionPopup($index, approval.entityOID, 1001)" code="code">
+                    </application-item>
+                </ion-item>
+            </div>
+            <div ng-repeat="approval in view.apporvalList" ng-if="view.status === 'hasApproval'">
+                <ion-item class="approval-item"
+                          ng-if="approval.entityType === 1001 && approval.application.type === 1001 && !approval.application.formOID">
+                    <invoice-apply-item item="approval.application" is-show-type="view.isShowType"
+                                        go-detail="view.goDetail(approval,$index)">
+                    </invoice-apply-item>
+
+                </ion-item>
+                <ion-item class="approval-item"
+                          ng-if="approval.entityType === 1001 && approval.application.type === 1002 && !approval.application.formOID">
+                    <travel-item item="approval.application" is-show-type="view.isShowType" is-hide-state="true"
+                                 go-detail="view.goDetail(approval,$index)"
+                    >
+                    </travel-item>
+                </ion-item>
+                <ion-item class="approval-item" ng-if="approval.entityType === 1002">
+                    <expense-report-item item="approval.expenseReport"
+                                         origin-currency-code="OriginCurrencyCode"
+                                         go-detail="view.goDetail(approval,$index)"
+                                         is-show-name="true"
+                    >
+                    </expense-report-item>
+                </ion-item>
+                <ion-item class="approval-item"
+                          ng-if="approval.formType == 4100 || approval.formType == '4100' || approval.entityType === 1001 && (approval.application.type === 1003 || approval.application.type === 1004 || approval.application.type===2005 || approval.application.type === 1001 || approval.application.type === 1002) && approval.application.formOID">
+                    <application-item item="approval.application"
+                                      origin-currency-code="OriginCurrencyCode"
+                                      is-show-type="true"
+                                      go-detail="view.goDetail(approval,$index)" code="code">
+                    </application-item>
+                </ion-item>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="view.pageable.page < view.dataNum.lastPage"
+            on-infinite="view.loadMore(view.pageable.page + 1)" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

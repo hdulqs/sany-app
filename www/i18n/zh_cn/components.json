@@ -1,0 +1,398 @@
+{
+    "account": {
+        "Account.opening.an.account": "开户账号",
+        "Loading": "加载中...",
+        "To.open.an.account.name": "开户名",
+        "bank": "开户银行",
+        "empty": "空空如也"
+    },
+    "account_js": {
+        "Make.a.mistake": "出错了"
+    },
+    "add": {
+        "Add.external.participants": "添加外部参与人员",
+        "Empty.the.history": "清空历史记录",
+        "External.participants": "外部参与人员",
+        "Participants": "参与人",
+        "Please.add": "请添加",
+        "The.historical.record": "历史记录"
+    },
+    "add_js": {
+        "Has.been.removed": "已移除",
+        "The.user.has.been.added": "已添加该用户"
+    },
+    "application_item": {
+        "Has.been.closed": "已停用",
+        "Has.been.rejected": "已驳回",
+        "Has.withdrawn": "已撤回",
+        "In.the.editor": "编辑中",
+        "pay_in_process":"付款中",
+        "In.the.examination.and.approval": "审批中",
+        "Reason.for.rejection": "驳回理由",
+        "budget": "预算",
+        "yetAudit":"已审核",
+        "paymenting":"还款中",
+        "yetRepayment":"已还款",
+        "ren":"人",
+        "Flyback":"Flyback申请"
+    },
+    "approval_selector": {
+        "No.data": "无数据",
+        "choose": "选择",
+        "No.bank": "无启用的银行账号，请联系管理员！"
+    },
+    "approval_selector_js": {
+        "mistake": "出错了",
+        "tip": "提示",
+        "clear_allowance": "更改参与人将清空已添加的差补",
+        "sure_modify": "确认更改",
+        "please_select_costCenter": "请先选择成本中心",
+        "please_select_applicant": "请先选择申请人",
+        "please_select_department": "请先选择部门",
+        "The.most.optional": "最多可选",
+        "unit": "个"
+    },
+    "back.to.HuiLianYi": "返回",
+    "bank_item": {
+        "No.bank": "无银行",
+        "Popular.bank": "热门银行"
+    },
+    "break_expense_js": {
+        "ctrip": "携程金额",
+        "stick": "贴票金额",
+        "didi": "滴滴金额",
+        "changguan": "场馆金额",
+        "huafei": "话费金额",
+        "youka": "油卡金额"
+    },
+    "city_selector": {
+        "Please.enter.the.city": "请输入城市"
+    },
+    "cost": {
+        "Last.choice": "上次选择",
+        "Please.enter.the.keywords": "请输入关键字",
+        "public": "公共"
+    },
+    "cost_center": {
+        "Cost.center.is.not.configured": "成本中心未配置，请联系管理员"
+    },
+    "cost_js": {
+        "Cost.center": "成本中心"
+    },
+    "date": {
+        "Friday": "五",
+        "Monday": "一",
+        "Saturday": "六",
+        "Sunday": "日",
+        "Thursday": "四",
+        "Tuesday": "二",
+        "Wednesday": "三"
+    },
+    "destination": {
+        "Hot.city": "热门城市",
+        "Please.enter.the.keywords": "请输入关键词",
+        "Select.the.city": "选择城市",
+        "There.is.no.city": "无城市",
+        "cancel": "取消"
+    },
+    "destination_js": {
+        "Beijing": "北京市",
+        "Changsha": "长沙市",
+        "Guangzhou": "广州市",
+        "HongKong": "香港",
+        "Shanghai": "上海市",
+        "Shenzhen": "深圳市",
+        "Wuhan": "武汉市",
+        "Wuxi": "无锡市"
+    },
+    "destination_js_ctrip": {
+        "Beijing": "北京",
+        "Changsha": "长沙",
+        "Guangzhou": "广州",
+        "HongKong": "香港",
+        "Shanghai": "上海",
+        "Shenzhen": "深圳",
+        "Wuhan": "武汉",
+        "Wuxi": "无锡"
+    },
+    "didi_fake": {
+        "order.success": "订单生成成功!",
+        "request.error": "服务请求出现错误,请稍后再试!"
+    },
+    "directive": {
+        "Level.approver": "级审批人",
+        "Please.select.a.user.of.examination.and.approval": "请选择审批用户",
+        "Please.select.the.approver": "请选择审批人",
+        "Select.the.approver": "选择审批人",
+        "determine": "确定"
+    },
+    "directive_js": {
+        "An.approver": "位审批人",
+        "Can.only.choose": "最多只能选择"
+    },
+    "eid": {
+        "Have.a.refund": "有退款",
+        "Modify": "修改",
+        "The.actual.audit": "实际审核"
+    },
+    "error_comp": {
+        "deploy": "未配置，请联系管理员",
+        "network": "哎呀,网络出错了!",
+        "server": "服务器开小差了,",
+        "service.no.open": "尚未开通该服务",
+        "system": "技术小哥正在努力修复!",
+        "permission": "无有效代理关系，请联系管理员!",
+        "error": "请求出错啦!",
+        "connect": "无法连接服务器,请稍后再试!",
+        "retry": "请稍后再试!",
+        "config": "配置错误!",
+        "card.no.open":"您的账号尚未开卡，请联系管理员！"
+    },
+    "expense_item": {
+        "Daily.expense.account": "日常报销单",
+        "Do.not.need.to.stick.a.ticket": "无需贴票",
+        "Make.out.an.invoice.is.rejected": "开票驳回",
+        "Review.the.rejected": "审核驳回",
+        "Stick.a.ticket.cost": "贴票费用",
+        "Success.of.make.out.an.invoice": "开票成功",
+        "Travel.reimbursement": "差旅报销",
+        "reimbursement": "费用报销"
+    },
+    "expense_item_js": {
+        "didi.travel": "滴滴出行"
+    },
+    "fill": {
+        "Add.personnel": "添加人员",
+        "name": "姓名"
+    },
+    "invoice_item": {
+        "Cost.to.apply.for": "费用申请",
+        "Etc": "等"
+    },
+    "invoice_type": {
+        "Total.amount": "总计金额",
+        "add": "添加"
+    },
+    "invoice_type_js": {
+        "Please.enter.the.amount": "请输入金额",
+        "Please.select.a.cost.type": "请选择费用类型",
+        "type": "类型"
+    },
+    "item": {
+        "For.the.ticket": "替票",
+        "Have.a.ticket": "有票",
+        "Special.ticket": "专票",
+        "There.is.no.ticket": "无票",
+        "delete": "删除",
+        "rejected": "驳回",
+        "through": "通过",
+        "withdraw": "撤回",
+        "apportion": "分摊"
+    },
+    "linkage": {
+        "Please.enter.the": "请输入",
+        "Please.enter.keyword": "请输入成本中心名称",
+        "Please.select": "请选择",
+        "My": "我的",
+        "not.enabled": "未启用"
+    },
+    "location": {
+        "Please.select.a.location": "请选择地点",
+        "Site.keywords": "地点关键字",
+        "search": "搜索"
+    },
+    "location_js": {
+        "catering": "餐饮",
+        "coach": "大巴",
+        "conference": "会务",
+        "hotel": "酒店",
+        "ticket": "机票",
+        "traffic": "交通",
+        "train": "火车",
+        "searchError": "加载失败"
+    },
+    "more_settings": {
+        "More.Settings": "更多设置",
+        "The.approver.set": "审批人设置"
+    },
+    "person_tpl": {
+        "No.search.results": "无搜索结果",
+        "Select.personnel": "选择人员"
+    },
+    "person_tpl_js": {
+        "participants": "个参与人"
+    },
+    "popup": {
+        "cancel": "取消",
+        "ok": "查看",
+        "you.have": "您有新的",
+        "need.to.be.processed": "条审批需要处理"
+    },
+    "select_type": {
+        "Cost.type.choice": "费用类型选择",
+        "Enter.the.amount": "输入金额",
+        "Enter.the.number": "输入天数",
+        "Refer.to.the.mileage": "参考里程",
+        "The.total.amount": "总金额",
+        "The.total.amount.of": "总额",
+        "complete": "完成",
+        "mileage": "里程",
+        "money": "金额",
+        "number": "数",
+        "reset": "清零",
+        "subsidies": "补贴",
+        "histroy.select": "历史选择"
+    },
+    "select_type_js": {
+        "Length.must.be.greater.than.zero": "里程必须大于0",
+        "Mileage.up.to.a.decimal": "里程最多保留一位小数",
+        "Please.enter.the.legal.number.of.days": "请输入合法的天数",
+        "Please.enter.the.legal.range": "请输入合法里程",
+        "Please.enter.the.legitimate.expression": "请输入合法的表达式",
+        "Please.select.currency": "请选择币种",
+        "confirm": "确认"
+    },
+    "selector": {
+        "Choose.department": "选择部门",
+        "Department.list": "部门列表",
+        "Have.chosen.sector": "已选择部门",
+        "Please.select.a.department": "请选择部门",
+        "The.history.department": "历史部门",
+        "Please.enter.the.keywords": "请输入关键字",
+        "department.disable": "已停用"
+    },
+    "status": {
+        "Bank.account.only.Numbers": "银行账号只能是数字",
+        "Have.been.through": "审批通过",
+        "Make.out.an.invoice.through": "开票通过",
+        "Payment.has.been": "已付款",
+        "Please.enter.the.legal.amount": "请输入合法的金额",
+        "approved": "审核通过",
+        "pay_in_process":"付款中",
+        "loan_in_process": "进行中"
+    },
+    "supplier_tpl": {
+        "Please.select.a.supplier": "请选择供应商",
+        "Please.select.a.supplier.new": "请选择供应商"
+    },
+    "tabs": {
+        "Expense.account": "报销单",
+        "Home.page": "首页",
+        "cost": "费用",
+        "my": "我的"
+    },
+    "travel_directive": {
+        "Travel.application": "差旅申请"
+    },
+    "upload_js": {
+        "Choose.from.the.album": "从相册中选择",
+        "Network.failure.please.try.again.later": "网络故障，图片上传失败，请稍后再试。",
+        "Photos.over.limit": "照片数量超过限制！",
+        "Taking.pictures": "拍照",
+        "take.pictures.and.compress": "拍照并且压缩",
+        "choose.from.album.and.compress": "从相册中选择并且压缩"
+    },
+    "user": {
+        "external": "外部"
+    },
+    "value_tpl": {
+        "Click.the.refresh": "点击刷新",
+        "No.results": "暂无结果!",
+        "Select.value": "选择值",
+        "cardID":"卡号:",
+        "pleaseInputMileage":"请输入里程",
+        "amendMileage":"修改里程",
+        "onlyChoose":"最多只能选择",
+        "Approver":"位审批人",
+        "default": "默认"
+    },
+    "city_js":{
+        "china.city":"国内城市",
+        "inter.city":"国外城市",
+        "history":"历史",
+        "popular":"热门",
+        "please.enter.the.city":"请输入城市名称",
+        "cancel":"取消",
+        "sorry":"抱歉,暂无国外数据",
+        "failed":"查询失败",
+        "china":"中国",
+        "city":"城市"
+    },
+    "hec_common": {
+        "please.select.one": "请选择",
+        "no.search.results": "无搜索结果",
+        "searchError": "查询失败",
+        "search": "搜索",
+        "nothing":"无",
+        "Please.enter.the.search":"请输入检索内容",
+        "other":"其他"
+    },
+    "hec_lov": {
+        "input.company.prompt": "公司",
+        "input.company.keywords": "请输入公司名称",
+        "input.unit.prompt": "部门",
+        "input.unit.keywords": "请输入部门名称",
+        "input.resp.prompt": "成本中心",
+        "input.resp.keywords": "请输入成本中心名称",
+        "input.cry.prompt": "币种",
+        "collection.currency.prompt":"收款币种",
+        "settlement.currency.prompt":"结算币种",
+        "input.cry.keywords": "请输入币种名称",
+        "input.exptype.prompt": "费用类型",
+        "input.exptype.keywords": "请输入费用类型名称",
+        "input.expitem.prompt": "费用项目",
+        "input.expitem.keywords": "请输入费用项目名称",
+        "exp.type.choose": "费用类型选择",
+        "cancel":"取消",
+        "please.enter.a.valid.amount":"请输入合法的金额",
+        "please.enter.a.valid.expression":"请输入合法的表达式",
+        "please.select.the.type.of.cost":"请选择费用类型",
+        "input.search.info": "请输入模糊查询信息",
+        "load.cost.type.data.failed":"费用类型数据加载失败",
+        "flexfield.loading.failed":"弹性域加载失败",
+        "flexfield.initialization.failed":"弹性域初始化失败",
+        "type.prompt": "类型",
+        "start.location.prompt":"出发地",
+        "end.location.prompt":"到达地",
+        "input.location.name":"请输入地点名称",
+        "input.location.from.prompt":"出发地",
+        "input.location.to.prompt":"到达地",
+        "input.bemp.prompt": "工号",
+        "input.bemp.keywords": "请输入员工姓名、工号或部门",
+        "input.dimension.prompt": "项目",
+        "input.dimension.keywords":"请输入维值名称",
+        "input.beneficiary.prompt":"收款方",
+        "input.beneficiary.keywords":"请输入收款方名称",
+        "input.cashplan.prompt":"资金计划",
+        "input.cashplan.keywords":"请输入资金计划"
+    },
+    "hec_combox": {
+        "input.emp.prompt": "经办人",
+        "input.rate.prompt": "税率",
+        "input.invcate.prompt": "发票类别",
+        "input.doctype.prompt": "单据类型",
+        "input.invitem.prompt": "发票项目",
+        "input.park.prompt": "是否园区入住",
+        "input.treament.level.type.prompt": "待遇级别类型",
+        "input.airplane.vender.prompt": "机票供应商",
+        "input.hotel.vender.prompt": "酒店供应商",
+        "input.business.attribute.prompt":"业务属性",
+        "input.payment.object.prompt":"收款对象",
+        "input.cabin.prompt": "机票舱位",
+        "input.emptype.prompt":"员工类型",
+        "input.dimension.value.prompt":"维值",
+        "input.reimtype.prompt":"报销类型",
+        "input.period.prompt": "业务区间",
+        "input.cashplan.prompt":"资金计划",
+        "input.reqitem.prompt":"申请项目",
+        "input.payway.prompt":"付款方式",
+        "input.loantype.prompt":"借款类型",
+        "input.account.prompt":"银行账号"
+    },
+    "hec_image": {
+        "error.get.seqid": "获取SeqID失败",
+        "error.download.image.failed": "图片下载失败",
+        "error.delete.image.failed": "图片删除失败，错误信息：",
+        "error.upload.image.failed": "图片上传失败，错误信息："
+    }
+}

@@ -1,0 +1,17 @@
+<ion-view class="account-bind">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'account_bind.Account.binding'|translate}}<!--账号绑定--></span>
+    </ion-nav-title>
+    <ion-content class="update-invoice">
+            <div class="list">
+                <div class="item item-divider"></div>
+                <div class="item row row-center item-text-wrap bind-didi" ng-click="goTo('app.bind_mobile_list')">
+                        <img src="img/didi.logo.png" class="col col-20 account-img">
+                        <div class="col col-50 filed-name">{{'account_bind.didi.travel'|translate}}<!--滴滴出行--></div>
+                        <label class="col col-25 already-binding" ng-show="view.mobileStatus">{{'account_bind.binding'|translate}}<!--已绑定--></label>
+                        <label class="col col-25 already-binding" ng-hide="view.mobileStatus">{{'account_bind.unbounded'|translate}}<!--未绑定--></label>
+                        <span class=" col icon ion-ios-arrow-right"></span>
+                    </div>
+            </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,208 @@
+<ion-view class="expense-consume-page">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'expense.Consumption.details'|translate}}
+</span>
+    </ion-nav-title>
+    <ion-content class="has-header create-expense-content">
+        <ion-list>
+            <div class="item item-divider"></div>
+            <form name="expenseConsumeForm">
+                <ion-item class="row row-center"
+                          ng-click="datePicker.selectDate('expenseDate')"
+                >
+                    <div class="col col-center">
+                      <span class="text-left">
+                        {{'expense.date'|translate}}
+                    </span>
+                    </div>
+                    <div class="col col-center col-60">
+                        <p class="text-right expense-money">
+                            {{view.expense.date | dateFilter}}
+                        </p>
+                    </div>
+                </ion-item>
+                <ion-item class="row row-center"
+                          ng-click="datePicker.selectTime('expenseTime')"
+                >
+                    <div class="col col-center">
+                      <span class="text-left">
+                        {{'expense.server'|translate}}
+                    </span>
+                    </div>
+                    <div class="col col-center col-60">
+                        <p class="text-right expense-money">
+                            {{view.expense.time | timeFilter}}
+                        </p>
+                    </div>
+                </ion-item>
+                <expense-type-selector expense-type-list='view.typeList'
+                                       status="view.isReadOnly && view.content !== 'init'"
+                                       code="view.code"
+                                       has-history="false"
+                                       report-expense-able-select-currency="view.reportExpenseAbleSelectCurrency"
+                                       expense="view.expense"></expense-type-selector>
+                <div class="taxSelect"
+                     ng-if="!view.functionProfileList['app.invoice.pay.by.company.disabled'] && view.expense.expenseTypeOID && view.expense.paymentType">
+                    <ion-toggle ng-model="view.expense.payByCompany" ng-disabled="view.isReadOnly && ((view.expense.expenseTypeIconName !== 'privateCarForPublic' && view.content === 'init') || view.content !== 'init')" ng-change="view.isPayByCompany()">
+                        {{'expense.If.the.company.pay'|translate}}<!--是否公司支付-->
+                    </ion-toggle>
+                </div>
+                <div class="taxSelect"
+                     ng-if="!view.functionProfileList['account.book.VAT.special.invoice.disabled'] && view.expense.expenseTypeOID && view.expense.withReceipt && !view.expense.valid">
+                    <ion-toggle ng-model="view.expense.vatInvoice" ng-disabled="view.isReadOnly && view.content !== 'init'">
+                        {{'expense.vat.special.invoice'|translate}}
+                    </ion-toggle>
+                    <ion-item ng-click="showTaxRates()" ng-if="view.expense.vatInvoice">
+                        <div class="row row-center">
+                    <span>
+                        {{'expense.Select.rate'|translate}}
+                    </span>
+                            <div class="col">
+                                <p class="text-right" ng-if="view.expense.taxRate == null">
+                                    {{'expense.Please.select'|translate}}
+                                </p>
+                                <p class="text-right expense-money" ng-if="view.expense.taxRate != null">
+                                    {{view.expense.taxRate * 100 + '%'}}
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                </div>
+                <div class="taxSelect"
+                     ng-if="!view.functionProfileList['invoice.instead.disabled'] && view.expense.expenseTypeOID && view.expense.withReceipt && !view.expense.valid">
+                    <ion-toggle ng-model="view.expense.invoiceInstead" ng-disabled="view.isReadOnly && view.content !== 'init'">
+                        {{'expense.Whether.to.replace.the.invoice'|translate}}
+                    </ion-toggle>
+                    <ion-item ng-if="view.expense.invoiceInstead">
+                        <div class="row row-center input-list">
+                            <span>
+                                {{'expense.Reason.for.ticket'|translate}}
+                            </span>
+                            <div class="col">
+                                <input type="text" ng-model="view.expense.invoiceInsteadReason" maxlength="100" placeholder="{{'expense.please.input'|translate}}"
+                                       class="text-value" ng-readonly="view.isReadOnly && view.content !== 'init'"/>
+                            </div>
+                        </div>
+                    </ion-item>
+                </div>
+                <ion-item ng-repeat="field in view.expense.data | orderBy: 'sequence'"
+                          ng-if="view.expense.data.length > 0 && ((view.expense.expenseTypeIconName !== 'privateCarForPublic')|| view.expense.expenseTypeIconName === 'privateCarForPublic' && (field.messageKey !== 'reference.mileage' && field.messageKey !== 'mileage' && field.messageKey !== 'unit.price')) "
+                          ng-switch="field.fieldType">
+                    <div class="row row-center  input-list" ng-if="field.customEnumerationOID">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <value-item selected="field" readonly="view.isReadOnly">
+
+                            </value-item>
+                            <!--<input type="text" ng-model="field.value"  maxlength="100" class="text-value" ng-readonly="view.isReadOnly"/>-->
+                        </div>
+                    </div>
+                    <div class="row row-center  input-list" ng-switch-when="TEXT" ng-if="!field.customEnumerationOID">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <input type="text" ng-model="field.value" maxlength="100" placeholder="{{'expense.please.input'|translate}}"
+                                   class="text-value" ng-readonly="view.isReadOnly"/>
+                        </div>
+                    </div>
+                    <div class="row row-center  input-list" ng-switch-when="LONG" ng-if="!field.customEnumerationOID">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <input type="number" ng-model="field.value" class="text-value" placeholder="{{'expense.please.input'|translate}}"
+                                   ng-readonly="view.isReadOnly" maxlength="100"/>
+                        </div>
+                    </div>
+                    <div class="row row-center  input-list" ng-switch-when="DATETIME"
+                         ng-click="datePicker.selectDateTime(field.messageKey)" ng-if="!field.customEnumerationOID">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <span ng-if="field.value === null || field.value === ''">{{'expense.Please.select'|translate}}</span>
+                                <span ng-if="field.value !== null && field.value !== ''">{{field.value | dateTimeFilter}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row row-center  input-list" ng-switch-when="DATE"
+                         ng-click="datePicker.selectDate(field.messageKey)" ng-if="!field.customEnumerationOID">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <span ng-if="field.value === null || field.value === ''">{{'expense.Please.select'|translate}}</span>
+                                <span
+                                    ng-if="field.value !== null && field.value !== ''">{{field.value | dateFilter}} </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row row-center  input-list" ng-switch-when="DOUBLE" ng-if="!field.customEnumerationOID">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <input ng-model="field.value" maxlength="100" class="text-value" placeholder="{{'expense.please.input'|translate}}"
+                                   ng-readonly="view.isReadOnly"/>
+                        </div>
+                    </div>
+                    <div class="row row-center" ng-switch-when="GPS">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <location-selector selected="field.value" expense-type="view.expense.expenseTypeName"
+                                               readonly="view.isReadOnly"
+                                               location="view.currentLocation"></location-selector>
+                        </div>
+                    </div>
+                </ion-item>
+            </form>
+        </ion-list>
+        <div class="item item-divider expense-tips"
+             ng-hide ="view.isReadOnly && !view.expense.attachments.length">
+            <p class="expense-tips">
+                {{'expense.Attachment.information.(maximum.upload.nine.photos)'|translate}}
+                <!--附件信息(最多可上传9张照片)-->
+            </p>
+        </div>
+        <upload-image attachment-src="view.attachments" delete-attachment="view.deleteAttachment"
+                      ng-if="!view.isReadOnly || view.content === 'init'" upload-finish="view.uploadFinish"></upload-image>
+        <div class="icon-pane expense-image">
+            <!--<div class="row row-center row-icon icon-list"
+                 ng-if="view.isReadOnly && view.expense.attachments.length > 0">
+                <div class="col col-33 image-list" ng-repeat="pic in view.expense.attachments">
+                    <div>
+                        <img ng-src="{{pic.thumbnailUrl}}" zoom-src="{{pic.iconUrl}}" zoom-view class="selected-pic"/>
+                    </div>
+                </div>
+            </div>-->
+            <!--<ion-gallery ion-gallery-items="view.pics" ng-if="view.isReadOnly && view.expense.attachments.length > 0"></ion-gallery>-->
+            <hly-gallery attachment-src="view.expense.attachments"
+                         ng-if="view.isReadOnly && view.expense.attachments.length > 0"></hly-gallery>
+        </div>
+
+        <div class="item item-divider expense-tips">
+            <p class="expense-tips">
+                {{'expense.For.instructions'|translate}}
+            </p>
+        </div>
+        <div>
+            <textarea class="comment" ng-model="view.expense.comment" placeholder="{{'expense.Please.enter.a.note'|translate}}"
+                      ng-readonly="view.isReadOnly&&!(view.content=='init')" maxlength="100">
+            </textarea>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="expense-create-footer" ng-hide="view.content=='submit'">
+        <div class="row row-center submit-btn">
+            <div class="col col-center submit-btn" ng-click="view.save()">
+                {{'expense.save'|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,316 @@
+<ion-view class="hec-expense-report"  hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{"approval.report.payPlan.title"|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="showPopup();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="hec-content " ng-class="{true: 'has-footer', false: ''}[vm.type == 'report'&&vm.status == 'waitSubmit']">
+        <div class="alert alert-warning warn" ng-if="vm.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'approval.no.plan'|translate}}</p>
+        </div>
+        <div ng-if="vm.type=='report'&&vm.status=='waitSubmit'">
+            <div class="card">
+                <!--行号-->
+                <ion-item class="divider">
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.lineNumber"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{vm.planItem.schedule_line_number}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--冲账金额-->
+                <ion-item class="hec-item-input">
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.writeOffAmount"|translate}}</span><span class="hec-input-required">*</span>
+                        <div class="col">
+                            <input type="number" ng-model="vm.planItem.write_off_amount1" placeholder="{{ 'form.please.input' | translate}}" >
+                        </div>
+                        <img  class="form-logo" src="img/hec/form/edit.png" alt="">
+                    </div>
+                </ion-item>
+
+                <!--总金额-->
+                <ion-item class="hec-item-input">
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.total.amount"|translate}}</span>
+                        <div class="col">
+                            <input type="number" ng-model="vm.planItem.due_amount" placeholder="{{ 'form.please.input' | translate}}">
+                        </div>
+                        <img  class="form-logo" src="img/hec/form/edit.png" alt="">
+                    </div>
+                </ion-item>
+
+                <!--收款金额-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.receiptAmount"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{vm.planItem.payment_amount|amountFilter}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--付款方式-->
+                <ion-item>
+                    <hecpayway-selector payment-method-desc="vm.planItem.payment_method" selected="vm.planItem.payment_type_id" readonly="vm.isReadOnly"></hecpayway-selector>
+                </ion-item>
+
+                <!--收款对象-->
+                <ion-item>
+                    <hec-syscode-selector sys-code-name="vm.planItem.payee_type" sys-code-type="PAYMENT_OBJECT1"
+                                          selected="vm.planItem.payee_type_value" readonly="vm.isReadOnly"
+                                          sys-code-id="vm.sysCodeId"></hec-syscode-selector>
+                </ion-item>
+
+                <!--收款方-->
+                <ion-item>
+                    <hecbeneficiary-selector beneficiary-desc="vm.planItem.payee_partner_name" payment-object="{{vm.planItem.payee_type_value}}"
+                                             company-id="vm.reportHeaderParams.company_id" selected="vm.planItem.payee_id"
+                                             readonly="vm.isReadOnly" account-num="vm.planItem.account_number" account-name="vm.planItem.account_name"
+                                            bank-code="vm.planItem.bank_code" bank-name="vm.planItem.bank_name"
+                                             bank-location-code="vm.planItem.bank_location_code" bank-location-name="vm.planItem.bank_location_name"
+                                            ></hecbeneficiary-selector>
+                </ion-item>
+
+                <!--银行账号-->
+                <ion-item>
+                    <hecaccount-selector partner-id="vm.planItem.payee_id" account-name="vm.planItem.account_name"  account-number="vm.planItem.account_number"  selected="vm.planItem.account_number" readonly="vm.isReadOnly"></hecaccount-selector>
+                </ion-item>
+
+                <!--银行账户-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'approval.report.payPlan.account.name'|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{vm.planItem.account_name}}</span>
+
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--资金计划编号-->
+                <ion-item>
+                    <heccashplan-selector  cash-flow-item-id="vm.planItem.cash_flow_item_id" cash-flow-item-name="vm.planItem.payment_usedes_desc" cash-plan-num="vm.planItem.cash_plan_number" header-id="vm.reportHeaderParams.exp_report_header_id" selected="vm.planItem.cash_plan_line_id"></heccashplan-selector>
+                </ion-item>
+
+                <!--计划付款日-->
+                <ion-item>
+                    <div class="row row-center" ng-click="datePicker.selectHandDate()">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.scheduleDate"|translate}}</span><span class="hec-input-required" ng-if="!vm.isReadOnly">*</span>
+                        <div class="col text-value">
+                            <span>{{vm.planItem.schedule_due_date}}</span>
+                        </div>
+                        <img  class="form-logo" src="img/hec/form/calendar.png" alt="">
+                    </div>
+                </ion-item>
+
+                <!--挂账-->
+                <ion-toggle class="hec-ion-toggle" ng-model="vm.planItem.frozen_flag" toggle-class="toggle-positive" ng-true-value="'Y'" ng-false-value="'N'">
+                    {{'approval.report.payPlan.frozen'|translate}}
+                </ion-toggle>
+
+                <!--附言-->
+                <ion-item class="hec-item-input">
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'approval.report.payPlan.specialUsedes'|translate}}</span>
+                        <div class="col">
+                            <input type="text" ng-model="vm.planItem.special_usedes" maxlength="9" placeholder="{{ 'form.please.input' | translate}}">
+                        </div>
+                        <img  class="form-logo" src="img/hec/form/edit.png" alt="">
+                    </div>
+                </ion-item>
+            </div>
+        </div>
+        <div ng-repeat="plan in vm.payPlans" ng-if="!(vm.type=='report'&&vm.status=='waitSubmit')">
+            <div class="card">
+                <!--行号-->
+                <ion-item class="divider">
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.lineNumber"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.schedule_line_number}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--应付金额-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.amount"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.due_amount|amountFilter}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--冲账金额-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.writeOffAmount"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.write_off_amount1|amountFilter}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--实付金额-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.paymentAmount"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.payment_amount|amountFilter}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--收款对象-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.accountInfo.payeeType"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.payee_type}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--收款方-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.accountInfo.payeeName"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.payee_partner_name}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--银行账号-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.accountInfo.accountNumber"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.account_number}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--银行账户-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.accountInfo.accountName"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.account_name}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--付款方式-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.accountInfo.paymentMethod"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.payment_method}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--收款说明-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.description"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span style="white-space: normal;">{{plan.description | convertNothing}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--特殊付款用途 改为：附言-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.accountInfo.specialUsedes"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.special_usedes | convertNothing}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--计划付款日-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.scheduleDate"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.schedule_due_date|dateFilter}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--资金计划编号-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.cashPlanNumber"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.cash_plan_number | convertNothing}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--挂账-->
+                <ion-item>
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{"approval.report.payPlan.frozen"|translate}}</span>
+                        <div class="col">
+                            <p class="text-value">
+                                <span>{{plan.frozen_flag|convertFlag}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="expense-create-footer" ng-if="vm.type=='report'&&vm.status=='waitSubmit'"><!-- ng-if="vm.type=='report'"-->
+        <div class="row row-center submit-btn">
+            <div class="col col-center submit-btn" ng-click="vm.savePayPlan()">
+                {{"approval.report.payPlan.save"|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+

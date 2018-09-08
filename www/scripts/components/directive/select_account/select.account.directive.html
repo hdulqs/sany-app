@@ -1,0 +1,72 @@
+<div class="row row-center receive-border-item" ng-click="!readOnly && view.openModal()" ng-class="{'readonly-class':readOnly}">
+    <!--<label class="item item-input item-floating-label label-item">-->
+        <!--<span class="input-label">开户名</span>-->
+        <!--<input type="text" placeholder="开户名" ng-model="accountData.acceptAccountName" ng-readonly="readOnly">-->
+        <!--<img src="img/expense_report_version/travel/arrow.png" alt="" class="refund-arrow" ng-if="!readOnly">-->
+    <!--</label>-->
+    <label class="item item-input item-stacked-label label-item">
+        <span class="input-label">{{'account.To.open.an.account.name'|translate}}<!--开户名--></span>
+        <p class="text-left refund-money-status">
+            {{accountData.acceptAccountName}}
+            <img src="img/expense_report_version/travel/arrow.png"  class="refund-arrow"
+                 ng-if="!readOnly">
+        </p>
+    </label>
+</div>
+
+<div class="row row-center receive-item" ng-class="{'readonly-class':readOnly}">
+    <!--<label class="item item-input item-floating-label label-item" ng-class="{'readonly-class':readOnly}">-->
+        <!--<span class="input-label">开户账号</span>-->
+        <!--<input card-input type="text" placeholder="开户账号" ng-model="accountData.acceptAccount"-->
+               <!--account-data="accountData.acceptAccount" ng-readonly="true"/>-->
+    <!--</label>-->
+    <label class="item item-input item-stacked-label label-item" ng-class="{'readonly-class':readOnly}">
+        <span class="input-label">{{'account.Account.opening.an.account'|translate}}<!--开户账号--></span>
+        <p class="text-left refund-money-status">
+            {{accountData.acceptAccount}}
+        </p>
+    </label>
+</div>
+<div class="row row-center receive-item" ng-class="{'readonly-class':readOnly}">
+    <!--<label class="item item-input item-floating-label label-item" >-->
+        <!--<span class="input-label">开户银行</span>-->
+        <!--<input type="text" placeholder="开户银行" ng-model="accountData.acceptBankName" ng-readonly="true"/>-->
+    <!--</label>-->
+    <label class="item item-input item-stacked-label label-item" ng-class="{'readonly-class':readOnly}">
+        <span class="input-label">{{'account.bank'|translate}}<!--开户银行--></span>
+        <p class="text-left refund-money-status">
+            {{accountData.acceptBankName}}
+        </p>
+    </label>
+</div>
+<script type="text/ng-template" id="select.account.html">
+    <ion-modal-view class="select-account-modal">
+        <ion-header-bar>
+            <h3 class="title">{{'account.To.open.an.account.name'|translate}}<!--开户名--></h3>
+            <div class="buttons buttons-left" style="transition-duration: 0ms;">
+            <span class="left-buttons">
+                <a ng-click="accountModal.hide()">
+                    <img src="img/back.png" class="save-btn">
+                </a>
+            </span>
+            </div>
+        </ion-header-bar>
+        <ion-content class="select-account-content">
+            <div class="item item-divider"></div>
+            <ion-refresher on-refresh="view.doRefresh()" pulling-text="{{'account.Loading'|translate}}..."></ion-refresher>
+            <div class="alert alert-warning warn-expense" ng-if="view.nothing">
+                <img class="warning-icon" src="img/expense/nothing-icon.png"/>
+                <p class="warning-word">{{'account.empty'|translate}}<!--空空如也--></p>
+            </div>
+            <ion-list ng-repeat="item in view.accountList" class="account-list" ng-if="!view.nothing">
+                <ion-item ng-click="view.selectItem(item)">
+                    {{item.companyName}}
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll ng-if="view.page.current<view.page.lastPage"
+                                 on-infinite="view.loadMore(view.page.current+1)"
+                                 distance="1%">
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-modal-view>
+</script>

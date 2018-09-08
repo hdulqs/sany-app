@@ -1,0 +1,17 @@
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+    <ion-tab title="{{'tabs.Home.page'|translate}}" icon-off="ion-homepage" icon-on="ion-homepage-active" href="#/tab/erv/homepage"><!--首页-->
+        <ion-nav-view name="tab-erv-dash"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="{{'tabs.Expense.account'|translate}}" icon-off="ion-expense" icon-on="ion-expense-active"    href="#/tab/erv/reportList">&lt;!&ndash;报销单&ndash;&gt;
+        <ion-nav-view name="tab-erv-expense"></ion-nav-view>
+    </ion-tab>
+
+    <!--<ion-tab title="{{'tabs.Expense.account'|translate}}" icon-off="ion-expense" icon-on="ion-expense-active" ng-click="go('app.tab_erv.expense_report')">&lt;!&ndash;报销单&ndash;&gt;
+        <ion-nav-view name="tab-erv-expense"></ion-nav-view>
+    </ion-tab>-->
+
+    <ion-tab title="{{'tabs.my'|translate}}" icon-off="ion-my-account" icon-on="ion-my-account-active" href="#/tab/erv/account"><!--我的-->
+        <ion-nav-view name="tab-erv-account" animation="slide-left-right"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

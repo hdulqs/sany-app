@@ -1,0 +1,50 @@
+<ion-view class="didi-refund-base">
+    <ion-nav-title>
+        <span class="title">{{'didi_refund.Payment.history'|translate}}<!--还款历史--></span>
+    </ion-nav-title>
+    <ion-content class="didi-refund-base-content">
+        <div class="item item-divider"  ng-if="view.noRefund || view.refundData.writeoffArtificialDTO.stayWriteoffAmount" ></div>
+        <div class="refund-title" ng-if="view.noRefund || view.refundData.writeoffArtificialDTO.stayWriteoffAmount > 0">
+            <div class="row row-center refund-text" >
+                <div class="col col-center text-center">
+                    <img class="refund-icon" src="img/borrow_money/refund.png" alt=""/>
+                  <span>{{'didi_refund.For.reimbursement.amount'|translate}}<!--待还款金额--></span>
+                </div>
+            </div>
+            <div class="row row-center refund-amount">
+                <div class="col col-center text-center">
+                    {{originCurrencyCode}}
+                  {{view.refundData.writeoffArtificialDTO.stayWriteoffAmount | number: 2}}
+                </div>
+            </div>
+        </div>
+        <div class="refund-clear text-center" ng-if="!view.noRefund && view.refundData.writeoffArtificialDTO.stayWriteoffAmount === 0">
+            <img src="img/bank_type/all.png" />
+            <p>{{'didi_refund.All.payments.completed'|translate}}<!--全部还款完成--></p>
+        </div>
+        <div class="row row-center text-center refund-button" ng-class="{'disabled-refund':view.noRefund}" ng-click="!view.noRefund && view.goTo('')"
+             ng-if="!view.isReadOnly&&(view.noRefund || view.refundData.writeoffArtificialDTO.stayWriteoffAmount>0)">
+            <div class="col col-center">{{'didi_refund.I.want.to.reimbursement'|translate}}<!--我要还款--></div>
+        </div>
+        <div class="refund-history-pane" ng-if="view.refundDataList.length>0">
+            <div class="refund-tips">
+                {{'didi_refund.Payment.history'|translate}}<!--还款历史-->
+            </div>
+            <div class="refund-history" ng-click="view.goTo(item)" ng-repeat="item in view.refundDataList">
+                <div class="row row-center">
+                    <div class="col col-center text-left refund-time">{{item.updateDate | dateFilter}}</div>
+                    <div class="col col-center text-right refund-status">
+                        <p class="ongoing">{{item.status | statusFilter}}</p>
+                    </div>
+                </div>
+                <div class="row row-center ">
+                    <div class="col col-center text-left refund-detail">{{item.type | typeFilter}}</div>
+                    <div class="col col-center text-right refund-detail">
+                        <span ng-if="item.actRepayAmount">      {{originCurrencyCode}}{{item.actRepayAmount  | number : 2}}</span>
+                        <span ng-if="!item.actRepayAmount">      {{originCurrencyCode}}{{item.repaymentValue | number : 2 }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

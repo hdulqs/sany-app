@@ -1,0 +1,39 @@
+{
+    "error": {
+        "no.cost.records": "Tiada rekod perbelanjaan！"
+    },
+    "report": {
+        "april": "April",
+        "august": "Ogos",
+        "budget": "bajet",
+        "category": "kategori",
+        "december": "Disember",
+        "department": "jabatan",
+        "didi.travel": "perjalanan Didi",
+        "february": "Februari",
+        "january": "Januari",
+        "july": "Julai",
+        "june": "Jun",
+        "last.month.payment": "Perbelanjaan bulan lepas",
+        "march": "Mac",
+        "may": "Mei",
+        "month": "bulan",
+        "nearly.six.months": "Enam bulan lalu",
+        "nearly.three.months": "tiga bulan lalu",
+        "nearly.twelve.months": "Sejak dua belas bulan lalu",
+        "november": "November",
+        "number.of.people": "nombor",
+        "october": "Oktober",
+        "payment.for.the.quarter": "Perbelanjaan suku ini",
+        "payment.for.this.year": "Perbelanjaan tahun ini",
+        "payment.this.month": "Perbelanjaan bulan ini",
+        "per": "Per kapita",
+        "person": "orang",
+        "personal": "peribadi",
+        "personnel": "kakitangan",
+        "repert": "laporan",
+        "september": "September",
+        "to": "kepada",
+        "year": "tahun"
+    }
+}

@@ -1,0 +1,27 @@
+<ion-modal-view class="didi-refund-modal">
+    <ion-header-bar>
+        <h3 class="title">
+            {{'didi_detail_js.Transfer.payments'|translate}}<!--转账还款-->
+        </h3>
+        <div class="buttons buttons-left" style="transition-duration: 0ms;">
+            <span class="left-buttons">
+                <a ng-click="refundModal.hide()">
+                    <img src="img/back.png" class="save-btn">
+                </a>
+            </span>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="item item-divider reason-divider">{{'modal_didi.Please.enter.the.reason'|translate}}<!--请输入理由--></div>
+        <div class="reason-container">
+             <textarea class="self-comment" placeholder="{{'modal_didi.If.you.do.not.input.the.default.reason.not.yet.received.payment'|translate}}" ng-model="view.reason"
+                       maxlength="200"><!--如不输入,默认理由:未收到款项-->
+                    </textarea>
+        </div>
+        <div class="row row-center text-center refund-button">
+            <div class="col col-center">{{'modal_didi.Confirm.and.inform.the.employees'|translate}}<!--确认并通知员工--></div>
+        </div>
+    </ion-content>
+</ion-modal-view>
+
+

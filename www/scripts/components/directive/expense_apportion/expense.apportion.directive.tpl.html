@@ -1,0 +1,197 @@
+<div class="expense-apportion-directive" ng-click="view.openModal()">
+    <!--费用分摊-->
+    <div class="title">{{ 'expenseApportion.title' | translate }}</div>
+    <!--请编辑-->
+    <div class="edit-prompt" ng-if="false">{{ 'expenseApportion.edit' | translate }}</div>
+    <!--分摊列表-->
+    <ion-list class="apportion-list">
+        <!--分摊项-->
+        <ion-item class="apportion-item" ng-repeat="expenseApportion in expense.expenseApportion">
+            <!--相关人/收款人-->
+            <div class="relevant-person">
+                {{ relevantFiledName }}: {{ expenseApportion.personName }}
+            </div>
+
+            <!--成本中心和金额-->
+            <div class="row">
+                <!--成本中心-->
+                <div class="cost-center">
+                    <div ng-repeat="costCenter in expenseApportion.costCenterItems" ng-if="costCenter.costCenterItemName">
+                        {{ costCenter.costCenterItemName }}
+                    </div>
+                </div>
+                <!--金额-->
+                <div class="amount">
+                    <!--本位币-->
+                    <div class="local-amount" ng-if="currencyCode!==originCurrencyCode">
+                        {{ originCurrencyCode }} {{ expenseApportion.amount * expense.actualCurrencyRate | number:2 }}
+                    </div>
+
+                    <!--分摊金额-->
+                    <div class="apportion-amount" ng-class="{ 'error-font': expenseApportion.amount<0 }">
+                        {{ currencyCode }} {{ expenseApportion.amount }}
+                    </div>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+</div>
+
+<!--编辑分摊modal-->
+<script id="expense.apportion.modal.tpl.html" type="text/ng-template">
+    <ion-modal-view class="expense-apportion-modal">
+        <ion-header-bar align-title="center">
+            <a class="button button-icon ion-ios-arrow-left hide-button" ng-click="view.cancel()"></a>
+            <p class="title">
+                <!--费用分摊-->
+                {{ 'expenseApportion.title' | translate }}
+            </p>
+        </ion-header-bar>
+
+        <ion-content class="has-header has-footer">
+            <!--分摊列表-->
+            <ion-list class="apportion-modal-list">
+                <!--默认分摊项-->
+                <ion-item id="item0" class="apportion-modal-item default-apportion">
+                    <!--费用总额-->
+                    <div class="row total-amount">
+                        <div class="label">{{ 'expenseApportion.totalAmount' |translate }}</div>
+                        <div class="amount">{{ currencyCode }} {{ expense.amount }}</div>
+                    </div>
+                    <!--默认分摊项-->
+                    <div class="row total-amount">
+                        <div class="label">{{ 'expenseApportion.defaultApportion' |translate }}</div>
+                        <div class="amount" ng-class="{ 'error-font': expense.expenseApportion[0].amount<0 }">
+                            {{ currencyCode }} {{ expense.expenseApportion[0].amount }}
+                        </div>
+                    </div>
+                    <!--成本中心项-->
+                    <div ng-repeat="costCenter in expense.expenseApportion[0].costCenterItems">
+                        {{ costCenter.costCenterItemName }}
+                    </div>
+                    <!--相关人/收款人-->
+                    <div class="relevant-person">
+                        <div class="label">
+                            {{ relevantFiledName }}
+                        </div>
+                        <div class="selector">
+                            <applicant-selector field-name="relevantFiledName"
+                                                applicant="expense.expenseApportion[0].relevant" search-all="true">
+                            </applicant-selector>
+                        </div>
+                        <div class="arrow-img">
+                            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                        </div>
+                    </div>
+                </ion-item>
+
+                <!--非默认分摊项-->
+                <ion-item class="apportion-modal-item" ng-repeat="apportion in expense.expenseApportion"
+                          id="item{{$index}}" ng-if="$index!==0">
+                    <!--分摊金额-->
+                    <div class="apportion-amount">
+                        <div class="label">
+                            <!--分摊金额-->
+                            {{ 'expenseApportion.apportionAmount' | translate }}
+                        </div>
+                        <div class="selector">
+                            <div class="amount-selector" ng-click="amountModal.openModal($index)">
+                                <div class="amount">
+                                    <div class="no-amount" ng-if="!apportion.amount">
+                                        <!--请输入金额-->
+                                        {{ 'expenseApportion.enterAmount' | translate }}
+                                    </div>
+                                    <!--金额-->
+                                    <div ng-if="apportion.amount>=0">
+                                        {{ apportion.amount }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--成本中心-->
+                    <div ng-repeat="costCenter in apportion.costCenterItems" class="cost-center">
+                        <div class="label">
+                            {{ costCenter.fieldName }}
+                        </div>
+                        <div class="selector">
+                            <cost-center-selector title="costCenter.fieldName" name="costCenter.costCenterItemName"
+                                                  selected="costCenter.costCenterItemOID" search-all="true"
+                                                  cost-center="costCenter.costCenterOID">
+                            </cost-center-selector>
+                        </div>
+                        <div class="arrow-img">
+                            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                        </div>
+                    </div>
+
+                    <!--相关人/收款人-->
+                    <div class="relevant-person">
+                        <div class="label">
+                            {{ relevantFiledName }}
+                        </div>
+                        <div class="selector">
+                            <applicant-selector field-name="relevantFiledName" applicant="apportion.relevant"
+                                                search-all="true">
+                            </applicant-selector>
+                        </div>
+                        <div class="arrow-img">
+                            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                        </div>
+                    </div>
+
+                    <!--删除分摊按钮-->
+                    <ion-option-button class="button-info" ng-click="view.delete($index)">
+                        <div class="delete-button">
+                            <img src="img/expense/delete-apportion.png" alt="">
+                        </div>
+                    </ion-option-button>
+                </ion-item>
+            </ion-list>
+
+            <!--暂无分摊提示-->
+            <div class="no-apportion" ng-if="expense.expenseApportion.length<=1">
+                <img src="img/expense/no-data.png">
+                <!--暂无分摊, 请新增吧-->
+                <div>{{ 'expenseApportion.noApportion' | translate }}</div>
+            </div>
+        </ion-content>
+
+        <ion-footer-bar keyboard-attach>
+            <div class="row row-center">
+                <div class="col text-center confirm-btn" ng-click="view.confirm()">
+                    <!--确认-->
+                    {{ 'expenseApportion.confirm' | translate }}
+                </div>
+                <div class="col text-center confirm-create-btn" ng-click="view.addApportion()">
+                    <!--新增一条-->
+                    {{ 'expenseApportion.confirmAndCreate' | translate }}
+                </div>
+            </div>
+        </ion-footer-bar>
+    </ion-modal-view>
+</script>
+
+<!--输入金额modal-->
+<script id="expense.amount.modal.tpl.html" type="text/ng-template">
+    <ion-modal-view class="expense-amount-modal" ng-click="amountModal.cancel()">
+        <ion-content overflow-scroll="false" scroll="false">
+            <div class="expense-amount">
+                <!--输入金额显示-->
+                <div class="amount-display">
+                    <!--输入的计算表达式-->
+                    <div class="amount-calculate">{{ amountModal.equational }}</div>
+
+                    <!--显示的金额和币种-->
+                    <div class="amount-currency-code">
+                        {{ currencyCode }}&nbsp;{{ amountModal.amount }}
+                    </div>
+                </div>
+                <keyboard-amount amount="amountModal.amount" equational="amountModal.equational"
+                                 finish="amountModal.finish()">
+                </keyboard-amount>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

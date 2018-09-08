@@ -1,0 +1,123 @@
+<ion-view class="invoice-apply-erv">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{view.title}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div class="invoice-apply-save" ng-click="view.saveInvoiceApply()">
+            {{'invoice.save' | translate}}<!--保存-->
+        </div>
+    </ion-nav-buttons>
+
+    <ion-content class="invoice-apply-create-content">
+        <ion-list>
+            <ion-item>
+                <div class="row row-center">
+                    <div class="col input-label">
+                        {{'invoice.reason' | translate}}<!--事由-->
+                    </div>
+                    <div class="col">
+                        <input class="invoice-apply-start" type="text" ng-model="view.invoiceApply.title"
+                               placeholder="{{'invoice.please.enter.the.reason' | translate}}"><!--请输入事由-->
+                    </div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <div class="row row-center department-select" ng-if="(!view.functionProfileList && view.showDepartment) || !view.functionProfileList['ea.department.selection.disabled']">
+                    <div class="col input-label">
+                        {{'invoice.department' | translate}}<!--部门-->
+                    </div>
+                    <div class="col">
+                        <department-selector class="select-department"
+                                             selected="view.departmentInfo"
+                                             department-id="view.invoiceApply.expenseApplication.departmentOID"
+                                             department-name="view.invoiceApply.expenseApplication.departmentName"
+                                             readonly="view.readonly"
+                                             department-top-list="view.functionProfileList['ea.department.top']"
+                                             mode="view.functionProfileList['department.leaf.selection.required']"
+                                             own-dep="view.functionProfileList['only.own.department.selection']">
+                        </department-selector>
+                    </div>
+                </div>
+                <div class="cost-center-select" ng-if="(!view.functionProfileList && $scope.view.showCostcenter) || !view.functionProfileList['ea.costCenter.selection.disabled']">
+                    <cost-center-item-selector selected="view.invoiceApply.expenseApplication.costCenterItemOID">
+                    </cost-center-item-selector>
+                </div>
+                <div class="row row-center no-border" ng-if="!view.functionProfileList || view.functionProfileList['ea.max.accompanies']!=0">
+                    <div class="col input-label">
+                        {{'invoice.participant' | translate}}<!--参与人员-->
+                    </div>
+                </div>
+                <person-selector member-list="view.invoiceApply.applicationParticipants"
+                                 holder="view.participantHolder"
+                                 readonly="view.readonly"
+                                 max-length="view.functionProfileList['ea.max.accompanies']"
+                                 ng-if="!view.functionProfileList || view.functionProfileList['ea.max.accompanies']!=0"
+                                 can-delete-ower="false">
+                </person-selector>
+            </ion-item>
+
+            <!--添加费用类型及金额-->
+            <div class="row">
+                <div class="col">
+                    {{'invoice.add.cost.type.and.amount' | translate}}
+                </div>
+            </div>
+            <ion-item>
+                <invoice-type-selector expense-list="view.invoiceApply.expenseApplication.expenseBudgetList"
+                                       expense-type-list='view.typeList'
+                                       expense-total-amount="view.invoiceApply.expenseApplication.totalBudget"
+                                       currency-code="expenseApplicationCurrencyCode"
+                                       code="view.code"
+                                       origin-currency-code="view.originCurrencyCode"
+                ></invoice-type-selector>
+            </ion-item>
+
+
+            <!--审批人-->
+            <ion-item>
+                <div class="row" ng-if="view.isShowApproval">
+                    <div class="col input-label select-approval-text">
+                        {{'invoice.approval.of.people' | translate}}
+                    </div>
+                    <div class="col">
+                        <approval-selector-modal title="view.approvalTitle"
+                                                 selector="view.invoiceApply.expenseApplication.approverOIDs"
+                                                 max-length="view.approvalMaxLength"
+                                                 class="text-right"
+                                                 readonly="view.readonly"
+                                                 selected-name="view.approvalSelectedName">
+                        </approval-selector-modal>
+                    </div>
+                </div>
+                <!--<div class="row row-center">-->
+                <!--<div class="col input-label">-->
+                <!--更多设置-->
+                <!--</div>-->
+                <!--<div class="col text-right">-->
+                <!--<img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">-->
+                <!--</div>-->
+                <!--</div>-->
+            </ion-item>
+
+            <!--请输入备注(最多200个汉字)-->
+            <div class="invoice-apply-comment">
+                <textarea class="invoice-comment"
+                          placeholder="{{'invoice.please.input.notes.(up.to.200.Chinese.characters)' | translate}}"
+                          ng-model="view.invoiceApply.remark"
+                          maxlength="200">
+                </textarea>
+            </div>
+
+
+
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar class="invoice-apply-create-footer">
+        <div class="row row-center">
+            <div class="col text-center invoice-apply-create-new" ng-click="view.submitInvoiceApply()">
+                {{'invoice.submit' | translate}}<!--提交-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+

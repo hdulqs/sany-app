@@ -1,0 +1,312 @@
+<ion-view class="expense-list" hide-back-button="true">
+    <ion-nav-title>
+        <div class="text-center expense-list-header">
+                <span class="tab-mode tab-mode-first active" ng-click="view.changeMode('list')">
+                {{'expense_list.list'|translate}}<!--列表-->
+                </span>
+                <span class="tab-mode tab-mode-second" ng-click="view.changeMode('map')">
+                    {{'expense_list.map'|translate}}<!--地图-->
+                </span>
+        </div>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div ng-if="view.isBatchOpertion || view.isBatchProduct">
+            <p ng-click="view.cancelFilter()" class="cancel-filter">
+                {{'create_expense_js.cancel'|translate}}<!--取消-->
+            </p>
+        </div>
+    </ion-nav-buttons>
+
+    <ion-subheader-bar class="bar bar-subheader">
+        <div class="row row-center head-tab">
+            <div class="col text-center" ng-repeat="item in view.tabItem" ng-click="view.changeTab($index)">
+                <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[$index === view.tabIndex]">
+                    {{item.name}}
+                    <div class="red-point" ng-if="view.hasApprovaled && $index === 2 "></div>
+                </span>
+            </div>
+        </div>
+    </ion-subheader-bar>
+    <ion-content class="expense-list-content has-subheader" overflow-scroll="true"
+                 ng-class="{true: 'has-footer'}[view.invoiceStatus === 'INIT' || view.invoiceStatus === 'APPROVALED']">
+        <div class="alert alert-warning warn" ng-if="view.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'expense_list.Temporarily.no.cost.information'|translate}}<!--暂时没有费用信息!--></p>
+        </div>
+        <div ng-if="view.networkError && view.expenseList.length === 0">
+            <not-found-text title="view.networkErrorText" icon="view.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="view.doRefresh()">
+                    {{'expense_list.Click.the.refresh'|translate}}<!--点击刷新-->
+                </button>
+            </div>
+        </div>
+        <div ng-if="view.systemError && view.expenseList.length === 0">
+            <not-found-text title="view.systemErrorText" sub-title="view.systemErrorSubText"
+                            icon="view.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <ion-refresher on-refresh="view.doRefresh()" pulling-text="{{'expense_list.Loading'|translate}}"></ion-refresher><!--加载中...-->
+        <div ng-if="view.invoiceStatus === 'SUBMITTED' && view.expenseList.length > 0" class="total-pane">
+            <p>
+                {{'expense_list.The.amount.of.reimbursement.have.a.ticket'|translate}}<!--报销有票金额-->: {{view.stateTotal.withReceiptAmount | currency : '￥'}}
+            </p>
+            <p>
+                {{'expense_list.The.amount.of.reimbursement.without.a.ticket'|translate}}<!--报销无票金额-->: {{view.stateTotal.noReceiptAmount | currency : '￥'}}
+            </p>
+        </div>
+        <div ng-if="view.invoiceStatus === 'APPROVALED' && view.expenseList.length > 0" class="total-pane">
+            <p>
+                {{'expense_list.The.amount.of.examination.and.approval.by.a.ticket'|translate}}<!--审批通过有票金额-->: {{view.stateTotal.withReceiptAmount | currency : '￥'}}
+            </p>
+            <p>
+                {{'expense_list.The.amount.of.approved.without.a.ticket'|translate}}<!--审批通过无票金额-->: {{view.stateTotal.noReceiptAmount | currency : '￥'}}
+            </p>
+        </div>
+        <ion-list>
+            <div ng-repeat="expense in view.expenseList">
+                <div ng-if="view.invoiceStatus !== 'REPRESENTED'">
+                    <div class="time-node"
+                         ng-if="(expense.invoiceStatus === 'INIT' && expense.rejectType !== 1 && expense.rejectType !== 2)
+                         && view.invoiceStatus === 'INIT' &&
+                         ($index === 0 || ($index > 0 && view.expenseList[$index].formatDate !== view.expenseList[$index-1].formatDate))">
+                        <p> {{ expense.createdDate | dateFilter }}{{expense.week | weekFilter}}</p>
+                    </div>
+                    <div class="row row-center expense-item"
+                         ng-class="{true: 'is-reject',false: ''}[ expense.invoiceStatus === 'INIT' && (expense.rejectType === 1 || expense.rejectType === 2)]">
+                        <div class="reject-text"
+                             ng-if="expense.invoiceStatus === 'INIT' && (expense.rejectType === 1 || expense.rejectType === 2)">
+                            <img src="img/expense/reject-icon.png" alt="">
+                        </div>
+                        <ion-checkbox ng-model="expense.checked" ng-if="view.isBatchOpertion || view.isBatchProduct"
+                                      ng-click="view.countSelect($index)"></ion-checkbox>
+                        <div class="col">
+                            <expense-item item="expense" delete='view.canDelete'
+                                          origin-currency-code="view.originCurrencyCode"
+                                          delete-expense="view.deleteInvoice(expense.invoiceOID)"
+                                          withdraw="view.canWithdraw"
+                                          withdraw-expense="view.withdraw(expense.invoiceOID)"
+                                          go-detail="view.goExpenseDetail(expense.readonly, expense.invoiceOID)">
+                            </expense-item>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="view.invoiceStatus === 'REPRESENTED'" class="presented">
+                    <div>
+                        <div class="presented-head" ng-click="view.changeShowIndex($index)">
+                            <div class="row">
+                                <p>
+                                    {{'expense_list.Generate.the.date'|translate}}<!--生成日期-->: {{expense.createDate}}
+                                </p>
+                                <div class="col">
+                                    <p class="text-right">
+                                        {{expense.totalAmount | currency : '￥' }}
+                                    </p>
+                                </div>
+                                <p class="arrow">
+                                    <i class="ion"
+                                       ng-class="{true: 'ion-arrow-down-b', false: 'ion-arrow-right-b'}[view.paperIndex === $index]"></i>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="presented-content">
+                            <div class="row presented-summary">
+                                <div class="col">
+                                    <p class="receipt-amount">
+                                        {{'expense_list.Have.ticket.amount'|translate}}<!--有票金额-->:
+                                        <span>
+                                            {{expense.hasReceiptAmount | currency : '￥'}}
+                                        </span>
+                                        ({{expense.countHasReceipt}}{{'expense_list.article'|translate}}<!--条-->)
+                                    </p>
+                                    <div ng-if="view.paperIndex === $index">
+                                        <div ng-repeat="item in expense.hasReceiptList">
+                                            <div class="paper-item">
+                                                <expense-item item="item"
+                                                              origin-currency-code="view.originCurrencyCode"
+                                                              ng-click="view.goExpenseDetail(item.invoiceOID)">
+                                                </expense-item>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="receipt-amount">
+                                        {{'expense_list.No.amount.of.ticket'|translate}}<!--无票金额-->:
+                                        <span>
+                                            {{expense.noReceiptAmount | currency : '￥'}}
+                                        </span>
+                                        ({{expense.countNoReceipt}}{{'expense_list.article'|translate}}<!--条-->)
+                                    </p>
+                                    <div ng-if="view.paperIndex === $index">
+                                        <div ng-repeat="item in expense.noReceiptList">
+                                            <div class="paper-item">
+                                                <expense-item item="item"
+                                                              origin-currency-code="view.originCurrencyCode"
+                                                              ng-click="view.goExpenseDetail(item.invoiceOID)">
+                                                </expense-item>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="receipt-amount" ng-if="expense.auditDate">
+                                        {{'expense_list.Financial.audit'|translate}}<!--财务审核-->:{{expense.auditDate | dateFilter}}
+                                    </p>
+                                    <p class="receipt-amount" ng-if="expense.financeLoanDate">
+                                        {{'expense_list.The.account.to.date'|translate}}<!--到帐日期-->:{{expense.financeLoanDate | dateFilter}}
+                                    </p>
+                                </div>
+                                <p class="text-right total-amount" ng-if="view.paperIndex !== $index">
+                                    {{expense.totalAmount | currency : '￥'}}
+                                </p>
+                                <p class="text-right paper-print" ng-if="view.paperIndex === $index">
+                                    <img src="img/expense/print.png" alt="">
+                                    <span>
+                                        {{'expense_list.print'|translate}}<!--打印-->
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="view.pageable.page < view.dataNum.lastPage"
+            on-infinite="view.getExpenseList(view.pageable.page + 1)" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+    <ion-footer-bar class="expense-list-footer"
+                    ng-if="view.invoiceStatus === 'INIT' || view.invoiceStatus === 'APPROVALED'">
+        <div class="row row-center" ng-if="!view.isBatchOpertion && view.invoiceStatus === 'INIT'">
+            <div class="col text-center expense-new" ng-click="view.goTo('app.expense_create')">
+                {{'expense_list.The.new.charges'|translate}}<!--新增费用-->
+            </div>
+            <div class="col text-center operation-all" ng-disabled="view.nothing"
+                 ng-class="{true: 'disable-operation',false: ''}[view.nothing]"
+                 ng-click="view.batchOperation()">
+                {{'expense_list.Batch.submission'|translate}}<!--批量提交-->
+            </div>
+        </div>
+        <div class="row row-center" ng-if="!view.isBatchProduct && view.invoiceStatus === 'APPROVALED'">
+            <div class="col text-center operation-all" ng-disabled="view.nothing"
+                 ng-class="{true: 'disable-operation',false: ''}[view.nothing]"
+                 ng-click="view.productInvoiceList()">
+                {{'expense_list.Generate.invoice.listing'|translate}}<!--生成发票清单-->
+            </div>
+        </div>
+        <div class="row row-center" ng-if="view.isBatchProduct">
+            <div class="col text-center expense-checkbox-btn">
+                <ion-checkbox ng-model="view.selectAll" ng-click="view.selectAllAction()">{{'expense_list.Future.generations'|translate}}<!--全选--></ion-checkbox>
+            </div>
+            <div class="col col-70 text-center operation-all" ng-click="view.batchProduct()"
+                 ng-class="{true: 'submit-btn', false: ''}[view.selectData.length > 0]">
+                {{'expense_list.generate'|translate}}<!--生成--><br/>
+                <span ng-if="view.selectData.length > 0">
+                    ({{view.selectData.length}}{{'expense_list.article'|translate}}<!--条-->)
+                        {{ view.selectAmount | currency : '￥' }}
+                    </span>
+            </div>
+        </div>
+        <div class="row row-center" ng-if="view.isBatchOpertion">
+            <div class="col text-center expense-checkbox-btn">
+                <ion-checkbox ng-model="view.selectAll" ng-click="view.selectAllAction()">{{'expense_list.Future.generations'|translate}}<!--全选--></ion-checkbox>
+            </div>
+            <div class="col text-center expense-checkbox-btn" ng-click="view.showSiftPane()">
+                {{'expense_list.screening'|translate}}<!--筛选-->
+            </div>
+            <div class="col col-50 text-center operation-all" ng-click="view.applyForApproval()"
+                 ng-class="{true: 'submit-btn', false: ''}[view.selectData.length > 0]">
+                {{'expense_list.submit'|translate}}<!--提交-->
+                <span ng-if="view.selectData.length > 0">
+                    ({{view.selectData.length}}{{'expense_list.article'|translate}}<!--条-->)
+                        <br/>{{ view.selectAmount | currency : '￥' }}
+                    </span>
+            </div>
+        </div>
+    </ion-footer-bar>
+    <div class="cover-screen" ng-if="view.isFilterContainerOpen" ng-click="view.hideSiftPane()">
+    </div>
+    <div class="expense-list-filter-container" ng-if="view.isFilterContainerOpen">
+        <div class="filter-content">
+            <div class="filter-time">
+                <div class="row row-center">
+                    <div class="col">
+                        <p class="title">
+                            {{'expense_list.Date.selection'|translate}}<!--日期选择-->
+                        </p>
+                    </div>
+                    <div class="col" ng-repeat="time in view.timeList" ng-click="view.selectTime($index)">
+                        <span class="period-btn"
+                              ng-class="{true: 'period-btn-active',false: ''}[$index === view.filter.timeFilter]">
+                            {{time.name}}
+                        </span>
+                    </div>
+                </div>
+                <div class="row row-center">
+                    <div class="col-25">
+
+                    </div>
+                    <div class="col col-75">
+                        <span class="period-btn" ng-click="view.showSelfDefinition()"
+                              ng-class="{true: 'period-btn-active', false: ''}[view.isDefineTime]">
+                            {{'expense_list.The.custom.time'|translate}}<!--自定义时间-->
+                        </span>
+                    </div>
+                </div>
+                <div class="row self-time" ng-if="view.isDefineTime">
+                    <div class="col" ng-click="datePicker.selectDate('begin')">
+                        <p ng-if="view.filter.begin">
+                            {{view.filter.begin | dateFilter}}
+                        </p>
+                    </div>
+                    <div class="col col-10 no-border">
+                        {{'expense_list.to'|translate}}<!--到-->
+                    </div>
+                    <div class="col" ng-click="datePicker.selectDate('end')">
+                        <p ng-if="view.filter.end">
+                            {{view.filter.end | dateFilter}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-center">
+                <div class="col">
+                    <p class="title">
+                        {{'expense_list.Cost.type'|translate}}<!--费用类型-->
+                    </p>
+                </div>
+                <div class="col">
+                    <span class="period-btn" ng-click="view.selectAllType()"
+                          ng-class="{true: 'period-btn-active',false: ''}[view.filter.isAllType]">
+                        {{'expense_list.all'|translate}}<!--全部-->
+                    </span>
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+            </div>
+            <div class="type-list-box">
+                <div class="type-icon" ng-repeat="type in view.typeList" ng-click="view.selectType($index)">
+                    <img ng-src="img/expensetypes/{{type.iconName}}.png" alt="">
+                    <p>
+                        {{type.name}}
+                    </p>
+                    <img src="img/expense/selected.png" alt="" class="select-icon" ng-if="type.isSelected">
+                </div>
+            </div>
+            <div class="row row-center btn-group">
+                <div class="col">
+                    <span class="btn-reset" ng-click="view.resetFilter()">
+                        {{'expense_list.reset'|translate}}<!--重置-->
+                    </span>
+                </div>
+                <div class="col">
+                    <span class="btn-sure" ng-click="view.dataSelector()">
+                        {{'create_expense_js.ok'|translate}}<!--确定-->
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-view>

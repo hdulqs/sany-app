@@ -1,0 +1,121 @@
+.person-add-modal {
+    background-color: #f1f1f1;
+    .bar-header {
+        .title {
+            color: #444;
+            font-weight: normal;
+            font-size: 15px;
+        }
+        .check-ok {
+            font-size: 0.9em;
+            color: #0092da;
+            position: absolute;
+            right: 7px;
+            top: 15px !important;
+        }
+        .check-cancel {
+            font-size: 0.9em;
+            color: #959595;
+            position: absolute;
+            left: 7px;
+            top: 15px !important;
+        }
+    }
+    .modal-header {
+        position: fixed;
+        top: 64px;
+        width: 100%;
+        background-color: transparent;
+        z-index: 99999;
+        .history-member-list {
+            background-color: #fff;
+            border-bottom: thin solid #e2e2e2;
+            color: #4c4c4c;
+            font-size: 14px;
+            .clear-history {
+                color: #0092da;
+            }
+            .member-fullname {
+                margin: 0 10px;
+                white-space: nowrap;
+            }
+        }
+        .add-button {
+            background-color: #fff;
+            padding: 10px;
+            border-bottom: thin solid #e2e2e2;
+            .add-icon {
+                width: 30px;
+            }
+            .add-text {
+                padding-left: 7px;
+                font-size: 14px;
+                color: #0092da;
+            }
+        }
+
+    }
+    ion-content {
+        background-color: #f1f1f1;
+        padding: 0;
+        .person-form {
+            .row {
+                background-color: #fff;
+                padding: 10px;
+                margin: 0;
+                border-bottom: thin solid #e2e2e2;
+                color: #4c4c4c;
+                input {
+                    line-height: 20px;
+                    height: 20px;
+                    padding: 0;
+                    width: 100%;
+                    -webkit-box-shadow: 0 0 0px 1000px white inset;
+                }
+            }
+            .add-btn {
+                padding: 0 15%;
+                button {
+                    width: 100%;
+                    text-align: Center;
+                    margin: 20px 0;
+                    background-color: #0092da;
+                    border: 1px solid #0092da;
+                    font-size: 16px;
+                    color: #fff;
+                    padding: 7px 0;
+                }
+                button[disabled] {
+                    width: 100%;
+                    text-align: Center;
+                    margin: 20px 0;
+                    background-color: #cdcdcd;
+                    border: 1px solid #cdcdcd;
+                    font-size: 16px;
+                    color: #fff;
+                    padding: 7px 0;
+                }
+            }
+        }
+    }
+    .outer-person {
+        top: 114px !important;
+        .item-content {
+            padding: 5px 0;
+        }
+        .person-delete {
+            background-color: red;
+            color: #fff;
+            font-size: 14px;
+        }
+        .person-index {
+            color: #959595;
+            font-size: 14px;
+        }
+    }
+    .top-max {
+        top: 212px !important;
+    }
+}
+
+

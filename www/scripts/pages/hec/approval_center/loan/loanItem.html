@@ -1,0 +1,156 @@
+<ion-view class="pane"  hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{"approval.loan.item.title"|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="hec-approval-detail">
+            <div class="row">
+                <div class="col text-right">
+                    <!--借款类型-->
+                    {{"approval.loan.item.type"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.cls_des}}
+                </div>
+            </div>
+            <div class="row" ng-if="vm.item.ref_document_id_display">
+                <div class="col text-right">
+                    <!--关联单据-->
+                    {{"approval.loan.item.refReqNum"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.ref_document_id_display}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--收款对象-->
+                    {{"approval.accountInfo.payeeType"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.partner_category_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--收款方-->
+                    {{"approval.accountInfo.payeeName"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.p_partner_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                   <!-- 收款银行账号-->
+                    {{"approval.accountInfo.accountNumber"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.account_number}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--银行账户-->
+                    {{"approval.accountInfo.accountName"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.account_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--付款方式-->
+                    {{"approval.accountInfo.paymentMethod"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.payment_method_id_display}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--特殊付款用途 改为：附言-->
+                    {{"approval.accountInfo.specialUsedes"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.special_payment_usedes|convertNothing}}
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col  text-right">
+                   &lt;!&ndash; 支付用途&ndash;&gt;
+                    {{"approval.accountInfo.paymentUsedes"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.payment_usedes|convertNothing}}
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col text-right">
+                   <!-- 借款金额-->
+                    {{"approval.loan.item.amount"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.currency_code|currencyFilter}}
+                    &nbsp;{{vm.item.amount|amountFilter}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--借款汇率-->
+                    {{"approval.loan.item.rate"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.exchange_rate}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--本币借款金额-->
+                    {{"approval.loan.item.currencyAmount"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.currency_code|currencyFilter}}
+                    &nbsp;{{vm.item.function_amount|amountFilter}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--资金计划编号-->
+                    {{"approval.loan.item.cashPlanNumber"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.cash_plan_number|convertNothing}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--资金计划编号-->
+                    {{"approval.loan.item.dimension"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.project_name|convertNothing}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--明细信息-->
+                    {{"approval.loan.item.detail"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    <span ng-if="vm.lineDetail.length==0">{{'approval.nothing'|translate}}</span>
+                    <div ng-repeat="detail in  vm.lineDetail">
+                        {{detail.flex_name}}-{{detail.value_name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

@@ -1,0 +1,8 @@
+<div class="gallery-view">
+    <div class="row" ng-repeat="item in items track by $index" hly-row-height>
+        <div zoom-slider ng-repeat="photo in item track by $index"
+             class="col col-33 image-container">
+            <img ng-src="{{photo.thumbnailUrl}}" ng-click="showImages(photo.position)">
+        </div>
+    </div>
+</div>

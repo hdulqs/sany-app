@@ -1,0 +1,80 @@
+<ion-view class="expense-sheet-first">
+    <ion-nav-title>
+            <span class="expense-report-nav-title">{{view.title}}</span>
+        </div>
+    </ion-nav-title>
+    <ion-content class="has-header has-footer expense-sheet-create-first-content">
+        <ion-list>
+            <ion-item class="row row-center filed-name" ng-if="(!view.functionProfileList && view.showArrow&&view.depConfigurationStatus) || !view.functionProfileList['er.department.selection.disabled']">
+                <div class="col col-center">{{'expense.department'|translate}}</div>
+                <div class="col col-center col-60 choice-dep">
+                    <department-selector
+                        department-name="view.expenseFirstStep.departmentPath"
+                        department-id="view.expenseFirstStep.departmentOID"
+                        readonly="view.readonly"
+                        department-top-list="view.functionProfileList['er.department.top']"
+                        mode="view.functionProfileList['department.leaf.selection.required']"
+                        own-dep="view.functionProfileList['only.own.department.selection']">
+                    </department-selector>
+                </div>
+                <span class="col col-10 col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </ion-item>
+            <ion-item class="row row-center filed-name"  ng-if="(!view.functionProfileList && view.showArrow&&view.costConfigurationStatus) || !view.functionProfileList['er.costCenter.selection.disabled']">
+                <div class="col col-center col-90 choice-person">
+                    <cost-center-item-selector
+                        selected="view.expenseFirstStep.costCenterItemOID"></cost-center-item-selector>
+                </div>
+                <span class="col col-10 col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </ion-item>
+            <ion-item class="row row-center filed-item" ng-click="!view.isReadOnly&&selectCashCategory()">
+                <div class="col col-center  filed-name">{{'expense.currency'|translate}}</div>
+                <div class="col col-center col-60 filed-value">{{view.expenseFirstStep.cash}}</div>
+                <span class="col col-10 col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </ion-item>
+            <ion-item class="row row-center filed-item" ng-hide="view.functionProfileList['er.opt.writeoffFlag.disabled']">
+                <div class="col col-center  filed-name">{{'expense.Whether to cancel after verification to borrow'|translate}}</div>
+                <div class="col col-center" style="flex:1">
+                    <ion-toggle class="switch-icon" ng-click="receiptChange()"
+                                ng-model="view.expenseFirstStep.writeoffFlag">
+                    </ion-toggle>
+                </div>
+            </ion-item>
+            <div class="item row row-center filed-item"></div>
+            <ion-item class="item row row-center filed-item" ng-if="view.showArrow&&view.isShowApproval">
+                <div class="col col-center  filed-name">{{'expense.Select the approver'|translate}}</div>
+                <div class="col col-center col-60 choice-person">
+                    <approval-selector-modal title="view.approvalTitle" selected-name="view.expenseFirstStep.approvalSelectedName" selector="view.expenseFirstStep.approverOIDs"
+                                             max-length="view.approvalMaxLength" readonly="view.readonly" hide-arrow="true">
+
+                    </approval-selector-modal>
+                </div>
+                <span class="col col-10 col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </ion-item>
+            <ion-item class="item row row-center filed-comment">
+                <textarea class="card-textarea" ng-model="view.expenseFirstStep.remark" placeholder="{{'expense.Please.enter.a.note(At.most.200.characters)'|translate}}" autofocus="false"></textarea>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            on-infinite="loadMoreExpenseFirst(firstStep.page.currentPage + 1)"
+            distance="1%"
+            immediate-check="false"
+            ng-if="firstStep.page.links['last'] > (firstStep.page.currentPage)">
+        </ion-infinite-scroll>
+    </ion-content>
+    <div class="bar bar-footer bar-positive row expense-create-first-footer">
+        <div class="col col-100 col-center ink next-step" ng-if="view.isReEditInvoice"
+             ng-click="saveExpense()">
+            <span class="next-step-text">{{'expense.The next step'|translate}}</span>
+        </div>
+        <div class="col col-100 col-center ink next-step" ng-if="!view.isReEditInvoice"
+             ng-click="saveExpense()">
+            <span class="next-step-text">{{'expense.Save the changes'|translate}}</span>
+        </div>
+    </div>
+</ion-view>
+
+
+
+
+
+

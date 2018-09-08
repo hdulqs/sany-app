@@ -1,0 +1,28 @@
+<ion-view class="erv-carousel-detail">
+    <ion-nav-title>
+        <!--通知-->
+        <span class="expense-report-nav-title">
+           {{'common.notification' | translate}}
+        </span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right" >
+        <!--关闭-->
+        <div class="create-travel-save" ng-click="close()">
+            {{'common.close' | translate}}
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="erv-carousel-content">
+        <div class="title">{{carouselContent.title}}</div>
+        <div class="row row-center">
+            <div class="col">
+                <p class="date text-center">
+                    {{carouselContent.createdDate | dateTimeFilter}}
+                </p>
+            </div>
+        </div>
+        <div>
+            <p class="detail-content" ng-bind-html="carouselContent.content | trust">
+            </p>
+        </div>
+    </ion-content>
+</ion-view>

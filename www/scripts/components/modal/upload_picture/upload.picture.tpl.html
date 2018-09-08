@@ -1,0 +1,27 @@
+<div class="icon-pane expense-image">
+    <div class="row row-center row-icon icon-list">
+        <div zoom-slider class="col col-33 text-center no-border"
+             ng-repeat="pic in attachmentSrc|filter:{Imagetype:0} track by $index">
+            <img ng-src="{{pic.thumbnailUrl}}" class="selected-pic" ng-click="showImages($index,pic.attachmentOID)"/>
+            <div ng-show="$root.waitingAttachments[pic.uuid] && $root.waitingAttachments[pic.uuid] !== 100"
+                 class="process-screen">
+                {{$root.waitingAttachments[pic.uuid]}}%
+            </div>
+            <div class="attachment-process"
+                 ng-if="$root.waitingAttachments[pic.uuid] || (pic.attachmentOID && pic.attachmentOID !== -1)">
+                    <span class="progress-bar"
+                          ng-style="{'width': pic.attachmentOID ? 0.06 * $root.waitingAttachments[pic.uuid] + 'em' : '6em'}"></span>
+            </div>
+            <img src="img/expense/delete-icon.png" alt="" ng-click="deleteImage($index,pic.attachmentOID)" class="delete-image" ng-if="readOnlyFlag =='false'">
+        </div>
+        <div class="col col-33 no-border" ng-if="isShowAddBtn && readOnlyFlag == 'false'">
+            <img src="img/expense/add-pic.png" class="selected-pic" alt="" ng-click="view.cameraActionSheet()">
+        </div>
+    </div>
+    <ion-list ng-repeat="file in attachmentSrc|filter:{Imagetype:1} track by $index">
+        <div style="padding: .5rem 1rem;border-top:1px solid #e2e2e2;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display: flex;justify-content: space-between;">
+            <a href="{{file.fileURL}}" style="text-decoration:none;">{{file.fileName}}</a>
+            <img src="img/hec/delete.png" alt="" style="float:right;width: 1.5rem; height: 1.5rem;margin-top: -.2rem" ng-click="deleteImage($index,file.attachmentOID)" ng-if="readOnlyFlag =='false'">
+        </div>
+    </ion-list>
+</div>

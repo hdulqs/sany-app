@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="calendar_active_month_bg">#ffffffff</color>  <!-- 当月的背景颜色-->
+    <color name="calendar_bg">#ffffffff</color>
+    <color name="calendar_divider">#ffbababa</color>          <!-- 周线的颜色-->
+    <color name="calendar_inactive_month_bg">#ffffffff</color> <!-- 非当月的背景颜色-->
+    <color name="calendar_selected_day_bg">#ff379bff</color>
+    <color name="calendar_highlighted_day_bg">#ccffcc</color>
+    <color name="calendar_selected_range_bg">#ff96caff</color>
+    <color name="calendar_text_inactive">#40778088</color>
+    <color name="calendar_text_active">#000</color>  <!-- 当天日期未选时-->
+    <color name="calendar_text_active1">#ffffffff</color>   <!-- 当天日期未选时背景的颜色-->
+    <color name="calendar_text_selected">#ffffffff</color>  <!-- 选中时字的颜色-->
+    <color name="calendar_text_unselectable">#7f778088</color>
+    <color name="calendar_text_highlighted">#ff379bff</color>
+
+    <color name="calendar_text_head">#1d9ed7</color>
+    <color name="colorl_457ABC">#458ABC</color>
+    <color name="color_black">#000</color>
+    <color name="colorbreak">#73BBA2</color>
+    <color name="colorwork">#B95756</color>
+    <color name="color_green">#04BE02</color>
+
+</resources>

@@ -1,0 +1,135 @@
+<ion-modal-view class="hec-approval-list-modal">
+    <ion-header-bar class="search" id="approval-modal-search">
+        <div class="row">
+            <div class="search-input">
+                <label><i class="fa fa-search" aria-hidden="true"></i></label>
+                <!--请输入-->
+                <input class="header-input" placeholder="{{'approval.please.enter' | translate}}" ng-model="modal.searchKeyword"
+                       ng-model-options="{ debounce: 500 }" ng-change="modal.search()"
+                       set-focus trigger="modal.focus">
+            </div>
+            <div class="col cancel" >
+                <!--取消-->
+                <div class="clear-div">
+                    <i class="fa fa-plus-circle" ng-show="modal.searchKeyword" ng-click="modal.clear()"></i>
+                </div>
+                <div ng-click="modal.closeSearchModal()">{{'approval.cancel' | translate}}</div>
+            </div>
+        </div>
+    </ion-header-bar>
+    <div class="nothing-div" ng-if="modal.searchKeyword && !modal.loading && modal.filterResults.length==0">
+        <div>
+            <img src="img/nothing.png" alt="nothing">
+        </div>
+        <div class="comment">{{'approval.no.data'|translate}}</div>
+    </div>
+    <ion-content id="approval-modal-content">
+        <ion-list ng-if="modal.filterResults.length > 0">
+            <div ng-repeat="approval in modal.filterResults" on-finish-render="ngRepeatFinished" >
+                <ion-item class="approval-item invoice-apply-directive" ng-if="vm.status=='waitApproval'">
+                    <div ng-click="vm.goApproval(approval,vm.status)" class="item-content">
+                        <div class="row row-center header">
+                            <div class="color-block"></div>
+                            <div class="col col-70 error-col">
+                                <p class="businessCode-anchor">
+                                    No.{{approval.document_number}}
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p class="text-right">
+                                    {{ approval.creation_date_view | limitTo:10}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="invoice-item-content">
+                            <div class="row row-center">
+                                <div class="col col-70">
+                                    <p class="detail">
+                                        {{approval.description}}
+                                    </p>
+                                </div>
+                                <div class="col col-30 col-center text-right invoice-types">
+                                    <p class="approval-status bg-wait-approval" >
+                                        {{'approval.approval.pending'|translate}}<!--待审批-->
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row row-center row-middle">
+                                <div class="col col-60 comment">
+                                    ({{approval.doc_description?approval.doc_description:'approval.nothing'|translate}})
+                                </div>
+                                <div class="col col-40 text-right">
+                                    <p class="total">
+                                        {{approval.currency_code|currencyFilter}}&nbsp;
+                                        {{approval.instance_amount|amountFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+                <ion-item class="approval-item invoice-apply-directive" ng-if="vm.status=='hasApproval'">
+                    <div ng-click="vm.goApproval(approval,vm.status)"  class="item-content">
+                        <div class="row row-center header">
+                            <div class="color-block"></div>
+                            <div class="col col-70 error-col">
+                                <p class="businessCode-anchor">
+                                    No.{{approval.order_no}}&nbsp;
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p class="text-right">
+                                    {{ approval.creation_date | limitTo:10}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="invoice-item-content">
+                            <div class="row row-center">
+                                <div class="col col-70">
+                                    <p class="detail">
+                                        {{approval.document_type}}
+                                    </p>
+                                </div>
+                                <div class="col col-30 col-center text-right invoice-types">
+                                    <p class="approval-status bg-has-pass" ng-show="approval.order_status=='COMPLETELY_APPROVED'||approval.order_status=='APPROVED'" >
+                                        <!--审批通过-->
+                                        {{'approval.already.passed'|translate}}
+                                    </p>
+                                    <p class="approval-status bg-has-reject"  ng-show="approval.order_status=='REJECTED'">
+                                        <!--已拒绝-->
+                                        {{'approval.already.refuse'|translate}}
+                                    </p>
+                                    <p class="approval-status bg-wait-approval"  ng-show="approval.order_status=='SUBMITTED'">
+                                        <!--审批中-->
+                                        {{'approval.in.approval'|translate}}
+                                    </p>
+                                    <p class="approval-status bg-withdraw"  ng-show="approval.order_status=='TAKEN_BACK'" >
+                                        <!--已收回-->
+                                        {{'approval.already.takeBack'|translate}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row row-center row-middle">
+                                <div class="col col-60 comment">
+                                    ({{approval.doc_description?approval.doc_description:'approval.nothing'|translate}})
+                                </div>
+                                <div class="col col-40 text-right">
+                                    <p class="total">
+                                        {{approval.currency_code|currencyFilter}}&nbsp;
+                                        {{approval.instance_amount|amountFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            on-infinite="modal.loadApprovals(vm.status,modal.searchKeyword,modal.searchPage + 1)"
+            distance="1%"
+            ng-if="modal.searchPageCnt > modal.searchPage"
+            immediate-check="false"
+        ></ion-infinite-scroll>
+    </ion-content>
+</ion-modal-view>

@@ -1,0 +1,272 @@
+<ion-view class="custom-application-list feeApplication" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'req.list.title' | translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="vm.goBack()"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-subheader-bar class="bar bar-subheader">
+        <div class="row row-center head-tab">
+            <div class="col text-center"  ng-click="vm.changeTab('waitSubmit')">
+                <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[vm.status === 'waitSubmit']">
+                    {{'req.list.waiting.submit'|translate}}
+                </span>
+            </div>
+            <div class="col text-center" ng-click="vm.changeTab('waitApproval')">
+                <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[vm.status === 'waitApproval']">
+                   {{'req.list.waiting.approval'|translate}}
+                </span>
+            </div>
+            <div class="col text-center"  ng-click="vm.changeTab('hasApproval')">
+                <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[vm.status === 'hasApproval']">
+                    {{'req.list.already.approved'|translate}}
+                </span>
+            </div>
+        </div>
+    </ion-subheader-bar>
+    <ion-content class="travel-list-content has-subheader">
+        <!--当页面没有数据或出现错误的处理-->
+        <div class="alert alert-warning warn"
+             ng-if="vm.nothing && !vm.networkError">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'common.empty' | translate}}!</p>
+        </div>
+        <div ng-if="vm.networkError && vm.reqList.length === 0">
+            <not-found-text title="vm.networkErrorText" icon="vm.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="create-travel-btn" ng-click="vm.doRefresh(vm.status)">
+                    {{'common.refresh' | translate}}
+                </button>
+            </div>
+        </div>
+        <div ng-if="vm.systemError && vm.reqList.length === 0">
+            <not-found-text title="vm.systemErrorText"
+                            sub-title="vm.systemErrorSubText"
+                            icon="vm.systemErrorIcon">
+            </not-found-text>
+        </div>
+
+        <!--下拉刷新-->
+        <ion-refresher on-refresh="vm.doRefresh(vm.status)"
+                       pulling-text="{{'common.loading' | translate}}...">
+        </ion-refresher>
+
+        <!--待提交-->
+        <div ng-if="vm.status == 'waitSubmit'">
+            <ion-list>
+                <div class="item application-info" ng-repeat="req in vm.reqList">
+                    <ion-item class="expense-directive item item-complex item-right-editable">
+                        <div ng-click="vm.goDetail(req,'waitSubmit')">
+                            <div class="row row-center header">
+                                <div class="color-block"></div>
+                                <div class="col col-70 error-col">
+                                    <p>
+                                        No.{{req.exp_requisition_number}}&nbsp;&nbsp;&nbsp;
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p class="text-right ng-binding">
+                                        {{req.creation_date1|limitTo:10}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="expense-item-content">
+                                <div class="row row-center expense-item-title">
+                                    <div class="col col-center col-60">
+                                        <h2 class="daily-expense ng-binding">
+                                            {{req.type_description}}
+                                        </h2>
+                                    </div>
+                                    <div class="col col-center text-right expenses-types">
+                                        <p class="approval-status bg-has-reject"  ng-show="req.requisition_status_value=='REJECTED'">
+                                            <!--已拒绝-->{{'req.list.rejected'|translate}}
+                                        </p>
+                                        <p class="approval-status bg-withdraw"  ng-show="req.requisition_status_value=='TAKEN_BACK'">
+                                            <!--已收回-->{{'req.list.already.takeBack'|translate}}
+                                        </p>
+                                        <p class="approval-status bg-editing"  ng-show="req.requisition_status_value=='GENERATE'">
+                                            <!--编辑中-->{{'req.list.editing'|translate}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row row-middle">
+                                    <div class="col col-center col-60">
+                                        <p class="text-left">
+                                            ({{req.description ? req.description:'无'}})
+                                        </p>
+                                    </div>
+                                    <div class="col col-center col-40 text-right expenses-types">
+                                        <p class="text-right invoice-money">
+                                                <span class="ng-binding">
+                                                    {{req.currency_code |currencyFilter }}
+                                                </span>
+                                            <span class="ng-binding">
+                                                {{req.quarter_num | amountFilter}}
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--req.requisition_status_value=='GENERATE'||req.requisition_status_value=='REJECTED'-->
+                        <ion-option-button class="hec-button-delete"
+                                           ng-if="req.requisition_type == 'EXP_REQUISITION'"
+                                           ng-click="vm.deleteReq(req.exp_requisition_header_id)">
+                            <!--删除-->{{'req.list.delete'|translate}}
+                        </ion-option-button>
+                        <ion-option-button class="hec-button-delete"
+                                           ng-if="req.requisition_type == 'PAYMENT_REQUISITION'"
+                                           ng-click="vm.deleteLoanReq(req.exp_requisition_header_id)">
+                            <!--删除-->{{'req.list.delete'|translate}}
+                        </ion-option-button>
+                        <ion-reorder-button class="ion-navicon"
+                                            on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+                    </ion-item>
+                </div>
+            </ion-list>
+        </div>
+        <!--待审批-->
+        <div ng-if="vm.status == 'waitApproval'">
+            <ion-list>
+                <div class="item application-info" ng-repeat="req in vm.reqList">
+                    <ion-item class="expense-directive item item-complex item-right-editable">
+                        <div ng-click="vm.goDetail(req,'waitApproval')">
+                            <div class="row row-center header">
+                                <div class="color-block"></div>
+                                <div class="col col-70 error-col">
+                                    <p>
+                                        No.{{req.order_no}}&nbsp;&nbsp;&nbsp;
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p class="text-right ng-binding">
+                                        {{req.creation_date|limitTo:10 }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="expense-item-content">
+                                <div class="row row-center expense-item-title">
+                                    <div class="col col-center col-60">
+                                        <h2 class="daily-expense ng-binding">
+                                            {{req.document_type}}
+                                        </h2>
+                                    </div>
+                                    <div class="col col-center text-right expenses-types">
+                                        <p class="approval-status bg-wait-approval ng-binding">
+                                            <!--待审批-->
+                                            {{'req.list.waiting.approval'|translate}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row row-middle">
+                                    <div class="col col-center col-60">
+                                        <p class="text-left">
+                                            ({{req.order_description ? req.order_description:'无'}})
+                                        </p>
+                                    </div>
+                                    <div class="col col-center col-40 text-right expenses-types">
+                                        <p class="text-right invoice-money">
+                                                <span class="ng-binding">
+                                                    {{req.currency_code |currencyFilter }}
+                                                </span>
+                                            <span class="ng-binding">
+                                                {{req.instance_amount | amountFilter}}
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ion-option-button class="hec-button-delete" ng-if="true"
+                                           ng-click="vm.takeBack(req.instance_id)">
+                            <!--收回-->
+                            {{'req.list.takeBack'|translate}}
+                        </ion-option-button>
+                        <ion-reorder-button class="ion-navicon"
+                                            on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+                    </ion-item>
+                </div>
+            </ion-list>
+        </div>
+        <!--审批通过-->
+        <div ng-if="vm.status == 'hasApproval'">
+            <ion-list>
+                <div class="item application-info" ng-repeat="req in vm.reqList">
+                    <ion-item class="expense-directive item item-complex item-right-editable">
+                        <div ng-click="vm.goDetail(req,'hasApproval')">
+                                <div class="row row-center header">
+                                    <div class="color-block"></div>
+                                    <div class="col col-70 error-col">
+                                        <p>
+                                            No.{{req.exp_requisition_number}}&nbsp;&nbsp;&nbsp;
+                                        </p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="text-right ng-binding">
+                                            {{req.last_update_date|limitTo:10 }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="expense-item-content">
+                                    <div class="row row-center expense-item-title">
+                                        <div class="col col-center col-60">
+                                            <h2 class="daily-expense ng-binding">
+                                                {{req.type_description}}
+                                            </h2>
+                                        </div>
+                                        <div class="col col-center text-right expenses-types">
+                                            <p class="approval-status bg-has-pass ng-binding">
+                                                <!--审批通过-->{{'req.list.approved'|translate}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row row-middle">
+                                        <div class="col col-center col-60">
+                                            <p class="text-left">
+                                                ({{req.description |convertNothing}})
+                                            </p>
+                                        </div>
+
+                                        <div class="col col-center col-40 text-right expenses-types"
+                                             ng-if="(item.currencyCode==originCurrencyCode)">
+                                            <p class="text-right invoice-money">
+                                                <span class="ng-binding">
+                                                    {{req.currency_code |currencyFilter }}
+                                                </span>
+                                                <span class="ng-binding">
+                                                    {{req.quarter_num | amountFilter }}
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <ion-option-button class="hec-button-delete"
+                                           ng-if="false">
+                        </ion-option-button>
+                        <ion-reorder-button class="ion-navicon"
+                                            on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+                    </ion-item>
+                </div>
+            </ion-list>
+        </div>
+
+        <ion-infinite-scroll
+            on-infinite="vm.loadMore(vm.status,vm.page+1)"
+            ng-if="vm.page < vm.pageCnt"
+            distance="1%"
+            immediate-check="false"
+        ></ion-infinite-scroll>
+    </ion-content>
+
+    <div class="buttons buttons-center button-positive" ng-click="showReqMenu($event)"
+         ng-if="vm.status === 'waitSubmit'">
+        <img src="img/expense_report_version/expense_report/add.png"
+             ng-class="{true: 'pic-three', false: 'pic-rotate-three'}[!vm.markStatus]"/>
+    </div>
+</ion-view>
+

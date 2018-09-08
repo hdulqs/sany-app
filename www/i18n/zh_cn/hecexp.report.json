@@ -1,0 +1,138 @@
+{
+    "confirm.window.prompt":"提示",
+    "confirm.window.Information.report":"是否保存该费用报销单信息?",
+    "confirm.window.cancel":"取消",
+    "confirm.window.ok":"确认保存",
+    "message": {
+        "query.failed": "数据查询失败",
+        "delete.failed": "删除失败",
+        "delete.success": "删除成功",
+        "save.failed": "保存失败",
+        "save.success": "保存成功",
+        "submit.failed": "提交失败",
+        "select.book":"选择对应申请单信息后才能导入费用账本！"
+    },
+    "over.standard": {
+        "title": "超标准情况",
+        "req": {
+            "prompt": "超申请",
+            "other":{
+                "req.amount": "申请单总金额",
+                "report.amount": "关联报销总金额",
+                "current.amount": "本次关联金额"
+            },
+            "travel":{
+                "req.amount":"申请总金额",
+                "report.amount":"报销总金额"
+            }
+        },
+        "travel": {
+            "prompt": "超差旅政策",
+            "exp.item": "费用项目",
+            "standard.amount": "费用标准金额",
+            "function.amount": "本币报销金额"
+        }
+    },
+    "myReqList":{
+        "My.application.list": "我的申请",
+        "Temporarily.no.req.information":"暂时没有申请信息",
+        "Reim.can.be.related.to.the.amount":"可关联报销金额",
+        "report.type":"报销类型",
+        "application.item":"申请项目",
+        "application.people":"申请人",
+        "dept": "部门",
+        "center": "成本中心",
+        "total.amount":"总申请金额",
+        "comment":"说明",
+        "ass.book":"关联账本",
+        "import.req.line.info":"导入申请单行信息",
+        "Click.the.refresh":"点击刷新",
+        "loading":"加载中"
+    },
+    "payment.plan":{
+        "list":"付款计划列表",
+        "add":"新增计划付款行",
+        "nothing":"暂无计划付款行信息",
+        "Receipt.amount":"收款金额",
+        "Total.amount":"总金额",
+        "Off.amount":"冲账金额",
+        "Receipt.people":"收款方",
+        "Bank.name":"银行账户",
+        "delete": "删除",
+        "loading":"加载中"
+    },
+    "report": {
+        "title": "报销",
+        "refReq": "已关联申请单",
+        "save": "保存",
+        "submit": "提交",
+        "new.exp.report": "新建费用报销",
+        "Nothing": "空空如也",
+        "No.expense.account": "暂无报销单!",
+        "Click.the.refresh": "点击刷新",
+        "waiting.approval": "待审批",
+        "waiting.submit": "待提交",
+        "already.approved": "已通过",
+        "approved": "审批通过",
+        "already.takeBack": "已收回",
+        "editing": "编辑中",
+        "refused": "已拒绝",
+        "delete": "删除",
+        "takeBack": "收回",
+        "from.book":"从账本导入",
+        "new.exp":"新增费用",
+        "from.req":" 从申请单行导入",
+        "please.input": "请输入",
+        "prompt":"提示",
+        "cancel": "取消",
+        "confirm":"确定",
+        "header":{
+            "company": "公司",
+            "dept": "部门",
+            "date": "报销日期",
+            "expenseDept": "费用发生部门",
+            "center": "成本中心",
+            "job": "岗位",
+            "level": "职级",
+            "cadre": "干部类型",
+            "amount": "报销金额",
+            "exchange.rate": "(收款-本位币)汇率",
+            "contract.number": "合同号",
+            "internal.title": "内部职称",
+            "business.attribute": "业务属性",
+            "approval.leadership": "领导已审",
+            "approval.special": "是否特批",
+            "addApproval": "需添加审批人",
+            "contract.payment.terms":"合同付款条件",
+            "special.approval.note":"特批事项说明",
+            "description":"报销事由",
+            "opinions": "审批意见",
+            "record": "审批记录",
+            "report.situation": "查看报销情况",
+            "standard.situation": "查看标准情况",
+            "view.document.history":"查看单据历史",
+            "new.plans":"生成或新增计划付款行",
+            "opinions_tip": "少于200个汉字",
+            "nothing": "无",
+            "Attachment.information": "附件信息(最多可上传9张照片)",
+            "makePlanContent":"系统检测目前无计划付款行，将根据单据信息自动生成收款信息",
+            "submit.tip":"不存在计划付款行，无法提交；是否自动生成计划付款行？",
+            "submit.hotelTip":"住宿费超标，如需据实报销需勾选'特批'并明确'特批事项'，是否继续提交？",
+            "error": {
+                "required.unit_name": "请选择部门",
+                "required.responsibility_center_name": "请选择成本中心",
+                "required.exp_report_date": "请选择报销日期",
+                "required.exp_report_currency_code": "请选择收款币种",
+                "required.business_attribute": "请选择业务属性",
+                "required.description": "请输入报销事由",
+                "required.exp_report_rate": "汇率不存在，请联系管理员维护汇率!",
+                "required.exp_report_payment_method":"请选择付款方式",
+                "required.exp_report_payee_category_name":"请选择收款对象",
+                "required.contract_pay_term":"请输入合同付款条件",
+                "query.failed":"数据查询失败",
+                "required.special.approval.note":"请输入特批事项说明"
+            }
+        }
+    }
+
+}

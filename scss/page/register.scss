@@ -1,0 +1,343 @@
+ion-view.register-page.pane{
+    background: #f1f1f1;
+    @extend %tabs;
+    .list {
+        margin-top: 10px;
+        background: #FFFFFF;
+        height: 98px;
+    }
+    .row.input-group {
+        padding: 0;
+    }
+    .input-group input[type=text] {
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0;
+        border-bottom: 0px;
+        border-top: 1px #DFDFDF solid;
+        border-left: 1px #DFDFDF solid;
+        border-right: 1px #DFDFDF solid;
+        flex: 1 0 8em;
+        font-size: 14px;
+        padding-left: 7px;
+        height: 51px;
+        padding-right: 0;
+    }
+    button.col-40.button.button-raised.token-button {
+        background-color: #ffffff;
+        border: 0.1em solid #DFDFDF;
+        color: #0090D9;
+        padding: 0px;
+        height: 47px;
+        border-radius: 0;
+        font-size: 13px;
+    }
+    .input-group input[name=token] {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-bottom: 1px #DFDFDF solid;
+        border-right: none;
+        padding: 0 7px;
+    }
+    .button[disabled] {
+        cursor: default !important;
+        pointer-events: none;
+        color: #80C9ED;
+        opacity: 1;
+        padding: 0;
+        margin: 5% 0;
+    }
+    .button.disabled {
+        cursor: default !important;
+        pointer-events: none;
+        opacity: 1;
+        padding: 0;
+        font-size: 13px;
+        border: 1px solid #DFDFDF;
+        border-radius: 0;
+        background: #fff;
+        height: 47px;
+        color: #0092da;
+    }
+    .prompt-color {
+        color: #BCBCBC;
+        font-weight: 500;
+        text-indent: 10px;
+        letter-spacing: 1px;
+        text-align: center;
+        margin-top: 9px;
+    }
+    button.button.next-button {
+        margin: 5% 0;
+    }
+    //.button.button-positive {
+    //    border-color: transparent;
+    //    background-color: #0092DA;
+    //    color: #fff;
+    //    margin: 12% 0;
+    //}
+    .checkbox-group {
+        margin: 20px 0;
+        padding: 0;
+        line-height: 30px;
+    }
+    .captcha-image{
+        height: 51px;
+        width: 100%;
+    }
+    .register-checkbox {
+        background: #f1f1f1 !important;
+        border: none !important;
+        padding-left: 13px;
+        margin-right: 10px;
+        padding-right: 0;
+        text-align: center;
+        .checkbox {
+            top: 90% !important;
+            padding: 0;
+            right: 0;
+            width: 15px;
+            height: 15px;
+        }
+        .checkbox-icon {
+            width: 15px !important;
+            height: 15px !important;
+        }
+        .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+            background-color: #0092da !important;
+            border-color: #0092da !important;
+        }
+        .checkbox-icon:after {
+            top: 20% !important;
+            left: 13% !important;
+            width: 11px;
+        }
+        .item-content.disable-pointer-events {
+            margin-left: 10px;
+            span {
+                font-size: 14px;
+                color: #4c4c4c;
+                font-family: "微软雅黑";
+            }
+            a {
+                color: #0092DA;
+                font-size: 14px;
+                font-family: "微软雅黑";
+            }
+        }
+    }
+}
+
+.set-password-page {
+    background: #f1f1f1;
+    .list {
+        margin-top: 10px;
+        background: #FFFFFF;
+        height: 48px;
+    }
+    .password-account {
+        text-align: center;
+        padding: 0;
+    }
+    .password-input {
+        padding: 0;
+        margin-top: 5px;
+        margin-left: 10px;
+        font-size: 15px;
+    }
+    img.col.eye-icon {
+        padding: 0;
+        width: 28px;
+        height: 11px;
+        max-width: 28px;
+        min-width: 28px;
+        margin-top: 17px;
+        margin-right: 10px;
+    }
+    .button[disabled] {
+        cursor: default !important;
+        pointer-events: none;
+        color: #80C9ED;
+        opacity: 1;
+        padding: 0;
+    }
+    .button.disabled {
+        cursor: default !important;
+        pointer-events: none;
+        opacity: 1;
+        padding: 0;
+        font-size: 13px;
+    }
+    .row.close-password-account {
+        text-align: center;
+        padding: 0;
+    }
+    input.col.close-password-input {
+        padding: 0;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    img.col.close-eye-icon {
+        padding: 0;
+        width: 28px;
+        height: 11px;
+        max-width: 28px;
+        min-width: 28px;
+        margin-top: 25px;
+        margin-right: 10px;
+    }
+
+}
+
+ion-view.register-company.pane {
+    background: #f1f1f1;
+    .list {
+        margin-top: 10px;
+        background: #FFFFFF;
+    }
+    .row.input-group {
+        border-bottom: 1px solid #cdcdcd;
+        padding: 0;
+        height: 52px;
+        line-height: 52px;
+        margin: 0;
+    }
+    input {
+        width: 100%;
+        margin-left: 10px;
+        padding: 0;
+    }
+    .button[disabled] {
+        cursor: default !important;
+        pointer-events: none;
+        color: #80C9ED;
+        opacity: 1;
+        padding: 0;
+    }
+    .button.disabled {
+        cursor: default !important;
+        pointer-events: none;
+        opacity: 1;
+        padding: 0;
+        font-size: 13px;
+    }
+}
+
+ion-view.register-success.pane {
+    background: #f1f1f1;
+    .password-logo {
+        text-align: center;
+        .logo-icon {
+            width: 17%;
+            margin-top: 10%;
+            margin-bottom: 5px;
+        }
+        .register-text {
+            margin: 0 0 10px;
+            color: #888;
+            font-size: 17px;
+        }
+        .contact-text {
+            margin: 15%;
+            color: #444;
+            font-size: 15px;
+        }
+        .contact-img {
+            padding: 0;
+            max-width: 19px;
+        }
+        a {
+            text-align: left;
+            font-size: 14px;
+            text-decoration: none;
+            white-space: nowrap;
+            padding: 0;
+        }
+        p.logo-font {
+            color: #47C5BA;
+            font-size: 15px;
+            border-bottom: 1px solid #cdcdcd;
+            width: 80%;
+            position: relative;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            text-align: center;
+            height: 30px;
+        }
+        .dredge {
+            color: #cdcdcd;
+            .dredge-item {
+                margin-bottom: 0;
+            }
+        }
+    }
+    button.button.confirm-button {
+        width: 80%;
+        position: relative;
+        background-color: #0092da;
+        color: #fff;
+        line-height: 40px;
+        height: 40px;
+        margin-top: 6%;
+        border-radius: 9px;
+    }
+    .contact-way {
+        padding: 0 15px;
+    }
+    .separate-line {
+        border-top: 1px solid #cdcdcd;
+        width: 80%;
+        position: relative;
+        left: 0;
+        right: 0;
+        margin: 30% auto 0 auto;
+    }
+    .other-information {
+        color: #cdcdcd;
+        top: 6px;
+        margin-top: 10px;
+        .information-item {
+            margin-bottom: 0;
+            font-size: 13px;
+            color: #888;
+        }
+        a {
+            color: #cdcdcd;
+            text-decoration: none;
+        }
+    }
+}
+
+.service-agreement {
+    background: #f1f1f1;
+    .list {
+        padding: 0;
+        .agreement-title {
+            margin: 20px 0;
+            text-align: center;
+            font-size: 16px;
+            color: #4c4c4c;
+        }
+        .agreement-text {
+            font-size: 14px;
+            color: #959595;
+            margin: 0 20px;
+        }
+    }
+}
+
+.forget-view {
+    @extend %tabs;
+}
+
+%tabs {
+    .tab-item {
+        max-width: 50%;
+    }
+    .tabs-striped .tab-item.tab-item-active, .tabs-striped .tab-item.active, .tabs-striped .tab-item.activated {
+        border-color: #0092da;
+        color: #0092da;
+    }
+}

@@ -1,0 +1,61 @@
+<!--我的待确认差旅行程-选择差旅申请
+    Created by Dawn on 2017/8/7-->
+<ion-view hide-back-button="true" class="hec-choose-trip">
+    <ion-nav-title>
+        <span class="expense-report-nav-title" style="font-size: 17px;">{{'choose_travel_trip.title' | translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="hec-trip-content">
+        <!-- start= 页面没有数据，网络-->
+        <div class="alert alert-warning warn" ng-if="vm.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'choose_travel_trip.Temporarily.no.waiting.information'|translate}}<!--暂时没有待确认行程!--></p>
+        </div>
+        <div ng-if="vm.networkError && vm.travelTripList.length === 0">
+            <not-found-text title="vm.networkErrorText" icon="vm.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="vm.doRefresh()">
+                    {{'choose_travel_trip.Click.the.refresh'|translate}}<!--点击刷新-->
+                </button>
+            </div>
+        </div>
+        <div ng-if="vm.systemError && vm.travelTripList.length === 0">
+            <not-found-text title="vm.systemErrorText" sub-title="vm.systemErrorSubText"
+                            icon="vm.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <ion-refresher on-refresh="vm.doRefresh()" pulling-text="{{'choose_travel_trip.Loading'|translate}}"></ion-refresher><!--加载中...-->
+        <!-- end= 页面没有数据，网络-->
+
+        <div ng-click="vm.goConfirmTrip(item)" ng-repeat="item in vm.travelTripList" class="hec-trip-item">
+            <div class="row">
+                <div class="col hec-item-prompt">{{'choose_travel_trip.invoice.number' | translate}}：{{item.exp_requisition_number}}</div>
+                <div class="col col-20 hec-item-prompt hec-type-code" ng-if="item.expense_requisition_type_code =='1015'">{{'choose_travel_trip.International' | translate}}<!--国际--></div>
+                <div class="col col-20 hec-item-prompt hec-type-code" ng-if="item.expense_requisition_type_code =='1010'">{{'choose_travel_trip.domestic' | translate}}<!--国内--></div>
+            </div>
+            <div class="row">
+                <div class="col hec-red hec-item-prompt">{{'choose_travel_trip.application.date' | translate}}：{{item.requisition_date}}</div>
+            </div>
+            <div class="row">
+                <div class="col hec-item-prompt">{{'choose_travel_trip.application.total.account' | translate}}：{{item.requisition_amount | amountFilter}}</div>
+            </div>
+            <div class="row">
+                <div class="col hec-item-prompt">{{'choose_travel_trip.note' | translate}}：{{item.requisition_note | convertNothing}}</div>
+            </div>
+
+        </div>
+        <ion-infinite-scroll
+            on-infinite="vm.getTravelTrip(vm.page + 1)"
+            distance="1%"
+            ng-if=" vm.page < vm.lastPage"
+            immediate-check="false"
+        ></ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+

@@ -1,0 +1,160 @@
+<ion-modal-view class="arrange-tiket-journey">
+    <ion-header-bar>
+        <a ng-click="view.closeAllowanceModal()" class="row application-back-button">
+            <img src="img/back.png" class="save-btn create-expense-back-btn">
+            <span class="back-text-grey">
+                {{'custom.application.nav.back' | translate}}
+                <!--返回-->
+            </span>
+        </a>
+        <h3 class="title">
+            {{"modal.select_allowance"|translate}}
+            <!--选择差补-->
+        </h3>
+    </ion-header-bar>
+    <ion-content class="block-content">
+        <ion-list>
+            <ion-item ng-repeat="item in view.subsidiesList"
+             ng-class="{true: 'flow animated1s linear', false: ''}[$index == (view.subsidiesList.length -1)]">
+                <p class="itinerary-index">
+                    <!--差补 -->
+                    {{"custom.application.tip.allowance"|translate}}
+                    {{$index +1}}
+                </p>
+                <div class="block-card shadow-block">
+                    <div class="row row-center input-list">
+                        <div class="col col-50 border-bottom" ng-click="view.selectTravelAllowanceDate('startDate', $index)">
+                            <p class="date-label" ng-hide="item.startDate">
+                                <!--开始日期-->
+                                {{"custom.application.tip.start_date"|translate}}
+                            </p>
+                            <p class="date-value" ng-if="item.startDate">
+                                {{item.startDate | dateFilter}}
+                            </p>
+                        </div>
+                        <div class="col col-50 border-bottom" ng-click="view.selectTravelAllowanceDate('endDate', $index)">
+                            <p class="date-label text-right" ng-hide="item.endDate">
+                                <!--结束日期-->
+                                {{"custom.application.tip.end_date"|translate}}
+                            </p>
+                            <p class="date-value text-right" ng-if="item.endDate">
+                                {{item.endDate | dateFilter}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row row-center input-list">
+                        <div class="col col-33">
+                            <p class="city-label allowance-city-lable">
+                                {{"custom.application.tip.allowance_city"|translate}}
+                                <!--差补城市-->
+                            </p>
+                        </div>
+                        <div class="col col-60 text-right allowance-city">
+                            <city-selector city="item.cityName"
+                                           code='item.cityCode'
+                                           supplier-name="'standard'"
+                                           hide-hot-city="view.functionProfileList['ca.travel.hotCity.disabled']"
+                                           allowance-tip="item.cityCode != null && item.cityCode != '' && item.expenseTypeOIDs.length > 0"
+                                           type="1002" readonly="false" holder="view.selectText" allowance-callback="view.clearSelectAllowanceType($index)"
+                                           ng-click="view.againGetAllowanceType($index)">
+                            </city-selector>
+                        </div>
+                        <div class="col col-5 text-right">
+                            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow allowance-travel-arrow">
+                        </div>
+                    </div>
+                    <div class="allowance-bottom">
+                        <div class="allowance-border">
+
+                        </div>
+                    </div>
+                    <div class="row row-center input-list allowance-type" ng-if="item.cityCode && item.startDate && item.endDate" ng-click="view.selectAllowanceType($index)">
+                        <div class="col col-33 border-bottom">
+                            <p class="city-label">
+                                {{"custom.application.tip.allowance_type"|translate}}
+                                <!--差补类型-->
+                            </p>
+                        </div>
+                        <div class="col col-60 text-right allowance-city border-bottom">
+                            <p class="city-label" ng-hide="item.expenseTypeOIDs.length > 0">
+                                {{"custom.application.tip.to_add"|translate}}
+                                <!--去添加-->
+                            </p>
+                            <p class="city-label" ng-if="item.expenseTypeOIDs.length > 0">
+                                <!--总额-->
+                                {{"custom.application.tip.amount"|translate}}： {{currencyCode}} {{view.getAllowanceAmount(item)}}
+                            </p>
+                        </div>
+                        <div class="col text-right border-bottom">
+                            <p class="city-label">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </p>
+                        </div>
+                    </div>
+
+                    <div ng-click="view.selectAllowanceType($index)" ng-if="item.expenseTypeOIDs.length > 0">
+                        <div class="allowance-detail-list">
+                            <div class="border-bottom">
+                                <div class="allowance-name">
+                                    <span ng-repeat="type in item.expenseType" ng-if="item.expenseType.length > 0 && item.expenseTypeOIDs.indexOf(type.expenseTypeOID) > -1">
+                                        {{type.expenseTypeName}} <span ng-if="$index != item.expenseType.length -1">，</span>
+                                    </span>
+                                </div>
+                                <div ng-repeat="type in item.expenseType" ng-if="item.expenseType.length > 0 && item.expenseTypeOIDs.indexOf(type.expenseTypeOID) > -1">
+                                    <div class="allowance-expense">
+                                        <div>
+                                            <!--人  共  天-->
+                                            {{type.expenseTypeName}}&nbsp;&nbsp;{{currencyCode}}&nbsp;{{type.amount}}&nbsp;&nbsp;{{'custom.application.allowance.renDay'|translate}}，
+                                            {{type.userOIDs.length}}{{'custom.application.travel.person' |
+                                            translate}}，{{'custom.application.travel.all' | translate}}{{item.dayEnd -
+                                            item.dayStart +1}}{{'custom.application.travel.day' | translate}}
+                                        </div>
+                                    </div>
+                                    <div class="row row-center allowance-person">
+                                        <div class="col col-center allowance-category">{{type.userName}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row row-center self-comment">
+                        <div class="col col-100">
+                            <textarea placeholder="{{'form.please.input' | translate}}" ng-model="item.remark"
+                                  maxlength="200">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="row row-center text-area-number" ng-if="item.remark.length > 0">
+                        <p class="text-right">
+                            {{item.remark.length}}/200
+                        </p>
+                    </div>
+                    <div class="row row-center text-area-number" ng-hide="item.remark.length > 0">
+                        <p class="text-right">
+                            0/200
+                        </p>
+                    </div>
+                </div>
+                <ion-option-button class="button-assertive delete-itinerary" ng-click="view.deleteAllowanceItinerary($index)">
+                    <div class="column">
+                        <img src="img/expense_report_version/travel/delete-itinerary.png" alt="" class="delete-icon">
+                    </div>
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="row row-center">
+            <div class="col col-50 text-center sure" ng-click="view.saveAllowanceItinerary()">
+                {{"common.sure"|translate}}
+                <!--确认-->
+            </div>
+            <div class="col col-50 text-center sure-create" ng-click="view.saveMoreAllowanceItinerary()">
+                {{"common.sure_and_add"|translate}}
+                <!--确认并新建-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>
+

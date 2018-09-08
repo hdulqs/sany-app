@@ -1,0 +1,198 @@
+.statement-account{
+    .line{
+        height: 1px;
+        width: 375px;
+        background:#EEEEEE;
+    }
+    .sifting-table{//日期div的样式
+        border-top:solid 1px #EEEEEE;
+        height: 130px;
+        width: 375px;
+        text-align: center;
+    }
+    .query{//查询按钮的样式
+        height: 50px;
+        width: 90vw;
+        background: red;
+        color: white;
+        margin-top: 5vh;
+        text-align: center;
+        line-height: 50px;
+        margin-left: 5vw;
+    }
+    /*  .inputSty1 {
+        width: 100vw;
+        border: none;
+        text-align: left;
+        line-height: 20px;
+        color: #757575;
+        font-size: 16px;
+        padding: 0 calc(1vw + 10px);
+        border-bottom: 1px solid rgba(221, 221, 221, 0.6);
+      }
+      .border-none{
+        border: none !important;
+      }
+      .padding-right0{
+        padding-right: 0px !important;
+      }*/
+    .sifting-item {
+        height: 50px;
+        width: 100vw;
+        padding: 0 calc(1vw + 10px);
+        display: flex;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        position: relative;
+        border: none;
+        //border-bottom: 1px solid rgba(221, 221, 221, 0.6);
+        .line {
+            position: relative;
+            top: -10px;
+            left: -10px;
+        }
+        span {//营销中心样式
+            display: inline-block;
+            //height: 50px;
+            line-height: 50px;
+            color: #333333;
+            font-size: 15px;
+        }
+        /* .important{
+           color: red;
+         }
+         .show-value{
+           margin-right: 0px!important;
+           right: 5vw;
+           position: relative;
+         }*/
+        .item-content {
+            flex: 1;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -moz-box-flex: 1;
+            -moz-flex: 1;
+            -ms-flex: 1;
+            color: #959595;
+            text-align: right;
+            margin-left: 10px;
+            display: block;
+            margin-right: 6vw;
+        }
+        /* .select-radio {
+           position: relative;
+           left: 30px;
+           display: flex;
+           display: -webkit-box;
+           display: -webkit-flex;
+           display: -moz-box;
+           display: -ms-flexbox;
+           justify-content: space-between;
+           -webkit-justify-content: space-between;
+         }*/
+        img {
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            top: 15px;
+        }
+        .right-img {
+            position: absolute;
+            height: 13px;
+            width: 13px;
+            top: 18px;
+        }
+        img:first-child {
+            left: 5vw;
+        }
+        img:last-child {
+            right: 5vw;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+        }
+        /* .sort-desc {
+           transform: rotateZ(90deg);
+           -webkit-transform: rotateZ(90deg);
+         }
+         .sort-no {
+           transform: rotateZ(0deg);
+           -webkit-transform: rotateZ(0deg);
+         }
+         .sort-asc {
+           transform: rotateZ(-90deg);
+           -webkit-transform: rotateZ(-90deg);
+         }
+         .radio1 {
+           height: 20px;
+           width: 20px;
+           color: red;
+           position: relative;
+           top: 4px;
+           margin-right: 2vw;
+         }*/
+        /* .div1 {
+          display: inline-block;
+          font-size: 16px;
+          position: relative;
+          left: 35vw;
+          right: -1vw;
+          top: 10px;
+          text-align: right;
+          width: 75%;
+        }*/
+        .select {
+            height: auto;
+            position: relative;
+            left: 0vw !important;
+            top: 5px;
+        }
+        /* .div2 {
+           display: inline-block;
+           position: relative;
+           top: 10px;
+           right: -43vw;
+           font-size: 16px;
+         }*/
+    }
+    .background{
+        background: white;
+        margin-top: 10px;
+    }
+
+    /* .card-item{
+       //padding:5px 15px 5px 0 !important;
+       //background:#ffffff;
+       //margin-left: 15px;
+       //color: #858c96;
+       border-bottom: 1px solid rgba(209, 209, 209, 0.59);
+       font-size: 14px;
+     }*/
+    /*.card-item input{
+      background:none;
+      width:100%;
+      text-align:right;
+      right: 5vw;
+      position: relative;
+    }
+    .important{
+      color: red;
+    }
+    .padding0{
+      padding: 0px!important;
+    }
+    .name{
+      padding: 0 calc(1vw + 10px);
+      font-size: 15px;
+    }
+    .product-line{
+      height: 1px;
+      width: 100vw;
+      background: rgba(221, 221, 221, 0.6);
+      margin-top: 10px;
+    }
+    .border-left{
+      border-left: 1px solid #EEEEEE;
+    }*/
+}

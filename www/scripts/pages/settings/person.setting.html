@@ -1,0 +1,48 @@
+<ion-view class="person-setting">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'person.Personal.information'|translate}}</span>
+    </ion-nav-title>
+    <ion-content class="has-footer">
+        <!--delete ng-click="uploadPicture()"-->
+        <div class="list img-container">
+            <div class="item item-divider"></div>
+            <div class="item row row-center item-text-wrap img-information">
+                <div class="col col-center col-20 account-field">{{'person.Head.portrait'|translate}}</div>
+                <div class="col col-55"></div>
+                <div class="avatar">
+                    <user-avatar full-name="person.fullName" icon-url="imgUrl"
+                                 employId="person.userOID"></user-avatar>
+                </div>
+                <!--delete <span class="icon ion-ios-arrow-right person-arrow"></span>-->
+            </div>
+
+        </div>
+        <div class="list account-container">
+            <div class="item row row-center item-text-wrap account-information person-info-list">
+                    <div class="col col-center account-field">{{'person.name'|translate}}</div>
+                    <div class="col col-center col-75 account-field-data">{{person.fullName}}</div>
+            </div>
+            <div class="item row row-center item-text-wrap account-information person-info-list">
+                    <div class="col col-center col-33  account-field">{{'person.phone'|translate}}</div>
+                    <div class="col col-center col-67 account-field-data">{{person.login}}</div>
+            </div>
+            <div class="item row row-center item-text-wrap account-information person-info-list">
+                    <div class="col col-center account-field">{{'person.department'|translate}}</div>
+                    <div class="col col-center col-75 account-field-data">{{person.departmentName}}</div>
+            </div>
+            <div class="item row row-center item-text-wrap account-information person-info-list">
+                    <div class="col col-center account-field">{{'person.level'|translate}}</div>
+                    <div class="col col-center col-75 account-field-data">{{person.title}}</div>
+            </div>
+            <div class="item row row-center item-text-wrap account-information person-info-list">
+                    <div class="col col-center account-field">{{'person.email'|translate}}</div>
+                    <div class="col col-center col-75 account-field-data">{{person.email}}</div>
+            </div>
+        </div>
+    </ion-content>
+    <button class="sticky-bottom bar bar-footer button-full button-assertive exit-button" ng-click="exitAccount()">
+        {{'person.Exit.from.the.current.account'|translate}}
+    </button>
+</ion-view>
+
+

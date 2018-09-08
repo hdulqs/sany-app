@@ -1,0 +1,39 @@
+{
+    "choose_type": {
+        "create.exp.application": "Create application",
+        "create.loan.application": "Apply borrow/prepay",
+        "create.exp.reimb": "Create reimbursement",
+        "daily.application": "Daily application",
+        "travel.application": "Travel application",
+        "item.emp.required": "Please select the responsible person",
+        "item.company.required": "Please select the company",
+        "item.expType.required": "Please select the type of bills"
+    },
+    "attachment":{
+      "label":"Attachment information:"
+    },
+    "message": {
+        "error.query": "Data query failed!",
+        "error.save.data.first":"Please save the bill data first",
+        "no.save":"No data modification, no saving!"
+    },
+    "confirm.window": {
+        "Information.travel": "Do you want to save the information of this travel application bill?",
+        "Information.travel.line": "Do you want to save the line information of this travel application bill information?",
+        "Information.report": "Do you want to save the information of this expense reimbursement bill?",
+        "Information.req": "Do you want to save the information of this application form?",
+        "Information.req.line": "Do you want to save the line information of this application form?",
+        "Information.loan": "Do you want to save the information of this borrowing application form?",
+        "Information.loan.line": "Do you want to save the line information of this borrowing application form?",
+        "cancel": "cancel",
+        "ok": "Confirm to save",
+        "prompt": "Prompt"
+    },
+    "document.history":{
+        "title":"Bill history"
+    },
+    "button": {
+        "ok": "Confirm",
+        "cancel": "Cancel"
+    }
+}

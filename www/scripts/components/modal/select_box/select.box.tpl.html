@@ -1,0 +1,47 @@
+<p ng-click="view.openSelector()" class="text-value-directives">
+    <span ng-repeat="seleted in field.selectValue" ng-if="field.selectValue.length > 0">
+        {{seleted.name}} <span ng-if="$index !== (field.selectValue.length -1)">，</span>
+    </span>
+    <span ng-hide="field.selectValue.length > 0" class="select-placehold">
+        <span ng-if="field.promptInfo">
+            {{field.promptInfo}}
+        </span>
+        <span ng-hide="field.promptInfo">
+            请选择
+        </span>
+    </span>
+</p>
+<script id="select.box.value.html" type="text/ng-template">
+    <ion-modal-view class="value-selector-directive">
+        <ion-header-bar>
+            <h3 class="title">{{field.fieldName}}</h3>
+            <span class="select-box-cancel" ng-click="view.cancel()">
+                {{'destination.cancel'|translate}}<!--取消-->
+            </span>
+            <span class="select-box-ok" ng-click="selectBox.hide()">
+                {{'directive.determine'|translate}}<!--确定-->({{field.selectValue.length}})
+            </span>
+        </ion-header-bar>
+        <ion-content>
+            <div class="search">
+                <label class="item-input-wrapper">
+                    <input class="header-input" placeholder="{{'cost.Please.enter.the.keywords'|translate}}" ng-model-options="{debounce:500}" ng-model="keyword"><!--请输入关键字-->
+                </label>
+            </div>
+            <ion-list>
+                <ion-item ng-repeat="item in field.content | filter: keyword"
+                          ng-click="view.selector(item)">
+                    <div class="row row-center">
+                        <div class="col">
+                            {{item.name}}
+                        </div>
+                        <div class="col col-10"
+                             ng-if="field.selectID.indexOf(item.id) > -1">
+                            <img class="select" ng-src="img/travel/select.png">
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-modal-view>
+</script>

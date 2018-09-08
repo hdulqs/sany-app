@@ -1,0 +1,274 @@
+<ion-view class="hec-travel-requisition" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{"approval.req.item.title"|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content style="background: white;">
+        <div class="hec-approval-detail" ng-if="vm.reqType==='STANDARD'">
+            <div class="row">
+                <div class="col text-right">
+                    <!--公司-->
+                    {{"approval.company"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.company_short_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--费用发生部门-->{{"approval.expenseDept"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.unit_name}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col  text-right">
+                    <!--成本中心-->
+                    {{"approval.center"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.responsibility_center_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--报销类型-->
+                    {{"approval.req.item.type"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.expense_type_display}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--申请项目-->
+                    {{"approval.req.item.title"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.exp_req_item_display}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--申请金额-->
+                    {{"approval.req.item.amount"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{ vm.item.currency_code|currencyFilter}}&nbsp;
+                    {{vm.item.requisition_amount|amountFilter}}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col text-right">
+                    <!--本币申请金额-->
+                    {{"approval.req.item.currencyAmount"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.currency_code|currencyFilter}}&nbsp;
+                    {{vm.item.requisition_functional_amount|amountFilter}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--项目-->
+                    {{"approval.req.item.dimension"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.d2}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--业务期间--> {{"approval.req.item.period"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.period_name}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <!--备注-->
+                    {{"approval.req.item.description"|translate}}：
+                </div>
+                <div class="col col-60 text-left">
+                    {{vm.item.description|convertNothing}}
+                </div>
+            </div>
+        </div>
+
+        <!--差旅行详情-->
+        <div ng-if="vm.reqType==='TRAVEL'">
+            <div class="hec-approval-detail"  >
+                <div class="row">
+                    <div class="col text-right">
+                        <!--出发日期-->
+                        {{"approval.req.item.startDate"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.date_from}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                       <!-- 到达日期-->
+                        {{"approval.req.item.leaveDate"|translate}}：
+                    </div>
+                    <div class="col col-60  text-left">
+                        {{vm.item.date_to}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <!--出发地-->
+                        {{"approval.req.item.startCity"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.place_from}}
+                    </div>
+                </div>
+                <div class="row" ng-if="vm.item.abroad_place_from">
+                    <div class="col text-right">
+                        <!--出发城市-->
+                        {{"approval.req.item.startAbroadPlace"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.abroad_place_from}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <!--到达地-->
+                        {{"approval.req.item.endCity"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.place_to}}
+                    </div>
+                </div>
+                <div class="row" ng-if="vm.item.abroad_place_to">
+                    <div class="col text-right">
+                        <!--到达城市-->
+                        {{"approval.req.item.endAbroadPlace"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.abroad_place_to}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <!--报销类型-->
+                        {{"approval.req.item.type"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.expense_type_name}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <!--飞机申请金额-->
+                        {{"approval.req.item.airAmount"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{ vm.item.currency_code|currencyFilter}}&nbsp;
+                        {{ vm.item.fly_requisition_amount|amountFilter}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <!--酒店申请金额-->
+                        {{"approval.req.item.hotelAmount"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.currency_code|currencyFilter}}&nbsp;
+                        {{vm.item.hotel_requisition_amount |amountFilter}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col text-right">
+                        <!--其他申请金额-->
+                        {{"approval.req.item.otherAmount"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.currency_code|currencyFilter}}&nbsp;
+                        {{vm.item.other_requisition_amount|amountFilter}}
+                    </div>
+                </div>
+                <div class="row" ng-if="vm.item.return_flag">
+                    <div class="col text-right">
+                        <!--项目-->
+                        {{"approval.req.item.return.flg"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.return_flag |convertFlag}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                       <!-- 园区入住-->
+                        {{"approval.req.item.inPark"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.settled_park_desc}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <!--项目-->
+                        {{"approval.req.item.dimension"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.d2}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-right">
+                        <!--说明-->
+                        {{"approval.req.item.description"|translate}}：
+                    </div>
+                    <div class="col col-60 text-left">
+                        {{vm.item.description|convertNothing}}
+                    </div>
+                </div>
+            </div>
+            <div class="req-travel-partner-line" ng-if="vm.travelerList.length>0">
+                <div class="row travel-title">{{'approval.req.travel.title'|translate}}</div>
+                <div class="travel-line" ng-repeat="traveler in vm.travelerList track by $index">
+                    <!--员工类型-->
+                    <div class="row">
+                        <span class="col">{{'approval.req.travel.empType'|translate}}</span>
+                        <span class="col right"> {{traveler.employee_type}}</span>
+                    </div>
+                    <!-- 受益人维护-员工工号选择（所有员工）-->
+                    <div class="row " ng-if="traveler.employee_type_code!=='OUTSIDE_STAFF'">
+                        <span class="col ">{{'approval.req.travel.empCode'|translate}}</span>
+                        <span class="col right"> {{traveler.employee_code}}</span>
+                    </div>
+                    <!--员工姓名-->
+                    <div class="row ">
+                        <span class="col ">{{'approval.req.travel.empName' | translate}}</span>
+                        <span class="col right"> {{traveler.employee_name}}</span>
+                    </div>
+                    <!--身份号码-->
+                    <div class="row" ng-if="traveler.employee_type_code=='OUTSIDE_STAFF'">
+                        <span class="col ">{{'approval.req.travel.empIdCard' | translate}}</span>
+                        <span class="col right"> {{traveler.id_code}}</span>
+                    </div>
+                    <!--手机号码-->
+                    <div class="row" ng-if="traveler.employee_type_code=='OUTSIDE_STAFF'">
+                        <span class="col ">{{'approval.req.travel.empMobil' | translate}}</span>
+                        <span class="col right">{{traveler.employee_mobil}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

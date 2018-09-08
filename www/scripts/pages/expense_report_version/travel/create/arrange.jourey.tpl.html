@@ -1,0 +1,64 @@
+<ion-modal-view class="arrange-journey">
+    <ion-header-bar>
+        <span class="arrange-cancel" ng-click="arrangeJourey.hide()">
+            {{'create.arrange.cancel'|translate}}<!--取消-->
+        </span>
+        <h3 class="title">{{'create.arrange.Add.traffic'|translate}}<!--添加交通--></h3>
+    </ion-header-bar>
+    <ion-content>
+        <div class="row row-center select-city">
+            <div class="col col-50 border-right">
+                <p class="text-center city-label">
+                    {{'create.arrange.Departure.city'|translate}}<!--出发城市-->
+                </p>
+                <p class="text-center city-name">
+                    <city-selector city="view.route.fromCity" hide-hot-city="view.functionProfileList['ca.travel.hotCity.disabled']"
+                                   type="view.route.trafficType" readonly="view.readonly" holder="'请选择'"
+                                   supplier-name="'standard'">
+
+                    </city-selector>
+                    <!--<input ng-model="view.route.departure" ng-click="citySelector.showCity('start')" placeholder="请选择" readonly>-->
+                </p>
+            </div>
+            <div class="col col-50">
+                <p class="text-center city-label">
+                    {{'create.arrange.Reach.the.city'|translate}}<!--到达城市-->
+                </p>
+                <p class="text-center city-name">
+                    <city-selector city="view.route.toCity"  hide-hot-city="view.functionProfileList['ca.travel.hotCity.disabled']"
+                                   type="view.route.trafficType" readonly="view.readonly" holder="'请选择'"
+                                   supplier-name="'standard'">
+                    </city-selector>
+                    <!--<input ng-model="view.route.destination" ng-click="citySelector.showCity('arrival')" placeholder="请选择" readonly>-->
+                </p>
+            </div>
+        </div>
+        <div class="to-icon">
+            <img src="img/expense_report_version/travel/to.png" alt="">
+        </div>
+        <div>
+            <p class="choice-name">
+                {{'create.arrange.Please.select.a.date.of.travel'|translate}}<!--请选择出行日期-->
+            </p>
+            <div class="journey">
+                <div class="row row-center date-list" ng-repeat="date in  view.travel.travelApplication.travelItinerarys" ng-click="view.selectDay($index)">
+                    <img src="img/expense_report_version/travel/select.png" alt="" class="select-icon" ng-if="view.currentDay === $index">
+                    <p class="date-index">
+                        {{'create.arrange.the'|translate}}<!--第--> {{date.dayNumber}} {{'create.arrange.day'|translate}}<!--天-->
+                    </p>
+                    <p class="date-week">
+                        {{date.itineraryDate | dayDotFilter}}
+                    </p>
+                    <p class="date-week">
+                        {{date.week | weekFilter}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="arrange-sure" ng-click="arrangement.closeArrange()">
+            {{'create.arrange.ok'|translate}}<!--确定-->
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

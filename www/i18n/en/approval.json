@@ -1,0 +1,187 @@
+{
+    "approval": {
+        "Category": "Category",
+        "Interview": "Interview",
+        "OnJuly5": "5 Jul",
+        "Other": "Other",
+        "TemporarilyNotMessge": "No expense information temporarily!",
+        "aggregate.amount": "Total",
+        "all": "All",
+        "all.rejected": "All Rejected",
+        "all.through": "All Approved",
+        "already": "Approved",
+        "already.passed": "Passed",
+        "approval.passed": "Approve",
+        "approval.rejected": "Scan and reject",
+        "approve": "Approval",
+        "audit.rejected": "Audit dismissed, you can log in Helios, in the financial management> reimbursement audit> pending audit switch to scan mode, enter the reasons for rejection by the keyboard",
+        "automatically.receive.scanned.reimbursement.Report": "Scan to automatically receive reimbursement claims",
+        "automatically.reject.the.scanned.reimbursement.form.and.fill.out.the.reasons": "Scan and enter decline reason",
+        "automatically.through.scanning.to.submit.the.expense.accounts": "Scan and approve",
+        "batch.reject": "Batch Dismissed",
+        "batchSubmit": "Batch Submit",
+        "borrowing.application": "Borrowing application",
+        "budget": "Budget",
+        "cancel": "Cancel",
+        "cancel.after.verification": "Repayment",
+        "check.all": "Select all",
+        "click.refresh": "Click refresh",
+        "close": "Shut down",
+        "common": "Common",
+        "confirm": "OK",
+        "cost": "charge(s)",
+        "costContain": "Cost included:",
+        "daily.expense.report": "Daily expense claim",
+        "didi.failure.costs": "Didi billing failed",
+        "does.not.conform.to.the.reimbursement.policy": "Does not meet the reimbursement policies",
+        "empty": "Empty!",
+        "haveTicket": "With Receipt",
+        "history.of.approval": "Approval History",
+        "listing": "List",
+        "loading": "Loading...",
+        "map": "Map",
+        "mapApproval": "Map approval",
+        "money": "Amount",
+        "no.approval": "No bill to approve",
+        "no.verification": "Loan offset",
+        "noTicket": "Without Receipt",
+        "not.approved": "Unapproved",
+        "notApprovalMessage": "No approval information temporarily!",
+        "notFlightPlan": "No flight plan",
+        "oneMonth": "Nearly a month",
+        "pass": "Pass",
+        "pleaseReason": "Please enter the reason",
+        "pen.billing.failure.costs": "Billing failure costs, details contact customer service.",
+        "pen.cost": "Fee",
+        "pending": "Processing",
+        "people": "People",
+        "please.enter.the.reason.for.rejecting": "Please enter the grounds for refusal",
+        "please.select.the.cost": "Please select costs",
+        "project": "Project",
+        "received": "Received",
+        "recentlyApproval": "Recent approval",
+        "reimbursement.approval": "Expense claim approval",
+        "reject": "Reject",
+        "rejected": "Rejected",
+        "remark": "Notes",
+        "revise": "Modify",
+        "scan": {
+            "title": "Scan QR code",
+            "plugin": {
+                "title": {
+                    "AUDIT_PASS": "Lock approval passed",
+                    "AUDIT": "Lock approval dismissed",
+                    "RECEIVE": "Lock expense received"
+                },
+                "tipScan": "请扫描单据上的二维码",
+                "tipInput": "输入单号",
+                "tipLoading": "正在处理中... ",
+                "tipNetworkError": "当前网络不可用, 请检查网络设置",
+                "tipOffline": "请按照页面下方提示 先打开汇联易网站",
+                "openButton": "我已打开",
+                "footerFirst": {
+                    "REVIEW": "请先在电脑游览器打开https://www.huilianyi.com",
+                    "AUDIT": "如需通过键盘输入驳回理由，可在电脑游览器打开https://www.huilianyi.com，在财务管理>单据审核页面切换到扫码审核模式"
+                },
+                "footerSecond": {
+                    "REVIEW": "进入财务管理>单据审核页面，再进行app扫码"
+                }
+            },
+            "receive": {
+                "title": "收到",
+                "tip": "Scan to automatically receive reimbursement claims"
+            },
+            "APPApproval": {
+                "title": "APP端审核",
+                "pass": {
+                    "title": "审核通过",
+                    "tip": "Scan and approve"
+                },
+                "reject": {
+                    "title": "审核驳回",
+                    "tip1": "如需通过键盘输入驳回理由，可在电脑游览器打开 ",
+                    "tip2": "https://www.huilianyi.com",
+                    "tip3": "，在",
+                    "tip4": "财务管理>单据审核",
+                    "tip5": "页面切换到",
+                    "tip6": "扫码审核模式"
+                }
+            },
+            "WebApproval": {
+                "title": "网页端审核",
+                "tip1": "请先在电脑游览器打开 ",
+                "tip2": "https://www.huilianyi.com",
+                "tip3": ",进入",
+                "tip4": "财务管理>单据审核",
+                "tip5": "页面，使用APP进行扫码审核"
+            },
+            "scanModal": {
+                "webTip": "请在PC端审核单据",
+                "nextTip": "继续扫描下一张"
+            },
+            "rejectModal": {
+                "title": "审核驳回",
+                "placeholder": "请输入驳回理由, 最多200个字符",
+                "emptyTip": "Grounds for refusal can not be empty",
+                "quickReply": {
+                    "title": "Quick Reply",
+                    "tip0": "Reimbursement bills inconsistent with the original",
+                    "tip1": "Type the original bill and expenses is inconsistent",
+                    "tip2": "Original bill does not meet the requirements",
+                    "tip3": "Does not meet the reimbursement policies",
+                    "tip4": "Unreasonable reimbursement matters"
+                }
+            },
+            "inputModal": {
+                "title": "输入单号",
+                "placeholder": "请输入最少3位单据号",
+                "noResult": "无搜索结果",
+                "buttonContent": {
+                    "REVIEW": "确认",
+                    "AUDIT_PASS": "审核通过",
+                    "AUDIT": "审核驳回",
+                    "RECEIVE": "确认收到"
+                }
+            },
+            "toast": {
+                "reject": {
+                    "success": "驳回成功",
+                    "fail": "驳回失败"
+                },
+                "report": {
+                    "success": "处理成功!",
+                    "fail": "处理失败!",
+                    "notValid": "该单据无效!",
+                    "offline": "请先打开汇联易网站,进入财务管理>单据审核页面!"
+                }
+            }
+        },
+        "search": "Search",
+        "selectAll": "Select All",
+        "strip": "strip",
+        "submit": "Submit",
+        "submission.of.reasons.for.failure": "Failure to submit grounds for refusal",
+        "submitOk": "Submit Success!",
+        "submitted.for.success": "Submit grounds for refusal success",
+        "submitter": "Requestor",
+        "total": "Total",
+        "total.budget": "Total budget",
+        "twoMonthes": "Nearly 2 months",
+        "uploadCentre": "Loading...",
+        "view.application": "Application",
+        "waiting": "Awaiting Approval from",
+        "week": "week",
+        "please.enter": "Please Enter Applicant / Code"
+    },
+    "error": {
+        "failed": "Failed",
+        "network": "Oops, wrong network!",
+        "please.enter.the.reason.for.rejecting": "Please enter the grounds for refusal",
+        "reason.for.rejection": "Reason of rejection",
+        "reject.failure": "Dismissed failed",
+        "release.budget.failed.withdraw.failed": "The release of the budget fails, fail to withdraw",
+        "server": "Server Deserted,",
+        "system": "Technician is working on reparing work!",
+        "there.is.no.charge.for.this.expense": "This reimbursement has no cost"
+    }
+}

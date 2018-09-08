@@ -1,0 +1,102 @@
+<div class="item-block-directive">
+    <div class="row row-center">
+        <div class="col col-90 input-label">
+            {{fieldName}}
+        </div>
+        <div class="col col-10 text-right">
+            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+        </div>
+    </div>
+    <div class="row row-center">
+        <div class="col col-90">
+            <div class="approval-selector-modal" ng-click="view.showPersonAdd()">
+                <p class="join-member-placeholder" ng-if="memberList.length === 0">
+                    {{'add.Please.add'|translate}}<!--请添加-->
+                </p>
+                <p class="join-member" ng-if="memberList.length > 0 ">
+                     <span ng-repeat="member in memberList">
+                        {{member.name}} <span ng-if="$index !== memberList.length-1">,</span>
+                     </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="approval-selector-modal" ng-click="view.showPersonAdd()">-->
+    <!--<p class="join-member-placeholder" ng-if="memberList.length === 0">-->
+        <!--{{'add.Please.add'|translate}}&lt;!&ndash;请添加&ndash;&gt;-->
+    <!--</p>-->
+    <!--<p class="join-member" ng-if="memberList.length > 0 ">-->
+        <!--<span ng-repeat="member in memberList">-->
+            <!--{{member.name}} <span ng-if="$index !== memberList.length-1">,</span>-->
+        <!--</span>-->
+    <!--</p>-->
+<!--</div>-->
+<script id="person.add.modal.html" type="text/ng-template">
+    <ion-modal-view class="person-add-modal">
+        <ion-header-bar>
+            <span class="check-cancel" ng-click="view.closePersonAdd()">
+                {{'destination.cancel'|translate}}<!--取消-->
+            </span>
+            <h3 class="title">{{'add.External.participants'|translate}}<!--外部参与人员--></h3>
+            <span class="check-ok" ng-click="personAddModal.hide()">
+                {{'directive.determine'|translate}}<!--确定-->({{memberList.length}})
+            </span>
+        </ion-header-bar>
+        <div class="modal-header">
+            <div class="history-member-list" ng-if="historyMember.length > 0">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            {{'add.The.historical.record'|translate}}<!--历史记录-->
+                        </p>
+                    </div>
+                    <div class="col text-right">
+                        <p class="clear-history" ng-click="view.clearHistory()">
+                            {{'add.Empty.the.history'|translate}}<!--清空历史记录-->
+                        </p>
+                    </div>
+                </div>
+                <ion-scroll direction="x">
+                    <div class="scroll-content-container">
+                        <div class="row invoice-img-expense-type">
+                            <div class="repeat-div"
+                                 ng-repeat="member in historyMember track by $index">
+                                <p class="text-center member-fullname" ng-click="view.addHistoryPerson(member)">
+                                    {{member}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </ion-scroll>
+            </div>
+            <div class="row row-center add-button" ng-click="view.showFillOutForm()">
+                <img src="img/expense_report_version/travel/add-member.png" alt="" class="add-icon">
+                <div class="col col-center add-text">
+                    {{'add.Add.external.participants'|translate}}<!--添加外部参与人员-->
+                </div>
+            </div>
+        </div>
+        <ion-content class="outer-person" ng-class="{true: 'top-max',false: ''}[historyMember.length > 0]">
+            <ion-list>
+                <ion-item ng-repeat="item in memberList" ng-repeat-done="memberDataLoaded">
+                    <div class="row row-center" ng-click="view.editPerson(item, $index)">
+                        <span class="person-index">
+                            {{'add.Participants'|translate}}<!--参与人-->{{$index + 1}}
+                        </span>
+                        <div class="col">
+                            {{item.name}}
+                        </div>
+                    </div>
+                    <ion-option-button class="button-assertive person-delete"
+                                       ng-click="view.removePerson($index)">
+                        <div class="column">
+                            <div class="delete-text">{{'item.delete'|translate}}<!--删除--></div>
+                        </div>
+                    </ion-option-button>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-modal-view>
+</script>

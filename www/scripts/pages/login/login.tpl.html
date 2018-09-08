@@ -1,0 +1,52 @@
+<ion-view hide-nav-bar="true" class="login">
+    <ion-content class="login-logo animated slideInUp">
+        <img src="img/logo.png" class="logo-icon"/>
+        <p class="logo-font">{{'login.cloud.helios' | translate}}</p>
+        <div class="login-tip" ng-show="userStatus">{{'login.tips.message' | translate}}{{title}},{{'login.tips.please'
+            | translate}}
+            <a ng-click="goTo('login')">{{'login.title' | translate}}</a>
+            <span class="choice-other">or</span>
+            <a ng-click="goTo('app.forgot_password_init')">{{'login.button.forget.password' | translate}}</a>
+        </div>
+        <form name="form" role="form" ng-submit="login()">
+            <div class="list">
+                <!--服务器连接,正式环境和预发布环境不显示-->
+                <!--<div class="item item-input item-floating-label login-account login-url" ng-if="!judgeENV()">
+                    <div class="row">
+                        <input trim class="account-input" type="text" ng-model="user.localServiceBaseURL"
+                               placeholder="{{'login.fields.ServiceBaseURL' | translate}}">
+                        <a class="clear-a" ng-click="clearUrl()" ng-show="user.localServiceBaseURL.length>0">
+                            <img class="clear-icon" src="img/Clear.png"/></a>
+                    </div>
+                </div>-->
+                <div class="item item-input item-floating-label login-account">
+                    <div class="row">
+                        <input trim class="account-input" type="tel"
+                               placeholder="{{'login.fields.cellphone' | translate}}" ng-model="user.username">
+                        <a class="clear-a" ng-click="clearAccount()" ng-show="user.username.length>0">
+                            <img class="clear-icon" src="img/Clear.png"/></a>
+                    </div>
+                </div>
+                <div class="item item-input item-floating-label login-password">
+                    <div class="row">
+                        <input type="password" class="password-input"
+                               placeholder="{{'login.fields.password' | translate}}" ng-model="user.password">
+                        <a class="clear-a" ng-click="clearPwd()" ng-show="user.password.length>0">
+                            <img class="clear-icon" src="img/Clear.png"/></a>
+                    </div>
+                </div>
+            </div>
+            <button class="button login-button"
+                    ng-disabled="user.username === null  || user.password === null
+                    ||user.username.length === 0 || user.password.length === 0
+                    ||user.username === undefined ||user.password === undefined">
+                {{'login.title' | translate}}
+            </button>
+            <div class="forget-password" style="display: flex;justify-content: space-around;">
+                <a ng-click="forgotPassword(user.username)" style="color: #fff;margin-left: 20px;">{{'login.button.forget.password' | translate}}</a>
+                <a ui-sref="app.check_active_user" style="color: #fff;text-decoration: none;margin-right: 20px;">{{'login.button.active.account' | translate}}</a>
+            </div>
+            <!--<a ui-sref="app.check_register_user" class="register-user">{{'login.button.user.register' | translate}}</a>-->
+        </form>
+    </ion-content>
+</ion-view>

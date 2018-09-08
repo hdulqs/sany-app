@@ -1,0 +1,134 @@
+<ion-modal-view class="customer-modal">
+    <ion-header-bar>
+        <h3 class="title">
+            {{view.travelElements.formName}}
+        </h3>
+        <div class="buttons buttons-left" style="transition-duration: 0ms;">
+            <span class="left-buttons">
+                <a ng-click="customerModal.hide()">
+                    <img src="img/back.png" class="save-btn">
+                </a>
+            </span>
+        </div>
+    </ion-header-bar>
+    <ion-content class="book-ticket-content">
+        <div ng-repeat="field in view.travelElements.customFormFields">
+            <div ng-if="field.messageKey === 'select_cost_center'">
+                <div class="row row-min no-border">
+                    <div class="col">
+                        {{field.fieldName}}
+                    </div>
+                </div>
+                <div class="row row-center">
+                    <div class="col col-90">
+                        <cost-center-selector title="field.fieldName" selected="field.value"
+                                              name="field.costCenterName" cost-center="field.costCenterOID">
+                        </cost-center-selector>
+                    </div>
+                    <div class="col col-10 text-right">
+                        <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                    </div>
+                </div>
+            </div>
+            <div ng-if="field.messageKey !== 'select_cost_center'"
+                      ng-switch="field.fieldType">
+                <div class="row row-center  input-list" ng-switch-when="CUSTOM_ENUMERATION">
+                    <span>
+                        {{field.fieldName}}
+                    </span>
+                    <div class="col">
+                        <value-item selected="field" readonly="view.isReadOnly" applicant="view.applicationData.applicantOID">
+
+                        </value-item>
+                        <!--<input type="text" ng-model="field.value"  maxlength="100" class="text-value" ng-readonly="view.isReadOnly"/>-->
+                    </div>
+                </div>
+                <div class="row row-center  input-list" ng-switch-when="TEXT">
+                    <span>
+                        {{field.fieldName}}
+                    </span>
+                    <div class="col">
+                        <input type="text" ng-model="field.value" maxlength="100" placeholder="{{'form.please.input' | translate}}"
+                               class="text-value" ng-readonly="view.isReadOnly"/>
+                    </div>
+                </div>
+                <div class="row row-center  input-list" ng-switch-when="LONG">
+                        <span>
+                            {{field.fieldName}}
+                        </span>
+                    <div class="col">
+                        <input type="number" ng-model="field.value" class="text-value" placeholder="{{'form.please.input' | translate}}"
+                               ng-readonly="view.isReadOnly" maxlength="100"/>
+                    </div>
+                </div>
+                <div class="row row-center  input-list" ng-switch-when="DATETIME"
+                     ng-click="datePicker.selectDateTime(field.name)">
+                        <span>
+                            {{field.fieldName}}
+                        </span>
+                    <div class="col">
+                        <p class="text-right expense-money">
+                            <span ng-if="field.value === null || field.value === ''">{{'form.please.select' | translate}}</span>
+                            <span
+                                ng-if="field.value !== null && field.value !== ''">{{field.value | dateTimeFilter}}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row row-center  input-list" ng-switch-when="DATE"
+                     ng-click="datePicker.selectDate(field.name)">
+                        <span>
+                            {{field.fieldName}}
+                        </span>
+                    <div class="col">
+                        <p class="text-right expense-money">
+                            <span ng-if="field.value === null || field.value === ''">{{'form.please.select' | translate}}</span>
+                            <span
+                                ng-if="field.value !== null && field.value !== ''">{{field.value | dateFilter}} </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row row-center  input-list" ng-switch-when="DOUBLE">
+                        <span>
+                            {{field.fieldName}}
+                        </span>
+                    <div class="col">
+                        <input type="number" ng-model="field.value" maxlength="100" class="text-value"
+                               placeholder="{{'form.please.input' | translate}}"
+                               ng-readonly="view.isReadOnly"/>
+                    </div>
+                </div>
+                <div class="row row-center" ng-switch-when="GPS">
+                        <span>
+                            {{field.fieldName}}
+                        </span>
+                    <div class="col">
+                        <location-selector selected="field.value" expense-type="view.expense.expenseTypeName"
+                                           location="view.currentLocation"></location-selector>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="choice-name">
+            {{'custom.application.travel.select.time' | translate}}（{{'custom.application.travel.select.diverse' | translate}}）
+        </p>
+        <div class="journey">
+            <div class="row row-center date-list" ng-repeat="date in  view.applicationData.travelApplication.travelItinerarys" ng-click="additional.selectVariousDate($index)">
+                <img src="img/expense_report_version/travel/select.png" alt="" class="select-icon" ng-if="date.hasTravelElement">
+                <p class="date-index">
+                    {{'custom.application.travel.number' | translate}} {{date.dayNumber}} {{'custom.application.travel.day' | translate}}
+                </p>
+                <p class="date-week">
+                    {{date.itineraryDate | dayDotFilter}}
+                </p>
+                <p class="date-week">
+                    {{date.week | weekFilter}}
+                </p>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="arrange-sure" ng-click="additional.addTravelElement()">
+            {{'common.ok' | translate}}
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>

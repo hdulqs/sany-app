@@ -1,0 +1,91 @@
+<ion-view class="date-selector">
+
+    <ion-content class="selector-content" scroll="false">
+        <div class="row">
+            <div class="col">
+                <p class="header">
+                    <i class="ion ion-chevron-left" ng-click="preMon()"></i>
+                    {{headerMonth | monthEnglishName}}
+                    <i class="ion ion-chevron-right" ng-click="nextMon()"></i>
+                </p>
+            </div>
+        </div>
+        <ion-slide-box show-pager="true" >
+            <ion-slide>
+                <div class="first-div" align="center">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>{{'date.Sunday'|translate}}<!--日--></th>
+                            <th>{{'date.Monday'|translate}}<!--一--></th>
+                            <th>{{'date.Tuesday'|translate}}<!--二--></th>
+                            <th>{{'date.Wednesday'|translate}}<!--三--></th>
+                            <th>{{'date.Thursday'|translate}}<!--四--></th>
+                            <th>{{'date.Friday'|translate}}<!--五--></th>
+                            <th>{{'date.Saturday'|translate}}<!--六--></th>
+                        </tr>
+                        <tr ng-repeat="week in [0,5]" ng-init="index = $index+0">
+                            <td ng-repeat="day in days[index] track by $index" ng-click="choiceToday(day)">
+                                <div ng-class="{true:'currentDate'}[day.date == currentDate]"></div>
+                                <div ng-class="{true:'checked'}[day.check]">
+                                    <p ng-class="{true:'spanColor'}[day.smallToday]">{{day.date}}</p>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ion-slide>
+            <ion-slide class="first-div" align="center">
+                <div aligin="center">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>{{'date.Sunday'|translate}}<!--日--></th>
+                            <th>{{'date.Monday'|translate}}<!--一--></th>
+                            <th>{{'date.Tuesday'|translate}}<!--二--></th>
+                            <th>{{'date.Wednesday'|translate}}<!--三--></th>
+                            <th>{{'date.Thursday'|translate}}<!--四--></th>
+                            <th>{{'date.Friday'|translate}}<!--五--></th>
+                            <th>{{'date.Saturday'|translate}}<!--六--></th>
+                        </tr>
+                        <tr ng-repeat="week in [2,5]" ng-init="index = $index+2">
+                            <td ng-repeat="day in days[index] track by $index" ng-click="choiceToday(day)">
+                                <div ng-class="{true:'currentDate'}[day.date == currentDate]"></div>
+                                <div ng-class="{true:'checked'}[day.check]">
+                                    <p ng-class="{true:'spanColor'}[day.smallToday]">{{day.date}}</p>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ion-slide>
+            <ion-slide class="first-div" align="center" on-swipe-left='goFirstSlide(0)'>
+                <div aligin="center">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>{{'date.Sunday'|translate}}<!--日--></th>
+                            <th>{{'date.Monday'|translate}}<!--一--></th>
+                            <th>{{'date.Tuesday'|translate}}<!--二--></th>
+                            <th>{{'date.Wednesday'|translate}}<!--三--></th>
+                            <th>{{'date.Thursday'|translate}}<!--四--></th>
+                            <th>{{'date.Friday'|translate}}<!--五--></th>
+                            <th>{{'date.Saturday'|translate}}<!--六--></th>
+                        </tr>
+                        <tr ng-repeat="week in [4,5]" ng-init="index = $index+4">
+                            <td ng-repeat="day in days[index] track by $index" ng-click="choiceToday(day)">
+                                <div ng-class="{true:'currentDate'}[day.date == currentDate]"></div>
+                                <div ng-class="{true:'checked'}[day.check]">
+                                    <p ng-class="{true:'spanColor'}[day.smallToday]">{{day.date}}</p>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+</ion-view>

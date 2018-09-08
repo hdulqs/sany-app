@@ -1,0 +1,9 @@
+<div class="grey-mark" ng-click="differentTypePopover.hide()">
+</div>
+<ion-popover-view class="different-obj">
+    <ion-list>
+        <ion-item ng-repeat="item in view.typeOptions" ng-click="choiceDifferentTypeOption(item)">
+            {{item.name}}
+        </ion-item>
+    </ion-list>
+</ion-popover-view>

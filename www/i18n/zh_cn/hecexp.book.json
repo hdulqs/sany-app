@@ -1,0 +1,65 @@
+{
+    "account": {
+        "Future.generations": "全选",
+        "Temporarily.no.cost.information": "暂时没有费用信息!",
+        "my.account": "我的账本",
+        "import.and.new":"导入并新增",
+        "import":"导入"
+    },
+    "account_is":{
+        "error":{
+            "Data.import.failed":"数据导入失败"
+        },
+        "message":{
+            "delete.success":"删除成功",
+            "delete.failed":"删除失败"
+        }
+    },
+    "create_expense": {
+        "Attachment.information": "附件信息(最多可上传9张照片)",
+        "For.instructions": "事由说明",
+        "Save.and.then.write.a": "保存并再记一笔",
+        "Save.and.new":"保存并新建",
+        "date": "发生日期",
+        "exchange.rate":"(发票-收款)汇率",
+        "Reimbursement.amount":"报销金额",
+        "Invoice.code":"发票代码",
+        "Invoice.number":"发票号码",
+        "Invoice.date":"发票日期",
+        "tax.price":"税额",
+        "spending.months":"开支月份",
+        "period.name":"业务期间",
+        "lessThan200Characters":"少于200个汉字",
+        "save": "保存",
+        "please.input": "请输入"
+    },
+    "create_expense_js": {
+        "Cost.details": "费用详情",
+        "Cost.to.create.failure": "费用创建失败!",
+        "Create.a.cost": "创建费用",
+        "Information.not.saved.exit": "信息未保存,是否退出?",
+        "Please.select.a.cost.type": "请选择费用类型",
+        "Please.input.notes": "请输入事由说明",
+        "prompt": "提示",
+        "Please.select.a.invoice.item":"请选择发票项目",
+        "Please.select.a.invoice.type":"请选择发票类别",
+        "Please.input.invoice.code":"请输入发票代码",
+        "Please.input.invoice.number":"请输入发票号码",
+        "Please.select.a.invoice.date":"请选择发票日期",
+        "Please.select.a.rate.type":"请选择税率",
+        "Please.input.rate.price":"请输入税额",
+        "Please.input.exchange.rate":"请输入汇率",
+        "Please.input.reim.price":"请输入报销金额",
+        "The.field.must.not.be.empty":"必输字段不能为空",
+        "exchange_rate":"汇率不存在，请联系管理员维护汇率！",
+        "cancel": "取消",
+        "ok": "确定",
+        "other":"其他",
+        "maintain.flex":"保存成功，请维护弹性域！",
+        "Please.select.a.company.name":"请选择公司",
+        "Please.select.a.unit.name":"请选择部门",
+        "Please.select.a.resp.name":"请选择成本中心",
+        "Please.select.a.bussiness.date":"请选择发生日期",
+        "Please.select.a.d2":"请选择项目"
+    }
+}

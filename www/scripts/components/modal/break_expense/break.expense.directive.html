@@ -1,0 +1,25 @@
+<div ng-repeat="item in childrenExpense">
+    <div class="row row-center has-invoice-pane" ng-click="showDetail(item)">
+        <div class="col col-center col-50 has-invoice">
+            {{item.splitName | splitName}}:
+            <p class="text-right invoice-money">
+                {{item.totalAmount|currency:getCurrencyCode(item.currencyCode)}}
+            </p>
+        </div>
+        <div class="col col-center col-33 break-status">
+            <span class="approval-status {{item.statusView|expenseClass}}">{{item.statusView|expenseDisplay}}</span>
+        </div>
+    <span class="col col-center icon ion-ios-arrow-right"
+          ng-if="!view.isExpanded(item.expenseReportOID) && item.totalAmount>0"></span>
+    <span class="col col-center icon ion-ios-arrow-down"
+          ng-if="view.isExpanded(item.expenseReportOID) || item.totalAmount===0"></span>
+    </div>
+    <div class="expense-detail-item" ng-repeat="expense in item.expenseReportInvoices"
+         ng-if="!view.isExpanded(item.expenseReportOID)">
+        <expense-item item="expense.invoiceView"
+                      origin-currency-code="view.originCurrencyCode"
+                      go-detail="showExpenseConsumeDetail(expense)">
+        </expense-item>
+    </div>
+</div>
+

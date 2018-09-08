@@ -1,0 +1,492 @@
+$message-color: #959595;
+$message-link-color: #0092da;
+$message-content-color: #4c4c4c;
+$message-warning: #CD1919;
+$price-color: #FD811F;
+
+.jingdong-application-delete {
+    margin-top: 6px !important;
+    margin-right: 9px;
+    color: $message-link-color;
+}
+
+.jingdong-application-base{
+    background-color: #f1f1f1;
+
+    .jingdong-application-custom-value{
+        .created-by{
+            padding: 10px;
+            font-size: 16px;
+            color: #4c4c4c;
+        }
+        .list{
+            margin: 0;
+            padding: 0;
+            .item {
+                padding: 0;
+                margin: 0;
+                border: none;
+                .row + .row {
+                    margin: 0;
+                }
+                .row {
+                    border-bottom: thin solid #e2e2e2;
+                    padding: 5px;
+                    .item-block-directive{
+                        border: none !important;
+                        text-align: right;
+                        padding: 0 !important;
+                    }
+                    .approval-selector-modal{
+                        text-align: right;
+                    }
+                    .input-label {
+                        font-size: 1em;
+                        color: $message-content-color;
+                    }
+                    .travel-start-date {
+                        background-color: transparent;
+                        border: none;
+                        text-align: right;
+                        font-size: 16px;
+                        color: #4c4c4c;
+                        width: 100%;
+                        line-height: 16px;
+                    }
+                    .external-person{
+                        padding: 0;
+                        height: 16px;
+                        line-height: 16px;
+                    }
+                    .select-department {
+                        .department-selector {
+                            text-align: right;
+                        }
+                    }
+                    .time-input{
+                        font-size: 1em;
+                        color: #4c4c4c;
+                    }
+                    .travel-arrow {
+                        width: 6px;
+                    }
+                    .select-destination{
+                        input{
+                            text-align: right;
+                            box-shadow: none;
+                            border: none;
+                            background-color: #fff;
+                            font-size: 16px;
+                            color: #4c4c4c;
+                        }
+                    }
+                }
+                .text-value {
+                    text-align: right;
+                    width: 100%;
+                    padding: 0 0 0 10px;
+                    border: none;
+                    color: #4c4c4c;
+                    font-size: 16px;
+                }
+                .text-value[readonly] {
+                    background-color: #fff;
+                }
+                .text-no-input {
+                    color: #959595;
+                }
+            }
+            .no-border {
+                border: none !important;
+            }
+            .row-min {
+                padding: 3px 5px !important;
+            }
+            .budget-title{
+                background-color: #f1f1f1;
+                border: none;
+                color: #4c4c4c;
+                font-size: 14px;
+            }
+            .blank{
+                height: 15px;
+                background-color: #e2e2e2;
+            }
+            .create-self-comment{
+                width: 100%;
+                border-bottom: thin solid #e2e2e2;
+                .row{
+                    background-color: #fff;
+                    border: none;
+                    color: $message-content-color;
+                    font-size: 16px;
+                }
+                .self-comment{
+                    border: none;
+                    font-size: 16px;
+                    color: #4c4c4c;
+                    width: 100%;
+                    min-height: 70px;
+                    background-color: #fff;
+                    padding: 0 10px;
+                    resize: none;
+                }
+            }
+        }
+        .grey-bg{
+            background-color: #F1F1F1;
+        }
+    }
+    .jingdong-application-base-footer{
+        .row{
+            padding: 0;
+            border-top: thin solid #e2e2e2;
+            .col{
+                padding: 0;
+                height: 44px;
+                line-height: 44px;
+            }
+        }
+        .save{
+            background-color: #fff;
+            color: #0092da;
+            border: none;
+        }
+        .submit{
+            background-color: #0092da;
+            color: #fff;
+            border: none;
+        }
+    }
+}
+
+.popup .popup-buttons .button-danger{
+    background-color: $message-warning;
+    color: #fff;
+}
+
+.jingdong-order-header{
+    font-size: 14px;
+    padding: 0 10px;
+    margin: 10px 0;
+    display: flex;
+    .message-header{
+        color: $message-color;
+        flex: 20;
+    }
+    .detail-link{
+        color: $message-link-color;
+        flex: 20;
+    }
+    .remain-time{
+        color: $message-color;
+        flex: 60;
+        text-align: right;
+    }
+    .cancel{
+        color: $message-warning;
+        flex: 60;
+        text-align: right;
+    }
+    .finished{
+        color: #50D4A1;
+        flex: 60;
+        text-align: right;
+    }
+}
+.jingdong-order-item{
+    border-bottom: thin solid #e2e2e2;
+
+    .product-content{
+        margin: 0 10px;
+
+        .product-name{
+            margin: 10px 0;
+            color: $message-content-color;
+            overflow: hidden;
+            white-space: normal;
+        }
+
+        .product-detail{
+            margin: 10px 0;
+            color: $message-color;
+            display: flex;
+
+            .product-style{
+                flex: 70%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                .product-size{
+                    margin-bottom: 10px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+            }
+
+            .product-right{
+                flex: 30%;
+                .product-cancel{
+                    text-align: right;
+                    color: $message-warning;
+                }
+
+                .product-price{
+                    margin-bottom: 10px;
+                    text-align: right;
+                    color: $message-content-color;
+                }
+            }
+        }
+    }
+}
+.jingdong-order-footer{
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: thin solid #e2e2e2;
+    .jingdong-order-freight{
+        text-align: right;
+        font-size: 16px;
+        color: $message-color;
+    }
+    .jingdong-order-totalAmount{
+        text-align: right;
+        margin-top: 10px;
+        font-size: 18px;
+        color: $price-color;
+    }
+    .jingdong-order-logistics{
+        .header{
+            margin-top: 10px;
+            color: $message-content-color;
+            font-size: 16px;
+        }
+        .content{
+            margin-top: 10px;
+            color: $message-color;
+            font-size: 15px;
+        }
+    }
+}
+
+.jingdong-application-detail {
+    background-color: #F1F1F1;
+    .row + .row{
+        margin: 0;
+    }
+    .custom-application-detail-content {
+        .create-base-message {
+            background-color: #fff;
+            padding: 10px;
+            border-bottom: thin solid #e2e2e2;
+
+            .application-title {
+                padding: 0 10px;
+                font-size: 16px;
+                color: #4c4c4c;
+                margin-bottom: 5px;
+            }
+
+            .jingdong-order-price {
+                font-size: 18px;
+                color: $price-color;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+
+            .application-comment {
+                font-size: 15px;
+                color: #959595;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+
+            .base-edit {
+                width: 1.5em;
+                position: absolute;
+                right: 10px;
+                top: 15px;
+            }
+            .travel-comment {
+                padding: 0 10px;
+                font-size: 16px;
+                color: #4c4c4c;
+                margin-bottom: 5px;
+            }
+            .travel-remark {
+                font-size: 13px;
+                color: #959595;
+                margin: 0;
+                text-align: center;
+            }
+            .travel-department {
+                font-size: 1em;
+                color: #959595;
+                margin: 5px 0;
+            }
+            .travel-date {
+                font-size: 0.9em;
+                color: #959595;
+                margin: 5px 0;
+            }
+            .travel-money {
+                color: #ff6a10;
+                font-size: 16px;
+                padding: 0;
+                margin: 5px 0;
+            }
+            .booker{
+                color: #4c4c4c;
+                font-size: 14px;
+                padding: 0 5px;
+            }
+            .padding-right {
+                padding: 0 5px 0 0;
+            }
+            .padding-left {
+                padding: 0 0 0 5px;
+            }
+            .right-border {
+                border-right: thin solid #e2e2e2;
+            }
+        }
+        .list{
+            margin: 0;
+            padding: 0;
+            .item {
+                padding: 0;
+                margin: 0;
+                border: none;
+                .row + .row {
+                    margin: 0;
+                }
+            }
+        }
+        .travel-approval-histroy {
+            background-color: #fff;
+            margin-bottom: 20px;
+            .travel-tips {
+                padding: 5px 0 5px 10px;
+                font-size: 1em;
+                color: #4c4c4c;
+                margin: 0;
+            }
+            .approval-history-pane {
+                position: relative;
+                width: 100%;
+                .line {
+                    position: absolute;
+                    height: 100%;
+                    left: 18px;
+                    border-right: 1px solid #cdcdcd;
+                }
+                .approval-history {
+                    background-color: #fff;
+                    width: 100%;
+                    .approval-icon {
+                        width: 20px;
+                        height: 20px;
+                        margin: 6px 0 0 3px;
+                        z-index: 999;
+                    }
+                    .history-dot {
+                        display: block;
+                        width: 8px;
+                        height: 8px;
+                        margin: 11px 9px 6px 9px;
+                        background-color: #ACACAC;
+                        border-radius: 50%;
+                        z-index: 999;
+                    }
+                    .approval-time {
+                        color: #959595;
+                        font-size: 0.8em;
+                        margin: 0;
+                    }
+                    .reject-remark{
+                        color:#ed3535;
+                    }
+                    .margin-top {
+                        margin: 3px 5px 0 0;
+                    }
+                    .approval-name{
+                        max-width: 200px;
+                    }
+                }
+            }
+        }
+    }
+    .expand-member-list {
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+        width: 50px;
+        height: 21px;
+        margin-top: -3px;
+        background-color: #fff;
+        border-radius: 5px;
+        border-bottom: thin solid #e2e2e2;
+        img {
+            width: 20px;
+            transform: rotate(0deg);
+        }
+        .rotate {
+            transform: rotate(180deg);
+        }
+    }
+    .jingdong-detail-footer {
+        padding: 0;
+        margin: 0;
+        .row {
+            padding: 0;
+            margin: 0;
+            border-top: thin solid #e2e2e2;
+            .jingdong-order-detail {
+                height: 44px;
+                line-height: 34px;
+                color: #fff;
+                background-color: #0092da;
+                font-size: 1.2em;
+            }
+            .jingdong-order-pay {
+                height: 44px;
+                line-height: 34px;
+                color: #fff;
+                background-color: #32D0C8;
+                font-size: 1.2em;
+            }
+            .jingdong-agree {
+                height: 44px;
+                line-height: 34px;
+                color: #fff;
+                background-color: #50cd93;
+                font-size: 1.2em;
+            }
+            .jingdong-reject {
+                height: 44px;
+                line-height: 34px;
+                color: #fff;
+                background-color: #e64e4e;
+                font-size: 1.2em;
+            }
+            .btn-disable {
+                background-color: #cdcdcd;
+                border: 1px solid #e2e2e2;
+            }
+        }
+    }
+    .text-left{
+        text-align: left;
+    }
+    .text-right{
+        text-align: right;
+    }
+    .text-center{
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+    }
+}

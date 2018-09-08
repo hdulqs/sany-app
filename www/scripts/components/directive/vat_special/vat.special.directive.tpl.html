@@ -1,0 +1,126 @@
+<!--费用增专directive-->
+<div class="vat-special-directive">
+    <div class="vat-special-row row">
+        <!--发票代码-->
+        <div class="vat-special-col">
+            <div class="label">
+                <!--发票代码-->
+                {{ 'vatSpecial.invoiceCode' | translate }}
+            </div>
+            <div class="content">
+                <input placeholder="{{ 'vatSpecial.placeholder' | translate }}" class="content margin-top-10"
+                       ng-model="expense.invoiceCode" ng-disabled="readonly" type="text">
+            </div>
+        </div>
+        <!--发票号码-->
+        <div class="vat-special-col">
+            <div class="label">
+                <!--发票号码-->
+                {{ 'vatSpecial.invoiceNumber' | translate }}
+            </div>
+            <div>
+                <input placeholder="{{ 'vatSpecial.placeholder' | translate }}" class="content margin-top-10"
+                       ng-model="expense.invoiceNumber" ng-disabled="readonly" type="text">
+            </div>
+        </div>
+    </div>
+    <!--币种-->
+    <div class="vat-special-row" ng-click="view.selectCurrencyCode()">
+        <div class="label">
+            <span>
+                <!--币种-->
+                {{ 'vatSpecial.currency' | translate }}
+            </span>
+            <!--编辑时显示金额填写说明-->
+            <span class="color-blue font-size-14 margin-left-10" ng-click="view.showAmountDescription($event)"
+                  ng-if="!readonly">
+                <img src="img/borrow_money/question.png">
+                <span>
+                    <!--金额填写说明-->
+                    {{ 'vatSpecial.amountDescription' | translate }}
+                </span>
+            </span>
+        </div>
+        <!--币种名称-->
+        <div class="content margin-top-10">{{ view.currencyName }}</div>
+        <img src="img/expense_report_version/travel/arrow.png" alt="" class="">
+    </div>
+    <div class="vat-special-row row">
+        <!--金额合计-->
+        <div class="vat-special-col">
+            <div class="label">
+                <!--金额合计(不含税)-->
+                {{ 'vatSpecial.totalAmount' | translate }}
+            </div>
+            <div class="content">
+                <input placeholder="{{ 'vatSpecial.placeholder' | translate }}" class="content margin-top-10"
+                       ng-model="expense.nonVATinclusiveAmount" ng-disabled="readonly" type="number"
+                       money-input decimal-length="2" ng-change="view.totalAmountChange()">
+            </div>
+        </div>
+        <!--税率-->
+        <div class="vat-special-col" ng-click="view.selectTaxRates()">
+            <div class="label">
+                <!--税率-->
+                {{ 'vatSpecial.taxRate' | translate }}
+            </div>
+            <div class="margin-top-10 content">
+                <span class="label" ng-if="!(expense.taxRate | typeof:'number')">
+                     <!--请选择-->
+                    {{ 'create_expense.please.choose' | translate }}
+                </span>
+                <span ng-if="expense.taxRate | typeof:'number'">
+                    {{expense.taxRate * 100 + '%'}}
+                </span>
+            </div>
+            <img src="img/expense_report_version/travel/arrow.png" alt="" class="">
+        </div>
+    </div>
+    <div class="vat-special-row row">
+        <!--税额合计-->
+        <div class="vat-special-col" ng-click="view.selectTaxAmount()">
+            <div class="label">
+                <!--税额合计-->
+                {{ 'vatSpecial.totalTax' | translate }}
+            </div>
+            <div class="label margin-top-10" ng-if="!(expense.taxAmount | typeof:'number')">
+                 <!--请选择-->
+                {{ 'create_expense.please.choose' | translate }}
+            </div>
+            <div class="margin-top-10 content" ng-if="expense.taxAmount | typeof:'number'">
+                {{ expense.taxAmount }}
+            </div>
+            <img src="img/expense_report_version/travel/arrow.png" alt="" class="inline-img">
+        </div>
+        <!--价税合计-->
+        <div class="vat-special-col">
+            <div class="label">
+                <!--价税合计-->
+                {{ 'vatSpecial.totalTaxAmount' | translate }}
+                <span class="font-size-14">
+                    <!--(不可修改)-->
+                    {{ 'vatSpecial.canNotChange' | translate }}
+                </span>
+            </div>
+            <div class="margin-top-10 label">{{ expense.priceTaxAmount }}</div>
+        </div>
+    </div>
+</div>
+
+<!--查看金额填写说明modal-->
+<script id="vat.special.amount.description.modal.tpl.html" type="text/ng-template">
+    <ion-modal-view class="vat-special-amount-description-modal">
+        <ion-header-bar align-title="center">
+            <span class="back-button cancel" ng-click="view.hideAmountDescription($event)">
+                {{'common.cancel'|translate}}<!--取消-->
+            </span>
+        </ion-header-bar>
+        <ion-content scroll="false">
+            <ion-scroll zooming="true" direction="xy" delegate-handle="zoom-pane" class="zoom-pane"
+                        min-zoom="1" scrollbar-x="false" scrollbar-y="false">
+
+                <img src="img/bill.png" ng-click="view.hideAmountDescription($event)">
+            </ion-scroll>
+        </ion-content>
+    </ion-modal-view>
+</script>

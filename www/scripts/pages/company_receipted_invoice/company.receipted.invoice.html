@@ -1,0 +1,50 @@
+<ion-view cache-view="false" class="open-invoice-information">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{view.companyName}}</span>
+    </ion-nav-title>
+    <ion-content class="receipted-information has-header">
+        <div class="" ng-repeat="newCompany in view.relativeCompany">
+            <div ng-click="view.readyCopy($event,newCompany.companyName)">
+                <div class="title">{{'company.The.name.of.the.company'|translate}}</div>
+                <div class="receipted-invoice-content">{{newCompany.companyName}}</div>
+                <div class="line"></div>
+            </div>
+            <div ng-click="view.readyCopy($event,newCompany.taxpayerNumber)">
+                <div class="title">{{'company.Taxpayer.identification.number'|translate}}</div>
+                <div class="receipted-invoice-content">{{newCompany.taxpayerNumber}}</div>
+                <div class="line"></div>
+            </div>
+            <div ng-click="view.readyCopy($event,newCompany.address)">
+                <div class="title">{{'company.address'|translate}}</div>
+                <div class="receipted-invoice-content">{{newCompany.address}}</div>
+                <div class="line"></div>
+            </div>
+            <div ng-click="view.readyCopy($event,newCompany.telephone)">
+                <div class="title">{{'company.phone'|translate}}</div>
+                <div class="receipted-invoice-content">{{newCompany.telephone}}</div>
+                <div class="line"></div>
+            </div>
+            <div ng-click="view.readyCopy($event,newCompany.accountBank)">
+                <div class="title">{{'company.Bank.name'|translate}}</div>
+                <div class="receipted-invoice-content">{{newCompany.accountBank}}</div>
+                <div class="line"></div>
+            </div>
+            <div ng-click="view.readyCopy($event,newCompany.cardNumber)">
+                <div class="title">{{'company.bank.account'|translate}}</div>
+                <div class="receipted-invoice-content">{{newCompany.cardNumber}}</div>
+                <div class="line"></div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
+<!--<script id="copy.text.html" type="text/ng-template">-->
+<!--<ion-popover-view class="light-bg copy-container">-->
+<!--<div class="copy-text" ng-model="value" ng-click="view.copyText(value)">复制</div>-->
+<!--</ion-popover-view>-->
+<!--</script>-->
+
+
+
+
+

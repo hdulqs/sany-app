@@ -1,0 +1,19 @@
+{
+    "invoice.list": {
+        "button": {
+            "delete": "memadam",
+            "edit": "mengubahsuai"
+        },
+        "empty": "tiada infomasi perbelanjaan",
+        "header": {
+            "amount": "jumlah",
+            "attachment": "lampiran",
+            "comment": "perkara",
+            "date": "tarikh",
+            "index": "index",
+            "invoiceType": "jenis perbelanjaan"
+        },
+        "noComment": "tiada data",
+        "title": "akaun"
+    }
+}

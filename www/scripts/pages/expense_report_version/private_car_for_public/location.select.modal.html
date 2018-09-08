@@ -1,0 +1,27 @@
+<ion-modal-view class="location-selector-modal">
+    <ion-header-bar class="header item-input-inset">
+        <button class="button button-clear" ng-click="locationModal.hide()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="{{'private.location.key' | translate}}" ng-model="location.searchKeyword"><!--地点关键字-->
+        </label>
+        <button class="button button-clear" ng-click="location.searchLocation(location.searchKeyword)">
+            {{'private.search' | translate}}<!--搜索-->
+        </button>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <div class="item" ng-repeat="local in location.locations" ng-click="location.selectItem(local)">
+                <h2>{{local.name}}</h2>
+                <p>{{local.address}}</p>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            on-infinite="location.loadMore(page + 1)"
+            ng-if="location.page <= 5"
+            immediate-check="false"
+        ></ion-infinite-scroll>
+    </ion-content>
+</ion-modal-view>

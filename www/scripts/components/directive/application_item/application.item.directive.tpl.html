@@ -1,0 +1,279 @@
+<ion-item class="application-item-directive">
+    <div ng-click="goDetail()">
+
+        <!--显示申请单号:有不同的类型,费用申请,借款申请,差旅申请-->
+        <div class="row row-center header">
+            <div class="col col-70">
+                <p class="budget-cell" ng-if="item.errorMsg">
+                    <span ng-if="item.errorMsg.externalPropertyName==='1001'">超差标</span>
+                    <span ng-if="item.errorMsg.externalPropertyName==='1002'">超预算</span>
+                    <span ng-if="item.errorMsg.externalPropertyName==='1003'">系统错误</span>
+                </p>
+                <p class="budget-business">
+                    <!--费用申请单-->
+                    <span class="businessCode-anchor" ng-if="item.type === 1001" >
+                        No.{{item.expenseApplication.businessCode}}
+                    </span>
+                    <!--差旅申请单-->
+                    <span class="businessCode-anchor" ng-if="item.type === 1002 || item.formType == 4100 ||item.formType == '4100'">
+                        No.{{item.travelApplication.businessCode}}
+                    </span>
+                    <!--订票申请单-->
+                    <span class="businessCode-anchor" ng-if="item.type === 1003">
+                        No.{{item.travelBookerApplication.businessCode}}
+                    </span>
+                    <!--京东申请单-->
+                    <span class="businessCode-anchor" ng-if="item.type === 1004">
+                        No.{{item.jingDongOrderApplication.businessCode}}
+                    </span>
+                    <!--借款申请单-->
+                    <span class="businessCode-anchor" ng-if="item.type === 2005">
+                        No.{{item.loanApplication.businessCode}}
+                    </span>
+                </p>
+            </div>
+            <div class="col">
+                <p class="text-right" ng-if="item.createdDate">
+                    {{ item.createdDate | dateFilter}}
+                </p>
+            </div>
+        </div>
+
+
+        <!--内容-->
+        <div class="travel-item-content">
+            <div class="row row-center min-height">
+                <div class="col col-60">
+                    <p class="heading" ng-if="item.formName">
+                        {{item.formName}}
+                    </p>
+                    <p class="heading"
+                       ng-hide="item.formName">
+                        <span ng-if="item.formType !== 4100">
+                            {{item.type | customApplicationType}}
+                        </span>
+                        <span ng-if="item.formType == 4100">
+                            <!--Flyback申请-->
+                            {{"application_item.Flyback"|translate}}
+                        </span>
+                    </p>
+                    <p class="title">
+                        <!--如果没有事由,占位符取代-->
+                        <br ng-hide="item.title"/>{{item.title}}
+                    </p>
+                </div>
+
+                <div class="col col-40 text-right expenses-types">
+                    <!--报销单的各种状态-->
+                    <div ng-if="!isHideState">
+                        <p class="bg-has-pass" ng-if="item.status === 1003 && item.rejectType === 1000 && (!item.applicationParticipant || !item.applicationParticipant.closed)"
+                           ng-class="{true:'application-status',false:'application-status-no-title'}[item.title.length > 0]">
+                            {{'status.Have.been.through'|translate}}<!--已通过-->
+                        </p>
+                        <p class="bg-has-close" ng-if="item.status === 1003 && item.rejectType === 1000 && item.applicationParticipant.closed == 1"
+                           ng-class="{true:'application-status',false:'application-status-no-title'}[item.title.length > 0]">
+                            {{'application_item.Has.been.closed'|translate}}
+                            <!--已停用-->
+                        </p>
+                        <p class="bg-wait-approval"
+                           ng-if="item.status === 1002 && item.rejectType === 1000"
+                           ng-class="{true:'application-status',false:'application-status-no-title'}[item.title.length > 0]">
+                            {{'application_item.In.the.examination.and.approval'|translate}}<!--审批中-->
+                        </p>
+                        <p class="bg-editing" ng-if="item.status === 1001 && item.rejectType === 1000"
+                           ng-class="{true:'application-status',false:'application-status-no-title'}[item.title.length > 0]">
+                            {{'application_item.In.the.editor'|translate}}<!--编辑中-->
+                        </p>
+                        <p class="bg-has-reject" ng-if="item.status === 1001 && (item.rejectType === 1002 || item.rejectType === 1003)"
+                           ng-class="{true:'application-status',false:'application-status-no-title'}[item.title.length > 0]">
+                            {{'application_item.Has.been.rejected'|translate}}<!--已驳回-->
+                        </p>
+                        <p class="bg-withdraw" ng-if="item.status === 1001 && item.rejectType === 1001"
+                           ng-class="{true:'application-status',false:'application-status-no-title'}[item.title.length > 0]">
+                            {{'application_item.Has.withdrawn'|translate}}<!--已撤回-->
+                        </p>
+                        <p class="bg-bpo-pass" ng-if="item.status === 1004 && item.rejectType === 1000"
+                           ng-class="{true:'application-status',false:'application-status-no-title'}[item.title.length > 0]">
+                            <!--已审核-->
+                            {{'application_item.yetAudit'|translate}}
+                        </p>
+                        <p class="bg-finance-loan" ng-if="item.status === 1005 && item.rejectType === 1000"
+                           ng-class="{true:'application-status',false:'application-status-no-title'}[item.title.length > 0]">
+                            <!--已付款-->
+                            {{'status.Payment.has.been'|translate}}
+                        </p>
+                        <p class="bg-wait-approval" ng-if="item.status === 1006 && item.rejectType === 1000"
+                           ng-class="{true:'application-status',false:'application-status-no-title'}[item.title.length > 0]">
+                            <!--还款中-->
+                            {{'application_item.paymenting'|translate}}
+                        </p>
+                        <p class="bg-finance-refund" ng-if="item.status === 1007 && item.rejectType === 1000"
+                           ng-class="{true:'application-status',false:'application-status-no-title'}[item.title.length > 0]">
+                            <!--已还款-->
+                            {{'application_item.yetRepayment'|translate}}
+                        </p>
+                        <p class="bg-wait-approval" ng-if="item.status === 1008 && item.rejectType === 1000"
+                           ng-class="{true:'application-status',false:'application-status-no-title'}[item.title.length > 0]">
+                            <!--付款中-->
+                            {{'application_item.pay_in_process'|translate}}
+                        </p>
+                    </div>
+                    <p ng-hide="item.status === 1001 && (item.rejectType === 1002 || item.rejectType === 1003)"
+                       ng-class="{true:'total-budget' , false:'total-budget-no-title'}[item.title.length > 0]">
+                        <span ng-if="item.budgetShowDTO && item.budgetShowDTO.hasBudget">
+
+                              {{originCurrencyCode}}
+                            {{(item.budgetShowDTO.budgetAmount + item.budgetShowDTO.travelSubsidiesAmount)|number:2}}
+                        </span>
+                        <!--京东的总价-->
+                        <span ng-if="item.jingDongOrderApplication && item.jingDongOrderApplication.jingDongOrder">
+                                {{originCurrencyCode}}
+                            {{ (item.jingDongOrderApplication.jingDongOrder.totalAmount+item.jingDongOrderApplication.jingDongOrder.freight) }}
+                        </span>
+                    </p>
+                </div>
+                <div class="col col-40 text-right expenses-types" ng-if="isHideState">
+                    <p ng-hide="item.status === 1001 && (item.rejectType === 1002 || item.rejectType === 1003)"
+                       ng-class="{true: 'total-budget' , false: 'total-budget-no-title'}[item.title.length > 0]">
+                        <span ng-if="item.budgetShowDTO && item.budgetShowDTO.hasBudget">
+
+                            {{originCurrencyCode}}
+                            {{(item.budgetShowDTO.budgetAmount + item.budgetShowDTO.travelSubsidiesAmount)|number:2}}
+                        </span>
+                        <!--京东的总价-->
+                        <span ng-if="item.jingDongOrderApplication && item.jingDongOrderApplication.jingDongOrder">
+                              {{originCurrencyCode}}
+                            {{ (item.jingDongOrderApplication.jingDongOrder.totalAmount+item.jingDongOrderApplication.jingDongOrder.freight) }}
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="row row-center row-middle"
+                 ng-if="item.status === 1001 && (item.rejectType === 1002 || item.rejectType === 1003)">
+                <div class="col col-60">
+                    <p class="reject-reason" ng-if="item.rejectReason">
+                    {{'application_item.Reason.for.rejection'|translate}}<!--驳回理由-->:
+                        {{item.rejectReason}}
+                    </p>
+                </div>
+                <div class="col col-40">
+
+                    <!--五种类型的申请单:现在多币种,我先改两种类型的申请单,费用申请与差旅申请-->
+                    <p class="text-right reject-total-budget"
+                       ng-if="item.expenseApplication.totalBudget ||
+                       item.travelApplication.totalBudget ||
+                       item.travelBookerApplication.totalBudget ||
+                       item.loanApplication.totalAmount">
+                        <span ng-if="item.type === 1001 && item.budgetShowDTO && item.budgetShowDTO.hasBudget">
+                             {{originCurrencyCode}}
+                            {{item.expenseApplication.baseCurrencyAmount|number:2}}
+                        </span>
+                        <span ng-if="(item.type === 1002 || item.formType == 4100 ||item.formType == '4100') &&
+                        item.budgetShowDTO && item.budgetShowDTO.hasBudget">
+                               {{originCurrencyCode}}
+                            {{(item.travelApplication.baseCurrencyAmount + item.budgetShowDTO.travelSubsidiesAmount) |number:2}}
+                        </span>
+
+
+                        <span ng-if="item.type === 1003 && item.budgetShowDTO && item.budgetShowDTO.hasBudget">
+                               {{originCurrencyCode}}
+                            {{item.travelBookerApplication.totalBudget|number:2}}
+                        </span>
+                        <span ng-if="item.type === 1004 && item.jingDongOrderApplication && item.jingDongOrderApplication.jingDongOrder">
+                               {{originCurrencyCode}}
+                            {{ (item.jingDongOrderApplication.jingDongOrder.totalAmount+item.jingDongOrderApplication.jingDongOrder.freight)}}
+                        </span>
+                        <span ng-if="item.type === 2005 && item.budgetShowDTO && item.budgetShowDTO.hasBudget">
+                               {{originCurrencyCode}}
+                            {{item.loanApplication.totalAmount|number:2}}
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row row-center approval-detail"
+         ng-if="isShowType&&item.type !== 2005">
+        <div class="col col-center col-50 approval-dep">
+            <span ng-if="item.type === 1001">
+                {{item.expenseApplication.departmentName}}
+            </span>
+            <span ng-if="item.type === 1002 || item.formType == 4100 || item.formType == '4100'">
+                {{item.travelApplication.departmentName}}
+            </span>
+            <span ng-if="item.type === 1003">
+                {{item.travelBookerApplication.departmentName}}
+            </span>
+            <span ng-if="item.type === 1004">
+                {{item.jingDongOrderApplication.departmentName}}
+            </span>
+            <span ng-if="item.type === 2005">
+                 {{item.loanApplication.departmentName}}
+            </span>
+        </div>
+        <div class="col col-50 col-center approval-name approval-name-anchor"
+             ng-if="item.type !== 1004">
+            <!--等--><!--人-->
+            {{item.applicationParticipants[0].fullName}}
+            <span ng-if="item.applicationParticipants.length > 1">
+                {{"invoice_item.Etc"|translate}}&nbsp;
+                {{item.applicationParticipants.length}}&nbsp;
+                {{"application_item.ren"|translate}}
+            </span>
+        </div>
+        <div class="col col-center approval-name approval-name-anchor"
+             ng-if="item.type === 1004">
+            {{item.applicant.fullName}}
+        </div>
+    </div>
+
+
+
+
+    <ion-option-button class="button-assertive travel-delete"
+                       ng-click="deleteTravel()" ng-if="canDelete">
+        <div class="column">
+            <div class="delete-text">{{'item.delete'|translate}}<!--删除--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive travel-withdraw"
+                       ng-click="withdrawTravel()"
+                       ng-if="withdraw && (item.formType != '4100' && item.formType != 4100)">
+        <div class="column">
+            <div class="delete-text">{{'item.withdraw'|translate}}<!--撤回--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive expense-reject"
+                       ng-if="canApproval && (item.formType != '4100' && item.formType != 4100)"
+                       ng-click="reject()">
+        <div class="column">
+            <div class="reject-text">{{'item.rejected'|translate}}<!--驳回--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive expense-agree"
+                       ng-if="canApproval && (item.formType != '4100' && item.formType != 4100)"
+                       ng-click="agree()">
+        <div class="column">
+            <div class="agree-text">{{'item.through'|translate}}<!--通过--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive travel-close"
+                       ng-click="closeTravel()"
+                       ng-if="canClose && (item.formType == 2001 || item.formType == 2002)">
+        <div class="column">
+            <div class="delete-text">{{'custom.application.travel.close'|translate}}</div>   <!--停用-->
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive travel-restart"
+                       ng-click="restartTravel()"
+                       ng-if="canRestart">
+        <div class="column">
+            <div class="delete-text">{{'custom.application.travel.restart'|translate}}</div><!--重新启用-->
+        </div>
+    </ion-option-button>
+</ion-item>
+
+

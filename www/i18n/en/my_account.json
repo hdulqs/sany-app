@@ -1,0 +1,41 @@
+{
+    "dashboard": {
+        "Approval": "Approval",
+        "Expect": "Coming soon",
+        "Hint": "Prompt",
+        "Report": "Report",
+        "Train": "Train",
+        "YoungRecruit": "Taxi",
+        "airlineTicket": "Air ticket",
+        "app": "App",
+        "confirm": "OK",
+        "consumption": "Consumption",
+        "goingOut": "Travel",
+        "hotel": "Hotel",
+        "repast": "Food",
+        "travelApplication": "Travel application"
+    },
+    "my": {
+        "About.huilianyi": "About Helios",
+        "Account.binding": "Account Binding",
+        "Borrowing.and.verification": "My Loan",
+        "Help.and.feedback": "Help",
+        "Online.customer.service": "Online Customer Service",
+        "aboutHuiLianYi": "About Helios",
+        "back.to.HuiLianYi": "Back to Helios",
+        "billing.information": "Billing Information",
+        "helpAndFeedback": "Help & Feedback",
+        "my": "Profile & Settings",
+        "order.information": "Ctrip Order Information",
+        "set": "Setting",
+        "info": "Profile"
+    },
+    "problem":{
+        "question":"Question",
+        "costDesynchrony":"Cost desynchrony？",
+        "question_1":"1.There may be a delay of 2 hours to 1 day",
+        "question_2":"2.Please go to the APP to check whether the enterprise reimbursement is checked",
+        "question_3":"3.If still did not receive the cost of push，you can go to my - set - didi synchronization for manual synchronization",
+        "didiSynchronizationCost":"Go didi to sync costs"
+    }
+}

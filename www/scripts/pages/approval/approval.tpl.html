@@ -1,0 +1,27 @@
+<ion-view class="approval" hide-nav-bar="true">
+    <ion-nav-bar>
+        <ion-nav-buttons side="left" >
+            <button class="go-back-arrow" ng-click="view.goBack()">
+                <img src="img/back.png" class="save-btn">
+            </button>
+        </ion-nav-buttons>
+        <ion-nav-title>
+            <div id="approval-list-header">
+            <span class="tab-mode tab-mode-first" ng-class="{'active' : view.isList}" ng-click="view.listToggle()">
+                <!--列表-->
+                {{"approval.listing"|translate}}
+            </span>
+            <span class="tab-mode tab-mode-second" ng-class="{'active' : !view.isList}" ng-click="view.listToggle()">
+                <!--其他-->
+                {{"approval.Other"|translate}}
+            </span>
+            </div>
+        </ion-nav-title>
+        <ion-nav-buttons side="right" class="col-center">
+            <button class="button button-clear col-center"
+                    id="approval-list-toggle-button"
+                    ng-click="view.approvalToggle()">{{view.approvalButtonText}}</button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="approval-content"></ion-nav-view>
+</ion-view>

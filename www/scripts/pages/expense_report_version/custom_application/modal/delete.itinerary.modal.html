@@ -1,0 +1,30 @@
+<ion-modal-view class="delete-itinerary-modal">
+    <ion-content class="block-content" overflow-scroll="true">
+        <div class="fix-bg" ng-click="view.hideDeleteItinerary()">
+        </div>
+        <div class="white-bg">
+            <div class="row row-center border-bottom row-title">
+               <p class="title">
+                   该交通为往返行程
+               </p>
+            </div>
+            <div class="btn-group">
+                <div class="row row-center" ng-click="view.deleteOneItinerary()">
+                    <p class="btn">
+                        仅删除该单程
+                    </p>
+                </div>
+                <div class="row row-center" ng-click="view.deleteTwoItinerary()">
+                    <p class="btn">
+                        删除往返行程
+                    </p>
+                </div>
+                <div class="row row-center" ng-click="view.hideDeleteItinerary(true)">
+                    <p class="btn">
+                        取消
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

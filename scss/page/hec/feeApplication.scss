@@ -1,0 +1,237 @@
+.feeApplication {
+
+   .transform-down {
+       transform: rotate(90deg);
+       margin-right: 1rem;
+       margin-top: 1.2rem;
+   }
+
+    /*差旅报销-航班明细样式*/
+    .travel-reimb-content{
+        background-color: white;
+        padding: 0;
+        .hec-center{
+            width: 90%;
+            border-bottom: 1px solid #e2e2e2;
+            margin: 0 auto;
+        }
+        .order-status{
+            width: 90%;
+            border-bottom: 1px solid #e2e2e2;
+            margin: 0 auto;
+                .status-img{
+                    text-align: center;
+                    padding: .5rem;
+                    img{
+                        width: 2rem;
+                    }
+                  /*  div{
+                        border-radius: 1rem;
+                        background: #66CC00;
+                        text-align: center;
+                        width: 4.5rem;
+                        color: white;
+                    }*/
+                }
+        }
+        .update-reason{
+            span{
+                margin-top: -2.9rem;
+            }
+            textarea{
+                border: none;
+            }
+        }
+        .travel-item-date{
+            padding: 0 1rem 1rem 1rem;
+            font-size: 1rem;
+            border-bottom: 1px solid #e2e2e2
+        }
+        .exp-detail{
+            padding: 1rem;
+            font-size: 1rem;
+        }
+    }
+
+    .black-ground {
+        background-color: #000;
+        opacity: 0.3;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 9999;
+    }
+    .z-index{
+        z-index: 999999;
+
+    }
+    .currency-block{
+        width: 100%;
+        position: fixed;
+        bottom: 6.3%
+    }
+    /*费用类型*/
+    .exp-type-search {
+        background: #f2f2f2;
+        div {
+            margin: .2rem auto;
+            border: 1px solid #e2e2e2;
+            border-radius: 1rem;
+            width: 90%;
+            background: white;
+            padding: 0 1.5rem;
+            input {
+                display: inline-block;
+                width: 92%;
+            }
+        }
+    }
+    .exp-type-content > div {
+        border: 1px solid #ddd;
+        background: white;
+    }
+    .currency-type {
+        margin-top: 1rem;
+        background: #6666cc;
+        input {
+            background: transparent;
+            text-align: right;
+        }
+    }
+
+
+    /*申请页面*/
+    .application-info {
+        margin: 5px 0 10px 0;
+        padding:0px;
+        border-bottom: 1px solid #e2e2e2;
+    }
+    /*勾选样式*/
+    .checked-img {
+        float: right;
+        margin-top: -1.5rem;
+        width: 1.5rem;
+        height: 1rem;
+    }
+    .detail-info {
+        margin: 1rem 0;
+        text-align: center;
+        tr th,tr td{
+            width: 12rem;
+            border: 1px solid #e2e2e2;
+        }
+    }
+    .bg-white {
+       /* background-color: #e2e2e2;
+        border: 1px solid #e2e2e2;
+        width: 95%;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        border-radius: 1rem;*/
+        background-color: rgba(226, 226, 226, 0.48);
+        border: 1px solid #e2e2e2;
+        width: 95%;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        border-radius: .3rem;
+        font-size: 15px;
+        .fly-padding{
+            padding: 0.5rem 1rem;
+        }
+        .fly-info{
+            background-color: #e2e2e2;
+        }
+    }
+    .item-divider {
+        text-align: left;
+    }
+    .fee-btn {
+        width: 48%;
+    }
+    .during-date{
+        text-align: center;
+        padding: 45px 5px;
+        /* height: inherit; */
+        border: 1px solid lightgray;
+    }
+    /*查看日常费用申请单*/
+    .fee-list {
+        padding: 1.5rem 1rem 1rem;
+
+        .fee-item {
+            border-radius: 5px;
+            border: 1px solid;
+            padding: 1rem 0.5rem;
+            background: white;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .fee-sifting-item {
+        .sifting-item {
+            height: 50px;
+            width: 100vw;
+            padding: 0 calc(1vw + 10px);
+            display: flex;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            position: relative;
+            border: none;
+            //border-bottom: 1px solid rgba(221, 221, 221, 0.6);
+            .line {
+                position: relative;
+                top: -10px;
+                left: -10px;
+            }
+            span {//营销中心样式
+                display: inline-block;
+                //height: 50px;
+                line-height: 50px;
+                color: #333333;
+                font-size: 15px;
+            }
+
+            .item-content {
+                flex: 1;
+                -webkit-box-flex: 1;
+                -webkit-flex: 1;
+                -moz-box-flex: 1;
+                -moz-flex: 1;
+                -ms-flex: 1;
+                color: #959595;
+                text-align: right;
+                margin-left: 10px;
+                display: block;
+                margin-right: 6vw;
+            }
+            img {
+                position: absolute;
+                height: 20px;
+                width: 20px;
+                top: 15px;
+            }
+            .right-img {
+                position: absolute;
+                height: 13px;
+                width: 13px;
+                top: 18px;
+            }
+            img:first-child {
+                left: 5vw;
+            }
+            img:last-child {
+                right: 5vw;
+                transition: all 0.5s;
+                -webkit-transition: all 0.5s;
+            }
+            .select {
+                height: auto;
+                position: relative;
+                left: 0vw !important;
+                top: 5px;
+            }
+        }
+    }
+}

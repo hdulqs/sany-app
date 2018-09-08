@@ -1,0 +1,34 @@
+<ion-item class="borrow-money-item-directive">
+    <div ng-click="goDetail()" class="row row-center item-content">
+        <div class="icon-img">
+            <img src="img/borrow_money/borrow.png" ng-if="item.status === 1001">
+            <img src="img/borrow_money/check-icon.png" ng-if="item.status === 1002 || item.status === 1003">
+        </div>
+        <div class="col">
+            <div class="row row-center row-middle">
+                <!--借-->
+                <div class="col col-60 amount-text" ng-if="item.status === 1001">
+                    {{item.stayWriteoffAmount | currency : code}}
+                </div>
+                <!--核-->
+                <div class="col col-60 amount-text" ng-if="item.status === 1002 || item.status === 1003">
+                    {{item.lockedWriteoffAmount + item.hasWriteoffAmount | currency : code}}
+                </div>
+                <div class="col col-40 text-right date-text">
+                    {{item.createdDate | dateFilter}}
+                </div>
+            </div>
+            <div class="row row-center row-middle">
+                <div class="col col-60">
+                    {{item.title}}
+                </div>
+                <div class="col col-40 text-right process-text" ng-if="item.status === 1002">
+                    <!--进行中-->
+                    {{'status.loan_in_process' | translate}}
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-item>
+
+

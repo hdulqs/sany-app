@@ -1,0 +1,15 @@
+{
+    "company": {
+        "Bank.name": "nama akaun",
+        "Copy.success": "berjaya untuk menyalin",
+        "Network.failure.please.try.again.later": "Rangkaian bermasalah, sila cuba sebentar lagi",
+        "No.information.of.make.out.an.invoice.for.the.time.being": "tiada infomasi bil buat semasa kini",
+        "Taxpayer.identification.number": "nombor identiti pembayar tax",
+        "The.information.of.make.out.an.invoice": "infomasi bil",
+        "The.name.of.the.company": "Nama syarikat",
+        "address": "alamat",
+        "bank.account": "akaun bank",
+        "error": "kesilapan",
+        "phone": "telefon"
+    }
+}

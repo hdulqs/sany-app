@@ -1,0 +1,320 @@
+<ion-view class="expense-report-detail feeApplication" hide-back-button="true">
+    <ion-nav-buttons side="left">
+        <button class="button back-button buttons button-clear header-item" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <span class="expense-report-nav-title">差旅申请费用单</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div ng-click="recall()">
+            <!--全部撤回-->
+            <span class="recall-expense">撤回</span>
+        </div>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="expense-report-detail-header">
+
+            <div ng-show="vm.expandDetail" style="padding-left: 1rem;">
+                <div style="text-align: left;">
+                    <p class="travel-remark">差旅时间</p>
+                    <p class="travel-remark">7月1日-7月5日 5天 4晚</p>
+                    <p class="travel-remark">
+                        备注: XXXXX
+                    </p>
+                    <!--总金额-->
+                    <p class="total">
+                        总金额: CNY 266.16
+                    </p>
+                    <p class="travel-remark">
+                        <span>公司-部门：</span>
+                        <span>三一重工-财务部信息化部</span>
+                    </p>
+                    <p class="travel-remark">
+                        <span>币种：</span>
+                        <span>人民币</span>
+                    </p>
+                </div>
+                <div class="travel-list" style="text-align: left;">
+                    <div class="travel-item">
+                        <div class="row" style="border-bottom: 1px solid gainsboro;padding-bottom: 0px;">
+                            <div class="col-20" style="padding-top: 1rem;">行程1</div>
+                            <div class="col">
+                                <div class="travel">北京-上海</div>
+                                <div class="travel">2017.7.1-2017.7.4</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">机票费用</div>
+                            <div class="col" style="text-align: right">RMB 1200.00</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">酒店费用</div>
+                            <div class="col" style="text-align: right">RMB 1200.00</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">其他费用</div>
+                            <div class="col" style="text-align: right">RMB 1200.00</div>
+                        </div>
+                    </div>
+                    <div class="travel-item">
+                        <div class="row" style="border-bottom: 1px solid gainsboro;padding-bottom: 0px;">
+                            <div class="col-20" style="padding-top: 1rem;">行程1</div>
+                            <div class="col">
+                                <div class="travel">上海-长沙</div>
+                                <div class="travel">2017.7.1-2017.7.4</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">机票费用</div>
+                            <div class="col" style="text-align: right">RMB 1200.00</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">酒店费用</div>
+                            <div class="col" style="text-align: right">RMB 1200.00</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">其他费用</div>
+                            <div class="col" style="text-align: right">RMB 1200.00</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="expand-expense-detail" ng-click="vm.expandExpenseDetail()">
+            <img src="img/expense_report_version/travel/expand-arrow.png" alt=""
+                 ng-class="{true: 'rotate',false: ''}[vm.expandDetail]">
+        </div>
+
+        <div class="approval-history-page">
+            <p class="expense-tips">审批历史</p>
+
+            <div class="approval-history-pane history-block">
+                <div class="line"></div>
+                <div class="approval-history">
+                    <div class="row">
+                        <span class="history-dot-wait"></span>
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        E员工<span>【工号】</span>
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        待审批
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                    <span>
+                                      &nbsp;
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <span class="history-dot-wait"></span>
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        D员工<span>【工号】</span>
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        待审批
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                    <span>
+                                      &nbsp;
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <span class="history-dot-wait"></span>
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        C员工<span>【工号】</span>
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        待审批
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                    <span>
+                                      &nbsp;
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <span class="history-dot-wait"></span>
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        B员工
+                                        <span>【工号】</span>
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        正在审批
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                    <span>
+                                       &nbsp;
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="history-dot-success"></span>
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        <span>2017-10-10 11:40</span>
+                                        <div>Y员工(节点名称)</div>
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        同意
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        <span>情况属实，审批通过。</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                    <span>
+                                      &nbsp;
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <span class="history-dot-success"></span>
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        <span>2017-10-10 11:40</span>
+                                        <div>X员工(节点名称)</div>
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        同意
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        <span>情况属实，审批通过。</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                    <span>
+                                      &nbsp;
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="history-dot-withdraw"></span>
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        <span>2017-10-10 11:40</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        A员工
+                                        <span>【工号】</span>
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        已撤回
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                    <span>
+                                      &nbsp;
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <span class="history-dot-success"></span>
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        <span>2017-10-10 11:40</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time approval-name operation-title">
+                                        A员工
+                                        <span>【工号】</span>
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        已提交
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                    <span>
+                                      &nbsp;
+                                    </span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

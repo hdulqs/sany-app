@@ -1,0 +1,113 @@
+<ion-modal-view class="together-book-ticket">
+    <ion-content class="block-content" has-bouncing="false">
+        <!--<div class="fix-bg" ng-click="view.hideBookTicket()">-->
+        <!--</div>-->
+        <div class="white-bg">
+            <div class="row row-center border-bottom" ng-click="view.applicationData.customFormProperties.maxTicketAmountModifiedEnable && view.changeMaxTicket()" ng-if="view.ticketMessage.FLIGHT && view.ticketMessage.maxTicketNumber">
+                <div class="col col-60 input-label">
+                    {{'custom.application.tip.application_order_number' | translate}}
+                    <!--该申请可订机票数-->
+                </div>
+                <div class="col col-33">
+                    <p class="text-right time-input">
+                        {{view.applicationData.travelApplication.maxTicketAmount}}
+                    </p>
+                </div>
+                <div class="col col-5 text-right">
+                    <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                </div>
+            </div>
+            <div class="border-bottom" ng-if="view.ticketMessage.FLIGHT">
+                <div class="load-contain">
+                    <ion-toggle ng-model="view.applicationData.travelApplication.uniformBooking" toggle-class="toggle-calm">
+                        <img src="img/expense_report_version/travel/element/ticket_allowance.png" alt="" class="remark_icon">
+                        <!--统一订机票-->
+                        {{'custom.application.tip.order_ctrip_together' | translate}}
+                    </ion-toggle>
+                </div>
+                <div class="row row-center" ng-click="view.selectTogetherBooker('flight')" ng-if="view.applicationData.travelApplication.uniformBooking">
+                    <div class="col col-33 input-label">
+                        {{'custom.application.tip.booker' | translate}}
+                        <!--订票人-->
+                    </div>
+                    <div class="col col-60 text-right">
+                        {{ view.applicationData.travelApplication.bookingClerkName }}
+                    </div>
+                    <div class="col col-5 text-right">
+                        <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                    </div>
+                </div>
+            </div>
+            <!--ng-if="view.ticketMessage.HOTEL"-->
+            <div class="border-bottom" ng-if="view.ticketMessage.HOTEL">
+                <div class="load-contain">
+                    <ion-toggle ng-model="view.applicationData.travelApplication.hotelUniformBooking" toggle-class="toggle-calm">
+                        <img src="img/expense_report_version/travel/element/hotel_allowance.png" alt="" class="remark_icon">
+                        <!--统一订酒店-->
+                        {{'custom.application.tip.order_hotel_together' | translate}}
+                    </ion-toggle>
+                </div>
+                <div class="row row-center" ng-click="view.selectTogetherBooker('hotel')"
+                     ng-if="view.applicationData.travelApplication.hotelUniformBooking">
+                    <div class="col col-33 input-label">
+                        {{'custom.application.tip.reservation_person' | translate}}
+                        <!--预定人-->
+                    </div>
+                    <div class="col col-60 text-right">
+                        {{ view.applicationData.travelApplication.hotelBookingClerkName }}
+                    </div>
+                    <div class="col col-5 text-right">
+                        <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                    </div>
+                </div>
+                <div class="row row-center" ng-click="view.selectHotelTogether()"
+                     ng-if="!view.applicationData.travelApplication.hotelUniformBooking && (view.hotelRoomData.maleRoomNumber > 0 || view.hotelRoomData.femaleRoomNumber > 0)
+                 && (view.applicationData.travelApplication.travelHotelBookingMaleClerks.length > 0 || view.applicationData.travelApplication.travelHotelBookingFemaleClerks .length > 0) ">
+                    <div class="col col-90 input-label">
+                        {{'custom.application.tip.rent_together_clerk' | translate}}
+                        <!--合住房间预定人-->
+                    </div>
+                    <!--<div class="col col-60 text-right">-->
+                        <!--{{ view.applicationData.travelApplication.hotelBookingClerkName }}-->
+                    <!--</div>-->
+                    <div class="col col-5 text-right">
+                        <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                    </div>
+                </div>
+                <div class="row row-center hotel-booker" ng-click="view.selectHotelTogether()"
+                     ng-if="!view.applicationData.travelApplication.hotelUniformBooking && (view.hotelRoomData.maleRoomNumber > 0 || view.hotelRoomData.femaleRoomNumber > 0)
+                 && (view.applicationData.travelApplication.travelHotelBookingMaleClerks.length > 0 || view.applicationData.travelApplication.travelHotelBookingFemaleClerks .length > 0) ">
+                    <div class="col col-100">
+                        <span ng-if="view.isRandom" class="random-item">
+                            <!--随机-->
+                            {{'custom.application.tip.random' | translate}}
+                        </span>
+                        <span ng-repeat="user in view.hotelRoomData.maleUsers">
+                            <span ng-if="view.applicationData.travelApplication.travelHotelBookingMaleClerks.indexOf(user.userOID) > -1">
+                                {{user.fullName}}，
+                            </span>
+                        </span>
+                        <span ng-repeat="user in view.hotelRoomData.femaleUsers">
+                            <span ng-if="view.applicationData.travelApplication.travelHotelBookingFemaleClerks.indexOf(user.userOID) > -1">
+                                {{user.fullName}}，
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row row-center" ng-if="!view.applicationData.travelApplication.hotelUniformBooking && view.hotelRoomData.maleRoomNumber == 0 && view.hotelRoomData.femaleRoomNumber == 0">
+                    <div class="col col-100">
+                        <!--参与人各自订酒店，外部参与人由-->
+                        {{'custom.application.tip.book_oneself' | translate}}{{view.applicantName}}{{'custom.application.tip.book_stead' | translate}}
+                        <!--代订-->
+                    </div>
+                </div>
+            </div>
+            <div class="book-sure">
+                <a class="book-sure-btn" ng-click="view.bookSure()">
+                    {{"common.sure"|translate}}
+                    <!--确认-->
+                </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

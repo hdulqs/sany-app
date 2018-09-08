@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#FFFFFF"
+        >
+        <!--<ImageView
+            android:id="@+id/back_iv"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/ic_back"/>-->
+        <TextView
+            android:id="@+id/back_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:text="@string/cancel"
+            android:clickable="true"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:textColor="@color/calendar_text_head"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:text="@string/select_date"/>
+        <TextView
+        	android:layout_marginRight="10dp"
+            android:visibility="gone"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="@color/color_green"
+            android:text="@string/NotLimit"
+            android:layout_toLeftOf="@+id/tv_select"
+            android:id="@+id/not_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_select"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:text="@string/ok"
+            android:clickable="true"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:textColor="@color/calendar_text_head"
+            android:textSize="16sp"
+            android:layout_centerVertical="true"
+             />
+    </RelativeLayout>
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="#E9E9E9"
+      />
+   <com.hand.calendar.timessquare.CalendarPickerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="16dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:clipToPadding="false"
+        android:background="#FFFFFF"
+        />
+
+
+</LinearLayout>

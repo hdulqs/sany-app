@@ -1,0 +1,35 @@
+<ion-view cache-view="false"  class="faq-login-detail">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'help.feedback.Common.problems'|translate}}<!--常见问题--></span>
+    </ion-nav-title>
+    <ion-content class="help-category">
+            <div class="list">
+                <div class="item item-divider"></div>
+                <div class="item item-text-wrap">
+                    <div class="row question">
+                        {{view.FAQData.question}}
+                    </div>
+                </div>
+                <div class="item item-text-wrap">
+                    <div class="row answer">
+                        {{view.FAQData.answer}}
+                        <br ng-if="view.FAQData.answerTwo"/>
+                        {{view.FAQData.answerTwo}}
+                        <br ng-if="view.FAQData.answerThree"/>
+                        {{view.FAQData.answerThree}}
+                        <br ng-if="view.FAQData.answerFour"/>
+                        {{view.FAQData.answerFour}}
+                        <br ng-if="view.FAQData.answerFive"/>
+                        {{view.FAQData.answerFive}}
+                        <br ng-if="view.FAQData.answerSix"/>
+                        {{view.FAQData.answerSix}}
+                        <br ng-if="view.FAQData.answerSeven"/>
+                        {{view.FAQData.answerSeven}}
+                    </div>
+                </div>
+            </div>
+    </ion-content>
+</ion-view>
+
+
+

@@ -1,0 +1,146 @@
+<!--我的账本
+Created by Dawn on 2017/8/2.
+-->
+<ion-view class="hec-account-book" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'account.my.account' | translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content class="expense-list-content" ng-class="{true:'has-footer'}[vm.isImport]">
+        <!--账本没有信息-->
+        <div class="alert alert-warning warn" ng-if="vm.nothing && !vm.networkError">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'account.Temporarily.no.cost.information' | translate}}<!--账本没有信息--></p>
+        </div>
+        <!--点击刷新-->
+        <div ng-if="vm.networkError && vm.expList.length === 0" class="hec-nothing">
+            <not-found-text title="vm.networkErrorText" icon="vm.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="vm.doRefresh()">
+                    {{'common.refresh' | translate}}
+                </button>
+            </div>
+        </div>
+        <div ng-if="vm.systemError && vm.expList.length === 0" class="hec-nothing">
+            <not-found-text title="vm.systemErrorText" sub-title="vm.systemErrorSubText"
+                            icon="vm.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <ion-refresher on-refresh="vm.doRefresh()" pulling-text="{{'common.loading' | translate}}"></ion-refresher>
+
+        <ion-list can-swipe="!vm.isImport">
+            <!--导入费用-->
+            <div ng-repeat="exp in vm.expList" ng-if="vm.isImport">
+               <span class="time-node"  ng-if="$index === 0|| ($index > 0 && (vm.expList[$index].bussiness_date|hecDateFilter) !== (vm.expList[$index-1].bussiness_date|hecDateFilter))">
+                   <p>
+                        {{exp.bussiness_date |limitTo:10 |date:'yyyy-MM-dd'}}
+                        <span>{{exp.bussiness_date | hecWeekFilter}}</span>
+                    </p>
+               </span>
+                <ion-checkbox class="hec-check-item" ng-model="exp.checked" ng-click="vm.countSelect($index,exp)">
+                    <div class="row row-center expense-item">
+                        <div class="col">
+                            <ion-item class="erv-invoice-directive">
+                                <div class="row row-center">
+                                    <div class="col col-60">
+                                        <div class="erv-invoice-directive-content-gap">
+                                            <p class="expense-type-name"
+                                               ng-class="{true: 'type-name-small', false: ''}[dataItem.expenseTypeName.length>=4]">
+                                                {{exp.exp_req_item_name}}
+                                            </p>
+                                            <p class="comment">
+                                                ({{exp.notes |convertNothing}})
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!--左边的费用-->
+                                    <div class="col col-40">
+                                        <p class="text-right expense-money" style="color: #ff6a10">
+                                            <span class="fee-code-text">{{exp.reference_currency_code | currencyFilter}}</span>
+                                            <span>{{exp.reference_amount | amountFilter}}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </ion-item>
+                        </div>
+                    </div>
+                </ion-checkbox>
+            </div>
+
+            <!--我的账本-->
+            <div ng-repeat="exp in vm.expList"  ng-if="!vm.isImport">
+                <span class="time-node" ng-if="$index === 0|| ($index > 0 && (vm.expList[$index].creation_date|hecDateFilter) !== (vm.expList[$index-1].creation_date|hecDateFilter))">
+                    <p>
+                        {{exp.creation_date |limitTo:10 |date:'yyyy-MM-dd'}}
+                         <span>{{exp.creation_date | hecWeekFilter}}</span>
+                    </p>
+                </span>
+                <div class="row row-center expense-item">
+                    <div class="col">
+                        <ion-item class="erv-invoice-directive">
+                            <div class="row row-center" ng-click="vm.goPage(exp)">
+                                <div class="col col-60">
+                                    <div class="erv-invoice-directive-content-gap">
+                                        <p class="expense-type-name hec-font">
+                                            {{exp.exp_req_item_name}}
+                                        </p>
+                                        <p class="comment">
+                                            ({{exp.notes |convertNothing}})
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--左边的费用-->
+                                <div class="col col-40">
+                                    <p class="text-right expense-money">
+                                        <span class="fee-code-text">{{exp.reference_currency_code | currencyFilter}}</span>
+                                        <span>{{exp.reference_amount | amountFilter}}</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <ion-option-button class="button-assertive expense-delete" ng-hide="exp.source_type=='DIDI'" ng-click="vm.deleteExpense(exp.expense_id)">
+                                <div class="column">
+                                    <div class="delete-text">{{'common.delete' | translate}}</div>
+                                </div>
+                            </ion-option-button>
+                        </ion-item>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+
+        <ion-infinite-scroll
+            on-infinite="vm.loadMore(vm.page+1)"
+            ng-if="vm.page < vm.pageCnt"
+            distance="5%"
+            immediate-check="false"
+        ></ion-infinite-scroll>
+    </ion-content>
+
+    <div ng-click="vm.goPage()"  ng-if="!vm.isImport">
+        <img class="create-invoice" src="img/expense_report_version/expense_report/create-expense.png" alt="">
+    </div>
+
+    <ion-footer-bar class="expense-list-footer" ng-if="vm.isImport">
+        <div class="row row-center">
+            <div class="col text-center expense-checkbox-btn">
+                <ion-checkbox ng-model="vm.selectAll" ng-click="vm.selectAllAction()">{{'account.Future.generations'|translate}}<!--全选--></ion-checkbox>
+            </div>
+            <div class="col text-center operation-all" ng-click="vm.importTravel()">
+                {{'account.import'|translate}}<!--导入-->
+            </div>
+            <div class="col text-center expense-checkbox-btn hec-intercept" ng-if="vm.assReqFlag" ng-click="vm.importTravel(true)">
+                {{'account.import.and.new' | translate}}<!--导入并新增-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+
+

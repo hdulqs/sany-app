@@ -1,0 +1,134 @@
+<!--<div class="item-block-directive" ng-click="person.openPersonSelector()">-->
+    <!--<div class="row row-center">-->
+        <!--<div class="col col-90 input-label en-text">-->
+            <!--{{fieldName}}-->
+        <!--</div>-->
+        <!--<div class="col col-10 text-right">-->
+            <!--<img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row row-center">-->
+        <!--<div class="col col-100">-->
+            <!--<div class="applicant-selector" >-->
+                <!--<p ng-if="applicant.fullName" class="cost-center-name">-->
+                    <!--{{applicant.fullName}}-->
+                <!--</p>-->
+                <!--<p ng-hide="applicant.fullName" class="select-name">-->
+                   <!--<span ng-if="promptInfo">-->
+                       <!--{{promptInfo}}-->
+                   <!--</span>-->
+                    <!--<span ng-hide="promptInfo">-->
+                        <!--&lt;!&ndash;请选择&ndash;&gt;-->
+                        <!--{{"linkage.Please.select"|translate}}-->
+                    <!--</span>-->
+                <!--</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="item-block-directive" ng-click="person.openPersonSelector()">
+    <div class="row row-center">
+        <div class="col col-100">
+            <div class="applicant-selector">
+                <p ng-if="applicant.fullName" class="cost-center-name">
+                    {{applicant.fullName}}
+                </p>
+                <p ng-hide="applicant.fullName" class="select-name">
+                   <span ng-if="promptInfo">
+                       {{promptInfo}}
+                   </span>
+                    <span ng-hide="promptInfo">
+                        <!--请选择-->
+                        {{"linkage.Please.select"|translate}}
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="applicant.selector.html" type="text/ng-template">
+    <ion-modal-view class="applicant-selector-modal">
+        <ion-header-bar>
+            <!--选择人员-->
+            <h3 class="title">{{"person_tpl.Select.personnel"|translate}}</h3>
+            <span class="city-cancel" ng-click="person.cancel()">
+                <!--取消-->
+                {{"destination.cancel"|translate}}
+            </span>
+        </ion-header-bar>
+        <div class="select-bar">
+            <div class="search">
+                <label class="item-input-wrapper">
+                    <!--搜索-->
+                    <input class="headerInput" placeholder="{{'location.search'|translate}}" ng-model="person.memberInfo.keyword" ng-model-options="{debounce:500}"
+                    >
+                </label>
+            </div>
+            <div class="select-member-icon-list" ng-if="applicant">
+                <ion-scroll direction="x">
+                    <div class="scroll-content-container">
+                        <div class="row invoice-img-expense-type">
+                            <div class="repeat-div">
+                                <div class="member-item text-center">
+                                    <user-avatar full-name="applicant.fullName" employ-id="applicant.userOID"
+                                                 icon-url="applicant.avatar">
+                                    </user-avatar>
+                                </div>
+                                <p class="text-center member-fullname">
+                                    {{applicant.fullName}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </ion-scroll>
+            </div>
+        </div>
+        <ion-content ng-class="{true: 'top-max',false: ''}[memberList.length > 0]">
+            <ion-list ng-if="person.memberInfo.nothing">
+                <ion-item>
+                    <div class="row row-center">
+                        <div class="col">
+                            <!--无搜索结果-->
+                            {{"person_tpl.No.search.results"|translate}}
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-list ng-if="showEmptyMember ? person.memberInfo.searchName : true">
+                <ion-item ng-repeat="item in person.member" ng-repeat-done="memberDataLoaded">
+                    <div class="row row-center" ng-click="person.addMember(item, $index)">
+                        <div class="col col-5 checked-box">
+                            <img src="img/expense_report_version/travel/select.png" alt="" ng-if="item.checked"
+                                 class="arrow-checked">
+                        </div>
+                        <div class="col col-10">
+                            <user-avatar full-name="item.fullName" employ-id="item.userOID"
+                                         icon-url="item.avatar"></user-avatar>
+                        </div>
+                        <div class="col col-33">
+                            <p class="member-name">
+                                {{item.fullName}}
+                            </p>
+                        </div>
+                        <div class="col col-50 text-right">
+                            <p class="text-right">
+                                {{item.title}}
+                                <br/>
+                                {{item.departmentName}}
+                            </p>
+                        </div>
+
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll
+                distance="1%"
+                on-infinite="person.loadMore(person.memberInfo.currentPage + 1)"
+                ng-if="person.memberInfo.lastPage > person.memberInfo.currentPage"
+                immediate-check="false">
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-modal-view>
+</script>

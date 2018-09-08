@@ -1,0 +1,193 @@
+.department-selector{
+    .value.choice-value {
+        font-size: 16px;
+        color: #444;
+        white-space: normal;
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        height: 25px;
+        line-height: 25px;
+        //white-space: nowrap;
+        //text-overflow: ellipsis;
+        //overflow: hidden;
+    }
+    .value-placeholder{
+        color: #cdcdcd;
+    }
+}
+.department-selector-body{
+    background-color: #F1F1F1;
+    .history-department{
+        background-color: #fff;
+        padding: 10px 5px;
+        border-bottom: 1px solid #e2e2e2;
+        .selected-content{
+            margin: 0;
+        }
+    }
+    .disable{
+        color: #FC5A5C;
+    }
+    .department-title{
+        padding: 5px;
+    }
+
+    .department-cancel-btn{
+        position: absolute;
+        left: 5px;
+        color: #4c4c4c;
+        top: 15px !important;
+    }
+    .department-sure-btn{
+        position: absolute;
+        right: 5px;
+        color: #4c4c4c;
+        top: 15px !important;
+    }
+    .department-selected-bar{
+        position: fixed !important;
+        top: 44px !important;
+        width: 100%;
+        background-color: #fff;
+        .selected-title{
+            padding: 7px;
+            font-size: 1.1em;
+            color: #4c4c4c;
+            margin: 0;
+        }
+        .selected-content{
+            padding-left: 15px;
+            font-size: 1em;
+            color: #0092DA;
+            margin: 0;
+            .text{
+                white-space: normal;
+                overflow : hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+        }
+        .search{
+            color: #4c4c4c;
+            left: 0;
+            right: 0;
+            margin: auto;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+            .header-input{
+                width: 300px;
+                height: 36px;
+                line-height: 26px;
+                padding: 5px;
+                border: 1px solid #ccc;
+                left: 0;
+                right: 0;
+                margin: 10px auto;
+            }
+        }
+
+    }
+    .department-selector-modal {
+        background-color: #f1f1f1;
+        top: 200px !important;
+        .list {
+            margin-bottom: 0;
+        }
+    }
+    .selected-department {
+        .item.item-divider {
+            background-color: transparent;
+        }
+        .item {
+            background-color: #FFFFFF;
+            a {
+                color: #444444;
+            }
+        }
+    }
+    department-item {
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        .col{
+            padding: 0;
+            position: relative;
+            line-height: 29px;
+            color: #4c4c4c;
+            font-size: 1em;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding-right: 10px;
+            .ion{
+                position: absolute;
+                top: 2px;
+                right: 5px;
+                font-size: 1.2em;
+            }
+
+        }
+        .department-item {
+            width: 100%;
+            height: 40px;
+            border-bottom: 1px solid #dddddd;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            a {
+                color: #444;
+                line-height: 40px;
+
+                i {
+                    margin-right: 10px;
+                }
+                i:before {
+                    transform: rotate(0deg);
+                    transition: transform .3s;
+                }
+
+            }
+            .leaf i {
+                display: none;
+            }
+            .expanded:before {
+                transform: rotate(90deg);
+                transition: transform .3s;
+            }
+        }
+    }
+    .department-list {
+        .level-0 {
+            padding-left: 15px;
+        }
+        .level-1 {
+            padding-left: 30px;
+        }
+        .level-2 {
+            padding-left: 45px;
+        }
+        .level-3 {
+            padding-left: 60px;
+        }
+        .level-4 {
+            padding-left: 75px;
+        }
+        .level-5 {
+            padding-left: 90px;
+        }
+        .level-6 {
+            padding-left: 105px;
+        }
+        .level-7 {
+            padding-left: 10px;
+        }
+    }
+}
+
+

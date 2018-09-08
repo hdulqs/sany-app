@@ -1,0 +1,491 @@
+<ion-view class="self-define-expense-report">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{view.reportData.formName}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div class="create-travel-save" ng-if="view.content === 'create' || view.content === 'edit'"
+             ng-click="!view.disabled && view.saveExpenseReport()">
+            {{'expense.save'|translate}}<!--保存-->
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="create-self-expense-report">
+        <div ng-if="view.hasInit">
+            <!--制单人-->
+            <div class="created-by" ng-if="view.reportData.createdName && view.reportData.createdBy!==view.reportData.applicantOID">
+                {{'expense.createdName'|translate}}: {{view.reportData.createdName}} {{view.reportData.createdDate | dateTimeFilter}}
+            </div>
+            <ion-list ng-repeat="field in view.reportData.custFormValues | orderBy: 'sequence'" ng-if="view.reportData.custFormValues.length > 0">
+                <ion-item ng-if="view.isBaseMessageKey(field)">
+                    <div ng-if="field.messageKey === 'applicant'" class="item-block item-relatvie">
+                        <div class="row row-center row-postion">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <!--只有创建人可以修改申请人,如果表单已经保存过并且创建表单的人不是正在编辑的人,不能修改-->
+                                <!--传值的时候默认从$scope获取值,如果要传字符串,需要多加引号-->
+                                <applicant-selector field-name="field.fieldName" applicant="field.applicant" form-type="'expenseReport'"
+                                                    prompt-info="field.promptInfo"
+                                                    readonly="view.applicationData.createdBy && view.userOID!==view.applicationData.createdBy">
+                                </applicant-selector>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-block" ng-click="view.selectDate('startDate', field.fieldOID, field.value)" ng-if="field.messageKey === 'start_date'">
+                        <div class="row row-center">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-90">
+                                <p class="time-input" ng-if="field.value">
+                                    {{field.value | dateFilter}}
+                                </p>
+                                <p ng-hide="field.value" class="time-input-placeholder">
+                                    请选择
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item-block" ng-click="view.selectDate('endDate', field.fieldOID, field.value)" ng-if="field.messageKey === 'end_date'">
+                        <div class="row row-center">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-90">
+                                <p class="time-input" ng-if="field.value">
+                                    {{field.value | dateFilter}}
+                                </p>
+                                <p ng-hide="field.value" class="time-input-placeholder">
+                                    请选择
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--时间-->
+
+                    <div class="item-block" ng-click="view.selectTime(field)" ng-if="field.messageKey === 'time'">
+                        <div class="row row-center">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-90">
+                                <p class="time-input" ng-if="field.value">
+                                    {{field.value | date: 'hh:mm a'}}
+                                </p>
+                                <p class="time-input-placeholder" ng-hide="field.value">
+                                    {{'linkage.Please.select'|translate}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="field.messageKey === 'title'" class="item-block">
+                        <div class="row row-center">
+                            <div class="col col-100 input-label">
+                                {{field.fieldName}}
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-90">
+                            <textarea class="self-comment" placeholder="{{'expense.Up.to.50.Chinese.characters'|translate}}" ng-model="field.value"
+                                      maxlength="50">
+                            </textarea>
+                            </div>
+                        </div>
+                        <p ng-if="field.value.length > 0" class="length-text">
+                            {{field.value.length}}/50
+                        </p>
+                    </div>
+
+                    <div ng-if="field.messageKey === 'select_approver'" class="item-block item-relatvie">
+                        <div class="row row-center row-postion">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <approval-selector-modal selected-name="field.approvalSelectedName" selector="field.value" max-length="field.maxApprovalChain" readonly="view.readonly" title="field.fieldName" hide-arrow="true">
+
+                                </approval-selector-modal>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="field.messageKey === 'select_user'" class="item-block item-relatvie">
+                        <div class="row row-center row-postion">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <approval-selector-modal selected-name="field.approvalSelectedName" selector="field.value" max-length="field.maxApprovalChain" readonly="view.readonly" title="field.fieldName" hide-arrow="true">
+                                </approval-selector-modal>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--银行卡-->
+
+                    <div ng-if="field.messageKey === 'contact_bank_account'" class="item-block item-relatvie">
+                        <div class="row row-center row-postion">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <bank-account-selector  prompt='field.promptInfo' bank-account-no="field.bankAccountNo"
+                                                        user-oid="view.applicantOID" selected="field.value" readonly="view.readonly" title="field.fieldName">
+                                </bank-account-selector>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-if="field.messageKey === 'select_box'" class="item-block item-relatvie">
+                        <div class="row row-center row-postion">
+                            <div class="col col-90 input-label">
+                                {{ field.fieldName }}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <select-box-modal field="field">
+                                </select-box-modal>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--部门选择-->
+
+                    <div ng-if="field.messageKey === 'select_department'" class="item-block item-relatvie">
+                        <div class="row row-center row-postion">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <department-selector class="select-department" selected="view.departmentInfo"
+                                                     department-id="field.value"
+                                                     department-name="field.departmentName"
+                                                     readonly="field.valueReadonly"
+                                                     department-top-list="view.functionProfileList['er.department.top']"
+                                                     mode="view.functionProfileList['department.leaf.selection.required']"
+                                                     own-dep="view.functionProfileList['only.own.department.selection']">
+                                </department-selector>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--成本中心-->
+
+                    <div ng-if="field.messageKey === 'select_cost_center'" class="item-block item-relatvie">
+                        <div class="row row-center row-postion">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <cost-center-selector title="field.fieldName" selected="field.value" name="field.costCenterName" cost-center="field.costCenterOID">
+                                </cost-center-selector>
+                            </div>
+                        </div>
+                    </div>
+                    <!--法人实体-->
+
+                    <div ng-if="field.messageKey === 'select_corporation_entity'" class="item-block item-relatvie">
+                        <div class="row row-center row-postion">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <corporation-entity-selector title="field.fieldName" selected="field.value"
+                                                             name="field.entityName" prompt="field.promptInfo">
+                                </corporation-entity-selector>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--币种-->
+                    <div ng-if="field.messageKey === 'currency_code'" class="item-block" ng-click="view.selectCode()">
+                        <div class="row row-center">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-90">
+                                <p class="currency-code-placeholder"
+                                   ng-show="field.value === null || field.value === ''">
+                                    {{'expense.Please.select.the.currency'|translate}}<!--请选择币种-->
+                                </p>
+                                <p class="currency-code-name"
+                                   ng-hide="field.value === null || field.value === ''">
+                                    {{getCashName(field.value)}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="load-contain" ng-if="field.messageKey === 'writeoff_flag'">
+                        <ion-toggle ng-model="field.value" toggle-class="toggle-calm">
+                            {{field.fieldName}}
+                        </ion-toggle>
+                    </div>
+                    <div class="row row-center row-min" ng-if="field.messageKey === 'average_budget'">
+                        <div class="col col-40 input-label">
+                            {{field.fieldName}}({{view.currencyCode | currencyChineseName}})
+                        </div>
+                        <div class="col col-60">
+                            <input type="number" ng-model="field.value"
+                                   placeholder="{{'expense.request.filling'|translate}}"
+                                   class="travel-start-date">
+                        </div>
+                    </div>
+
+                    <div ng-if="field.messageKey === 'budget_detail'">
+                        <div class="row row-min no-border budget-title">
+                            <div class="col">
+                                {{field.fieldName}}
+                            </div>
+                        </div>
+                        <invoice-type-selector expense-list="view.invoiceApply.expenseApplication.expenseBudgetList"
+                                               expense-type-list='view.typeList'
+                                               expense-total-amount="field.value"
+                                               currency-code="view.currencyCode"
+                                               code="view.code"></invoice-type-selector>
+                    </div>
+
+                    <div class="create-self-comment" ng-if="field.messageKey === 'remark' || field.messageKey === 'text_area'">
+                        <div class="row row-min no-border">
+                            <div class="col">
+                                {{field.fieldName}}
+                            </div>
+                        </div>
+                        <textarea class="self-comment" placeholder="{{'expense.At.most.200.characters'|translate}}" ng-model="field.value"
+                                  maxlength="200">
+                    </textarea>
+                        <p ng-if="field.value.length > 0" class="length-text">
+                            {{field.value.length}}/200
+                        </p>
+                    </div>
+                    <div ng-if="field.messageKey === 'linkage_switch'">
+                        <linkage-switch field="field" applicant="view.applicantOID"></linkage-switch>
+                    </div>
+                    <div ng-if="field.messageKey === 'cust_list'" class="item-block item-relatvie">
+                        <div class="row row-center row-postion">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <value-item selected="field" readonly="view.isReadOnly" applicant="view.applicantOID">
+
+                                </value-item>
+                            </div>
+                        </div>
+                    </div>
+
+                </ion-item>
+                <ion-item ng-if="!view.isBaseMessageKey(field)"
+                          ng-switch="field.fieldType">
+
+                    <div ng-switch-when="CUSTOM_ENUMERATION" class="item-block item-relatvie">
+                        <div class="row row-center row-postion">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <value-item selected="field" readonly="view.isReadOnly" applicant="view.applicantOID">
+                                </value-item>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-switch-when="TEXT" class="item-block">
+                        <div class="row row-center">
+                            <div class="col col-100 input-label">
+                                {{field.fieldName}}
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <input type="text" ng-model="field.value" maxlength="100" placeholder="{{'expense.please.input'|translate}}"
+                                       class="text-value" ng-readonly="view.isReadOnly"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-switch-when="LONG" class="item-block">
+                        <div class="row row-center">
+                            <div class="col col-100 input-label">
+                                {{field.fieldName}}
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <input type="number" ng-model="field.value" class="text-value" placeholder="{{'expense.please.input'|translate}}"
+                                       ng-readonly="view.isReadOnly" maxlength="100"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-switch-when="DATETIME" class="item-block" ng-click="datePicker.selectDateTime(field.fieldName, field.fieldOID, field.value)">
+                        <div class="row row-center">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-90">
+                                <p class="expense-money">
+                                    <span ng-if="field.value === null || field.value === ''">{{'expense.Please.select'|translate}}<!--请选择--></span>
+                                    <span ng-if="field.value !== null && field.value !== ''">{{field.value | dateTimeFilter}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-switch-when="DATE" class="item-block" ng-click="datePicker.selectDate(field.fieldName, field.fieldOID, field.value)">
+                        <div class="row row-center">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-90">
+                                <p class="expense-money">
+                                    <span ng-if="field.value === null || field.value === ''">{{'expense.Please.select'|translate}}<!--请选择--></span>
+                                    <span
+                                        ng-if="field.value !== null && field.value !== ''">{{field.value | dateFilter}} </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-switch-when="DOUBLE" class="item-block">
+                        <div class="row row-center">
+                            <div class="col col-100 input-label">
+                                {{field.fieldName}}
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-100">
+                                <input type="number" ng-model="field.value" maxlength="100" class="text-value"
+                                       placeholder="{{'expense.please.input'|translate}}"
+                                       ng-readonly="view.isReadOnly"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-switch-when="GPS" class="item-block">
+                        <div class="row row-center">
+                            <div class="col col-90 input-label">
+                                {{field.fieldName}}
+                            </div>
+                            <div class="col col-10 text-right">
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row row-center">
+                            <div class="col col-90">
+                                <location-selector selected="field.value"
+                                                   location="view.currentLocation"></location-selector>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-switch-when="BOOLEAN" class="item-block">
+                        <ion-toggle ng-model="field.value" ng-checked="field.value">
+                            {{field.fieldName}}
+                        </ion-toggle>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <div class="row row-min no-border">
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="self-create-footer">
+        <div class="row row-center">
+            <div class="col text-center" ng-click="!view.disabled && view.nextOperation()"
+                 ng-if="view.content === 'create' || view.content === 'edit'">
+            <span ng-if="view.content === 'create'">
+                {{'expense.The.next.step'|translate}}<!--下一步-->
+            </span>
+                <span ng-if="view.content === 'edit'">
+                {{'expense.save'|translate}}<!--保存-->
+            </span>
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

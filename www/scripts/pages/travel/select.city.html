@@ -1,0 +1,52 @@
+<ion-modal-view class="check-city">
+    <ion-header-bar>
+        <!--选择城市-->
+        <h3 class="title">{{'create.select.Select.the.city'|translate}}</h3>
+        <button class="button button-clear button-primary close-button" ng-click="closeSelectCity()"><i
+            class="icon ion-close"></i></button>
+    </ion-header-bar>
+    <ion-content>
+        <div class="search">
+            <label class="item-input-wrapper">
+                <a class="button button-clear ion-ios-search"></a>
+                <!--请输入城市-->
+                <input class="headerInput" placeholder="{{'create.select.Please.enter.the.city'|translate}}" ng-model="view.cityInfo.searchName">
+            </label>
+        </div>
+
+        <ion-list ng-if="view.cityInfo.searchName === ''">
+            <ion-item ng-click="choiceCity('')">
+                <div class="row row-center city-item">
+                    <!--<div class="col col-5"></div>-->
+                    <div class="col">
+                        <!--无城市-->
+                        {{'create.select.There.is.no.city'|translate}}
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+
+        <div class="row search" ng-if="view.cityInfo.searchName === ''">
+            <!--<div class="col col-5"></div>-->
+            <!--热门城市-->
+            <div class="col city">{{'create.select.Hot.city'|translate}}</div>
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="item in view.cityInfo.citys track by $index"
+                      ng-click="choiceCity(item)">
+                <div class="row row-center city-item">
+                    <!--<div class="col col-5"></div>-->
+                    <div class="col">
+                        {{item}}
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            distance="1%"
+            on-infinite="loadMore(view.cityInfo.currentPage + 1)"
+            ng-if="view.cityInfo.links['last'] > view.cityInfo.currentPage"
+            immediate-check="false">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-modal-view>

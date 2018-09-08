@@ -1,0 +1,13 @@
+{
+    "interface_my": {
+        "Amount.to.be.cancel.after.verification:": "待核销金额:",
+        "Borrowing.and.cancel.after.verification": "借款及核销",
+        "Click.the.refresh": "点击刷新",
+        "Loading.in": "加载中",
+        "There.is.no.cost.information.for.the.time.being": "暂时没有费用信息",
+        "month": "月",
+        "network": "哎呀,网络出错了!",
+        "server": "服务器开小差了,",
+        "system": "技术小哥正在努力修复!"
+    }
+}

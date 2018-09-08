@@ -1,0 +1,230 @@
+<ion-view class="report-form">
+    <ion-nav-title>
+        <!--<button ng-click="differentObjPopoer.show($event)" style="width: 4em;max-width: 5em"-->
+                <!--class="select-button button button-icon button-clear icon-right ion-arrow-down-b" ng-if="view.differentObjArr.length>1">-->
+            <!--{{view.totalTypeFlag}}-->
+        <!--</button>-->
+        <span class="expense-report-nav-title" ng-if="view.differentObjArr.length>1" ng-click="differentObjPopoer.show($event)">
+            {{view.totalTypeFlag}} <i class="icon ion-ios-arrow-down"></i>
+        </span>
+        <span class="expense-report-nav-title" ng-if="view.differentObjArr.length<=1">{{'report.repert'| translate}} <!-- 报表 --></span>
+    </ion-nav-title>
+    <ion-content>
+        <div class="row type-chart-dev" ng-if="view.totalTypeFlag === view.staticPerson">
+            <!--<div class="col col-10 col-center"></div>-->
+            <div class="col col-33 text-center col-center col-date-year-month" ng-bind="startDateYearMonth"
+                 ng-click="getStartDate()">
+            </div>
+            <!--<div class="col col-8 col-center">-->
+            <!--</div>-->
+            <div class="col col-10 col-center col-middle-text text-center">
+                {{'report.to' | translate}} <!-- 至 -->
+            </div>
+            <!--<div class="col col-5 col-center">-->
+            <!--</div>-->
+            <div class="col col-33 text-center col-center col-date-year-month" ng-bind="endDateYearMonth"
+                 ng-click="getEndDate()">
+            </div>
+            <!--<div class="col col-6 col-center">-->
+            <!--</div>-->
+            <div class="col-border-chart"></div>
+            <div class="col col-15 col-center col-arrow-chart" ng-click="durationPopover.show($event)">
+                <i class="icon ion-arrow-down-b"></i>
+            </div>
+        </div>
+        <div class="row type-chart-dev" ng-if="view.totalTypeFlag !== view.staticPerson">
+
+            <div class="col col-33 col-center col-date-year-month"
+                 ng-if="view.typeOptions[0].choice||view.typeOptions[1].choice"
+                 ng-click="getStartDate()">
+                <div class="row row-padding-bottom-chart">
+                    <div class="col col-100 col-year-chart" ng-bind-html="newSelectStartYear">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-100 col-month-chart" ng-bind-html="newSelectStartMonth"></div>
+                </div>
+            </div>
+
+            <div class="col col-center col-middle-text"
+                 ng-if="view.typeOptions[0].choice||view.typeOptions[1].choice">
+                {{'report.to' | translate}} <!-- 至 -->
+            </div>
+            <div class="col col-33 col-center col-date-year-month"
+                 ng-if="view.typeOptions[0].choice||view.typeOptions[1].choice"
+                 ng-click="getEndDate()">
+                <div class="row row-padding-bottom-chart">
+                    <div class="col col-100 col-year-chart" ng-bind-html="newSelectEndYear">
+                    </div>
+                </div>
+                <div class="row" ng-if="view.typeOptions[0].choice||view.typeOptions[1].choice">
+                    <div class="col col-100 col-month-chart" ng-bind-html="newSelectEndMonth"></div>
+                </div>
+            </div>
+            <div class="col col-center col-arrow-chart"
+                 ng-if="view.typeOptions[0].choice||view.typeOptions[1].choice"
+                 ng-click="differentDurationPopover.show($event)">
+                <i class="icon ion-arrow-down-b"></i>
+            </div>
+            <!--<div class="col col-56 arrow-chart-left-right"-->
+                 <!--ng-if="view.typeOptions[0].choice">-->
+                <!--<div class="row">-->
+                    <!--<div class="col col-11 arrow-chart-item" ng-click="goDownYear()">-->
+                        <!--<i class="icon ion-chevron-left"></i>-->
+                    <!--</div>-->
+                    <!--<div class="col col-78" ng-bind-html="selectYear+'年度预算'">-->
+                    <!--</div>-->
+                    <!--<div class="col col-11 arrow-chart-item" ng-click="goUpYear()">-->
+                        <!--<i class="icon ion-chevron-right"></i>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col col-8 col-center"-->
+                 <!--ng-if="view.typeOptions[0].choice">-->
+            <!--</div>-->
+            <div class="col-border-chart"></div>
+            <div class="col col-20 col-center col-arrow-chart" ng-click="differentTypePopover.show($event)">
+                <span ng-bind="view.typeOptionFlag"></span>
+                <i class="icon ion-arrow-down-b"></i>
+            </div>
+        </div>
+        <div class="report-header">
+            <p ng-if="view.totalTypeFlag === view.staticDep && view.centerConsumeArr.length !== 0" class="select-flag-div"
+               ng-click="durationPopover.show($event)"
+               ng-cloak="">
+                {{view.individualSelectFlag}} <i class="icon ion-arrow-down-b select-flag-span"></i>
+            </p>
+            <div class="chartsDiv"
+                 ng-show="view.totalTypeFlag === view.staticPerson || (view.typeOptions[1].choice && view.totalTypeFlag === view.staticDep)">
+                <canvas id="pie-charts"></canvas>
+                <div class="pie-div" ng-if="view.publicTotalAmount == 0.00 || view.chartPieData.length == 0"></div>
+            </div>
+            <div class="total-amount-div row row-center" align="center"
+                 ng-show="view.totalTypeFlag === view.staticPerson|| (view.typeOptions[1].choice && view.totalTypeFlag === view.staticDep)">
+                <div class="col col-center">
+                    <span class="icon ion-social-yen total-amount-span"></span>
+                    <span id="totalAmount" class="total-amount-span">{{view.publicTotalAmount}}</span>
+                </div>
+            </div>
+            <!--<div class="budget-chart" ng-if="view.typeOptions[0].choice && view.totalTypeFlag === '部门'">-->
+                <!--<div class="text-left">-->
+                    <!--年度预算-->
+                <!--</div>-->
+                <!--<div class="color-div total-color" ng-bind-html="'￥'+view.totalBudget">-->
+                <!--</div>-->
+                <!--<div class="text-left" ng-bind-html="'截止至目前, 已用预算'+view.usedPercentage+'%, 金额: ￥'+view.usedBudget">-->
+                <!--</div>-->
+                <!--<div class="color-div row">-->
+                    <!--<div id="useColor">-->
+                        <!--<span ng-if="view.usedPercentage === 100.00"-->
+                              <!--ng-bind-html="'￥'+view.usedBudget">-->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="text-right" ng-if="view.usedPercentage !== 100.00"-->
+                     <!--ng-bind-html="'剩余预算金额:￥'+view.remainingBudget">-->
+                <!--</div>-->
+                <!--<div class="text-left" style="color: rgb(231,146,146)" ng-if="view.usedPercentage === 100.00"-->
+                     <!--ng-bind-html="'超支预算'+view.overspendPercentage+'%, 金额: ￥'+view.overspendBudget">-->
+                <!--</div>-->
+                <!--<div id="overSpendDiv" ng-if="view.usedPercentage === 100.00"></div>-->
+            <!--</div>-->
+            <div class="row people-chart-type"
+                 ng-if="view.typeOptions[0].choice && view.totalTypeFlag === view.staticDep">
+                <div class="col col-10"></div>
+                <div class="col col-80" style="text-align: center">
+                    {{'report.number.of.people' | translate}}<span class="span-none" ng-if="language === 'en'">&nbsp;</span><!--人数 -->{{view.totalNumber}}<span class="span-none" ng-if="language === 'en'">&nbsp;</span>{{'report.person' | translate}}<!--人--> <span></span>{{'report.per' | translate}} ￥{{view.perCapita}}
+                </div>
+                <div class="col col-10"></div>
+            </div>
+            <p ng-if="view.typeOptions[1].choice && view.totalTypeFlag === view.staticDep" class="show-average-money"
+               ng-click="checkAverage(view.averageImgSrc)">
+                <span>{{'report.per' | translate}}<!--人均--></span><img class="eye-img" ng-src="{{view.averageImgSrc}}">
+            </p>
+        </div>
+
+        <div class="list-div" ng-if="view.individualPageData.length > 0 || view.totalTypeFlag !== view.staticPerson">
+            <div ng-hide="view.totalTypeFlag === view.staticPerson">
+                <!--<div class="charts-div" ng-if="view.typeOptions[0].choice">-->
+                    <!--<canvas id="line-charts"></canvas>-->
+                <!--</div>-->
+            </div>
+            <ion-list ng-if="view.individualPageData.length !== 0 && !(view.totalTypeFlag === view.staticDep && view.typeOptions[0].choice)">
+                <ion-item ng-repeat="item in view.individualPageData" ng-repeat-done="reportDataLoaded"
+                          ng-show="view.totalTypeFlag === view.staticPerson || ((view.typeOptions[1].choice || view.typeOptions[0].choice) && view.totalTypeFlag !== view.staticPerson)">
+                    <div class="current-type-row row row-center">
+                        <div class="col col-10 col-center"
+                             ng-if="view.totalTypeFlag === view.staticPerson ||(view.typeOptions[1].choice && view.totalTypeFlag !== view.staticPerson) ">
+                            <img class="consume-type-img" ng-src={{item.consumeTypeImg}}>
+                        </div>
+                        <div class="col col-33 col-center consume-type-name"
+                             ng-if="view.totalTypeFlag === view.staticPerson ||(view.typeOptions[1].choice && view.totalTypeFlag !== view.staticPerson) ">
+                            <span>{{item.consumeTypeName}}</span>
+                        </div>
+
+                        <!-- <div class="col col-18 col-center person-name-col"
+                             ng-if="view.typeOptions[0].choice && view.totalTypeFlag !== '个人'">
+                            <span>{{item.consumeTypeName}}</span>
+                        </div> -->
+                        <div class="col col-10 consume-type-percentage">
+                            <span>{{item.consumeTypePercentage}}%</span>
+                        </div>
+                        <div class="col consume-type-amount">
+                            <div class="row" id="consumeTypeAmount">
+                                <div class="col col-100">
+                                    <span class="icon ion-social-yen total-amount-span"></span>
+                                    <span>{{item.consumeTypeAmmount}}</span>
+                                </div>
+                            </div>
+                            <div class="row consume-average" id="consumeAverage"
+                                 ng-if="view.showAverageConsumeFlag && (view.typeOptions[1].choice && view.totalTypeFlag !== view.staticPerson) ">
+                                <div class="col col-100">
+                                    <span>{{'report.per' | translate}}<!--人均--></span>¥{{item.consumeTypeAverage}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <!-- 部门-人员 列表 -->
+            <ion-list ng-if="view.individualPageData.length !== 0 && (view.totalTypeFlag === view.staticDep && view.typeOptions[0].choice)">
+                <ion-item class="person-row" ng-repeat="item in view.individualPageData" ng-repeat-done="reportDataLoaded">
+                    <div class="current-type-row row row-center">
+                        <div class="col col-center person-name-col">
+                            <span>{{item.consumeTypeName}}</span>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="person-bar
+                                            person-bar-{{item.consumeTypeStyle.percentage}}
+                                            person-bar-color-{{item.consumeTypeStyle.colorIndex}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-33 consume-type-amount">
+                            <div class="row" id="consumeTypeAmount">
+                                <div class="col col-100">
+                                    <span class="icon ion-social-yen total-amount-span"></span>
+                                    <span>
+                                        {{item.consumeTypeAmmount}} <br>
+                                        <span class="consume-type-percentage">
+                                            {{item.consumeTypePercentage}}%
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </div>
+        <!--&& (!view.typeOptions[0].choice)-->
+        <!--<div class="nothing-div" align="center" ng-if="view.nothing && (!view.typeOptions[0].choice)">-->
+        <div class="nothing-div" align="center" ng-if="view.nothing">
+            <div>
+                <img src="img/nothing.png">
+                <p>{{'error.no.cost.records' | translate}}<!--没有费用记录!--></p>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

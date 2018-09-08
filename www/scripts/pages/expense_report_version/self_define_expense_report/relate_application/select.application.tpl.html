@@ -1,0 +1,44 @@
+<!--<script id="relate.application.modal.html" type="text/ng-template">-->
+    <ion-modal-view class="relate-application-modal">
+        <ion-header-bar class="bar-positive">
+            <h1 class="title">{{'expense.My.application.list'|translate}}<!--我的申请列表--></h1>
+            <span class="cancel" ng-click="relate.cancel()">
+                {{'expense.cancel'|translate}}<!--取消-->
+            </span>
+        </ion-header-bar>
+        <ion-content>
+            <div class="alert alert-warning warn" ng-if="relate.nothing">
+                <img class="warning-icon" src="img/nothing.png"/>
+                <p class="warning-word">{{'expense.Nothing'|translate}}<!--空空如也!--></p>
+                <p class="warning-word">{{'expense.No.application.for.a.temporary'|translate}}<!--暂时无申请!--></p>
+            </div>
+            <div class="select-tips" ng-if="relate.relateApplicationList.length > 0">
+                <div class="row">
+                    {{'expense.Please.select.associated.application.form'|translate}}<!--请选择需关联的申请单-->:
+                </div>
+            </div>
+            <ion-list ng-if="!relate.nothing">
+                <ion-item ng-repeat="item in relate.relateApplicationList" ng-click="relate.selectApplication(item)">
+                    <div class="title" ng-if="item.type === 1002">
+                        No.{{item.travelApplication.businessCode}} &nbsp;&nbsp;{{item.title}}
+                    </div>
+                    <div class="title" ng-if="item.type === 1001">
+                        No.{{item.expenseApplication.businessCode}} &nbsp;&nbsp;{{item.title}}
+                    </div>
+                    <div>
+                        <span class="applicant-name" ng-repeat="participant in item.applicationParticipants">
+                            <span>{{ participant.fullName }}</span>
+                            <span ng-if="$index<item.applicationParticipants.length-1">,&nbsp</span>
+                        </span>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll
+                on-infinite="relate.loadMoreApplication(relate.page + 1)"
+                distance="1%"
+                ng-if="relate.lastPage > relate.page"
+                immediate-check="false"
+            >
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-modal-view>

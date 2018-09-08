@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  PluginDemo
+
+  Created by Yongjia Liu on 2017/5/31.
+
+*/
+"CALENDAR_TEST" = "测试";
+"CALENDAR_SELECT_DATE" = "选择日期";
+"CALENDAR_CANCEL" = "取消";
+
+"CALENDAR_SUN" = "日";
+"CALENDAR_MON" = "一";
+"CALENDAR_TUE" = "二";
+"CALENDAR_WED" = "三";
+"CALENDAR_THU" = "四";
+"CALENDAR_FRI" = "五";
+"CALENDAR_SAT" = "六";

@@ -1,0 +1,40 @@
+<ion-modal-view class="book-ticket-detail-modal">
+    <ion-header-bar>
+        <h3 class="title">
+            <span ng-if="view.refundMessage.type === 1001">
+                {{'custom.application.travel.refund.title' | translate}}
+            </span>
+            <span ng-if="view.refundMessage.type === 1002">
+                {{'custom.application.travel.endorse.title' | translate}}
+            </span>
+        </h3>
+        <div class="buttons buttons-left" style="transition-duration: 0ms;">
+            <span class="left-buttons">
+                <a ng-click="refundDialog.hide()">
+                    <img src="img/back.png" class="save-btn">
+                </a>
+            </span>
+        </div>
+        <!--<i class="ion ion-ios-arrow-left cancel" ng-click="bookDetail.hide()"></i>-->
+    </ion-header-bar>
+    <ion-content class="book-ticket-content">
+        <div class="row row-center refund-tips">
+            <img src="img/expense_report_version/travel/tip-icon.png" alt="" class="tips-icon">
+            <span ng-if="view.refundMessage.type === 1001">
+                {{'custom.application.travel.refund.message' | translate}}
+            </span>
+            <span ng-if="view.refundMessage.type === 1002">
+                {{'custom.application.travel.endorse.message' | translate}}
+            </span>
+        </div>
+        <div class="row">
+            <textarea ng-model="view.refundMessage.remark" class="remark" placeholder="{{'form.max.length.200' | translate}}" maxlength="200"></textarea>
+        </div>
+        <div class="group-btn">
+            <div class="col text-center refund-btn" ng-click="view.saveRefund()">
+                {{'common.ok' | translate}}
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>
+

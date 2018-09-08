@@ -1,0 +1,9 @@
+<ion-popover-view class="choice-duration">
+    <div class="grey-mark">
+    </div>
+    <ion-list>
+        <ion-item ng-repeat=" item in view.duration" ng-click="choiceDifferentDuration(item.name)">
+            {{item.name}}
+        </ion-item>
+    </ion-list>
+</ion-popover-view>

@@ -1,0 +1,31 @@
+<ion-view class="create-expense setting-list feeApplication " hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">创建费用</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="vm.goBack()"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header setting-category has-footer">
+        <!--是否园区入住 combox-->
+        <div class="item item-text-wrap">
+            <div class="row row-center">
+                <div class="col col-100">
+                    <hec-syscode-selector sys-code-name="vm.sysCodeName" sys-code-type="AIRPLANE_VENDER"
+                                          selected="vm.sysCode" readonly="vm.readOnly"
+                                          sys-code-id="vm.sysCodeId"></hec-syscode-selector>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="expense-create-footer">
+        <div class="row row-center">
+            <button class="col text-center expense-new" ng-click="test()">
+                测试
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

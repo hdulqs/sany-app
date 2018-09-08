@@ -1,0 +1,149 @@
+<ion-view class="jingdong-application-base">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'base.Jingdong.application'|translate}}<!--京东申请--></span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div class="jingdong-application-delete" ng-click="view.deleteApplication()" ng-if="!view.functionProfileList['ca.opt.delete.disabled']">
+            {{'base.delete'|translate}}<!--删除-->
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="jingdong-application-custom-value has-footer">
+        <!--制单人-->
+        <div class="created-by" ng-if="view.application.createdName && view.application.createdBy!==view.application.applicantOID">
+            {{'common.createdName'|translate}}: {{view.application.createdName}} {{view.application.createdDate | dateTimeFilter}}
+        </div>
+        <ion-list ng-repeat="field in view.application.custFormValues" >
+            <ion-item>
+                <!--申请人-->
+                <!--<div ng-if="field.messageKey === 'applicant'">-->
+                    <!--<div class="blank"></div>-->
+                        <!--&lt;!&ndash;传值的时候默认从$scope获取值,如果谣传字符串,需要多加引号&ndash;&gt;-->
+                        <!--<applicant-selector field-name="field.fieldName" applicant="field.applicant" form-type="'jingdong'"-->
+                                            <!--prompt-info="field.promptInfo"-->
+                                            <!--readonly="view.applicationData.createdBy && view.userOID!==view.applicationData.createdBy">-->
+                        <!--</applicant-selector>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <div ng-if="field.messageKey==='applicant'">
+                    <div class="blank"></div>
+                    <div class="row row-center department-select">
+                        <div class="col col-33 input-label">
+                            {{field.fieldName}}
+                        </div>
+                        <div class="col col-60">
+                            <!--传值的时候默认从$scope获取值,如果谣传字符串,需要多加引号-->
+                            <applicant-selector field-name="field.fieldName" applicant="field.applicant" form-type="'jingdong'"
+                                                prompt-info="field.promptInfo"
+                                                readonly="view.applicationData.createdBy && view.userOID!==view.applicationData.createdBy">
+                            </applicant-selector>
+                        </div>
+                        <div class="col col-5 text-right">
+                            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                        </div>
+                    </div>
+                </div>
+
+                <!--事由-->
+                <div class="create-self-comment" ng-if="field.messageKey==='title'">
+                    <div class="blank"></div>
+                    <div class="row row-min no-border">
+                        <div class="col">
+                            {{field.fieldName}}
+                        </div>
+                    </div>
+                    <textarea class="self-comment" placeholder="{{'base.Please.enter.the.reason'|translate}}" ng-model="field.value" maxlength="50"><!--请输入事由(必填,不得超过50个字符-->)
+                    </textarea>
+                </div>
+
+                <!--部门-->
+                <div ng-if="field.messageKey==='select_department'">
+                    <div class="blank"></div>
+                    <div class="row row-center department-select">
+                        <div class="col col-33 input-label">
+                            {{field.fieldName}}
+                        </div>
+                        <div class="col col-60">
+                            <department-selector class="select-department" selected="view.departmentInfo"
+                                                 department-id="field.value"
+                                                 department-name="field.departmentName"
+                                                 readonly="view.readonly"
+                                                 department-top-list="view.functionProfileList['ca.department.top']"
+                                                 mode="view.functionProfileList[view.leafDepSelectorRequired]">
+                            </department-selector>
+                        </div>
+                        <div class="col col-5 text-right">
+                            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                        </div>
+                    </div>
+                </div>
+
+                <!--成本中心-->
+                <div ng-if="field.messageKey==='select_cost_center'">
+                    <div class="blank"></div>
+                    <div class="row row-center">
+                        <div class="col col-33 input-label">
+                            {{field.fieldName}}
+                        </div>
+                        <div class="col col-60">
+                            <cost-center-selector title="field.fieldName" selected="field.value"
+                                                  name="field.costCenterName" cost-center="field.costCenterOID">
+                            </cost-center-selector>
+                        </div>
+                        <div class="col col-5 text-right">
+                            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                        </div>
+                    </div>
+                </div>
+
+                <!--审批人-->
+                <div  ng-if="field.messageKey === 'select_approver'">
+                    <div class="blank"></div>
+                    <div class="row">
+                        <div class="col col-33 input-label">
+                            {{field.fieldName}}
+                        </div>
+                        <div class="col col-60">
+                            <approval-selector-modal selected-name="field.approvalSelectedName" selector="field.value" max-length="field.maxApprovalChain" readonly="view.readonly" title="field.fieldName" hide-arrow="true">
+
+                            </approval-selector-modal>
+                        </div>
+                        <div class="col col-5 text-right">
+                            <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                        </div>
+                    </div>
+                </div>
+
+                <!--备注-->
+                <div class="create-self-comment" ng-if="field.messageKey === 'remark'">
+                    <div class="blank"></div>
+                    <div class="row row-min no-border">
+                        <div class="col">
+                            {{field.fieldName}}
+                        </div>
+                    </div>
+                    <textarea class="self-comment" placeholder="{{'base.Please.enter.a.note'|translate}}" ng-model="field.value" maxlength="200"><!--请输入备注(非必填,,不得超过200个字符)-->
+                    </textarea>
+                </div>
+            </ion-item>
+        </ion-list>
+
+        <!--京东订单信息-->
+        <ng-include src="'scripts/pages/expense_report_version/custom_application/jingdong/jingdong.order.tpl.html'"></ng-include>
+
+        <div class="row row-min no-border">
+            <div class="col">
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="jingdong-application-base-footer">
+        <div class="row row-center">
+            <button class="col text-center save" ng-click="view.saveApplication()">
+                {{'base.save'|translate}}<!--保存-->
+            </button>
+            <button class="col text-center submit" ng-click="view.submitApplication()">
+                {{'base.submit'|translate}}<!--提交-->
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

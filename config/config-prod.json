@@ -1,0 +1,20 @@
+{
+    "name": "huilianyi",
+    "constants": {
+        "InitialServiceBaseURL": {
+            "url": "http://222.240.233.81"
+        },
+        "ServiceHttpURL": "http://222.240.233.81",
+        "JingDongURL": "http://jd.huilianyi.com",
+        "ClientCredential": {
+            "id": "ArtemisApp",
+            "secret": "nLCnwdIhizWbykHyuZM6TpQDd7KwK9IXDK8LGsa7SOW"
+        },
+        "updateVersionUrl": {
+            "android": "http://downloads.huilianyi.com/app/syhuilianyi",
+            "ios": "http://downloads.huilianyi.com/app/syhuilianyi"
+        },
+        "ENV": "prod",
+        "LANG": "zh_cn"
+    }
+}

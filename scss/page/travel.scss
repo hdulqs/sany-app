@@ -1,0 +1,644 @@
+ion-view.travel-list.pane {
+    background: #f1f1f1;
+    alert.alert-warning.warn {
+        position: relative;
+        top: 0;
+        bottom: 0;
+        margin: 20% 0;
+        img.warning-icon {
+            width: 50%;
+        }
+    }
+    ion-item.item.item-complex {
+        padding: 0 16px;
+        height: 80px;
+        margin: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+    }
+    .item-content{
+        padding: 0;
+        height: 100%;
+    }
+    .row,.col{
+        padding: 0;
+    }
+    .row.row-center.expense-main {
+        height: 100%;
+    }
+    span.proName.ng-binding {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 14px;
+        color: #cdcdcd;
+    }
+    .delete-expense {
+        width: 20px;
+        background-color: #FF9D29;
+    }
+    .delete-option {
+        width: 20px;
+        background-color: #ef473a;
+    }
+    .delete-img {
+        width: 20px;
+        position: absolute;
+        top: 18px;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    .delete-text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        font-size: 15px;
+    }
+    .imgName {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #4c4c4c;
+        font-size: 16px;
+        .point-point {
+            position: relative;
+            bottom: 4px;
+        }
+    }
+    //.imgName {
+    //    color: #959595;
+    //    font-size: 15px;
+    //    position: relative;
+    //    top: 0.3em;
+    //
+    //}
+    .typeImg {
+        width: 30px;
+        border-radius: 50%;
+        margin-right: 0.3em;
+        margin-left: 3px;
+    }
+    .omit {
+        color: rgb(151, 149, 144);
+        position: relative;
+        bottom: 0.9em;
+    }
+    .secondCol {
+        text-align: right;
+        height: 71px;
+    }
+    .accountSpan {
+        color: rgb(255, 106, 0);
+        position: relative;
+        bottom: 0.4em;
+        width: 100%;
+        font-size: 15px;
+    }
+    .img-row {
+        height: 1.7em;
+        margin-top: 10px;
+    }
+    .expense-state {
+        width: 3.6em;
+        height: 1.8em;
+        position: absolute;
+        right: 15px;
+    }
+    .dateSpan {
+        width: 100%;
+        color: #959595;
+        font-size: 12px;
+        position: relative;
+        top: 1.2em;
+    }
+    .travel-date {
+        position: relative;
+        top: 3px;
+        right: 1px;
+        color: #959595;
+        font-size: 12px;
+    }
+    .apply-type {
+        color: #959595;
+        font-size: 12px;
+        position: relative;
+        right: 0px;
+    }
+    .expenses-types {
+        .approval-status {
+            position: absolute;
+            right: 0;
+            display: block;
+            color: #fff;
+            border-radius: 3px;
+            font-size: 0.8em;
+            padding: 0 5px;
+        }
+        .empty-top {
+            margin-top: 43px;
+        }
+        //.bg-editing {
+        //    background-color: #56a1f2;
+        //}
+        //.bg-wait-approval {
+        //    background-color: #ffaa46;
+        //}
+        //.bg-has-pass {
+        //    background-color: #2fce85;
+        //}
+        //.bg-has-reject {
+        //    background-color: #e73a3a;
+        //}
+        //.bg-bpo-receive {
+        //    background-color: #97c8ff;
+        //}
+        //.bg-bpo-reject {
+        //    background-color: #ef6f6f;
+        //}
+        //.bg-bpo-pass {
+        //    background-color: #90d47c;
+        //}
+        //.bg-finance-loan {
+        //    background-color: #a182fa;
+        //}
+        //.bg-finance-refund{
+        //    background: #EEAEF8;
+        //}
+        //.bg-unknown {
+        //    background-color: #C3C3C3;
+        //}
+    }
+    .fly-date {
+        margin-top: 14px;
+    }
+
+}
+
+.item-divider {
+    min-height: 15px;
+    padding: 8px 0 2px 0;
+    border: thin solid #cdcdcd;
+}
+.ordinary-application {
+    background: #f1f1f1;
+    span.start-time ,.finish-time{
+        font-size: 15px;
+        color: #cdcdcd;
+    }
+    ion-item.no-border-bottom.travel-top.item {
+        height: 90px;
+        border-left:none;
+        border-right: none;
+        .travel-detail{
+            text-align: left;
+        }
+        p.travel-top-title.ng-binding {
+            color: #4c4c4c;
+            font-size: 15px;
+        }
+        .travel-dep{
+            color: #cdcdcd;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .expenses-types {
+            .approval-status {
+                position: absolute;
+                right: 0;
+                display: block;
+                color: #fff;
+                border-radius: 3px;
+                font-size: 0.8em;
+                padding: 0 5px;
+            }
+            .empty-top {
+                margin-top: 43px;
+            }
+            //.bg-editing {
+            //    background-color: #56a1f2;
+            //}
+            //.bg-wait-approval {
+            //    background-color: #ffaa46;
+            //}
+            //.bg-has-pass {
+            //    background-color: #2fce85;
+            //}
+            //.bg-has-reject {
+            //    background-color: #e73a3a;
+            //}
+            //.bg-bpo-receive {
+            //    background-color: #97c8ff;
+            //}
+            //.bg-bpo-reject {
+            //    background-color: #ef6f6f;
+            //}
+            //.bg-bpo-pass {
+            //    background-color: #90d47c;
+            //}
+            //.bg-finance-loan {
+            //    background-color: #a182fa;
+            //}
+            //.bg-finance-refund{
+            //    background: #EEAEF8;
+            //}
+            //.bg-unknown {
+            //    background-color: #C3C3C3;
+            //}
+        }
+        .approval-top-status {
+            position: absolute;
+            right: 16px;
+            display: block;
+            color: #fff;
+            border-radius: 3px;
+            font-size: 0.8em;
+            padding: 0 5px;
+            top: 21px;
+        }
+        p.travel-top-time.ng-binding {
+            margin-top: 26px;
+            font-size: 12px;
+        }
+
+    }
+    .item-input{
+        padding: 0;
+    }
+    .input.item-icon-left.date-finish-detail,.date-start-detail{
+        padding: 0;
+    }
+    .input.item-icon-left.ng-pristine.ng-untouched.ng-valid.ng-binding.ng-not-empty {
+        text-align: left;
+        padding: 0;
+    }
+
+    .list {
+        background-color: #fff;
+        border: none;
+        ion-item.item {
+            padding: 0px 15px;
+            height: 60px;
+            border-bottom: none;
+            border-left:none;
+            border-right: none;
+        }
+        .row.row-center{
+            padding: 0;
+            height: 100%;
+        }
+        .col{
+            padding:0;
+            text-align: right;
+        }
+        .filed-name{
+            text-align: left;
+            font-size: 15px;
+        }
+        .item-input.date-container {
+            padding: 0;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        .input.item-icon-left.date-div {
+            padding: 0;
+            width: 107px;
+            height: 30px;
+            text-align: center;
+            font-size: 15px;
+            line-height: 32px;
+        }
+        .input.item-icon-left.date-div.ng-pristine.ng-untouched.ng-valid.ng-binding.ng-not-empty{
+            color: #cdcdcd;
+        }
+        .input.item-icon-left.date-div.ng-untouched.ng-valid.ng-binding.ng-not-empty.ng-dirty.ng-valid-parse {
+            text-align: right;
+        }
+        input {
+            background-color: #fff;
+            height: 100%;
+            width: 100%;
+            border: none;
+            text-align: right;
+        }
+        .item.item-input.item-select {
+            padding: 0;
+            border: none;
+            height: 100%;
+            position: relative;
+            margin-right: -13px;
+        }
+        .input-label {
+            display: table;
+            padding: 7px 10px 7px 0px;
+            max-width: 200px;
+            width: 35%;
+            color: #444;
+            font-size: 16px;
+            position: relative;
+            left: -14px;
+        }
+        .item-input .value {
+            max-width: 40%;
+            overflow: hidden;
+            display: flex;
+            height: 34px;
+            color: #111;
+            font-size: 16px;
+            line-height: 16px;
+            align-items: center;
+            margin-left: auto;
+            margin-right: 2em;
+        }
+        .trip.no-border-bottom.item {
+            height: auto !important;
+            padding: 0 0 0.5em 0;
+        }
+        .clear {
+            zoom: 1;
+            clear: both;
+        }
+        .start-city {
+            margin: 0 10px;
+            .start {
+                padding-top: 0.6em;
+                line-height: 16px;
+                color: #9d9495;
+                font-size: 0.8em;
+                margin-left: 5px;
+            }
+            .departdure {
+                text-align: center;
+                white-space: normal;
+                float: left;
+                height: 40px;
+                line-height: 40px;
+                margin: 0 4px;
+                padding-top: 0.4em;
+            }
+            .departdure-city {
+                border: thin solid #9E9E9E;
+                border-radius: 3px;
+                color: #4d4c4c;
+                font-size: 1em;
+                padding: 3px 4px;
+                position: relative;
+                top: -6px;
+                margin-left: 2px;
+            }
+            .arrow {
+                text-align: center;
+                white-space: normal;
+                float: left;
+                height: 40px;
+                line-height: 40px;
+                margin: 0 3px;
+                padding-top: 0.2em;
+            }
+            .arrow .ion-ios-arrow-thin-right {
+                font-size: 2em;
+                color: rgba(51, 21, 21, 0.41);
+            }
+            .departdure-addcity {
+                border: thin solid rgba(158, 158, 158, 0.4);
+                border-radius: 3px;
+                color: rgba(157, 148, 149, 0.46);
+                font-size: 0.8em;
+                padding: 4.5px 4px;
+                position: relative;
+                top: -6px;
+                margin-left: 2px;
+                margin-right: 2px;
+            }
+        }
+    }
+    .approval-row {
+        padding-top: .3em;
+        margin-bottom: 0.3em;
+        .message-text{
+            text-align: left;
+        }
+    }
+
+    .history-line {
+        z-index: -1;
+        width: 1px;
+        height: 100%;
+        border: 1px solid #ebebeb;
+        position: absolute;
+        background-color: #fff;
+        left: 32px;
+        top: 0px;
+    }
+    .history-detail {
+        background: none;
+        position: relative;
+        z-index: 33;
+        padding-top: 0.6em;
+        padding-left: 15px;
+        .col {
+            background: none;
+        }
+        img.little-icon {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            left: 28px;
+        }
+
+        img.approval-icon {
+            width: 20px;
+            margin-right: 2px;
+            position: absolute;
+            left: 23px;
+        }
+        .approval-time-col, .approval-description-col {
+            p {
+                margin-bottom: 5px;
+                text-align: left;
+                margin-left: 10px;
+            }
+            font-size: 12px;
+            color: #959595;
+            position: relative;
+            bottom: .1em;
+        }
+        .approval-description-col {
+            text-align: center;
+        }
+    }
+}
+.check-city {
+    .bar-header{
+        background-color: #0092da;
+        .title{
+            color:#444;
+            font-size: 17px;
+        }
+        .close-button {
+            padding-top: 0 !important;
+            padding-left: 0 !important;
+            top: auto !important;
+            bottom: auto !important;
+            .ion-close:before {
+                font-size: 20px !important;
+            }
+        }
+    }
+    ion-content {
+        background-color: #f1f1f1;
+        .rent-name{
+            white-space: normal;
+            padding: 0 10px;
+        }
+        .search {
+            width: 100%;
+            background-color: #f1f1f1;
+        }
+        .item-input-wrapper {
+            background-color: white;
+            padding: 0;
+            margin: 10px 1.2em;
+            height: 2.5em;
+        }
+        .headerInput {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: none;
+            position: relative;
+            right: 2em;
+        }
+        .ion-ios-search {
+            font-size: 21px;
+            position: relative;
+            right: 13px;
+            top: 0.1em;
+            color: #cdcdcd;
+        }
+        .city {
+            height: 2em;
+            padding-top: 0.5em !important;
+            color: gray;
+            padding-left: 10px !important;
+        }
+        .row.row-center.city-item {
+            padding: 10px;
+        }
+        ion-list, .item, .row, .col {
+            padding: 0;
+        }
+        .approver-department {
+            font-size: 12px;
+            color: gray;
+        }
+        .budget-name{
+            padding: 0 10px;
+        }
+        .budget-created-time {
+            text-align: right;
+            padding-right: 10px;
+        }
+        .list {
+            background-color: #fff;
+            padding: 0;
+            .item {
+                .row {
+                    height: 60px;
+                }
+            }
+        }
+    }
+}
+.bar-footer {
+    bottom: 0;
+    border-top-width: 1px;
+    border-bottom-width: 0;
+    background-position: top;
+    height: 44px;
+    padding: 0;
+    .row.bottom-btn {
+        padding: 0;
+    }
+   .preserve-btn {
+        background-color: #80C6EA;
+        width: 100%;
+        height: 44px;
+       line-height: 35px;
+       color: #fff;
+        text-align: center;
+    }
+    .save-btn-expense-report {
+        background-color: #fff;
+        width: 100%;
+        height: 44px;
+        line-height: 35px;
+        color: #0092da;
+        font-size: 1.0em;
+        text-align: center;
+        border-top: thin solid #e2e2e2;
+    }
+    .submit-btn {
+        background-color: #0193DF;
+        width: 100%;
+        height: 44px;
+        line-height: 35px;
+        color: #fff;
+        text-align: center;
+    }
+    .disagree-btn {
+        background-color: #e64e4e;
+        width: 100%;
+        height: 44px;
+        line-height: 38px;
+        text-align: center;
+        font-size: 15px;
+    }
+    .agree-btn {
+        background-color: #50cd93;
+        width: 100%;
+        height: 44px;
+        line-height: 38px;
+        text-align: center;
+        font-size: 15px;
+    }
+    span.save-button-disable {
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+        width: 100%;
+        height: 44px;
+        line-height: 44px;
+        font-size: 1.0em;
+        color: #9F9F9F;
+        background-color: #DFDFDF;
+    }
+    .save-button {
+        background-color: #0092db;
+        max-width: 100%;
+        width: 100%;
+        height: 44px;
+        line-height: 44px;
+        color: #fff;
+        font-size: 1.0em;
+    }
+}
+#dustbin-img {
+    width: 1em;
+    height: 1.14em;
+    position: relative;
+    top: .63em;
+    right: .4em;
+}
+
+#revoke-img {
+    width: 1.1em;
+    height: 1.14em;
+    position: relative;
+    top: .63em;
+    right: .4em;
+}

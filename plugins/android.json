@@ -1,0 +1,89 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-appversion": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-code-push": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-image-picker": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-zip": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "jpush-phonegap-plugin": {
+            "APP_KEY": "2cfa6af6bae2fb85a3c2a341",
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-hand-calendar": {
+            "PACKAGE_NAME": "com.sany.expense"
+        }
+    },
+    "dependent_plugins": {
+        "code-push": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.sany.expense"
+        },
+        "cordova-plugin-jcore": {
+            "PACKAGE_NAME": "com.sany.expense"
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "application": {
+        "activity.form": "活动单",
+        "meike.approval": "美克审批",
+        "other.apply": "其他申请"
+    },
+    "vendor": {
+        "fasco": "FASCO机票",
+        "hrs": "HRS",
+        "huazhu": "华住",
+        "jingdong": "京东",
+        "xiecheng": "携程",
+        "baoku": "宝库",
+        "baokuAir": "中青旅",
+        "baokuHotel": "宝库酒店",
+        "cas":"中航服"
+    }
+}

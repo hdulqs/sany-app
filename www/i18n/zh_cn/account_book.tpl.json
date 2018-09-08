@@ -1,0 +1,38 @@
+{
+    "account": {
+        "Click.the.refresh": "点击刷新",
+        "Cost.type": "费用类型",
+        "Date.selection": "日期选择",
+        "Future.generations": "全选",
+        "Temporarily.no.cost.information": "暂时没有费用信息!",
+        "The.custom.time": "自定义时间",
+        "all": "全部",
+        "article": "条",
+        "import": "导入",
+        "loading": "加载中...",
+        "my.account": "我的账本",
+        "ok": "确定",
+        "reset": "重置",
+        "screening": "筛选",
+        "to": "到",
+        "week": "周"
+    },
+    "account_js": {
+        "ake.a.mistake": "出错了",
+        "Delete.success": "删除成功",
+        "End.time.is.not.less.than.start.time": "结束时间不能小于开始时间",
+        "End.time.is.today.at.the.latest": "结束时间最晚是今天",
+        "Expense.account.added.at.200": "报销单最多添加200条费用",
+        "Please.select.a.cost": "请选择费用",
+        "Please.try.again.later": "请稍后再试!",
+        "Submitted.successfully": "提交成功",
+        "Withdraw.success": "撤回成功",
+        "according_to_PDF_stick_ticket": "请根据PDF贴票",
+        "cancel": "取消",
+        "nearly.a.month": "近一个月",
+        "nearly.two.month": "近两个月",
+        "ok.know": "好的,知道了!",
+        "send_to_mailbox": "将发送PDF到邮箱",
+        "submit.failure": "提交失败"
+    }
+}

@@ -1,0 +1,25 @@
+<ion-view class="account-bind">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'account_bind.didi.travel'|translate}}<!--滴滴出行--></span>
+    </ion-nav-title>
+    <ion-content>
+        <div class="list">
+            <div class="alert account-mobile warns">
+                <img class="mobile-icon" src="img/mobile.png"/>
+                <p class="mobile-word">{{'bind_mobile.Binding.mobile.phone.number'|translate}}<!--绑定手机号--></p>
+            </div>
+                <div class=" item item-text-wrap mobile-item">
+                    <div class="row row-center">
+                        <div class="col col-center col-33 mobile-name">{{'mobile_list.phone.number'|translate}}<!--手机号--></div>
+                        <div class="col col-center mobile-value" ng-model="view.newMobile">{{view.newMobile}}</div>
+                    </div>
+                </div>
+            <div class="row">
+            <button class=" button button-full button-positive" keyboard-attach
+            ng-click="resetMobile()">
+                {{'relieve_bind.Remove.the.binding'|translate}}<!--解除绑定-->
+            </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

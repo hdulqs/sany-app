@@ -1,0 +1,41 @@
+{
+    "my": {
+        "About.huilianyi": "关于汇联易",
+        "Account.binding": "账号绑定",
+        "Borrowing.and.verification": "借款及核销",
+        "Help.and.feedback": "帮助与反馈",
+        "Online.customer.service": "在线客服",
+        "back.to.HuiLianYi": "返回汇联易",
+        "billing.information": "开票信息",
+        "my": "我的",
+        "order.information": "携程订单信息",
+        "info": "个人信息",
+        "set": "个人设置",
+        "helpAndFeedback":"帮助与反馈",
+        "aboutHuiLianYi":"关于汇联易"
+    },
+    "problem":{
+        "question":"问题",
+        "costDesynchrony":"费用不同步？",
+        "question_1":"1.可能会有2小时-1天的延迟",
+        "question_2":"2.请前往APP检查是否勾选了企业报销",
+        "question_3":"3.若还是未收到费用推送，可前往我的-设置-滴滴同步 进行手动同步",
+        "didiSynchronizationCost":"去滴滴同步费用"
+    },
+    "dashboard":{
+        "consumption":"消费",
+        "goingOut":"出行",
+        "YoungRecruit":"扬招",
+        "airlineTicket":"机票",
+        "Train":"火车",
+        "hotel":"酒店",
+        "repast":"餐饮",
+        "app":"应用",
+        "travelApplication":"差旅申请",
+        "Report":"报表",
+        "Approval":"审批",
+        "Hint":"提示",
+        "Expect":"敬请期待",
+        "confirm":"确定"
+    }
+}

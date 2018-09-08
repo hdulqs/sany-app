@@ -1,0 +1,1004 @@
+
+.self-define-expense-report {
+    background-color: #F1F6F9;
+    .blue-bar{
+        background-color: #10b8f6 !important;
+        background: -webkit-linear-gradient(#10b8f6, #1FA6E5) !important;
+        background-image: -webkit-linear-gradient(#10b8f6, #1FA6E5) !important;
+        border-bottom: 0 !important;
+        i.ion-ios-arrow-left{
+            color: #fff !important;
+        }
+        .expense-report-nav-title{
+            color: #fff !important;
+        }
+        .ion-ios-more {
+            font-size: 36px;
+            color: #fff !important;
+        }
+    }
+    .self-create-footer {
+        .row {
+            background-color: #0092da;
+            color: #fff;
+        }
+    }
+    .budget-content{
+        background:#fff6a7;
+        .budget-row{
+            font-size:14px;
+            color:#e56e1b;
+            text-align:left;
+            padding: 0;
+            .budget-right{
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+        .budget-arrow{
+            font-size:16px;
+            text-align:center;
+            color: #e56e1b;
+
+        }
+    }
+    .budget-content-strong{
+        background: #ff9b9d !important;
+        color: #d5555d !important;
+    }
+    .add-invoice {
+        margin: 10px 12px;
+        text-align: center;
+        .create-icon {
+            width: 60px;
+            position: fixed;
+            bottom: 15%;
+            right: 20%;
+            margin: 0 10%;
+        }
+        .create-icon-en {
+            margin: 0 6%;
+        }
+        .import-icon {
+            width: 60px;
+            position: fixed;
+            bottom: 15%;
+            right: 0;
+            margin: 0 6%;
+        }
+        .import-icon-en {
+            margin: 0 1%;
+        }
+        span.create-text {
+            text-align: center;
+            font-size: 15px;
+            color: #808080;
+            bottom: 10%;
+            right: 30%;
+            position: fixed;
+        }
+        span.import-text {
+            text-align: center;
+            font-size: 15px;
+            color: #808080;
+            bottom: 10%;
+            right: 5%;
+            position: fixed;
+        }
+    }
+    .create-self-expense-report {
+        .created-by{
+            padding: 10px;
+            font-size: 16px;
+            color: #4c4c4c;
+        }
+        .list {
+            margin: 0;
+            padding: 0;
+            .consume-icon{
+                width: 35px;
+            }
+            .item {
+                padding: 0;
+                margin: 0;
+                border: none;
+                .row + .row {
+                    margin: 0;
+                }
+                .length-text{
+                    min-height: 14px;
+                    height: 14px;
+                    line-height: 14px;
+                    font-size: 12px;
+                    color: #959595;
+                    text-align: right;
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                }
+                .row {
+                    border-bottom: thin solid #e2e2e2;
+                    padding: 10px;
+                    .col {
+                        padding: 5px 0;
+                    }
+                    .input-label {
+                        font-size: 1em;
+                        color: #4c4c4c;
+                    }
+                    .travel-start-date {
+                        background-color: transparent;
+                        border: none;
+                        text-align: right;
+                        font-size: 16px;
+                        color: #4c4c4c;
+                        width: 100%;
+                        line-height: 16px;
+                    }
+                    .select-department {
+                        .department-selector {
+                            text-align: right;
+                        }
+                    }
+                    .time-input {
+                        font-size: 1em;
+                        color: #4c4c4c;
+                    }
+                    .time-input-placeholder{
+                        font-size: 1em;
+                        color: #aaa;
+                    }
+                    .travel-arrow {
+                        width: 6px;
+                    }
+                }
+                .text-value {
+                    width: 100%;
+                    padding: 0;
+                    border: none;
+                    color: #4c4c4c;
+                    font-size: 16px;
+                    height: 25px;
+                    line-height: 25px;
+                }
+                .text-value[readonly] {
+                    background-color: #fff;
+                }
+                .text-no-input {
+                    color: #959595;
+                }
+                .no-border {
+                    border: none !important;
+                }
+                .row-min {
+                    padding: 3px 10px !important;
+                }
+                .budget-title {
+                    background-color: #F1F6F9;
+                    border: none;
+                    color: #959595;
+                    font-size: 14px;
+                }
+            }
+            .item-block{
+                border-bottom: thin solid #e1e6eb;
+                padding: 5px 15px;
+                .row {
+                    border-bottom: 0;
+                    padding: 0;
+                    .col{
+                        padding: 0;
+                    }
+                    .input-label {
+                        font-size: 16px;
+                        color: #959595;
+                        padding: 0;
+                        line-height: 26px;
+                    }
+                    .travel-start-date {
+                        background-color: transparent;
+                        border: none;
+                        text-align: left;
+                        font-size: 16px;
+                        color: #4c4c4c;
+                        width: 100%;
+                        line-height: 16px;
+                    }
+                    .external-person {
+                        padding: 0;
+                        height: 16px;
+                        line-height: 16px;
+                    }
+                    .select-department {
+                        .department-selector {
+                            text-align: left;
+                        }
+                    }
+                    .time-input {
+                        font-size: 16px;
+                        color: #4c4c4c;
+                    }
+                    .time-input-date{
+                        font-size: 16px;
+                        color: #4c4c4c;
+                        margin: 0;
+                        display: inline-flex;
+                    }
+                    .time-input-placeholder{
+                        font-size: 16px;
+                        color: #cdcdcd;
+                        margin: 0;
+                        display: inline-flex;
+                    }
+                    .travel-arrow {
+                        position: absolute;
+                        margin: 7px 0 0 -9px;
+                        width: 8px;
+                    }
+                    .select-destination {
+                        input {
+                            text-align: left;
+                            box-shadow: none;
+                            border: none;
+                            background-color: #fff;
+                            font-size: 16px;
+                            color: #4c4c4c;
+                            width: 100%;
+                        }
+                    }
+                    .self-comment {
+                        border: none;
+                        font-size: 16px;
+                        color: #4c4c4c;
+                        width: 100%;
+                        min-height: 63px;
+                        background-color: #fff;
+                        padding: 0;
+                        resize: none;
+                    }
+                }
+                .item-toggle {
+                    height: 50px;
+                    line-height: 50px;
+                }
+
+            }
+        }
+        .text-value-directives {
+            color: #4c4c4c;
+            font-size: 16px;
+            margin: 0;
+            height: 25px;
+            line-height: 25px;
+            .select-placehold {
+                color: #cdcdcd;
+            }
+        }
+        .department-select {
+            padding: 12px 10px;
+        }
+        .cost-center-select {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e2e2;
+            .item-note {
+                width: 58%;
+                font-size: 16px;
+                text-align: right;
+            }
+            .selected-value {
+                width: 52%;
+                text-align: right;
+            }
+        }
+        .currency-code {
+            .currency-code-placeholder {
+                color: #cdcdcd;
+                font-size: 16px;
+                height: 26px;
+                line-height: 26px;
+            }
+            .currency-code-name {
+                color: #4c4c4c;
+                font-size: 16px;
+            }
+        }
+        .create-self-comment {
+            width: 100%;
+            border-bottom: thin solid #e2e2e2;
+            line-height: 25px;
+            .row {
+                background-color: #F1F6F9;
+                border: none;
+                color: #959595;
+                font-size: 14px;
+            }
+            .self-comment {
+                border: none;
+                font-size: 16px;
+                color: #4c4c4c;
+                width: 100%;
+                min-height: 80px;
+                background-color: #fff;
+                padding: 5px 15px;
+                resize: none;
+            }
+            .length-text{
+                height: 24px !important;
+                padding: 5px !important;
+            }
+        }
+        .switch-icon {
+            height: 30px;
+            margin: 0 0;
+        }
+        .load-contain {
+            padding: 5px 0 5px 15px;
+            color: #959595;
+            border-bottom: 1px solid #e2e2e2;
+            .toggle-small.item-toggle .toggle {
+                top: 11px !important;
+            }
+            .item {
+                margin: 0;
+                padding: 10px 0;
+                color: #959595;
+                .item-toggle .toggle {
+                    top: 0;
+                    right: 0;
+                }
+                .toggle.toggle-calm input:checked + .track {
+                    background-color: #0092da;
+                    border-color: #0092da;
+                }
+                .track {
+                    width: 40px;
+                    height: 17px;
+                    .handle {
+                        width: 24px;
+                        height: 24px;
+                        top: 1px;
+                        left: 4px;
+                    }
+                }
+            }
+        }
+        .switch-container {
+            .track {
+                width: 40px;
+                height: 17px;
+                .handle {
+                    width: 24px;
+                    height: 24px;
+                    top: 2px;
+                    left: 4px;
+                }
+            }
+        }
+
+        .toggle-container {
+            padding: 0;
+            .toggle .handle {
+                height: 25px;
+                width: 28px;
+            }
+            .toggle .track {
+                height: 29px;
+            }
+        }
+        .no-border {
+            border: none !important;
+        }
+        .row-min, .input-list {
+            padding: 3px 10px !important;
+        }
+        .content-part {
+            margin-bottom: 10px !important;
+        }
+        .item-relatvie{
+            position: relative;
+            z-index: -2;
+            .row-postion{
+                position: absolute;
+                top: 5px;
+                z-index: -1;
+            }
+            .department-selector{
+                .value{
+                    padding: 26px 0 0 0;
+                    height: 52px;
+                }
+            }
+            .travel-arrow{
+                right: 30px;
+            }
+            value-item{
+                .text-value-directives{
+                    padding: 26px 0 0 0;
+                    height: 52px;
+                }
+            }
+            .approval-selector-modal{
+                background-color: transparent;
+                .join-member-placeholder, .join-member{
+                    background-color: transparent;
+                    padding: 26px 0 0 0;
+                    height: 52px;
+                }
+            }
+            .cost-center-selector-new{
+                .cost-center-selector, .select-name, .cost-center-name{
+                    padding: 26px 0 0 0;
+                    height: 52px;
+                }
+            }
+            select-box-modal{
+                .text-value-directives{
+                    padding: 26px 0 0 0;
+                    height: 52px;
+                }
+            }
+            .item-block-directive{
+                padding: 0 !important;
+                border: 0 !important;
+                .applicant-selector{
+                    padding: 26px 0 0 0;
+                    height: 52px;
+                }
+            }
+        }
+    }
+    .self-expense-report-detail {
+        .allowance-money {
+            margin-top: 8px;
+            background: #fff;
+            border: thin solid #e2e2e2;
+            .col {
+                padding: 0;
+            }
+            .allowance-label, .allowance-value {
+                font-size: 12px;
+                color: #959595;
+            }
+        }
+        .has-allowance {
+            text-align: center;
+            position: absolute;
+            width: 100%;
+            margin-top: 41%;
+            z-index: -99;
+        }
+        .create-base-message {
+            background-color: #1FA6E5 !important;
+            background: -webkit-linear-gradient(#1FA6E5, #1EA4E3) !important;
+            background-image: -webkit-linear-gradient(#1FA6E5, #1EA4E3) !important;
+            padding: 15px 20px 15px 15px;
+            border: 0;
+            position: relative;
+            .travel-budget {
+                color:#ffeb27;
+                font-size: 18px;
+                margin: 5px 0;
+            }
+            .travel-remark {
+                font-size: 14px;
+                color: #fff;
+                text-align: left;
+                padding:0;
+                margin-bottom: 5px;
+                .text-label{
+                    font-size: 12px;
+                }
+            }
+            .base-edit {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                color: #fff;
+                font-size: 24px;
+                margin-top: -24px;
+            }
+            .edit-icon{
+                position: absolute;
+                right: 10px;
+                top: 0;
+                width: 22px
+            }
+            .total-amount {
+                font-size: 16px;
+                color: #FF9944;
+            }
+            .travel-comment {
+                padding: 0 30px;
+                font-size: 1.2em;
+                color: #4c4c4c;
+                margin: 5px 0;
+            }
+            //.travel-remark {
+            //    font-size: 13px;
+            //    color: #959595;
+            //    margin: 0;
+            //    text-align: center;
+            //}
+            .travel-refund{
+                font-size: 13px;
+                color: #0092da;
+                margin: 0;
+                text-align: center;
+            }
+            .travel-department {
+                font-size: 1em;
+                color: #959595;
+                margin: 5px 0;
+            }
+            .sefl-define-title {
+                font-size: 16px;
+                color: #4c4c4c;
+                margin: 5px 20px;
+            }
+            .travel-date {
+                font-size: 0.9em;
+                color: #959595;
+                margin: 5px 0;
+            }
+            .travel-avaergeBudget {
+                font-size: 0.9em;
+                color: #959595;
+                padding: 0;
+            }
+            .travel-money {
+                color: #ffeb27;
+                font-size: 16px;
+                padding: 0;
+                margin: 5px 0;
+            }
+            .travel-supplier {
+                color: #4c4c4c;
+                font-size: 1.1em;
+                img {
+                    width: 15px;
+                }
+            }
+            .supplier-icon {
+                padding: 3px 0 0 0;
+            }
+            .padding-right {
+                padding: 0 5px 0 0;
+            }
+            .padding-left {
+                padding: 0 0 0 5px;
+            }
+            .right-border {
+                border-right: thin solid #e2e2e2;
+            }
+            .join-member-list {
+                width: 100%;
+                padding: 5px 0;
+                clear: both;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                user-avatar {
+                    width: 3em;
+                    height: 3em;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    .user-avatar-text {
+                        line-height: 42px;
+                    }
+                }
+                .join-member {
+                    width: 20%;
+                    text-align: center;
+                    img {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                    }
+                    p {
+                        color: #959595;
+                        font-size: 13px;
+                        margin: 0;
+                    }
+                }
+            }
+            .write-off {
+                color: #4c4c4c;
+                font-size: 13px;
+                span {
+                    margin-right: 3px;
+                }
+                img {
+                    width: 13px;
+                }
+            }
+        }
+        .expand-member-list {
+            left: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            width: 50px;
+            height: 21px;
+            margin-top: -3px;
+            background-color: #1EA4E3;
+            border-radius: 5px;
+            border-bottom: thin solid #e2e2e2;
+            img {
+                width: 20px;
+                transform: rotate(0deg);
+            }
+            .rotate {
+                transform: rotate(180deg);
+            }
+        }
+        .report-save {
+
+        }
+        .travel-approval-histroy {
+            background-color: #fff;
+            margin-bottom: 20px;
+            .travel-tips {
+                padding: 5px 0 5px 13px;
+                font-size: 1em;
+                color: #4c4c4c;
+                margin: 0;
+            }
+            .approval-history-pane {
+                position: relative;
+                width: 100%;
+                .line {
+                    position: absolute;
+                    height: 100%;
+                    left: 18px;
+                    border-right: 1px solid #cdcdcd;
+                }
+                .approval-history {
+                    background-color: #fff;
+                    width: 100%;
+                    .approval-icon {
+                        width: 20px;
+                        height: 20px;
+                        margin: 6px 0 0 3px;
+                        z-index: 999;
+                    }
+                    .history-dot {
+                        display: block;
+                        width: 8px;
+                        height: 8px;
+                        margin: 11px 9px 6px 9px;
+                        background-color: #ACACAC;
+                        border-radius: 50%;
+                        z-index: 999;
+                    }
+                    .approval-time {
+                        color: #959595;
+                        font-size: 0.8em;
+                        margin: 0;
+                    }
+                    .reject-remark{
+                        color:#ed3535;
+                    }
+                    .margin-top {
+                        margin-top: 3px;
+                    }
+                    .approval-name{
+                        max-width: 200px;
+                    }
+                }
+            }
+        }
+        .invoice-list {
+            .invoice-item-list {
+                border-bottom: 1px solid #e2e2e2 !important;
+                margin: 0;
+                .row-date {
+                    background-color: #f1f1f1;
+                }
+            }
+            .item {
+                padding: 0;
+                border-width: 0;
+            }
+        }
+
+    }
+    .report-next-footer {
+        padding: 0;
+        .row {
+            padding: 0;
+            .report-save {
+                height: 44px;
+                line-height: 34px;
+                color: #0092da;
+                background-color: #fff;
+                font-size: 1.2em;
+                border-top: thin solid #eee;
+            }
+            .report-submit {
+                height: 44px;
+                line-height: 34px;
+                color: #fff;
+                background-color: #0092da;
+                font-size: 1.2em;
+                border-top: thin solid #eee;
+            }
+        }
+
+    }
+
+}
+
+.self-select-currency-code {
+    .bar-header {
+        background-color: #f8f8f8 !important;
+        .title {
+            color: #4c4c4c;
+            font-size: 18px;
+            font-weight: normal;
+        }
+        .cancel {
+            font-size: 0.9em;
+            color: #4c4c4c;
+            position: absolute;
+            right: 7px;
+            top: 15px !important;
+        }
+    }
+    ion-content {
+        background-color: #f1f1f1;
+        .list {
+            background-color: #fff;
+            padding: 0;
+            .item {
+                border: none;
+                margin: 0;
+                padding: 0;
+                border-bottom: solid thin #e2e2e2;
+                .row {
+                    height: 50px;
+                    padding: 0;
+                }
+                .select {
+                    width: 15px;
+                    height: 10px;
+                }
+            }
+        }
+    }
+}
+
+.didi-expense-modal {
+    background: #f1f1f1;
+    .title {
+        color: #444;
+        font-weight: normal;
+        font-size: 15px;
+    }
+    .left-buttons {
+        position: fixed;
+        left: 4px;
+    }
+    ion-content {
+        .modal-header {
+            padding: 10px;
+            background: #fff;
+        }
+        .choice-refund {
+            border-bottom: thin solid #e2e2e2;
+            min-height: 40px;
+            padding: 10px 15px 9px 15px !important;
+            background: #fff;
+        }
+
+        .row{
+            padding: 5px;
+            margin: 0;
+            .col{
+                padding: 0;
+            }
+        }
+        .tips-content{
+            color: #959595;
+            font-size: 16px;
+        }
+        .refund-amount{
+            color: #4c4c4c;
+            font-size: 16px;
+            .real-payment{
+                color: #ff941d;
+            }
+        }
+        .reduce-amount {
+            color: #ee8686;
+        }
+        ion-item.item {
+            position: relative;
+            min-height: 60px;
+            padding:5px 10px 4px 45px;
+            margin: 0;
+            border: none;
+            border-bottom: thin solid #e2e2e2;
+            background: #fff;
+            .select-icon{
+                position: absolute;
+                width: 15px;
+                height: 15px;
+                left: 15px;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+            }
+            label.item.item-radio {
+                border: none;
+                margin: 0;
+                border-bottom: thin solid #e2e2e2;
+            }
+            .refund-reason{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: #4c4c4c;
+                font-size: 14px;
+            }
+            .refund-time{
+                color: #959595;
+                font-size: 14px;
+            }
+            .item-radio .item-content {
+                background: #fff !important;
+                width: 90% !important;
+                padding: 10px 0 9px 15px !important;
+                position: relative;
+            }
+            .item-radio .radio-icon {
+                padding: 0 !important;
+                position: absolute;
+                top: 40px !important;
+                right: 10px !important;
+                font-size: 20px !important;
+                height: auto !important;
+            }
+
+        }
+        .sub-header {
+            padding-right: 80px;
+            background:linear-gradient(56deg, #10b8f6 0%, #0092da 100%);
+            width: 100%;
+            height:50px;
+            justify-content: space-between;
+            .col {
+                color: #ffffff;
+            }
+            .sub-title {
+                padding-left: 5px;
+            }
+            .btn-post {
+                position: absolute;
+                right: 10px;
+                border: 1px solid #ffffff;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                background-color: transparent;
+                padding: 3px 5px;
+                margin-top: 7px;
+                color: #ffffff;
+            }
+        }
+        @media only screen and (max-width: 321px){
+            .sub-header {
+                font-size: 12px;
+                height:44px;
+                padding-right: 75px;
+                .btn-post {
+                    padding: 3px 5px;
+                    font-size: 12px;
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+    .submit-button{
+        height: 44px;
+        line-height: 34px;
+        color: #fff;
+        background-color: #0092da;
+        font-size: 16px;
+        .col{
+            padding: 0;
+        }
+    }
+    .submit-button.disabled {
+        opacity: 1;
+        background-color: #cdcdcd;
+    }
+
+}
+.expense-budget-modal{
+    background: #f8f8f8;
+    .budget-row{
+        padding: 0;
+        height: 45px;
+        .budget-icon {
+            background: #ff6262;
+            width: 4px;
+            height: 15px;
+            margin-top: 8px;
+        }
+        .budget-color-name{
+            background: #ffc636;
+            width: 4px;
+            height: 15px;
+            margin-top: 8px;
+        }
+        .red-row {
+            padding: 5px;
+            font-size: 12px;
+            color: #e5221b;
+            text-align: left;
+            background: #ffd5d5;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+    .arrow-red-row{
+        width: 0;
+        height: 0;
+        border-width: 10px 10px 0;
+        border-style: solid;
+        border-color: #ffd5d5 transparent transparent;
+        margin: -9px 11px;
+        position: relative;
+        z-index: 99;
+    }
+    .item-invoice-list {
+        padding: 0px;
+        margin: 0px;
+        z-index: -1;
+        background: #fff;
+        .img-icon {
+            width: 27px;
+            position: relative;
+            height: 27px;
+            top: 10px;
+            left: 3px;
+        }
+        .col{
+            padding: 5px;
+        }
+        .row{
+            padding: 0;
+            margin: 0;
+        }
+    }
+    .table{
+        padding: 0;
+        border:1px solid #cdcdcd;
+        margin: 10px;
+        border-top: none;
+        background: #fff;
+        .row,.cell{
+            padding: 0;
+        }
+        .cell{
+            border: 1px solid #cdcdcd;
+            border-right: none;
+            border-bottom: none;
+            height: 45px;
+            line-height: 45px;
+            padding: 0;
+        }
+        .cell:first-child{
+            border-left: none;
+        }
+        .cell-icon{
+            width: 27px;
+            position: relative;
+            top: 5px;
+        }
+    }
+}

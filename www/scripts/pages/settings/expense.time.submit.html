@@ -1,0 +1,47 @@
+<ion-view class="submit-page">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'expense_time.Regularly.submit.the.expense.account'|translate}}<!--定时提交报销单--></span>
+    </ion-nav-title>
+    <ion-content padding="false" scroll="false">
+            <div class="list time-submit">
+                <div class="item item-divider"></div>
+                <div class="submit-expense"
+                     ng-class="{'toggle-submit-expense':view.toggled && expenseSheetSetting.data.enable}">
+                    <ion-toggle ng-model="expenseSheetSetting.data.enable"
+                                ng-change="expenseSheetSetting.toggleEnableAutoGeneration()">
+                        {{'expense_time.Regularly.submit'|translate}}<!--定时提交-->
+                    </ion-toggle>
+                </div>
+                <div class="choice-time" ng-click="expenseSheetSetting.toggleDate()"
+                     ng-show="expenseSheetSetting.data.enable">
+                    <div class="item item-input">
+                        <div class="input-label">{{'expense_time.Submit.time'|translate}}<!--提交时间--></div>
+                        <div class="value">
+                            {{'expense_time.A.month'|translate}}<!--每月-->{{expenseSheetSetting.data.triggerDate}}
+                            {{'expense_time.date'|translate}}<!--号-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="card date-select-container" ng-show="dateSelected&&expenseSheetSetting.data.enable">
+            <div class="date-select-label">
+                {{'expense_time.Please.select.a.date'|translate}}<!--请选择日期-->
+            </div>
+            <div class="day-select">
+                <div class="row day-container">
+                    <div class="col col-98 day-middle-container">
+                        <div class="day-last-container" ng-repeat="day in view.days">
+                            <span class="number" ng-class="{'number-click':$index == selectedIndex}"
+                                  ng-click="expenseSheetSetting.dateSelect($index,day)"
+                            >
+                            {{day}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cover-screen" ng-show="dateSelected" ng-click="cancel()"></div>
+    </ion-content>
+</ion-view>
+

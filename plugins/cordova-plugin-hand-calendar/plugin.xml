@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-hand-calendar" version="1.1.0">
+    <name>HmsCalendar</name>
+    <author>wangsheng</author>
+    <js-module name="HmsCalendar" src="www/HmsCalendar.js">
+        <clobbers target="HmsCalendar" />
+    </js-module>
+
+<platform name="android">
+        <source-file src="src/android/CalendarListViewPlugin.java" target-dir="src/hand"/>
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="HmsCalendar">
+                <param name="android-package" value="hand.CalendarListViewPlugin"/>
+            </feature>
+        </config-file>
+
+        <framework src="src/android/calendarLibrary" custom="true"/>
+    </platform>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="HmsCalendar">
+                <param name="ios-package" value="CDVCalendar"/>
+            </feature>
+        </config-file>
+
+        <!-- 配置-info.plist    -->
+        <config-file target="*-Info.plist"  parent="View controller-based status bar appearance">
+            <false>NO</false>
+        </config-file>
+
+        <!-- resource   -->
+        <resource-file src="src/ios/plugins/xiu@2x.png" />
+        <resource-file src="src/ios/plugins/xiu@3x.png" />
+        <resource-file src="src/ios/plugins/ban@2x.png" />
+        <resource-file src="src/ios/plugins/ban@3x.png" />
+        <resource-file src="src/ios/plugins/check.png" />
+        <resource-file src="src/ios/plugins/NavBar@2x.png" />
+        <resource-file src="src/ios/plugins/NavBar@3x.png" />
+        <resource-file src="src/ios/plugins/en.lproj" />
+        <resource-file src="src/ios/plugins/zh-Hans.lproj" />
+
+        <!--源码 -->
+        <header-file src="src/ios/plugins/RootViewController.h" />
+        <source-file src="src/ios/plugins/RootViewController.m" />
+
+        <header-file src="src/ios/plugins/CDVCalendar.h"/>
+        <source-file src="src/ios/plugins/CDVCalendar.m"/>
+
+        <header-file src="src/ios/plugins/CalendarDayCell.h"/>
+        <source-file src="src/ios/plugins/CalendarDayCell.m"/>
+
+        <header-file src="src/ios/plugins/CalendarDayModel.h"/>
+        <source-file src="src/ios/plugins/CalendarDayModel.m"/>
+
+            <header-file src="src/ios/plugins/CalendarHomeViewController.h"/>
+            <source-file src="src/ios/plugins/CalendarHomeViewController.m"/>
+
+            <header-file src="src/ios/plugins/CalendarLogic.h"/>
+            <source-file src="src/ios/plugins/CalendarLogic.m"/>
+
+            <header-file src="src/ios/plugins/CalendarMonthCollectionViewLayout.h"/>
+            <source-file src="src/ios/plugins/CalendarMonthCollectionViewLayout.m"/>
+
+            <header-file src="src/ios/plugins/CalendarMonthHeaderView.h"/>
+            <source-file src="src/ios/plugins/CalendarMonthHeaderView.m"/>
+
+            <header-file src="src/ios/plugins/CalendarViewController.h"/>
+            <source-file src="src/ios/plugins/CalendarViewController.m"/>
+
+            <header-file src="src/ios/plugins/NSDate+WQCalendarLogic.h"/>
+            <source-file src="src/ios/plugins/NSDate+WQCalendarLogic.m"/>
+
+            <header-file src="src/ios/plugins/NSMutableArray+CalendarLogic.h"/>
+            <source-file src="src/ios/plugins/NSMutableArray+CalendarLogic.m"/>
+
+
+            <header-file src="src/ios/plugins/SingleHomeViewConroller.h"/>
+            <source-file src="src/ios/plugins/SingleHomeViewConroller.m"/>
+
+            <header-file src="src/ios/plugins/SingleViewController.h"/>
+            <source-file src="src/ios/plugins/SingleViewController.m"/>
+
+            <header-file src="src/ios/plugins/Color.h"/>
+            <header-file src="src/ios/plugins/UtilsMacro.h"/>
+
+    </platform>
+</plugin>

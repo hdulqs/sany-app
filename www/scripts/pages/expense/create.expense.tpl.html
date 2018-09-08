@@ -1,0 +1,387 @@
+<ion-view class="create-expense" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{view.head}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="view.isDirtyForm()" class="back-button">
+            <img src="img/back.png" class="save-btn create-expense-back-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <span ng-click="view.withdraw()" class="recall-btn" ng-if="view.content === 'submitted'">
+            {{'create_expense.revocation'|translate}}<!--撤回-->
+        </span>
+        <span ng-click="view.delete()" class="recall-btn" ng-if="view.content === 'init' || view.content === 'third'">
+            {{'create_expense.delete'|translate}}<!--删除-->
+        </span>
+    </ion-nav-buttons>
+    <ion-content class="has-header create-expense-content"
+                 ng-class="{true: 'has-footer', false: ''}[view.content === 'third' || view.content === 'consumeInit' || view.content === 'init' || view.content === 'create' || view.content === 'approvalList' || view.content === 'approvalMessage']">
+        <ion-list>
+            <form name="createExpenseForm">
+                <ion-item ng-click="datePicker.selectHandDate('expenseDate')">
+                <div class="row row-center">
+                    <span>
+                        {{'create_expense.date'|translate}}<!--日期-->
+                    </span>
+                    <div class="col">
+                        <p class="text-right expense-money">
+                            {{view.expense.date | dateFilter}}
+                        </p>
+                    </div>
+                </div>
+            </ion-item>
+
+                <!--产品要求去掉时间-->
+                <!--<ion-item ng-click="datePicker.selectTime('expenseTime')">-->
+                    <!--<div class="row row-center">-->
+                    <!--<span>-->
+                        <!--{{'create_expense.time'|translate}}&lt;!&ndash;时间&ndash;&gt;-->
+                    <!--</span>-->
+                        <!--<div class="col">-->
+                            <!--<p class="text-right expense-money">-->
+                                <!--{{view.expense.time | timeFilter}}-->
+                            <!--</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</ion-item>-->
+
+                <!--费用类型选择-->
+
+
+                <expense-type-selector expense-type-list='view.typeList'
+                                       rate-change-abled='rateChangeAbled'
+                                       appliant-oid="view.expense.ownerOID"
+                                       currencycodechangeable='view.currencycodechangeable'
+                                       self-currency-rate-currency-rate="selfCurrencyRateCurrencyRate"
+                                       web-invoice-keep-consistent-with-expense="webInvoiceKeepConsistentWithExpense"
+                                       expense="view.expense"
+                                       currency-code="view.currencyCode"
+                                       timeforrate="view.expense.date"
+                                       origin-currency-code="view.originCurrencyCode"
+                                       has-history="view.hasHistory"
+                                       code="view.code"
+                                       readonly="view.isReadOnly"
+                                       report-expense-able-select-currency="view.reportExpenseAbleSelectCurrency"
+                                       has-valid="view.hasValid">
+                </expense-type-selector>
+
+
+
+
+                <!--费用分摊.只有isReadOnly为false或者创建/编辑第三方/报销单的费用时可以编辑-->
+                <expense-apportion expense="view.expense" expense-report-data="view.expenseApportion.expenseReportData"
+                                   readonly="view.isReadOnly && view.content !== 'third' && view.content !== 'consumeInit'"
+                                   currency-code="view.currencyCode" origin-currency-code="view.originCurrencyCode"
+                                   ng-if="view.expense.expenseApportion && view.expense.expenseApportion.length>0">
+                </expense-apportion>
+
+                <div class="taxSelect"
+                     ng-if="!view.functionProfileList['app.invoice.pay.by.company.disabled'] && view.expense.expenseTypeOID && view.expense.paymentType">
+                    <!--公司支付是否可以编辑,只有isReadOnly为false或者编辑第三方/报销单的私车公用费用时可以编辑-->
+                    <ion-toggle ng-model="view.expense.payByCompany"  ng-change="view.isPayByCompany()"
+                                ng-disabled="view.isReadOnly && ((view.expense.expenseTypeIconName !== 'privateCarForPublic' &&
+                                    (view.content === 'third' || view.content === 'consumeInit')) ||
+                                    (view.content !== 'third' && view.content !== 'consumeInit'))">
+
+                        {{'create_expense.Whether.company.pay'|translate}}<!--是否公司支付-->
+                    </ion-toggle>
+                </div>
+                <div class="taxSelect"
+                     ng-if="!view.functionProfileList['invoice.instead.disabled'] && view.expense.expenseTypeOID && view.expense.withReceipt && !view.expense.valid">
+                    <!--只有isReadOnly为false或者或者编辑第三方/报销单的费用时可以编辑-->
+                    <ion-toggle ng-model="view.expense.invoiceInstead"
+                                ng-disabled="view.isReadOnly && view.content !== 'third' && view.content !== 'consumeInit'">
+
+                        {{'create_expense.Whether.for.ticket'|translate}}<!--是否替票-->
+                    </ion-toggle>
+                    <ion-item ng-if="view.expense.invoiceInstead">
+                        <div class="row row-center input-list">
+                            <span>
+                                {{'create_expense.Reason.for.ticket'|translate}}<!--替票理由-->
+                            </span>
+                            <div class="col">
+                                <!--只有isReadOnly为false或者或者编辑第三方/报销单的费用时可以编辑-->
+                                <input type="text" maxlength="100" class="text-value" ng-model="view.expense.invoiceInsteadReason"
+                                       placeholder="{{'create_expense.Please.enter.the'|translate}}"
+                                       ng-readonly="view.isReadOnly && view.content !== 'third' &&
+                                           view.content !== 'consumeInit'"/><!--请输入-->
+                            </div>
+                        </div>
+                    </ion-item>
+                </div>
+                <div class="taxSelect"
+                     ng-if="!view.functionProfileList['account.book.VAT.special.invoice.disabled'] && view.expense.expenseTypeOID && view.expense.withReceipt && !view.expense.valid">
+
+                    <!--只有isReadOnly为false或者或者编辑第三方/报销单的费用时可以编辑-->
+                    <ion-toggle ng-model="view.expense.vatInvoice"
+                                ng-disabled="view.isReadOnly && view.content !== 'third' && view.content !== 'consumeInit'">
+                        {{'create_expense.vat.special.invoice'|translate}}<!--增值税专用发票-->
+                    </ion-toggle>
+
+                    <!--用ng-show,不用ng-if,因为需要在编辑费用的时候就获取相关数据-->
+                    <vat-special ng-show="view.expense.vatInvoice" expense="view.expense"
+                                 readonly="view.isReadOnly && view.content !== 'third' && view.content !== 'consumeInit'">
+                    </vat-special>
+                </div>
+
+                <!--费用的字段.如果是公共费用,不显示城市字段,显示新的城市控件.费用类型的readonly为true表示公共费用-->
+                <ion-item ng-repeat="field in view.expense.data"
+                          ng-if="view.expense.data.length > 0 && ((view.expense.expenseTypeIconName !== 'privateCarForPublic')|| view.expense.expenseTypeIconName === 'privateCarForPublic' && (field.messageKey !== 'reference.mileage' && field.messageKey !== 'mileage' && field.messageKey !== 'unit.price')) "
+                          ng-hide="field.messageKey === 'city' && view.expenseType.readonly"
+                          ng-switch="field.fieldType"
+                          ng-class="{'no-padding': field.messageKey === 'participant'}">
+                    <!--新莱 task list 也有customEnumerationOID,但是不走值列表逻辑,判断messageKey是不是 xinlai.task.list ,使用成本中心选择空控件-->
+                    <div class="row row-center  input-list" ng-if="field.customEnumerationOID && field.messageKey !== 'xinlai.task.list' && field.messageKey !== 'rentalId'">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col text-right">
+                            <value-item selected="field" readonly="view.isReadOnly" applicant="view.expense.ownerOID">
+
+                            </value-item>
+                            <!--<input type="text" ng-model="field.value"  maxlength="100" class="text-value" ng-readonly="view.isReadOnly"/>-->
+                        </div>
+                    </div>
+
+                    <div class="row row-center  input-list" ng-if="field.customEnumerationOID && field.messageKey == 'rentalId'">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col text-right">
+                            <rental-selector selected="field" readonly="view.isReadOnly" applicant="view.expense.ownerOID">
+
+                            </rental-selector>
+                            <!--<input type="text" ng-model="field.value"  maxlength="100" class="text-value" ng-readonly="view.isReadOnly"/>-->
+                        </div>
+                    </div>
+                    <!--城市控件-->
+                    <div class="row row-center input-list expense-control" ng-switch-when="LOCATION">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col city-selector">
+                            <!--请选择-->
+                            <city-selector holder="'create_expense.please.choose' | translate" type="'1001'"
+                                           city="field.cityName" code="field.value" supplier-name="'standard'"
+                                           readonly="view.isReadOnly && view.content !== 'third' && view.content !== 'consumeInit'">
+                            </city-selector>
+                        </div>
+                    </div>
+                    <!--同住人控件块开始-->
+                    <div ng-if="field.messageKey === 'participant'" class="expense-roommate"><!--判断有木有同行人控件-->
+                        <ion-toggle ng-model="view.expense.roommate" ng-disabled="view.isReadOnly" class="no-border">
+                            同行人
+                        </ion-toggle>
+                        <div class="split"></div>
+                        <ion-item ng-if="view.expense.roommate" class="no-top-bottom-padding no-border">
+                            <div class="row row-center ion-item-padding">
+                                <div class="col col-40 input-label">
+                                    同行人姓名
+                                </div>
+                                <div class="col col-60" ng-if="!view.isReadOnly">
+                                    <!--只有一个同行人-->
+                                    <roommate-selector-modal
+                                        text-right="true"
+                                        selected-name="field.userName"
+                                        selector="field.userOID"
+                                        status="field.status"
+                                        max-length="1"
+                                        readonly="view.readonly"
+                                        title="'同行人'">
+                                    </roommate-selector-modal>
+                                </div>
+                                <div class="col col-60 text-right padding-top-bottom-5" ng-if="view.isReadOnly">
+                                    <!--只有一个同行人-->
+                                    {{field.userName}}
+                                    <span ng-if="field.status === 1003">(已离职)</span>
+                                    <span ng-if="!field.userName">未选择</span>
+                                </div>
+                            </div>
+                        </ion-item>
+                    </div>
+                    <!--同住人控件块结束-->
+                    <div class="row row-center  input-list" ng-switch-when="TEXT"
+                         ng-if="!field.customEnumerationOID && field.messageKey !== 'xinlai.task.list'">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <input type="text" ng-model="field.value" maxlength="100" placeholder="{{'create_expense.Please.enter.the'|translate}}"
+                                   class="text-value" ng-readonly="view.isReadOnly"/><!--请输入-->
+                        </div>
+                    </div>
+                    <!--新莱 成本中心选择控件根据 messageKey 是否为 xinlai.task.list 来判断 (fieldType 为TEXT)-->
+                    <div class="row row-center  input-list" ng-switch-when="TEXT" ng-if="field.messageKey === 'xinlai.task.list'">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <cost-center-selector cost-center="field.customEnumerationOID" selected="field.value" name="field.costCenterName" title="field.name"></cost-center-selector>
+                        </div>
+                    </div>
+                    <div class="row row-center  input-list" ng-switch-when="LONG" ng-if="!field.customEnumerationOID">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <input type="number" ng-model="field.value" class="text-value" placeholder="{{'create_expense.Please.enter.the'|translate}}"
+                                   ng-readonly="view.isReadOnly" maxlength="100"/><!--请输入-->
+                        </div>
+                    </div>
+                    <div class="row row-center  input-list" ng-switch-when="DATETIME"
+                         ng-click="datePicker.selectDateTime(field.name)" ng-if="!field.customEnumerationOID">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <span ng-if="field.value === null || field.value === ''">{{'create_expense.please.choose'|translate}}<!--请选择--></span>
+                                <span ng-if="field.value !== null && field.value !== ''">{{field.value | dateTimeFilter}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row row-center  input-list" ng-switch-when="DATE"
+                         ng-click="datePicker.selectDate(field.name)" ng-if="!field.customEnumerationOID">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <p class="text-right">
+                                <span ng-if="field.value === null || field.value === ''">{{'create_expense.please.choose'|translate}}<!--请选择--></span>
+                                <span
+                                    ng-if="field.value !== null && field.value !== ''">{{field.value | dateFilter}} </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row row-center  input-list" ng-switch-when="DOUBLE" ng-if="!field.customEnumerationOID">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <input type="number" ng-model="field.value" maxlength="100" class="text-value"
+                                   placeholder="{{'create_expense.Please.enter.the'|translate}}"
+                                   ng-readonly="view.isReadOnly"/><!--请输入-->
+                        </div>
+                    </div>
+                    <div class="row row-center" ng-switch-when="GPS">
+                        <span>
+                            {{field.name}}
+                        </span>
+                        <div class="col">
+                            <location-selector selected="field.value" expense-type="view.expense.expenseTypeName"
+                                               location="view.currentLocation" readonly="view.isReadOnly"></location-selector>
+                        </div>
+                    </div>
+                    <!--<div class="row row-center" ng-if="field.messageKey === 'xinlai.task.list'">-->
+                        <!--haha-->
+                    <!--</div>-->
+                </ion-item>
+            </form>
+
+        </ion-list>
+        <!--只有isReadOnly为false或者或者编辑第三方/报销单的费用时可以编辑-->
+        <div ng-if="!view.isReadOnly || view.content === 'third' || view.content==='consumeInit'">
+            <p class="expense-tips">
+                {{'create_expense.Attachment.information'|translate}}<!--附件信息(最多可上传9张照片)-->
+            </p>
+            <upload-image attachment-src="view.attachments" delete-attachment="view.deleteAttachment"
+                          upload-finish="view.uploadFinish"></upload-image>
+        </div>
+        <!--详情图片展示-->
+        <div ng-if="view.isReadOnly && view.expense.attachments.length > 0 && view.content !== 'third' &&
+                view.content!=='consumeInit'">
+            <p class="expense-tips">
+                {{'create_expense.Attachment.information'|translate}}<!--附件信息(最多可上传9张照片)-->
+            </p>
+            <div class="icon-pane expense-image">
+                <hly-gallery attachment-src="view.expense.attachments"></hly-gallery>
+            </div>
+        </div>
+
+        <!--<div class="row row-center expense-image" ng-if="(view.isReadOnly && view.content !== 'third') && view.expense.attachments.length > 0">
+            <div class="col col-33 image-list" ng-repeat="pic in view.expense.attachments">
+                <div>
+                    <img ng-src="{{pic.thumbnailUrl}}" zoom-src="{{pic.fileURL}}" zoom-view class="selected-pic"/>
+                </div>
+            </div>
+        </div>-->
+        <p class="expense-tips">
+            {{'create_expense.For.instructions'|translate}}<!--事由说明-->
+        </p>
+        <div>
+            <!--只有isReadOnly为false或者或者编辑第三方/报销单的费用时可以编辑-->
+            <!--少于200个汉字-->
+            <textarea class="comment" ng-model="view.expense.comment" maxlength="200"
+                      placeholder="{{'create_expense.lessThan200Characters'|translate}}"
+                      ng-readonly="view.isReadOnly && view.content !== 'third' && view.content!=='consumeInit'">
+            </textarea>
+        </div>
+        <div
+            ng-if="view.expense.approvalOperates.length > 0">
+            <p class="expense-tips">
+                {{'create_expense.Approval.process'|translate}}<!--审批流程-->
+            </p>
+            <div class="approval-history-pane history-block">
+                <div class="line"></div>
+                <div class="approval-history">
+                    <div class="row" ng-repeat="history in view.expense.approvalOperates">
+                        <span class="history-dot-success" ng-if="history.operate === 1 || history.operate === 3 || history.operate === 11 || history.operate === 21 || history.operate === 31"></span>
+                        <span class="history-dot-reject" ng-if="history.operate === 12 || history.operate === 22 || history.operate === 32"></span>
+                        <span class="history-dot-withdraw" ng-if="history.operate === 2"></span>
+
+                        <div class="col padding-0">
+                            <div class="row padding-5-0">
+                                <div class="col padding-0">
+                                    <p class="approval-time operation-title">
+                                        {{history.operate | operate}}
+                                    </p>
+                                </div>
+                                <div class="col padding-0">
+                                    <p class="approval-time txt-right operation-date">
+                                        {{history.lastModifiedDate | dateTimeFilter}}
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="approval-time">
+                                {{history.operator.fullName}}&nbsp;{{history.operator.employeeID}}
+                            </p>
+                            <p class="approval-time" ng-class="{'reject-remark': history.operate == 22 || history.operate == 32 || history.operate == 12}">
+                                {{history.operateDetail}}
+                            </p>
+                            <p class="approval-time exchange-rate"
+                               ng-if="history.operate === 32">
+                                {{'create_expense.didi.failure.of.make.out.an.invoice'|translate}}<!--滴滴开票失败,详情请联系滴滴客服-->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </ion-content>
+    <ion-footer-bar class="expense-create-footer" ng-if="view.content === 'consumeInit' || view.content === 'init' || view.content === 'create'|| view.content === 'third' || view.content === 'approvalList' || view.content === 'approvalMessage'">
+        <div class="row row-center" ng-if="view.content === 'init' || view.content === 'create'|| view.content === 'third'">
+            <div class="col text-center expense-new" ng-click="view.save()">
+                {{'create_expense.save'|translate}}<!--保存-->
+            </div>
+            <div class="col text-center operation-all" ng-click="view.saveAndMore()">
+                {{'create_expense.Save.and.then.write.a'|translate}}<!--保存并再记一笔-->
+            </div>
+        </div>
+        <div class="row row-center submit-btn" ng-if="view.content === 'consumeInit'">
+            <div class="col col-center submit-btn" ng-click="view.save()">
+                {{'create_expense.save'|translate}}<!--保存-->
+            </div>
+        </div>
+        <div class="row row-center" ng-if="view.content === 'approvalList' || view.content === 'approvalMessage'">
+            <div class="col text-center expense-reject" ng-click="view.showOpinionPopup()">
+                {{'create_expense.rejected'|translate}}<!--驳回-->
+            </div>
+            <div class="col text-center expense-agree" ng-click="view.agree()">
+                {{'create_expense.pass'|translate}}<!--通过-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

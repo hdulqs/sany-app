@@ -1,0 +1,140 @@
+<ion-item class="travel-directive">
+    <div ng-click="goDetail()">
+        <div class="row row-center header" style="">
+            <div class="color-block"></div>
+            <div class="col col-70">
+                <p class="businessCode-anchor">
+                    No.{{item.travelApplication.businessCode}}
+                    <!--<span ng-if="item.type === 1002 && isShowType">-->
+                        <!--&nbsp;差旅申请-->
+                    <!--</span>-->
+                </p>
+            </div>
+            <div class="col">
+                <p class="text-right" ng-if="item.createdDate">
+                    {{ item.createdDate | dateFilter}}
+                </p>
+            </div>
+        </div>
+        <div class="travel-item-content">
+            <div class="row row-center min-height">
+                <div class="col col-80">
+                    <p class="date">
+                        <!--{{item.formName}}-->
+                        {{'travel_directive.Travel.application'|translate}}<!--差旅申请-->
+                    </p>
+                </div>
+                <div class="col col-20 text-right expenses-types" ng-hide="isHideState">
+                    <p class="approval-status bg-has-pass" ng-if="item.status === 1003 && item.rejectType === 1000">
+                        {{'status.Have.been.through'|translate}}<!--已通过-->
+                    </p>
+                    <p class="approval-status bg-wait-approval"
+                       ng-if="item.status === 1002 && item.rejectType === 1000">
+                        {{'application_item.In.the.examination.and.approval'|translate}}<!--审批中-->
+                    </p>
+                    <p class="approval-status bg-editing" ng-if="item.status === 1001 && item.rejectType === 1000">
+                        {{'application_item.In.the.editor'|translate}}<!--编辑中-->
+                    </p>
+                    <p class="approval-status bg-has-reject" ng-if="item.status === 1001 && item.rejectType === 1002">
+                        {{'application_item.Has.been.rejected'|translate}}<!--已驳回-->
+                    </p>
+                    <p class="approval-status bg-withdraw" ng-if="item.status === 1001 && item.rejectType === 1001">
+                        {{'application_item.Has.withdrawn'|translate}}<!--已撤回-->
+                    </p>
+                    <p class="approval-status bg-wait-approval" ng-if="item.status === 1008 && item.rejectType === 1001">
+                        {{'application_item.pay_in_process'|translate}}<!--付款中-->
+                    </p>
+                </div>
+            </div>
+            <div class="row row-center row-middle min-height">
+                <!--<div class="col col-60">-->
+                    <!--<p>-->
+                       <!--<span ng-if="item.travelApplication.startDate">-->
+                           <!--{{item.travelApplication.startDate | dayChineseFilter }}-->
+                       <!--</span>  - -->
+                        <!--<span ng-if="item.travelApplication.endDate">-->
+                            <!--{{item.travelApplication.endDate | dayChineseFilter}}-->
+                        <!--</span>-->
+                    <!--</p>-->
+                    <!--<p ng-if="item.travelApplication.travelItineraryLines.length > 0">-->
+                     <!--<span ng-repeat="route in item.travelApplication.travelItineraryLines track by $index"-->
+                           <!--class="route">-->
+                       <!--<span ng-if="$index !== 0">-->
+                             <!-- - -->
+                       <!--</span> {{route}}-->
+                     <!--</span>-->
+                    <!--</p>-->
+                <!--</div>-->
+                <div class="col col-60 comment">
+                    {{item.title}}
+                </div>
+                <!--<div class="col col-40">-->
+                    <!--<p class="text-right"-->
+                       <!--ng-class="{true: '', false: 'budget'}[item.status === 1003 && item.rejectType === 1000]">-->
+                        <!--预算:{{item.travelApplication.averageBudget | currency : code}}/人-->
+                    <!--</p>-->
+                    <!--<p ng-if="item.status === 1003 && item.rejectType === 1000" class="text-right budget">-->
+                        <!--{{item.travelApplication.totalBudget | currency : code}}-->
+                    <!--</p>-->
+                <!--</div>-->
+
+                <div class="col col-40">
+                    <p class="text-right budget">
+                        {{item.travelApplication.totalBudget | currency : code}}
+                    </p>
+                </div>
+
+            </div>
+            <!--<div class="row row-center row-middle">-->
+                <!--<div class="col col-60">-->
+
+                <!--</div>-->
+                <!--<div class="col col-40">-->
+
+                <!--</div>-->
+
+            <!--</div>-->
+            <div class="row row-center row-middle min-height" ng-if="item.status === 1001 && item.rejectType === 1002 && item.rejectReason">
+                <div class="col">
+                    <p class="reject-reason">
+                        {{'application_item.Reason.for.rejection'|translate}}<!--驳回理由-->:{{item.rejectReason}}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row row-center approval-detail" ng-if="isShowType">
+        <div class="col col-center col-67 approval-dep">
+            {{item.travelApplication.departmentName}}
+        </div>
+        <div class="col col-center approval-name approval-name-anchor">
+            <!--等--><!--人-->
+            {{item.applicationParticipants[0].fullName}} <span ng-if="item.applicationParticipants.length > 1">{{"invoice_item.Etc"|translate}} {{item.applicationParticipants.length}} {{"application_item.ren"|translate}}</span>
+        </div>
+    </div>
+    <ion-option-button class="button-assertive travel-delete" ng-click="deleteTravel()" ng-if="canDelete">
+        <div class="column">
+            <div class="delete-text">{{'item.delete'|translate}}<!--删除--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive travel-withdraw" ng-click="withdrawTravel()" ng-if="withdraw">
+        <div class="column">
+            <div class="delete-text">{{'item.withdraw'|translate}}<!--撤回--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive expense-reject" ng-if="canApproval"
+                       ng-click="reject()">
+        <div class="column">
+            <div class="reject-text">{{'item.rejected'|translate}}<!--驳回--></div>
+        </div>
+    </ion-option-button>
+    <ion-option-button class="button-assertive expense-agree" ng-if="canApproval"
+                       ng-click="agree()">
+        <div class="column">
+            <div class="agree-text">{{'item.through'|translate}}<!--通过--></div>
+        </div>
+    </ion-option-button>
+</ion-item>
+
+

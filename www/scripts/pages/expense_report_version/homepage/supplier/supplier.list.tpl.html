@@ -1,0 +1,16 @@
+<ion-view cache-view="false" class="supplier-list">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{view.title}}</span>
+    </ion-nav-title>
+    <ion-content class="supplier-category">
+        <div class="list">
+            <div class="item item-text-wrap" ng-repeat="supplier in view.supplierList"
+                 ng-click="view.orderTicket(supplier.supplierOID)">
+                <div class="row">
+                    <div class="col col-95 filed-name">{{supplier.name}}</div>
+                    <span class="icon ion-ios-arrow-right"></span>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

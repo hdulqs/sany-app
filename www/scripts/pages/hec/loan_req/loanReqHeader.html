@@ -1,0 +1,303 @@
+<ion-view class="hec-common" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'req.header.loan.title'|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <div ng-click="vm.submitLoanReq()" ng-if="vm.isReadOnly&& vm.type!='reqRefLoan'"><!--  && !vm.header.ref_document_id-->
+            <span class="recall-expense">{{'req.button.submit'|translate}}</span>
+        </div>
+        <div ng-click="goBack(vm.docType)" ng-if="vm.type=='reqRefLoan'">
+            <span class="recall-expense">{{'req.button.back.to.req'|translate}}</span>
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="has-header hec-content">
+        <ion-list>
+            <!--公司-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.header.company'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value"> {{vm.header.company_short_name}} </p>
+                    </div>
+                </div>
+            </ion-item>
+            <!--
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col filed-name">{{'req.header.company'|translate}}</div>
+                    <div class="col col-60 text-right language-right">{{vm.header.company_short_name}}</div>
+                </div>
+            </div>-->
+
+            <!--部门-->
+            <ion-item>
+                <hecunit-selector unit-name="vm.header.unit_name" selected="vm.header.unit_id"
+                                  company-id="vm.header.company_id" resp-center-id="vm.header.responsibility_center_id"
+                                  resp-center-name="vm.header.responsibility_center_name"
+                                  readonly="vm.isReadOnly"></hecunit-selector>
+            </ion-item>
+            <!--<div class="item item-text-wrap">
+                <hecunit-selector unit-name="vm.header.unit_name" selected="vm.header.unit_id"
+                                  company-id="vm.header.company_id" resp-center-id="vm.header.responsibility_center_id"
+                                  resp-center-name="vm.header.responsibility_center_name"
+                                  readonly="vm.isReadOnly"></hecunit-selector>
+            </div>
+-->
+            <!--成本中心-->
+            <ion-item>
+                <hecresp-selector company-id="vm.header.company_id" unit-id="vm.header.unit_id"
+                                  readonly="vm.isReadOnly" resp-name="vm.header.responsibility_center_name"
+                                  selected="vm.header.responsibility_center_id"
+                                  employee-id="vm.header.employee_id"></hecresp-selector>
+            </ion-item>
+
+            <!--单据类型-->
+            <ion-item>
+                <div class="row">
+                    <div class="col text-left">
+                        <span class="hec-item-prompt">{{'req.header.docType'|translate}}</span>
+                    </div>
+                    <div class="col col-60 text-right">
+                        <span class="text-value" style="white-space:normal;line-height: 21px;"> {{vm.header.csh_type_id_display}} </span>
+                    </div>
+                    <!--<span class="icon ion-ios-arrow-right"></span>-->
+                </div>
+            </ion-item>
+
+            <!--申请日期-->
+            <ion-item ng-click="datePicker.selectHandDate()">
+                <div class="row">
+                    <span class="hec-item-prompt">{{'req.header.reqDate'|translate}}</span>
+                    <span  class="hec-input-required"  ng-if="!vm.isReadOnly">*</span>
+                    <div class="col text-value">
+                        <span ng-if="vm.header.requisition_date">{{vm.header.requisition_date|dateFilter}}</span>
+                        <span ng-if="!vm.header.requisition_date" class="hec-selector-placeholder">{{'form.please.select'|translate}}</span>
+                        <img src="img/hec/form/calendar.png" alt="" ng-if="!vm.isReadOnly"
+                             style="width: 1.2rem;vertical-align: middle;">
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--币种-->
+            <ion-item>
+                <heccry-selector selected="vm.header.currency_code" readonly="!vm.header.initFlag || vm.header.ref_document_id"></heccry-selector>
+            </ion-item>
+
+            <!--HR岗位-->
+            <ion-item>
+                <div class="row">
+                    <span class="hec-item-prompt">{{'req.header.job'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value"> {{vm.header.hr_position_name}} </p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--职级-->
+            <ion-item>
+                <div class="row">
+                    <span class="hec-item-prompt">{{'req.header.level'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value"> {{vm.header.employee_level}} </p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--干部类型-->
+            <!--<div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col  filed-name">{{'req.header.cadre'|translate}}</div>
+                    <div class="col col-60 text-right language-right">干部类型A</div>
+                </div>
+            </div>-->
+
+            <!--内部职称-->
+            <!--<div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col  filed-name">{{'req.header.internal.title'|translate}}</div>
+                    <div class="col col-60 text-right language-right">{{vm.header.position_name}}</div>
+                </div>
+            </div>-->
+
+            <!--借款人-->
+            <ion-item>
+                <div class="row">
+                    <span class="hec-item-prompt">{{'req.header.loan.applyer'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value"> {{vm.header.employee_id_display}} </p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--借款人电话-->
+            <ion-item>
+                <div class="row">
+                    <span class="hec-item-prompt">{{'req.header.loan.applyer.phone'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value"> {{vm.header.requisition_phone}}</p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--付款方式-->
+            <ion-item>
+                <hecpayway-selector payment-method-desc="vm.header.payment_method_id_display" selected="vm.header.payment_method_id" readonly="vm.isReadOnly"></hecpayway-selector>
+            </ion-item>
+
+            <!--收款对象-->
+            <ion-item>
+                <hec-syscode-selector sys-code-name="vm.header.partner_category_display"
+                                      sys-code-type="PAYMENT_OBJECT1"
+                                      selected="vm.header.partner_category"
+                                      readonly="vm.isReadOnly"></hec-syscode-selector>
+            </ion-item>
+
+            <!--收款方-->
+            <ion-item>
+                <hecbeneficiary-selector beneficiary-desc="vm.header.p_partner_name"
+                                         selected="vm.header.partner_id"
+                                         payment-object="{{vm.header.partner_category}}"
+                                         company-id="vm.header.company_id"
+                                         account-num="vm.header.account_number"
+                                         account-name="vm.header.account_name"
+                                         bank-code="vm.header.bank_code"
+                                         bank-name="vm.header.bank_name"
+                                         bank-location-code="vm.header.bank_location_code"
+                                         bank-location-name="vm.header.bank_location_name"
+                                         readonly="vm.isReadOnly"></hecbeneficiary-selector>
+            </ion-item>
+
+            <!--制单人-->
+            <ion-item>
+                <div class="row">
+                    <span class="hec-item-prompt">{{'req.header.creator'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value"> {{vm.header.payment_requisition_create_by}}</p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--总金额-->
+            <ion-item>
+                <div class="row">
+                    <span class="hec-item-prompt">{{'req.header.total.amount'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value"> {{vm.header.total_amount|amountFilter}}</p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--合同号-->
+            <ion-item class="hec-item-input">
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.header.loan.contract.number'|translate}}</span>
+                    <div class="col">
+                        <input type="text" placeholder="{{ 'form.please.input' | translate}}"
+                                   ng-model="vm.header.contract_number">
+                    </div>
+                    <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                </div>
+            </ion-item>
+
+            <!--合同付款条件-->
+            <ion-item class="hec-item-input">
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.header.loan.contract.payment.condition'|translate}}<span class="hec-input-required" ng-if="vm.header.business_attribute == 'G'">*</span></span>
+                    <div class="col">
+                        <input type="text" placeholder="{{ 'form.please.input' | translate}}"
+                                   ng-model="vm.header.contract_pay_term">
+                    </div>
+                    <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                </div>
+            </ion-item>
+
+            <!--领导已审-->
+            <ion-toggle ng-model="vm.header.leader_approved_flag" style="font-size: 15px"
+                        ng-true-value="'Y'" ng-false-value="'N'">
+                {{'req.header.Business.leader.has.approved' | translate}}
+            </ion-toggle>
+
+            <!--申请事由-->
+            <div>
+                <p class="text-tip">
+                    {{'req.header.comment'|translate}}
+                    <span class="hec-input-required">*</span>
+                </p>
+                <div>
+                    <textarea class="text-area" ng-model="vm.header.description" maxlength="200"
+                              placeholder="{{'req.message.infor.travel.lessThan200Characters' | translate}}">
+                            </textarea>
+                </div>
+            </div>
+        </ion-list>
+
+        <!--操作按钮-->
+        <div class="row hec-operation-row" ng-if="!vm.header.initFlag && vm.type!='reqRefLoan'">
+            <div class="col" ng-click="vm.goDocHistory()" >
+                <button type="button" class="button button-block button-positive">
+                    <!--查看单据历史-->
+                    {{'req.button.view.history' | translate}}
+                </button>
+            </div>
+        </div>
+
+        <div class="row" ui-sref="app.reqList" ng-if="false">
+            <button ui-sref="app.dailyLine" type="button" class="next-button col-96 button button-block button-stable"
+                    style="border: 1px solid;">
+                {{'req.header.apply.detail'|translate}}
+            </button>
+        </div>
+
+        <div ng-if="!vm.header.initFlag">
+            <p class="text-tip">{{'req.header.attachments' | translate}}</p>
+            <upload-image attachment-src="vm.attachments" delete-attachment="vm.deleteAttachment" type-name="pr"
+                          header-id="vm.loanReqHeaderId"
+                          upload-finish="vm.uploadFinish" read-only-flag="false"></upload-image>
+        </div>
+
+        <ion-list can-swipe="true">
+            <div ng-repeat="line in vm.lineList">
+                <ion-item class="line-item">
+                    <div class="row row-center" ng-click="vm.toLoanReqLine(line.payment_requisition_line_id)">
+                        <!--中间的内容-->
+                        <div class="col col-60">
+                            <p class="type-name">
+                                {{line.cls_des}}
+                            </p>
+                            <!--<p class="comment">
+                                {{line.travel_date}}
+                            </p>-->
+                        </div>
+                        <!--右边的费用-->
+                        <div class="col col-40">
+                            <p class="amount">
+                                <span class="currency">{{vm.header.currency_code|currencyFilter}}</span>
+                                <span>{{line.amount|amountFilter}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <ion-option-button class="button-delete" ng-if="true"
+                                       ng-click="vm.deleteLoanReqLine(line)">
+                        <div>{{'req.button.delete' | translate}}</div>
+                    </ion-option-button>
+                </ion-item>
+            </div>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar class="hec-footer">
+        <div class="row row-center">
+            <div class="col text-center expense-new" ng-click="vm.saveLoanReqHeader('M')">
+                {{'req.button.save'|translate}}
+            </div>
+            <div class="col text-center operation-all" ng-click="vm.toLoanReqLine('')">
+                {{'req.button.new.loan.detail'|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

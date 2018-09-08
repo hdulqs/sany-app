@@ -1,0 +1,91 @@
+<label class="item item-input item-stacked-label label-item"
+       ng-if="bankData" ng-click="!readOnly&&view.openModal()">
+    <span class="input-label">{{title}}</span>
+    <p class="text-left refund-money-status">
+     {{bankData}}
+        <img src="img/expense_report_version/travel/arrow.png"  class="refund-arrow"
+             ng-if="!readOnly">
+    </p>
+</label>
+<div class="row row-center row-bank" ng-click="!readOnly&&view.openModal()" ng-if="!bankData">
+    <div class="col col-center text-left choice-bank">
+        {{title}}
+    </div>
+    <div class="col col-center text-right">
+        <img src="img/expense_report_version/travel/arrow.png" alt="" class="bank-arrow"
+             ng-if="!readOnly">
+    </div>
+</div>
+<script type="text/ng-template" id="bank.item.modal.html">
+    <ion-modal-view class="bank-item-modal">
+        <ion-header-bar>
+            <h3 class="title">{{'approval_selector.choose'|translate}}<!--选择--><span ng-if="view.language==='en'">&nbsp;</span>{{title}}</h3>
+            <div class="buttons buttons-left" style="transition-duration: 0ms;">
+            <span class="left-buttons">
+                <a ng-click="bankModal.hide()">
+                    <img src="img/back.png" class="save-btn">
+                </a>
+            </span>
+            </div>
+        </ion-header-bar>
+        <ion-content>
+            <div class="search" layout="row">
+                <label for="search-input">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <span class="sr-only">{{'destination.Please.enter.the.keywords'|translate}}<!--请输入关键词--></span>
+                </label>
+                <input type="search" id="search-input" placeholder="{{'destination.Please.enter.the.keywords'|translate}}" ng-model="view.keyword"/><!--请输入关键词-->
+                <a class="fa fa-times-circle search-clear"
+                   ng-class="{'hide': !view.keyword.length}" ng-click="view.clearKeyword()">
+                    <span class="sr-only">Clear search</span>
+                </a>
+            </div>
+            <div ng-if="view.networkError && view.allBank.length === 0">
+                <not-found-text title="view.networkErrorText" icon="view.networkErrorIcon">
+                </not-found-text>
+                <div class="text-center">
+                    <button class="refresh-btn" ng-click="view.doRefresh()">
+                        {{'value_tpl.Click.the.refresh'|translate}}<!--点击刷新-->
+                    </button>
+                </div>
+            </div>
+            <div ng-if="view.systemError && view.allBank.length === 0">
+                <not-found-text title="view.systemErrorText" sub-title="view.systemErrorSubText"
+                                icon="view.systemErrorIcon">
+                </not-found-text>
+            </div>
+            <ion-list ng-if="view.keyword !== '' && view.allBank.length === 0">
+                <ion-item>
+                    <div class="row row-center">
+                        <div class="col">
+                            {{'bank_item.No.bank'|translate}}<!--无银行-->
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <div class="row hot-city" ng-if="view.keyword === '' && view.allBank.length > 0">
+                <div class="col city">{{'bank_item.Popular.bank'|translate}}<!--热门银行--></div>
+            </div>
+            <ion-list>
+                <ion-item ng-repeat="item in view.allBank track by $index"
+                          ng-click="view.closeBank(item)">
+                    <div class="row row-center">
+                        <div class="col col-10 col-center text-center" >
+                            <img ng-src="img/bank_type/{{item.bankType}}.png" alt="" ng-if="view.hasImg(item)">
+                        </div>
+                        <div class="col col-center text-left">
+                            {{item.bankName}}
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll
+                distance="1%"
+                on-infinite="view.loadMore(view.page.current + 1)"
+                ng-if="view.page.current < view.page.lastPage"
+                immediate-check="false">
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-modal-view>
+
+</script>

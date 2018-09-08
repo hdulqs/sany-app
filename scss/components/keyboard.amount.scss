@@ -1,0 +1,42 @@
+$border: 1px solid rgba(186, 204, 219, 0.1);
+
+.keyboard-amount-directive {
+    background-color: #FFFFFF;
+    width: 100%;
+    font-size: 24px;
+    color: #9bb3c5;
+
+    .keyboard {
+        height: 59px;
+        width: 100%;
+        padding: 0;
+        line-height: 59px;
+
+        &:not(:first-child) {
+            border-top: $border;
+        }
+
+        .col {
+            width: 20%;
+            height: 100%;
+            text-align: center;
+            padding: 0;
+
+            &:not(:last-child) {
+                border-right: $border;
+            }
+        }
+
+        .col-40 {
+            width: 40%;
+            background-color: #0092da;
+            font-size: 18px;
+            color: #FFFFFF;
+        }
+
+        .delete-one {
+            width: 23px;
+            height: auto;
+        }
+    }
+}

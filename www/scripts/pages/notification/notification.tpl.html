@@ -1,0 +1,284 @@
+<ion-view class="notification-page">
+    <ion-nav-title>
+        <!--消息列表-->
+        <span class="expense-report-nav-title">{{"news.messageList"|translate}}</span>
+    </ion-nav-title>
+    <ion-content>
+        <!--加载中...-->
+        <ion-refresher on-refresh="news.doRefresh()" pulling-text="{{'news.Loading.in'|translate}}"></ion-refresher>
+        <ion-list>
+            <ion-item ng-repeat="news in news.view.newsDetail" class="card" ng-repeat-done="newsListDataLoaded">
+                <div ng-if="news.messageType === 'INVOICE'" class="row news-invoice" ng-click="invoice.goInvoice(news)">
+                    <div class="col col-15">
+                        <img ng-src="img/expensetypes/{{news.expenseTypeIconName}}.png" alt="" class="invoice-icon">
+                    </div>
+                    <div class="col col-40">
+                        <p class="invoice-name">
+                            {{news.expenseTypeName}}
+                        </p>
+                        <p class="invoice-tip">
+                            <!--请补充费用消息-->
+                            {{'news.supplementCostMessage'|translate}}
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p class="text-right invoice-money">
+                            <i class="icon ion-social-yen"></i>{{news.amount}}
+                        </p>
+                        <p class="text-right invoice-date">
+                            {{news.createdDate | dateFilter}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row reimbursement-news" ng-click="expense.goPreInvoiceDetail(news)"
+                     ng-if="news.messageType==='CUSTOM_PROCESS_PASS' || news.messageType==='CUSTOM_PROCESS_APPROVAL' || news.messageType==='CUSTOM_PROCESS_REJECT'">
+                    <div class="col col-15">
+                        <img src="img/notification/custom-process.png" alt="" class="custom-icon">
+                    </div>
+                    <div class="col col-60">
+                        <p class="news-project" ng-repeat="field in news.customFormValueDTOs">
+                            <!--项目-->
+                            <span ng-if="field.fieldName === '{{'news.project'|translate}}'">
+                            {{news.costCenterItemName}}
+                            </span>
+                        </p>
+                        <div class="reimbursement-include" ng-repeat="field in news.customFormValueDTOs">
+                            <!--类别-->
+                            <span class="include-label" ng-if="field.fieldName === '{{'news.type'|translate}}'">
+                                {{ field.value }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col expenses-types">
+                        <p class="text-right reimbursement-money" ng-repeat="field in news.customFormValueDTOs">
+                            <!--金额-->
+                            <span ng-if="field.fieldName === '{{'select_type.money'|translate}}'">
+                                <i class="icon ion-social-yen"></i>
+                                {{field.value}}
+                            </span>
+                        </p>
+                        <p class="text-right reimbursement-submit" ng-if="news.messageType==='CUSTOM_PROCESS_APPROVAL'">
+                            <!--提交-->
+                            {{news.applicantMessage.userName}}{{'news.submit'|translate}}
+                        </p>
+                        <p class="text-right" ng-if="news.messageType==='CUSTOM_PROCESS_PASS'">
+                            <span class="bg-has-pass approval-type">
+                                <!--已通过-->
+                                {{'news.yetPass'|translate}}
+                            </span>
+                        </p>
+                        <p class="text-right" ng-if="news.messageType==='CUSTOM_PROCESS_REJECT'">
+                            <span class="bg-has-reject approval-type">
+                                <!--已驳回-->
+                                {{'news.yetReject'|translate}}
+                            </span>
+                        </p>
+                        <p class="text-right reimbursement-date">
+                            {{news.applicantMessage.createdDate | dateFilter}}
+                        </p>
+                    </div>
+
+                </div>
+                <div class="row reimbursement-news" ng-click="expense.goExpenseDetail(news)"
+                     ng-if="news.messageType==='REIMBURSEMENT_PASS' || news.messageType==='REIMBURSEMENT_REJECT' || news.messageType==='REIMBURSEMENT_APPROVAL' || news.messageType ==='BPO_APPROVAL_PASS' || news.messageType ==='BPO_APPROVAL_REJECT' || news.messageType ==='FINANCE_LOAN' ">
+                    <div class="col col-15">
+                        <img src="img/notification/expense-type.png" alt="" class="reimbursement-icon">
+                    </div>
+                    <div class="col col-60">
+                        <p class="news-project">{{news.costCenterItemName}}</p>
+                        <div class="reimbursement-include">
+                            <!--费用包含:-->
+                            <span class="include-label">{{'news.costContain'|translate}}</span>
+                            <img class="typeImg" ng-src="img/expensetypes/{{invoiceType}}.png"
+                                 ng-repeat="invoiceType in news.invoiceTypes" ng-if="$index < 3">
+                            <span class="omit" ng-if="news.invoiceTypes.length >= 4">...</span>
+                        </div>
+                    </div>
+                    <div class="col expenses-types">
+                        <p class="text-right" ng-if="news.messageType==='FINANCE_LOAN'">
+                            <span class="bg-finance-loan approval-type">
+                                <!--已付款-->
+                                {{'news.yetPayment'|translate}}
+                            </span>
+                        </p>
+                        <p class="text-right reimbursement-money">
+                            <i class="icon ion-social-yen"></i>{{news.totalAmount}}
+                        </p>
+                        <p class="text-right reimbursement-submit" ng-if="news.messageType==='REIMBURSEMENT_APPROVAL'">
+                            <!--提交-->
+                            {{news.applicantMessage.userName}}{{'news.submit'|translate}}
+                        </p>
+                        <p class="text-right" ng-if="news.messageType==='REIMBURSEMENT_PASS'">
+                            <span class="bg-has-pass approval-type">
+                                <!--已通过-->
+                                {{'news.yetPass'|translate}}
+                            </span>
+                        </p>
+                        <p class="text-right" ng-if="news.messageType==='REIMBURSEMENT_REJECT'">
+                            <span class="bg-has-reject approval-type">
+                                <!--已驳回-->
+                                {{'news.yetReject'|translate}}
+                            </span>
+                        </p>
+                        <p class="text-right" ng-if="news.messageType==='BPO_APPROVAL_REJECT'">
+                            <span class="bg-bpo-reject approval-type">
+                                <!--审核驳回-->
+                                {{'news.auditReject'|translate}}
+                            </span>
+                        </p>
+
+                        <p class="text-right" ng-if="news.messageType==='BPO_APPROVAL_PASS'">
+                            <span class="bg-bpo-pass approval-type">
+                                <!--审核通过-->
+                                {{'news.auditPass'|translate}}
+                            </span>
+                        </p>
+                        <p class="text-right reimbursement-date">
+                            {{news.applicantMessage.createdDate | dateFilter}}
+                        </p>
+                    </div>
+
+                </div>
+                <div class="row travel-news" ng-click="expense.goTravelDetail(news)"
+                     ng-if="news.messageType ==='TRAVEL_PASS' || news.messageType ==='TRAVEL_REJECT' || news.messageType ==='TRAVEL_APPROVAL' ">
+                    <div class="col col-15">
+                        <img src="img/notification/flyback-type.png" alt="" class="travel-icon" ng-if="news.applyType === 1001">
+                        <img src="img/notification/travel-type.png" alt="" class="travel-icon" ng-if="news.applyType === 1002">
+                        <img src="img/notification/travel-type.png" alt="" class="travel-icon" ng-if="news.applyType === 1003">
+                    </div>
+                    <div class="col col-60">
+                        <p class="news-project">{{news.costCenterItemName}}</p>
+                        <div class="travel-route" ng-if="news.applyType === 1002">
+                            <p>
+                                <span class="travel-city"
+                                      ng-repeat="plan in news.trafficPlanDTOs[0].airRoute track by $index">{{plan}}</span>
+                            </p>
+                        </div>
+                        <div class="travel-route" ng-if="news.applyType === 1001">
+                            <span class="travel-city">{{news.flybackDTO.projectCity}}</span>
+                            <span class="travel-city">{{news.flybackDTO.baseCity}}</span>
+                        </div>
+                        <div class="travel-route" ng-if="news.applyType === 1003">
+                            <span class="travel-city">{{news.interviewApplication.departure}}</span>
+                            <span class="travel-city">{{news.interviewApplication.destination}}</span>
+                        </div>
+                    </div>
+                    <div class="col expenses-types">
+                        <p class="text-right travel-submit" ng-if="news.messageType==='TRAVEL_APPROVAL'">
+                            <!--提交-->
+                            {{news.applicantMessage.userName}}{{'news.submit'|translate}}
+                        </p>
+                        <p class="text-right" ng-if="news.messageType==='TRAVEL_PASS'">
+                            <span class="bg-has-pass approval-type">
+                                <!--已通过-->
+                                {{'news.yetPass'|translate}}
+                            </span>
+                        </p>
+                        <p class="text-right" ng-if="news.messageType==='TRAVEL_REJECT'">
+                            <span class="bg-has-reject approval-type">
+                                <!--已驳回-->
+                                {{'news.yetReject'|translate}}
+                            </span>
+                        </p>
+                        <p class="text-right travel-date">
+                            {{news.applicantMessage.createdDate | dateFilter}}
+                        </p>
+                        <p class="text-right travel-type" ng-if="news.applyType === 1001">
+                            flyback
+                        </p>
+                        <p class="text-right travel-type" ng-if="news.applyType === 1002">
+                            <!--普通-->
+                            {{'news.common'|translate}}
+                        </p>
+
+                        <p class="text-right travel-type" ng-if="news.applyType === 1003">
+                            <!--面试-->
+                            {{'news.interview'|translate}}
+                        </p>
+                    </div>
+                </div>
+                <div class="row row-center expense-item is-reject" ng-if="news.messageType=='INVOICE_REJECT'"
+                    ng-click="expense.goRejectExpense(news)">
+                    <div class="reject-text">
+                        <img src="img/expense/reject-icon.png" alt="">
+                        <p>
+                            <!--驳回待修改-->
+                            {{'news.rejectAmend'|translate}}
+                        </p>
+                    </div>
+                    <div class="col">
+                        <expense-item item="news"></expense-item>
+                    </div>
+                </div>
+                <div class="row row-center com-expense-pass" ng-click="expense.goApproval(news)"
+                     ng-if="news.messageType=='INVOICE_APPROVAL' || news.messageType=='INVOICE_PASS'">
+                    <div class="col">
+                        <img src="img/notification/expense-icon.png" class="com-icon"/>
+                    </div>
+                    <div class="col col-60 com-expense-detail">
+                        <div class="row">
+                            <h2 class="com-text">
+                                {{news.title}}
+                            </h2>
+                        </div>
+                        <div class="row">
+                            <!--请及时查看,打印贴票!-->
+                            <span class="com-status">{{'news.printingPasteTicket'|translate}}</span>
+                        </div>
+                    </div>
+                    <div class="col col-25">
+                        <!--MM月dd日-->
+                        <span class="com-date">{{news.createdDate | date:"{{'news.mm_Month_dd_Date'|translate}}"}}</span>
+                    </div>
+                </div>
+                <div class="row row-center travel-expense-pass" ng-if="new.messageType=='TRAVEL'">
+                    <div class="col">
+                        <img src="img/notification/travel-icon.png" class="travel-icon"/>
+                    </div>
+                    <div class="col col-60 travel-expense-detail">
+                        <!--NO.FREWEW的差旅申请审批通过-->
+                        <h2 class="travel-text">{{'news.travelApplicationAuditPass'|translate}}</h2>
+                    </div>
+                    <div class="col col-25">
+                        <!--7月14日-->
+                        <span class="travel-date">{{'news.7Month14Date'|translate}}</span>
+                    </div>
+                </div>
+                <div class="row row-center other-expense" ng-if="new.messageType=='INVOICE'">
+                    <div class="col">
+                        <img src="img/notification/didi-icon.png" class="other-icon"/>
+                    </div>
+                    <div class="col col-60 other-expense-detail">
+                        <!--有一笔新的滴滴/携程订单-->
+                        <h2 class="other-text">{{'news.aNewdidi'|translate}}</h2>
+                    </div>
+                    <div class="col col-25">
+                        <!--7月14日-->
+                        <span class="other-date">{{'news.7Month14Date'|translate}}</span>
+                    </div>
+                </div>
+                <ion-option-button class="button-assertive delete-news"
+                                   ng-click="invoice.deleteNews(news.messageOID,news.invoiceOID)"
+                                   ng-if="new.messageType === 'INVOICE'">
+                    <div class="column">
+                        <img class="rubbish" src="img/expense/delete.png"/>
+                        <!--删除-->
+                        <div class="delete-text">{{'news.delete'|translate}}</div>
+                    </div>
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="news.data.page < news.data.lastPage"
+            on-infinite="news.loadData()" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+        <div class="alert alert-warning warn"
+             align="center"
+             ng-if="news.view.noData === true">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <!--暂时没有新的消息!-->
+            <p class="warning-word">{{'news.notNewMessage'|translate}}</p>
+        </div>
+    </ion-content>
+</ion-view>

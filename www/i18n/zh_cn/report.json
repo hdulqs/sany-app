@@ -1,0 +1,39 @@
+{
+    "error": {
+        "no.cost.records": "没有费用记录！"
+    },
+    "report": {
+        "april": "4月",
+        "august": "8月",
+        "budget": "预算",
+        "category": "类别",
+        "december": "12月",
+        "department": "部门",
+        "didi.travel": "滴滴出行",
+        "february": "2月",
+        "january": "1月",
+        "july": "7月",
+        "june": "6月",
+        "last.month.payment": "上月支出",
+        "march": "3月",
+        "may": "5月",
+        "month": "月",
+        "nearly.six.months": "近六个月",
+        "nearly.three.months": "近三个月",
+        "nearly.twelve.months": "近十二个月",
+        "november": "11月",
+        "number.of.people": "人数",
+        "october": "10月",
+        "payment.for.the.quarter": "本季度支出",
+        "payment.for.this.year": "本年度支出",
+        "payment.this.month": "本月支出",
+        "per": "人均",
+        "person": "人",
+        "personal": "个人",
+        "personnel": "人员",
+        "repert": "报表",
+        "september": "9月",
+        "to": "至",
+        "year": "年"
+    }
+}

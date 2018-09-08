@@ -1,0 +1,74 @@
+<div class="cost-center-selector-new" ng-click="openModal()">
+    <p ng-if="bankAccountNo" class="cost-center-name">
+        {{bankAccountNo}}
+    </p>
+    <p ng-hide="bankAccountNo" class="select-name">
+        <span ng-if="prompt">
+            {{prompt}}
+        </span>
+        <span ng-hide="prompt" class="placeholder-text">
+            <!--请选择-->
+            <!--{{"linkage.Please.select"|translate}}-->
+            {{"approval_selector.No.bank"|translate}}
+        </span>
+    </p>
+</div>
+<script id="bank.account.selector.html" type="text/ng-template">
+    <ion-modal-view class="cost-center-selector-new-modal">
+        <ion-header-bar class="bar-positive">
+            <h1 class="title">{{title}}</h1>
+            <span class="cancel" ng-click="view.cancel()">
+               <!--取消-->
+                {{"destination.cancel"|translate}}
+            </span>
+        </ion-header-bar>
+        <ion-content>
+            <div class="text-center no-itinerary" ng-if="total == 0">
+                <img src="img/expense_report_version/travel/no-itinerary.png" alt="">
+                <p class="text-center">
+                    <!--无启用的银行账号，请联系管理员！-->
+                    {{"approval_selector.No.bank"|translate}}
+                </p>
+                <div ng-if="adminList.length > 0" class="admin-list">
+                    <div class="row row-center" ng-repeat="item in adminList" ng-if="$index <= 2">
+                        <div class="col col-50 text-right text-name">
+                            {{item.fullName}}{{'common.telephone'|translate}}:
+                            <!--电话-->
+                        </div>
+                        <div class="col col-50 text-left text-login">
+                            <a href="tel:{{item.login}}">{{item.login}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ion-list ng-if="total > 0">
+                <ion-item ng-repeat="item in view.bankAccountList" ng-click="view.selectCorporationEntity(item)">
+                    <p class="cost-center-name">
+                        {{item.bankAccountName}}&nbsp;&nbsp; <span class="bank-name">{{item.bankName}}</span>
+                        <br>
+                        <!--卡号：-->
+                        <span class="">{{"value_tpl.cardID"|translate}} {{item.bankAccountNo}}</span>
+                    </p>
+                    <div class="checked-wrap">
+                        <div class="checked-right">
+                            <div class="default-value" ng-if="item.isPrimary">
+                               <!-- 默认-->
+                                {{"value_tpl.default"|translate}}
+                            </div>
+                            <img src="img/expense_report_version/travel/select.png" alt=""
+                                 class="bank-checked"
+                                 ng-if="(item.isPrimary && !selected) || selected === item.contactBankAccountOID">
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll
+                on-infinite="view.loadMore(view.page + 1)"
+                distance="1%"
+                ng-if="view.lastPage > view.page"
+                immediate-check="false"
+            >
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-modal-view>
+</script>

@@ -1,0 +1,65 @@
+{
+    "account": {
+        "Future.generations": "select all",
+        "Temporarily.no.cost.information": "No expense information temporarily",
+        "my.account": "My account book",
+        "import.and.new":"Import and add",
+        "import":"import"
+    },
+    "account_is":{
+        "error":{
+            "Data.import.failed":"Data import failed"
+        },
+        "message":{
+            "delete.success":"Deleted successfully",
+            "delete.failed":"Delete failed"
+        }
+    },
+    "create_expense": {
+        "Attachment.information": "Attachment information (up to 9 photos can be uploaded)",
+        "For.instructions": "Description of causes",
+        "Save.and.then.write.a": "Save and then record another account",
+        "Save.and.new":"Save and add",
+        "date": "Date of occurrence",
+        "exchange.rate":"(Invoice - payment) exchange rate",
+        "Reimbursement.amount":"Reimbursement amount",
+        "Invoice.code":"Invoice code",
+        "Invoice.number":"Invoice No.",
+        "Invoice.date":"Date of invoice",
+        "tax.price":"Tax amount",
+        "spending.months":"spending month",
+        "period.name":"Business period",
+        "lessThan200Characters":"Less than 200 Chinese characters",
+        "save": "Save",
+        "please.input": "Please enter"
+    },
+    "create_expense_js": {
+        "Cost.details": "Details of expenses",
+        "Cost.to.create.failure": "Failed to create expenses!",
+        "Create.a.cost": "Create expenses",
+        "Information.not.saved.exit": "The information is not saved. Do you still want to exit?",
+        "Please.select.a.cost.type": "Please select the type of expense",
+        "Please.input.notes": "Please enter the description of causes",
+        "prompt": "Prompt",
+        "Please.select.a.invoice.item":"Please select the invoice item",
+        "Please.select.a.invoice.type":"Please select the invoice category",
+        "Please.input.invoice.code":"Please enter the invoice code",
+        "Please.input.invoice.number":"Please enter the invoice number",
+        "Please.select.a.invoice.date":"Please select the date of invoice",
+        "Please.select.a.rate.type":"Please select the tax rate",
+        "Please.input.rate.price":"Please enter the tax amount",
+        "Please.input.exchange.rate":"Please enter the exchange rate",
+        "Please.input.reim.price":"Please enter the amount of reimbursement",
+        "The.field.must.not.be.empty":"The mandatory field must not be left blank",
+        "exchange_rate":"The exchange rate does not exist, please contact the administrator to maintain the exchange rate.",
+        "cancel": "cancel",
+        "ok": "Confirm",
+        "other":"Others",
+        "maintain.flex":"Save successfully, please maintain the flexfield!",
+        "Please.select.a.company.name":"Please select company",
+        "Please.select.a.unit.name":"Please select department",
+        "Please.select.a.resp.name":"Please select cost center",
+        "Please.select.a.bussiness.date":"Please select the date of occurrence",
+        "Please.select.a.d2":"Please select the item"
+    }
+}

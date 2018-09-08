@@ -1,0 +1,79 @@
+<ion-view class="subsidy-selector-modal" hide-back-button="true">
+        <ion-nav-title>
+            <span class="expense-report-nav-title" style="font-size: 17px;">{{'subsidy_list.Subsidy.related.application.form'|translate}}</span>
+        </ion-nav-title>
+        <ion-nav-buttons side="left">
+            <a ng-click="goBack();"
+               class="back-button">
+                <img src="img/back.png" class="save-btn">
+            </a>
+        </ion-nav-buttons>
+    <ion-content class="content-bg-color">
+        <div class="alert alert-warning warn" ng-if="vm.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'subsidy_list.empty'|translate}}<!--补贴信息!--></p>
+        </div>
+        <div ng-if="vm.networkError && vm.importSubsidy.length === 0">
+            <not-found-text title="vm.networkErrorText" icon="vm.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="vm.doRefresh()">
+                    {{'subsidy_list.Click.the.refresh'|translate}}<!--点击刷新-->
+                </button>
+            </div>
+        </div>
+        <div ng-if="vm.systemError && vm.importSubsidy.length === 0">
+            <not-found-text title="vm.systemErrorText" sub-title="vm.systemErrorSubText"
+                            icon="vm.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <ion-refresher on-refresh="vm.doRefresh()" pulling-text="{{'subsidy_list.Loading'|translate}}"></ion-refresher>
+        <div class="subsidy-list">
+            <div class="subsidy-item" ng-repeat="item in vm.subsidyList" ng-click="vm.selectItem(item)">
+                <div class="row item-head">
+                    <div class="col" style="white-space: nowrap;text-align: left;padding-left: 0px;color: red;">{{item.line_number}}</div>
+                    <div class="col col-90">
+                        <div class="travel" style="display: flex;justify-content: space-between">
+                            <div>{{item.place_from}}-{{item.place_to}} </div>
+                            <div>{{item.currency_code | currencyFilter}} {{(item.other_requisition_amount+item.fly_requisition_amount+item.hotel_requisition_amount) | amountFilter}}</div>
+
+                        </div>
+                        <div class="travel">{{item.date_from}}-{{item.date_to}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col hec-item-prompt">{{'subsidy_list.Reimbursement.type' | translate}}</div>
+                    <div class="col text-right">{{item.expense_type_id_display}}</div>
+                </div>
+                <div class="row">
+                    <div class="col hec-item-prompt">{{'subsidy_list.Aircraft.application.amount' | translate}}</div>
+                    <div class="col text-right">{{item.fly_requisition_amount | amountFilter}}</div>
+                </div>
+                <div class="row">
+                    <div class="col hec-item-prompt">{{'subsidy_list.Hotel.application.amount' | translate}}</div>
+                    <div class="col text-right">{{item.hotel_requisition_amount | amountFilter}}</div>
+                </div>
+                <div class="row">
+                    <div class="col hec-item-prompt">{{'subsidy_list.Other.application.amount' | translate}}</div>
+                    <div class="col text-right">{{item.other_requisition_amount | amountFilter}}</div>
+                </div>
+                <div class="row">
+                    <div class="col hec-item-prompt">{{'subsidy_list.Project' | translate}}</div>
+                    <div class="col text-right">{{item.d2 | convertNothing}}</div>
+                </div>
+                <div class="row">
+                    <div class="col hec-item-prompt">{{'subsidy_list.Comment' | translate}}</div>
+                    <div class="col text-right">{{item.description |convertNothing}}</div>
+                </div>
+            </div>
+        </div>
+        <ion-infinite-scroll
+            on-infinite="vm.getSubsidyList(vm.page+1)"
+            distance="1%"
+            ng-if="vm.pageCount > vm.page"
+            immediate-check="false"
+        ></ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+
+

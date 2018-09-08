@@ -1,0 +1,27 @@
+{
+    "error": {
+        "positioning.failure, after.submission.can.be.modified.manually.in.the.cost": "Positioning failed, manual changes after submitted the cost",
+        "seek.failed": "Positioning Failed",
+        "this.type.is.not.available.please.contact.administrator": "Type.is.not.available, please.contact.administrator",
+        "whether.to.clear.the.current.data": "Confirm.to.clear.the.current.data"
+    },
+    "wave": {
+        "cancel": "Cancel",
+        "city": "City",
+        "click.build.time.location": "Click here to load your boarding time and location",
+        "confirm": "OK",
+        "cost.creation.success": "Successfully generate cost",
+        "fare": "Fare",
+        "get.off": "Arrival",
+        "get.on": "Departure",
+        "place.of.arrival": "Destination",
+        "place.of.departure": "Place.of.departure",
+        "please.enter.the.fare": "Please enter the fare",
+        "position": "In positioning..",
+        "submit": "Submit",
+        "time.of.arrival": "Arrival time",
+        "time.of.departure": "Departure time",
+        "traffic": "Traffic",
+        "wave.travel": "Taxi"
+    }
+}

@@ -1,0 +1,158 @@
+<ion-modal-view class="arrange-tiket-journey">
+    <ion-header-bar>
+        <a ng-click="view.closeHotelModal()" class="row application-back-button">
+            <img src="img/back.png" class="save-btn create-expense-back-btn">
+            <span class="back-text-grey">
+                {{'custom.application.nav.back' | translate}}
+                <!--返回-->
+            </span>
+        </a>
+        <h3 class="title">
+            {{"modal.add_hotel_itinerary"|translate}}
+            <!--添加酒店行程-->
+        </h3>
+    </ion-header-bar>
+    <ion-content class="block-content has-footer">
+        <ion-list>
+            <ion-item ng-repeat="item in view.hotelList" ng-class="{true: 'flow animated1s linear', false: ''}[$index == (view.hotelList.length -1) && view.hotelList.length > 1]">
+                <p class="itinerary-index">
+                    <!--行程-->
+                    {{"custom.application.tip.itinerary"|translate}}
+                    {{$index +1}}
+                </p>
+                <div class="row row-center input-list supplier-item" ng-click="view.selectSupplier(1003, $index)" ng-if="view.hotelSupplier.length > 0">
+                    <div class="col col-60">
+                        <img ng-src="{{item.supplierIconUrl}}" alt="" class="supplier-icon">
+                        {{ item.supplierName }}
+                    </div>
+                    <div class="col col-33 text-right text-change-supplier" ng-if="view.hotelSupplier.length > 1">
+                        <!--切换供应商-->
+                        {{"custom.application.tip.change_supplier"|translate}}
+                    </div>
+                    <div class="col text-right" ng-if="view.hotelSupplier.length > 1">
+                        <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                    </div>
+                </div>
+                <div class="block-card" ng-class="{true: 'shadow-block', false: ''}[$index == (view.hotelList.length -1)]">
+                    <div class="row row-center input-list hotel-date">
+                        <div class="col col-50 border-bottom" ng-click="view.selectHotelDate('fromDate', $index)">
+                            <p class="date-label" ng-hide="item.fromDate">
+                                <!--入住日期-->
+                                {{"custom.application.from_date"|translate}}
+                            </p>
+                            <p class="date-value" ng-if="item.fromDate">
+                                {{item.fromDate | dateFilter}}
+                            </p>
+                        </div>
+                        <div class="col col-50 border-bottom" ng-click="view.selectHotelDate('leaveDate', $index)">
+                            <p class="date-label text-right" ng-hide="item.leaveDate">
+                                <!--离店日期-->
+                                {{"custom.application.leave_date"|translate}}
+                            </p>
+                            <p class="date-value text-right" ng-if="item.leaveDate">
+                                {{item.leaveDate | dateFilter}}
+                            </p>
+                        </div>
+                        <span ng-if="item.fromDate && item.leaveDate" class="hotel-day">
+                            {{item.day}}{{'custom.application.travel.day' | translate}} {{item.day -1}}{{'custom.application.tip.night' | translate}}
+                            <!--天    晚-->
+                        </span>
+                    </div>
+                    <div class="row row-center select-city hotel-city" ng-if="view.hotelProfile.city && view.hotelProfile.city.enable">
+                        <div class="col col-100">
+                            <p class="city-name">
+                                <city-selector supplier-name="item.serviceName"
+                                               city="item.cityName"
+                                               code='item.cityCode'
+                                               hide-hot-city="view.functionProfileList['ca.travel.hotCity.disabled']"
+                                               type="1002" readonly="false" holder="'入住城市'">
+                                </city-selector>
+                            </p>
+                        </div>
+                    </div>
+                    <!--ng-click="view.hotelRoomData.maxRoomNumber > 0 && view.changeRoomNumber($index)"-->
+                    <div class="row row-center input-list-remark room-number"
+                    ng-if="view.hotelProfile.roomNumber && view.hotelProfile.roomNumber.enable">
+                        <div class="col col-80">
+                            {{'custom.application.tip.room_number' | translate}}
+                            <!--房间数量-->
+                            <br/>
+                            <p class="remark-content" ng-if="view.shareRoomConfig && view.shareRoomConfig.remark">
+                                 {{ view.shareRoomConfig.remark }}
+                            </p>
+                        </div>
+                        <div class="col col-20 text-right room">
+                            {{item.roomNumber}}
+                        </div>
+                        <!--<div class="col text-right">-->
+                            <!--<img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">-->
+                        <!--</div>-->
+                    </div>
+                    <div class="ticket-box" ng-if="(view.hotelProfile.maxPrice && view.hotelProfile.maxPrice.enable) || (view.hotelProfile.minPrice && view.hotelProfile.minPrice.enable)">
+                        <!--<div class="row item-box">-->
+                        <!--<span class="item-text">-->
+                            <!--价格-->
+                        <!--</span>-->
+                            <!--<div class="text-right text-value">-->
+                                <!--<input type='number' placeholder="最低价格" pattern="[0-9.]*" class="ticket-price" money-input decimal-length="2"-->
+                                       <!--ng-model="item.minPrice" maxlength="50">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="row item-row">
+                            <span class="item-text">
+                                {{'custom.application.price' | translate}}
+                                <!--价格-->
+                            </span>
+                            <div class="text-right text-value" ng-if="view.hotelProfile.minPrice && view.hotelProfile.minPrice.enable">
+                                <input placeholder="{{'custom.application.tip.unlimited' | translate}}" class="ticket-price text-center"
+                                       ng-model="item.minPrice" maxlength="50">
+                            </div>
+                            <span ng-if="view.hotelProfile.minPrice && view.hotelProfile.minPrice.enable && view.hotelProfile.maxPrice && view.hotelProfile.maxPrice.enable" class="price-between">
+                                －
+                            </span>
+                            <div class="text-right text-value" ng-if="view.hotelProfile.maxPrice && view.hotelProfile.maxPrice.enable">
+                                <input placeholder="{{'custom.application.tip.unlimited' | translate}}" class="ticket-price text-center"
+                                       ng-model="item.maxPrice" maxlength="50">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-center self-comment">
+                        <div class="col col-100">
+                        <textarea placeholder="{{'form.please.input' | translate}}" ng-model="item.remark"
+                                  maxlength="200">
+                        </textarea>
+                        </div>
+                    </div>
+                    <div class="row row-center text-area-number" ng-if="item.remark.length > 0">
+                        <p class="text-right">
+                            {{item.remark.length}}/200
+                        </p>
+                    </div>
+                    <div class="row row-center text-area-number" ng-hide="item.remark.length > 0">
+                        <p class="text-right">
+                            0/200
+                        </p>
+                    </div>
+                </div>
+                <ion-option-button class="button-assertive delete-itinerary" ng-click="view.deleteHotel($index)">
+                    <div class="column">
+                        <img src="img/expense_report_version/travel/delete-itinerary.png" alt="" class="delete-icon">
+                    </div>
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar>
+        <div class="row row-center">
+            <div class="col col-50 text-center sure" ng-click="view.saveHotelItinerary()">
+                <!--确认-->
+                {{"common.sure"|translate}}
+            </div>
+            <div class="col col-50 text-center sure-create" ng-click="view.saveMoreHotelItinerary()">
+                {{"common.sure_and_add"|translate}}
+                <!--确认并新建-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>
+

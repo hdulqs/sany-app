@@ -1,0 +1,84 @@
+<ion-modal-view class="approval-budget-modal">
+    <ion-header-bar>
+        <a ng-click="expenseCheckBudgetModal.hide()">
+            <img src="img/back.png" class="save-btn">
+        </a>
+        <h3 class="title">检查详情</h3>
+    </ion-header-bar>
+    <ion-content class="application-budget-content">
+        <div class="row row-center budget-row" ng-if="view.content==='self_next'">
+            <div class="col col-top" >
+                <span class="must">*</span>
+                <span>系统将在下次提交时验证申请金额,因此该页面数据会与修改后数据有误差</span>
+            </div>
+        </div>
+        <div class="row row-center budget-row">
+            <span>{{view.approvalData.lastModifiedDate|dateTimeFilter}}&nbsp;</span>
+            <span>
+                检查结果
+            </span>
+        </div>
+        <div ng-repeat="item in budgetError" ng-if="budgetError.length >0">
+            <div class="row row-center budget-row">
+                <div class="budget-icon col-top" ng-class="{'budget-color-name':item.externalPropertyName==='1002'}"></div>
+                <div class="col col-25 col-top budget-name">
+                    <span ng-if="item.externalPropertyName==='2001'">超差标</span>
+                    <span ng-if="item.externalPropertyName==='1001'">超申请</span>
+                    <span ng-if="item.externalPropertyName==='1002'|| item.externalPropertyName==='1004'">超预算</span>
+                    <span ng-if="item.externalPropertyName==='1003'">系统错误</span>：
+                </div>
+            </div>
+            <div class="row budget-value" ng-repeat="msg in item.errorMsg">
+                <p>{{msg.msg}}</p>
+            </div>
+            <!--<div class="row row-center budget-row" ng-if="item.externalPropertyName==='1001'">-->
+            <!--<div class="col col-center red-row">-->
+            <!--点点滴滴的打底裤坎坎坷坷坎坎坷坷坎坎坷坷点点滴滴的多-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="arrow-red-row" ng-if="item.externalPropertyName==='1001'"></div>-->
+            <!--&lt;!&ndash;费用列表&ndash;&gt;-->
+            <!--<div class="item-invoice-list" ng-if="item.externalPropertyName==='1001'">-->
+            <!--<ion-item class="invoice-list  row">-->
+            <!--<img src="img/expense/delete-one.png" alt="" class="img-icon">-->
+            <!--<div class="row row-center">-->
+            <!--<div class="col col-50">-->
+            <!--<p>报销合计金额</p>-->
+            <!--<p>报销合计金额</p>-->
+            <!--</div>-->
+            <!--<div class="col text-right"-->
+            <!--&gt;-->
+            <!--<p>报销合计金额</p>-->
+            <!--<p>报销合计金额</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</ion-item>-->
+            <!--</div>-->
+            <!--<div class="table">-->
+            <!--<div class="header row row-center">-->
+            <!--<div class="col col-20 col-center text-center cell">-->
+            <!--</div>-->
+            <!--<div class="col col-center text-center cell">报销合计金额</div>-->
+            <!--<div class="col col-center text-center cell">报销合计金额</div>-->
+            <!--<div class="col col-20 col-center text-center cell">超额</div>-->
+            <!--</div>-->
+            <!--<div class="data-container row row-center">-->
+            <!--<div class="col col-20 col-center text-center cell">-->
+            <!--<img src="img/expense/delete-one.png" alt="" class="cell-icon">-->
+            <!--<span>交通</span>-->
+            <!--</div>-->
+            <!--<div class="col col-center text-center cell">-->
+            <!--100.00-->
+            <!--</div>-->
+            <!--<div class="col col-center text-center cell">-->
+            <!--100.00-->
+            <!--</div>-->
+            <!--<div class="col col-20 col-center text-center cell">-->
+            <!--80.00-->
+            <!--</div>-->
+            <!--</div>-->
+
+            <!--</div>-->
+        </div>
+    </ion-content>
+</ion-modal-view>

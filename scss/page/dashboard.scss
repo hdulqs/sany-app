@@ -1,0 +1,151 @@
+
+.hly.dashboard ion-header-bar.bar.bar-header {
+    background: #0092DA !important;
+    border-bottom: none !important;
+}
+.dashboard{
+    background-color: #f1f1f1;
+    .slide-content {
+        ion-slide {
+            position: relative;
+            img {
+                width: 100%;
+                height: auto;
+            }
+            .slide-title {
+                position: absolute;
+                bottom: 5px;
+                width: 100%;
+                background-image: url('../img/homepage/title-bg.png');
+                background-size: 100% 100%;
+                background-repeat: repeat;
+                margin: 0;
+                padding: 5px;
+                p {
+                    color: #fff;
+                    font-size: 1.2em;
+                    margin: 5px;
+                }
+            }
+        }
+    }
+    .banner-default {
+        img {
+            width: 100%;
+        }
+    }
+    .banner{
+        width: 100%;
+        ul.image {
+            height: 250px;
+            .layer img {
+                height: 250px;
+                width: 100%;
+            }
+        }
+    }
+    .application-list{
+        margin-top: 10px;
+    }
+    .icon-pane{
+        margin-bottom: 20px;
+        .row + .row{
+            margin: 0;
+            background-color: #fff;
+            border-bottom: thin solid #f1f1f1;
+        }
+        .row-icon{
+            padding: 0;
+            margin: 0;
+            border-bottom: thin solid #f1f1f1 !important;
+            .col{
+                padding: 0;
+                margin: 0;
+                border-right: thin solid #f1f1f1;
+                img{
+                    margin-top: 15px;
+                    width: 35%;
+                }
+                p{
+                    color: #4c4c4c;
+                    font-size: 1em;
+                    margin: 5px 0 15px 0;
+                }
+                .wait-text {
+                    color: #cdcdcd;
+                }
+                .no-text{
+                    color: #fff;
+                }
+                .total-num {
+                    color: #0092DA;
+                }
+                .white-pane {
+                    height: 62px;
+                    width: 100%;
+                }
+            }
+            .no-border-right{
+                border-right: none;
+            }
+        }
+        .row-title{
+            padding: 0;
+            background-color: #fff;
+            border-left: 3px solid #0092DA;
+            border-bottom: thin solid #f1f1f1;
+            margin-top: 10px !important;
+            .col{
+                color: #959595;
+                font-size: 1em;
+                margin: 0;
+                padding: 7px 5px;
+            }
+        }
+    }
+    .carousel-indicators {
+        text-align: center;
+        margin-bottom: -18px;
+    }
+}
+
+.ctrip-no-card-page {
+    .img-container {
+        width: 100%;
+        text-align: center;
+        margin-top: 9em;
+    }
+    .title {
+        text-align: center;
+        color: #4c4c4c;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .sub-title {
+        text-align: center;
+        color: #4c4c4c;
+        margin-bottom: 10px;
+        a{
+            text-decoration: none;
+        }
+        .blue-text {
+            color: #0092da;
+        }
+    }
+}
+.show-alert{
+    .popup-head{
+        padding: 10px 0;
+        .popup-title{
+            font-size: 16px;
+            font-weight: normal;
+        }
+    }
+    .popup-body{
+        p{
+            text-align: center;
+            color: #444;
+            font-size: 16px;
+        }
+    }
+}

@@ -1,0 +1,110 @@
+<ion-view class="dashboard">
+    <ion-nav-title>
+        <span class="logo">
+            <img src="img/logo.png" alt="">
+        </span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <a ng-click="view.goTo('app.erv_notification')">
+            <img class="dashboard-message-icon" src="img/homepage/message_icon.png"/>
+            <div class="message-tips" ng-if="hasMessageTips"></div>
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        <!--<img src="img/homepage/homepage.png" alt="" class="banner">-->
+        <div class="banner row-center">
+            <ul rn-carousel class="image" rn-carousel-index="data.carouselIndex">
+                <li ng-repeat="image in data.carouselList">
+                    <div class="layer">
+                        <img ng-src="{{image.attachmentDTO.fileURL}}" alt="">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="carousel-indicators">
+            <div rn-carousel-indicators ng-if="data.carouselList"
+                 slides="data.carouselList" rn-carousel-index="data.carouselIndex"></div>
+        </div>
+        <div class="icon-pane">
+            <div class="row">
+                <p class="text-title">
+                    <!--消费-->
+                    {{"dashboard.consumption"|translate}}
+                </p>
+            </div>
+            <div class="row row-center">
+                <div class="col text-center" ng-click="getDiDi()">
+                    <img src="img/homepage/car.png" alt="">
+                    <p class="text-center">
+                        <!--出行-->
+                        {{"dashboard.goingOut"|translate}}
+                    </p>
+                </div>
+                <div class="col text-center" ng-click="view.goTo('app.waveTravel')">
+                    <img src="img/homepage/wave.png" alt="">
+                    <p class="text-center">
+                        <!--扬招-->
+                        {{"dashboard.YoungRecruit"|translate}}
+                    </p>
+                </div>
+                <div class="col text-center no-border-right" ng-click="jumpToCtrip('FlightSearch')">
+                    <img src="img/homepage/plane.png" alt="">
+                    <p class="text-center">
+                        <!--机票-->
+                        {{"dashboard.airlineTicket"|translate}}
+                    </p>
+                </div>
+            </div>
+            <div class="row row-center">
+                <div class="col text-center" ng-click="view.showAlert()">
+                    <img src="img/homepage/train.png" alt="">
+                    <!--火车-->
+                    <p class="text-center">{{"dashboard.Train"|translate}}</p>
+                </div>
+                <div class="col text-center" ng-click="jumpToCtrip('HotelSearch')">
+                    <img src="img/homepage/hotel.png" alt="">
+                    <p class="text-center">
+                        <!--酒店-->
+                        {{"dashboard.hotel"|translate}}
+                    </p>
+                </div>
+                <div class="col text-center no-border-right" ng-click="view.showAlert()">
+                    <img src="img/homepage/food.png" alt="">
+                    <p class="text-center">
+                        <!--餐饮-->
+                        {{"dashboard.repast"|translate}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <p class="text-title">
+                    <!--应用-->
+                    {{"dashboard.app"|translate}}
+                </p>
+            </div>
+            <div class="row row-center">
+                <div class="col text-center" ng-click="view.goTo('app.travel_list')">
+                    <img src="img/homepage/travel-apply.png" alt="">
+                    <p>
+                        <!--差旅申请-->
+                        {{"dashboard.travelApplication"|translate}}
+                    </p>
+                </div>
+                <div class="col text-center" ng-click="view.goTo('app.erv_expense_report')">
+                    <img src="img/homepage/report.png" alt="">
+                    <p class="text-center">
+                        <!--报表-->
+                        {{"dashboard.Report"|translate}}
+                    </p>
+                </div>
+                <div class="col text-center no-border-right" ng-click="view.goTo('app.erv_approval_list')">
+                    <img src="img/homepage/approval.png" alt="">
+                    <p class="text-center">
+                        <!--审批-->
+                        {{"dashboard.Approval"|translate}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

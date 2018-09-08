@@ -1,0 +1,283 @@
+<ion-view class="create-expense setting-list feeApplication " hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">创建费用</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="" class="back-button">
+            <img src="img/back.png" class="save-btn create-expense-back-btn">
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header setting-category has-footer">
+        <ion-list>
+            <!--经办人(费用报销单) combox-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecemp-selector tpye="vm.type" emp-name="vm.reimEmpName" selected="vm.reimEmpId"
+                                         readonly="vm.isReadOnly"></hecemp-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--经办人(费用申请单) combox-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecemp-selector type="vm.type" emp-name="vm.reqEmpName" selected="vm.reqEmpId"
+                                         readonly="vm.isReadOnly"></hecemp-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 差旅申请：城市lov 出发地-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <heclocation-selector loc-name="vm.locFromName" readonly="vm.isReadOnly"
+                                              selected="vm.locFromCode" loc-type="from"
+                        <!--loc-prompt="vm.locFromPrompt"-->></heclocation-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 差旅申请：城市lov 到达地-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <heclocation-selector loc-name="vm.locToName" readonly="vm.isReadOnly" selected="vm.locToCode"
+                                              loc-type="to" <!--loc-prompt="vm.locToPrompt"--> ></heclocation-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--公司-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <heccompany-selector employee-id="vm.reqEmpId" company-name="vm.companyName"
+                                             function-cry="vm.functionCry" selected="vm.companyId"
+                                             readonly="vm.isReadOnly"></heccompany-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--部门-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecunit-selector unit-name="vm.unitName" selected="vm.unitId" company-id="vm.companyId"
+                                          readonly="vm.isReadOnly"></hecunit-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--成本中心 lov-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecresp-selector company-id="vm.companyId" unit-id="vm.unitId" readonly="vm.isReadOnly"
+                                          resp-name="vm.respName" selected="vm.respId"></hecresp-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--结算币种 lov-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <heccry-selector selected="vm.cryCode" cry-code="vm.cryCodeShow"
+                                         readonly="vm.isReadOnly"></heccry-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--费用类型-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecexptype-selector company-id="vm.companyId" employee-id="vm.employeeId"
+                                             exp-type-name="vm.expTypeName" selected="vm.expTypeId"
+                                             readonly="vm.isReadOnly"></hecexptype-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--费用项目 (不再使用)lov-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecexpitem-selector company-id="vm.companyId" exp-type-id="vm.expTypeId"
+                                             exp-item-name="vm.expItemName" selected="vm.expItemId"
+                                             readonly="vm.isReadOnly"></hecexpitem-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--受益人维护-员工工号选择（所有员工）lov -->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecbemp-selector selected="vm.bemp" bemp-code="vm.bempCode"
+                                          readonly="vm.isReadOnly"></hecbemp-selector>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col col-60 filed-name">姓名</div>
+                    <div class="col col-35 text-right language-right">{{vm.bemp.name}}</div>
+                </div>
+            </div>
+
+            <!--费用申请 单据类型combox-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecdoctype-selector type="vm.type" company-id="vm.companyId" doc-type-name="vm.docTypeName"
+                                             selected="vm.docTypeId" readonly="vm.isReadOnly"></hecdoctype-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--费用申请 报销类型 combox-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecreimtype-selector doc-type-id="vm.docTypeId" company-id="vm.companyId"
+                                              reim-type-name="vm.reimTypeName" selected="vm.reimTypeId"
+                                              readonly="vm.isReadOnly"></hecreimtype-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--业务区间 combox-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecperiod-selector company-id="vm.companyId" period-name="vm.periodName" selected="vm.periodId"
+                                            readonly="vm.isReadOnly"></hecperiod-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--费用账本 维度 combox-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecdimension-selector selected="vm.dimensionId" dim-prompt="vm.dimPrompt" dim-desc="vm.dimDesc"
+                                               readonly="vm.isReadOnly"></hecdimension-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--发票类型 combox-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecinvcate-selector item="vm.item" inv-cate-name="vm.invCateName" selected="vm.invCateId"
+                                             readonly="vm.isReadOnly"></hecinvcate-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--税率 combox-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecrate-selector rate-name="vm.rateTypeName" tax-type-rate="vm.taxTypeRate"
+                                          selected="vm.rateTypeId" readonly="vm.isReadOnly"></hecrate-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--发票项目 combox-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecinvitem-selector inv-item-code="vm.invItemCode" inv-item-name="vm.invItemName"
+                                             selected="vm.invItemId" readonly="vm.isReadOnly"
+                                             expense-item-id="vm.expenseItemId"></hecinvitem-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--是否入住园区 combox-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecpark-selector code-value-name="vm.codeValueName" selected="vm.codeVauleId"
+                                          readonly="vm.isReadOnly"></hecpark-selector>
+                    </div>
+                </div>
+            </div>
+
+            <!--员工类型 combox-->
+            <div class="item item-text-wrap">
+                <div class="row row-center">
+                    <div class="col col-100">
+                        <hecemptype-selector emp-type-name="vm.empTypeName" selected="vm.empTypeId"
+                                             emp-type-code="vm.empTypeCode"
+                                             readonly="vm.isReadOnly"></hecemptype-selector>
+                    </div>
+                </div>
+            </div>
+        </ion-list>
+    </ion-content>
+    <ion-footer-bar class="expense-create-footer">
+        <div class="row row-center">
+            <div class="col text-center expense-new" ng-click="view.save()">
+                保存
+            </div>
+            <div class="col text-center operation-all" ng-click="view.saveAndMore()">
+                保存并再记一笔
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+
+
+<!--
+<ion-view class="demo">
+    <ion-nav-buttons side="left">
+        <button class="button back-button buttons button-clear header-item" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <span class="expense-report-nav-title">汇联易</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button back-button buttons button-clear header-item" ng-click="goBack()">
+           撤回
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="content-body" scrollbar-y="true">
+        <div class="search-content">
+            <div class="total-info">
+                <span>总金额：CNY 1500.00</span>
+                <div ng-show="vm.isShow">
+                    <div>公司-部门：三一重工-财务信息化部</div>
+                    <div>币种：人民币</div>
+                    <div>备注：XXXXX</div>
+                </div>
+            </div>
+            <div class="up-ation" ng-click="vm.showHead()"><img src="img/expense_report_version/expense_report/arrow.png" class="" alt=""></div>
+        </div>
+           &lt;!&ndash; <div class="fee-content">
+                <div class="list clear ">
+                    <div class="item row row-center in-item">
+                        <span class="text">功能介绍</span>
+                        <i class="col col-center ion-ios-arrow-right item-note icon"></i>
+                    </div>
+                    <div class="item row row-center in-item">
+                        <span class="text">联系我们</span>
+                        <i class="col col-center ion-ios-arrow-right item-note icon"></i>
+                    </div>
+                </div>
+            </div>&ndash;&gt;
+
+    </ion-content>
+</ion-view>
+-->

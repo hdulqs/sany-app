@@ -1,0 +1,17 @@
+<ion-modal-view class="choice-language">
+    <ion-header-bar>
+        <span class="choice-cancel" ng-click="languageModal.hide()">{{'common.cancel'| translate}}</span>
+        <h3 class="title">{{'language_list.language'| translate}}</h3>
+        <span class="choice-sure" ng-click="languageModal.hide()">{{'common.ok'| translate}}</span>
+    </ion-header-bar>
+    <ion-content>
+        <div class="item item-divider"></div>
+        <div class="list">
+            <div class="item language-item" ng-repeat="item in view.languageList" ng-click="selectLanguageItem(item,$index)">
+                <div class="row row-top top-name">{{item.comments}}</div>
+                <div class="row row-middle middle-name">{{item.value}}</div>
+                <img src="img/expense_report_version/travel/select.png" alt="" class="select-icon" ng-if="view.selectIndex===$index">
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

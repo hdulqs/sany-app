@@ -1,0 +1,294 @@
+<!--创建费用-费用详情页面
+Created by Dawn on 2017/8/2.-->
+<ion-view class="hec-create-expense" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{vm.title}}<!--创建费用--></span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="isDirtyForm()" class="back-button">
+            <img src="img/back.png" class="save-btn create-expense-back-btn">
+        </a>
+    </ion-nav-buttons>
+
+    <ion-content class="has-header create-expense-content has-footer">
+        <form name="createExpenseForm" id="createExpenseForm">
+            <ion-list>
+                <!--公司-->
+                <div class="item item-text-wrap hec-padding" ng-if="!vm.assReportFlag">
+                    <heccompany-selector employee-id="vm.view.employee_id" company-name="vm.view.company_name"
+                                         selected="vm.view.company_id" unit-id="vm.view.unit_id"
+                                         unit-name="vm.view.unit_name" resp-center-id="vm.view.responsibility_center_id" resp-center-name="vm.view.responsibility_center_name" position-id="vm.view.position_id" readonly="vm.isReadOnly"></heccompany-selector>
+                </div>
+                <!--部门-->
+                <div class="item item-text-wrap hec-padding">
+                    <hecunit-selector unit-name="vm.view.unit_name" selected="vm.view.unit_id"
+                                      company-id="vm.view.company_id"
+                                      resp-center-id="vm.view.responsibility_center_id"
+                                      resp-center-name="vm.view.responsibility_center_name"
+                                      readonly="vm.isReadOnly"></hecunit-selector>
+                </div>
+                <!--成本中心-->
+                <div class="item item-text-wrap hec-padding">
+                    <hecresp-selector company-id="vm.view.company_id" unit-id="vm.view.unit_id" readonly="vm.isReadOnly"
+                                      resp-name="vm.view.responsibility_center_name"
+                                      selected="vm.view.responsibility_center_id"></hecresp-selector>
+                </div>
+            </ion-list>
+            <div class="item item-divider"></div>
+            <ion-list>
+                <!--发生日期-->
+                <ion-item ng-click="!vm.isReadOnly && datePicker.selectHandDate('expenseDate')" ng-if="!vm.assReportFlag">
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'create_expense.date'|translate}}<span class="hec-input-required" ng-if="!vm.isReadOnly">*</span></span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                {{vm.view.bussiness_date | dateFilter}}
+                            </p>
+                        </div>
+                        <img class="form-logo" src="img/hec/form/calendar.png" alt="">
+                    </div>
+                </ion-item>
+                <!--业务期间-->
+                <ion-item  ng-if="!vm.assReportFlag">
+                    <div class="row row-center">
+                        <span class="hec-item-prompt">{{'create_expense.period.name' |translate}}</span>
+                        <div class="col">
+                            <p class="text-right expense-money">
+                                <span>{{vm.view.period_name}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </ion-item>
+                <!--费用类型-->
+                <ion-item class="hec-padding">
+                    <hecexptype-selector exp-report-type-id="{{vm.view.exp_report_type_id}}" expense-id="{{vm.view.expense_id}}"
+                                         company-id="vm.view.company_id" employee-id="vm.view.employee_id"
+                                         exp-item-id="vm.view.exp_req_item_id" exp-item-name="vm.view.exp_req_item_name"
+                                         exp-value="vm.view.reference_amount" exp-type-id="vm.view.expense_type_id"
+                                         ref-cry-code="vm.view.reference_currency_code" must-invoice-items="vm.view.must_invoice_items"
+                                         flexes="vm.view.flexs" dimension-list="vm.view.dimensions"
+                                         readonly="vm.isReadOnly"
+                                         ></hecexptype-selector>
+                </ion-item>
+                <div ng-show="vm.view.exp_req_item_name">
+                    <!--费用账本-收款币种,报销费用不显示-->
+                    <ion-item ng-if="!vm.assReportFlag">
+                        <heccry-selector  prompt-name="receipt" is-red="{{true}}" selected="vm.view.currency_code"
+                                         readonly="vm.isReadOnly"></heccry-selector>
+                    </ion-item>
+                    <!--汇率-->
+                    <ion-item>
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'create_expense.exchange.rate'| translate}}</span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <span class="hec-money">{{vm.view.reference_rate}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                    <!--报销金额-->
+                    <ion-item>
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'create_expense.Reimbursement.amount' |translate}}</span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <span class="hec-money">{{vm.view.report_amount | amountFilter}}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                    <!--发票项目-->
+                    <ion-item class="hec-padding" ng-hide="vm.document_page_type =='STREAMLINED'">
+                        <hecinvitem-selector expense-item-id="vm.view.exp_req_item_id"
+                                             inv-item-name="vm.view.invoice_category_name"
+                                             inv-item-code="vm.view.invoice_category_code"
+                                             selected="vm.view.invoice_category_id"
+                                             inv-cate-name="vm.view.invoice_category_desc"
+                                             inv-cate-code="vm.view.invoice_category"
+                                             auth-flag = "vm.view.authenticating_flag"
+                                             invoice-type="vm.view.invoice_type"
+                                             old-value="originObject.invoice_category_desc"
+                                             must-invoice-items="{{vm.view.must_invoice_items}}"
+                                             readonly="vm.isReadOnly"></hecinvitem-selector>
+                    </ion-item>
+                    <!--发票类别-发票币种为外币时不允许修改，默认为其他-->
+                    <ion-item class="hec-padding" ng-hide="vm.document_page_type =='STREAMLINED'">
+                        <hecinvcate-selector inv-cate-name="vm.view.invoice_category_desc" selected="vm.invCateId"
+                                             auth-flag="vm.view.authenticating_flag" invoice-type="vm.view.invoice_type"
+                                             invoice-category-code="vm.view.invoice_category"
+                                             readonly="vm.isReadOnlyInvCate"></hecinvcate-selector>
+                    </ion-item>
+                    <!--开支月份-->
+                    <ion-item ng-show="vm.assReportFlag">
+                        <div class="row">
+                            <span class="hec-item-prompt">{{"create_expense.spending.months"|translate}}<span ng-if="!vm.isReadOnly" style="color:#ff0000">*</span></span>
+                            <div class="col text-value">
+                                {{vm.view.period_name}}
+                                <img src="img/hec/form/calendar.png" alt="" ng-if="!vm.isReadOnly"
+                                     style="width: 1.2rem;vertical-align: middle;">
+                            </div>
+                        </div>
+                        <input class="row" ng-model="vm.view.period_name" style="opacity: 0;position: absolute;top:10px;" type="text" name="selectMonth" id="selectMonth" placeholder="选择开始日期" readonly="readonly" />
+                    </ion-item>
+                </div>
+            </ion-list>
+            <div ng-if="vm.view.authenticating_flag =='Y'">
+                <br>
+                <ion-list>
+                    <!--发票代码-->
+                    <ion-item  ng-hide="vm.view.invoice_category ==='HIGH-SPEED-TOLL' "> <!--vm.view.invoice_category ==='E-INVOICE'-->
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'create_expense.Invoice.code'|translate}}<span class="hec-input-required">*</span></span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <input type="text" placeholder="{{ 'create_expense.please.input' | translate}}"
+                                           ng-model="vm.view.invoice_code" ng-readonly="vm.isReadOnly">
+                                </p>
+                            </div>
+                            <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                        </div>
+                    </ion-item>
+                    <!--发票号码-->
+                    <ion-item>
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'create_expense.Invoice.number' | translate}}<span class="hec-input-required">*</span></span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <input type="text" placeholder="{{ 'create_expense.please.input' | translate}}"
+                                           ng-model="vm.view.invoice_number" ng-readonly="vm.isReadOnly">
+                                </p>
+                            </div>
+                            <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                        </div>
+                    </ion-item>
+                    <!--发票日期-->
+                    <ion-item ng-hide="vm.view.invoice_category === 'E-INVOICE'" ng-click="!vm.isReadOnly && datePicker.selectHandDate('invoiceDate')">
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">
+                                {{'create_expense.Invoice.date' | translate}}<span class="hec-input-required">*</span>
+                            </span>
+                            <div class="col">
+                                <p class="text-right expense-money" ng-if="vm.view.invoice_date">
+                                    {{vm.view.invoice_date | dateFilter}}
+                                </p>
+                            </div>
+                            <img class="form-logo" src="img/hec/form/calendar.png" alt="">
+                        </div>
+                    </ion-item>
+                    <!--税率-->
+                    <ion-item ng-hide="vm.view.invoice_category === 'E-INVOICE'">
+                        <hecrate-selector tax-type-rate="vm.view.tax_type_rate" rate-name="vm.view.tax_type_desc"
+                                          selected="vm.view.tax_type_id" readonly="vm.isReadOnly"></hecrate-selector>
+                    </ion-item>
+                    <!--税额-->
+                    <ion-item ng-hide="vm.view.invoice_category === 'E-INVOICE'">
+                        <div class="row row-center">
+                            <span class="hec-item-prompt">{{'create_expense.tax.price' |translate}}<span class="hec-input-required">*</span></span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <input type="number" ng-model="vm.view.tax_amount" ng-readonly="vm.isReadOnly">
+                                </p>
+                            </div>
+                            <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                        </div>
+                    </ion-item>
+                </ion-list>
+                <br>
+            </div>
+            <ion-list>
+                <!--项目-->
+                <div ng-if="vm.view.exp_req_item_name && vm.view.dimensions.length >0">
+                    <ion-item ng-repeat="item in vm.view.dimensions " style="padding: 0px 5px;">
+                        <div class="row row-center">
+                            <!--<span>{{item.dimension_name}}</span>-->
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <hecdimension-selector company-id="{{vm.view.company_id}}"
+                                                           dim-prompt="item.dimension_name"
+                                                           dim-desc="item.dimension_value_description"
+                                                           dimension-id="{{item.dimension_id}}"
+                                                           selected="item.dimension_value_id" readonly="vm.isReadOnly"></hecdimension-selector>
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                </div>
+                <div ng-if="vm.view.exp_req_item_name && vm.assReportFlag">
+                    <ion-item style="padding: 0px 5px;">
+                        <div class="row row-center">
+                            <!--<span>{{item.dimension_name}}</span>-->
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <hecdimension-selector company-id="{{vm.view.company_id}}"
+                                                           dim-prompt="vm.dimension_name"
+                                                           dim-desc="vm.view.d2"
+                                                           selected="vm.view.e2" readonly="vm.isReadOnly"></hecdimension-selector>
+                                </p>
+                            </div>
+                        </div>
+                    </ion-item>
+                </div>
+
+                <!--弹性域-->
+                <div ng-if="vm.view.flexs.length >0 ">
+                    <ion-item ng-repeat="flex in vm.view.flexs">
+                        <div class="row row-center"
+                             ng-click="flex.editor_type === 'DATEPICKER' && datePicker.selectHandDate(flex.flex_name)">
+                            <span class="hec-item-prompt">{{flex.flex_name}}<span class="hec-input-required" ng-if="flex.required_flag === 'Y'">*</span></span>
+                            <div class="col">
+                                <p class="text-right expense-money">
+                                    <span ng-if="flex.editor_type === 'DATEPICKER'">{{flex['value_name'] | dateFilter}}</span>
+                                    <input type="text" ng-model="flex['value_name']"
+                                           placeholder="{{ 'create_expense.please.input' | translate}}"
+                                           ng-if="flex.editor_type === 'TEXTFIELD' " ng-readonly="vm.isReadOnly">
+                                    <heccommon-selector selected="flex['value_name']" flex-id="{{flex.flex_id}}"
+                                                        ng-if="!vm.assReportFlag && flex.editor_type === 'LOV'" readonly="vm.isReadOnly"></heccommon-selector>
+                                    <heccommon-selector selected="flex['value_name']" flex-id="{{flex.flex_id}}" item-id="flex['value_id']" item-code="flex['value_code']"
+                                                        ng-if="vm.assReportFlag && flex.editor_type === 'LOV'" readonly="vm.isReadOnly"></heccommon-selector>
+                                </p>
+                            </div>
+                            <img class="form-logo" src="img/hec/form/calendar.png" alt=""
+                                 ng-if="flex.editor_type === 'DATEPICKER'">
+                            <img class="form-logo" src="img/hec/form/edit.png" alt=""
+                                 ng-if="flex.editor_type === 'TEXTFIELD'">
+                        </div>
+                    </ion-item>
+                </div>
+                <!--上传照片-->
+                <div ng-if="vm.showAddPhoto">
+                    <p class="expense-tips">
+                        {{'create_expense.Attachment.information' |translate}}
+                        <!--附件信息(最多可上传9张照片)-->
+                    </p>
+                    <upload-image attachment-src="vm.attachments" delete-attachment="vm.deleteAttachment"
+                                  upload-finish="vm.uploadFinish" header-id="vm.imageHeaderId" type-name="{{vm.typeName}}"
+                                  read-only-flag="false"></upload-image>
+                </div>
+                <!--事由说明-->
+                <p class="expense-tips">{{'create_expense.For.instructions' | translate}} <span class="hec-input-required" ng-if="!vm.isReadOnly && !vm.assReportFlag">*</span></p>
+                <div>
+                    <textarea form="createExpenseForm" class="comment" ng-model="vm.view.notes" maxlength="200"
+                              placeholder="{{'create_expense.lessThan200Characters' | translate}}">
+                            </textarea>
+                </div>
+            </ion-list>
+        </form>
+    </ion-content>
+    <ion-footer-bar class="expense-create-footer">
+        <div class="row row-center" ng-if="vm.expReqHeaderId == null">
+            <div class="col text-center expense-new" ng-click="vm.save()">
+                {{'create_expense.save'|translate}}<!--保存-->
+            </div>
+            <div class="col text-center operation-all" ng-click="vm.saveAndMore()">
+                {{'create_expense.Save.and.then.write.a'|translate}}<!--保存并再记一笔-->
+            </div>
+        </div>
+        <div class="row row-center submit-btn" ng-if="vm.expReqHeaderId != null">
+            <div class="col col-center submit-btn" ng-click="vm.save()">
+                {{'create_expense.save'|translate}}<!--保存-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+

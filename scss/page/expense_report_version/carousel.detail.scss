@@ -1,0 +1,27 @@
+.erv-carousel-detail {
+    .erv-carousel-content {
+        padding: 10px;
+        .title {
+            font-size: 28px;
+            color: #4c4c4c;
+            margin: 20px 0;
+            line-height: 31px;
+        }
+        .auth {
+            font-size: 1em;
+            color: #8f8f8f;
+        }
+        .date {
+            font-size: 1em;
+            color: #8f8f8f;
+        }
+        .detail-content {
+            font-size: 1.2em;
+            color: #2f2f2f;
+            line-height: 1.5em;
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "error": {
+        "error": "出错了",
+        "the.service.has.not.yet.been.opened": "尚未开通该服务"
+    },
+    "vendor": {
+        "application": "申请",
+        "approval": "审批",
+        "coming.soon": "敬请期待",
+        "confirm": "确定",
+        "consume": "消费",
+        "cost.application": "费用申请",
+        "hint": "提示",
+        "hotel": "携程酒店",
+        "my.account": "我的账本",
+        "oil.card.fee": "油卡话费",
+        "ordering.secretary": "订餐小秘书",
+        "other.applications": "其他申请",
+        "private.car.for.public": "里程补贴",
+        "purchase": "采购",
+        "report": "报表",
+        "travel.confirmation":"行程确认",
+        "return.huilianyi": "返回汇联易",
+        "settings.other": "请前往设置->其他应用管理->汇联易->相机授权应用访问相机权限",
+        "taxi": "打车",
+        "ticket": "携程机票",
+        "train": "同程火车",
+        "ctripTrain": "火车",
+        "travel.request": "差旅申请",
+        "use": "应用",
+        "venue": "场馆",
+        "yangzhao": "扬招",
+        "downloadUpdate":"正在下载小更新",
+        "Restart":"重启中，请稍后",
+        "updateHint":"更新提示",
+        "yesOrNoBownload":"有一个小更新，是否下载",
+        "cancel":"取消"
+    },
+    "ctripNoCard": {
+        "prompting": "您还未开通携程企业帐号，请联系管理员!",
+        "phone": "电话"
+    }
+}

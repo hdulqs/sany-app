@@ -1,0 +1,136 @@
+<ion-view class="travel-list">
+    <ion-nav-title>
+        <!--差旅申请-->
+        <span class="logo-title">{{'list.Travel.application'|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <a ng-click="goTo()" class="button button-clear icon ion-android-add addIcon"></a>
+    </ion-nav-buttons>
+    <ion-content class="animate-blinds">
+        <!--加载中...-->
+        <ion-refresher
+            pulling-text="{{'list.loading'|translate}}"
+            on-refresh="refreshTravel()">
+        </ion-refresher>
+        <ion-list class="marginDiv">
+            <div class="item item-divider"></div>
+            <div class="alert alert-warning warn"
+                 align="center"
+                 ng-hide="view.hasTravelList"
+            >
+                <img class="warning-icon" src="img/nothing.png"/>
+                <!--暂时没有差旅记录!-->
+                <p class="warning-word">{{'list.noTravelApplication'|translate}}</p>
+            </div>
+            <ion-item ng-repeat="item in view.travelList">
+                <div class="row row-center expense-main"
+                     ng-click="skipPage(item)"
+                     ng-show="view.hasTravelList">
+                    <div class="col col-67 col-center expense-detail">
+                        <div class="row row-center" ng-show="item.lastTask.travelDTO.applyType === 1002">
+                            <div class="fly-city"
+                                 ng-show="item.lastTask.travelDTO.trafficPlanDTOs.length > 0">
+                                <span class="imgName">
+                                    {{item.lastTask.travelDTO.trafficPlanDTOs[0].airRoute[0]}} - {{item.lastTask.travelDTO.trafficPlanDTOs[0].airRoute[1]}}<span
+                                    ng-show="item.lastTask.travelDTO.trafficPlanDTOs[0].airRoute.length > 2"> - </span>{{item.lastTask.travelDTO.trafficPlanDTOs[0].airRoute[2]}}
+                                    <span class="point-point"
+                                          ng-show="item.lastTask.travelDTO.trafficPlanDTOs[0].airRoute.length > 3">...</span>
+                                </span>
+                            </div>
+                            <div class="fly-city"
+                                 ng-repeat="city in item.lastTask.travelDTO.stayPlanDTOs"
+                                 ng-show="item.lastTask.travelDTO.stayPlanDTOs.length > 0">
+                                <span class="imgName" ng-hide="item.lastTask.travelDTO.trafficPlanDTOs.length > 0">{{city.city}}</span>
+                            </div>
+                        </div>
+                        <div class="row row-center " ng-show="item.lastTask.travelDTO.applyType === 1002">
+                            <div class="fly-date"
+                                 ng-show="item.lastTask.travelDTO.trafficPlanDTOs.length > 0">
+                                <span class="proName">
+                                    <!--至-->
+                                    {{item.lastTask.travelDTO.trafficPlanDTOs[0].departDate|limitTo:10}}&nbsp;&nbsp;{{'ordinary.to'|translate}}&nbsp;&nbsp;{{item.lastTask.travelDTO.trafficPlanDTOs[0].returnDate|limitTo:10}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col col-center secondCol">
+                        <div class="row row-center img-row expenses-types">
+                            <p class="approval-status bg-editing" ng-show="item.lastTask.taskNameClass === 'editting'">
+                                <!--编辑中-->
+                                {{'list.edit'|translate}}
+                            </p>
+
+                            <p class="approval-status bg-wait-approval"
+                               ng-show="item.lastTask.taskNameClass === 'waitApproval'">
+                                <!--待审批-->
+                                {{'ordinary.stayApproval'|translate}}
+                            </p>
+
+                            <p class="approval-status bg-has-pass" ng-show="item.lastTask.taskNameClass === 'hasPass'">
+                                <!--已通过-->
+                                {{'list_js.Have.been.through'|translate}}
+                            </p>
+
+                            <p class="approval-status bg-has-reject"
+                               ng-show="item.lastTask.taskNameClass === 'hasReject'">
+                                <!--已驳回-->
+                                {{'create.next_js.Has.been.rejected'|translate}}
+                            </p>
+
+                            <p class="approval-status bg-bpo-receive"
+                               ng-show="item.lastTask.taskNameClass === 'bpoReceive'">
+                                <!--发票收到-->
+                                {{'list.invoiceReceive'|translate}}
+                            </p>
+
+                            <p class="approval-status bg-bpo-pass" ng-show="item.lastTask.taskNameClass === 'bpoPass'">
+                                <!--审核通过-->
+                                {{'list.auditPass'|translate}}
+                            </p>
+
+                            <p class="approval-status bg-bpo-reject"
+                               ng-show="item.lastTask.taskNameClass === 'bpoReject'">
+                                <!--审核驳回-->
+                                {{'list.auditReject'|translate}}
+                            </p>
+
+                            <p class="approval-status bg-finance-loan"
+                               ng-show="item.lastTask.taskNameClass === 'moneyPass'">
+                                <!--已付款-->
+                                {{'list.yetPayment'|translate}}
+                            </p>
+                        </div>
+                        <div>
+                            <span class="travel-date">{{item.startTime | limitTo: 10 }}</span>
+                        </div>
+                    </div>
+                </div>
+                <ion-option-button class="button-assertive delete-expense"
+                                   ng-show="item.lastTask.taskNameClass === 'waitApproval'"
+                                   ng-click="recallTravel(view.travelList,$index)">
+                    <div class="column">
+                        <img class="delete-img" src="./img/recall.png">
+                        <!--撤回-->
+                        <div class="delete-text">{{'create.next.withdraw'|translate}}</div>
+                    </div>
+                </ion-option-button>
+                <ion-option-button class="button-assertive delete-option"
+                                   ng-if="item.lastTask.taskNameClass === 'editting'"
+                                   ng-click="deleteTravel(view.travelList,$index)">
+                    <div class="column">
+                        <img class="delete-img" src="img/delete.png"/>
+                        <!--删除-->
+                        <div class="delete-text">{{'create.next.delete'|translate}}</div>
+                    </div>
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            on-infinite="loadMordTravels(view.page.current+1)"
+            distance="1%"
+            ng-if="view.page.links['last'] > view.page.current"
+            immediate-check="false"
+        >
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

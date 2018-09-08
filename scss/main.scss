@@ -1,0 +1,711 @@
+.filter-header {
+  border-bottom: 1px solid #EEEEEE;
+  .filter-criteria {
+    text-align: center;
+  }
+}
+.modal-backdrop-bg{
+    background-color: #000;
+    opacity: 0.5;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder{
+    color: #cdcdcd !important;
+}
+
+i.ion-ios-arrow-left {
+    color: #444;
+}
+i.ion-ios-arrow-left:before {
+    font-size: 25px;
+}
+.hec-ActionSheet{
+    z-index: 99999999;
+    .action-sheet {
+        z-index: 99999999;
+    }
+}
+.revoke-ordinary-application-popup.popup-container.active .popup,
+.delete-ordinary-application-popup.popup-container.active .popup{
+    height: 150px;
+    width: 240px;
+    .popup-head {
+        height: 40px;
+        > h3 {
+            font-weight: 500;
+            line-height: 40px;
+            font-size: 15px;
+            color: #4c4c4c;
+        }
+    }
+    .popup-body {
+        text-align: center;
+        > span {
+            font-size: 15px;
+            color: #959595;
+        }
+    }
+    .popup-buttons {
+        .button.button-calm {
+            border-color: transparent;
+            color: #fff;
+            width: 110px;
+            height: 45px;
+        }
+        .button.button-positive {
+            border-color: transparent;
+            color: #fff;
+            width: 110px;
+            height: 45px;
+        }
+    }
+
+}
+.loanReqLine-application-popup.popup-container.active .popup{
+    height: auto;
+    width: 240px;
+    .popup-head {
+        height: 40px;
+        > h3 {
+            font-weight: 500;
+            line-height: 40px;
+            font-size: 15px;
+            color: #4c4c4c;
+        }
+    }
+    .popup-body {
+        text-align: center;
+        > span {
+            font-size: 15px;
+            color: #959595;
+        }
+    }
+    .popup-buttons {
+        .button.button-calm {
+            border-color: transparent;
+            color: #fff;
+            width: 110px;
+            height: 45px;
+        }
+        .button.button-positive {
+            border-color: transparent;
+            color: #fff;
+            width: 110px;
+            height: 45px;
+        }
+    }
+
+}
+.print-popup.popup-container.active .popup{
+    background: #444 !important;
+    opacity: 1;
+    border-radius: 17px;
+    height: 150px;
+    .popup-head {
+        padding: 15px 10px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+        font-size: 15px !important;
+        height: 100px  !important;
+    }
+    .button.button-positive {
+        background-color: transparent;
+        color: #0092da;
+        border: none;
+    }
+}
+.platform-android .action-sheet .action-sheet-title,
+.platform-android .action-sheet .button{
+    text-align: center;
+    color: #4c4c4c;
+    font-size: 1em;
+    box-shadow: none;
+    border-bottom: 1px solid #f1f1f1;
+    z-index:11;
+}
+.platform-android .action-sheet-cancel {
+    //display: none;
+    display: block !important;
+    text-align: center;
+    color: #4c4c4c;
+    font-size: 1em;
+    box-shadow: none;
+    //bottom:10%;
+}
+//.action-sheet-wrapper {
+//    transform: translate3d(0, 0, 0);
+//    position: absolute;
+//    bottom: 20%;
+//    left: 0;
+//    right: 0;
+//    width: 100%;
+//    max-width: 500px;
+//    margin: auto;
+//    z-index:11;
+//}
+.bar.bar-positive .title {
+    color: #4c4c4c !important;
+}
+#cost-center-modal {
+    background-color: #f1f1f1;
+    .modal-content {
+        background-color: #fff;
+        border-top: 1px solid #f1f1f1;
+        width: 95%;
+        margin-left: 2.5%;
+    }
+}
+
+#cost-center-modal {
+    background-color: #f1f1f1;
+    .modal-content {
+        background-color: #fff;
+        border-top: 1px solid #f1f1f1;
+        width: 95%;
+        margin-left: 2.5%;
+    }
+}
+i.ion-ios-arrow-left {
+    color: #444;
+}
+i.ion-ios-arrow-left:before {
+    font-size: 25px;
+}
+.bar .button.button-clear, .bar button.button-clear {
+    padding-right: 2px;
+    padding-left: 2px;
+    font-weight: 300;
+    font-size: 17px;
+    color: #4c4c4c;
+}
+.hly{
+    .item.activated{
+        background:transparent !important;
+    }
+    .cost-center-item-selector-modal {
+        .bar .button.close-button {
+            padding-top: 0 !important;
+            padding-left: 0 !important;
+            top: auto;
+            bottom: auto;
+        }
+        .bar .ion-close:before {
+            font-size: 20px !important;
+        }
+        .search {
+            width: 100%;
+            background-color: #f1f1f1;
+        }
+        .item-input-wrapper {
+            background-color: white;
+            padding: 0;
+            margin: 10px 1.2em;
+            height: 2.5em;
+        }
+        .header-Input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: none;
+            position: relative;
+            right: 2em;
+        }
+        .ion-ios-search {
+            font-size: 2em;
+            position: relative;
+            right: 0.7em;
+            top: 0.1em;
+        }
+        .item.item-divider.prefer-item:first-child{
+            border-top: none;
+            background: #f1f1f1;
+        }
+        .item.item-divider.prefer-item{
+            background: #f1f1f1;
+            padding-left: 15px;
+            border-top: 1px solid #cdcdcd;
+        }
+        a.item.prefer-cost {
+            background: #f1f1f1;
+            border: none;
+            padding: 12px;
+            .cci-title{
+                font-size: 0.8em;
+            }
+            .cci-content{
+                color: #000;
+            }
+        }
+    }
+    .logo{
+        img{
+            width: 24px;
+            margin-top: 10px;
+        }
+    }
+    .ion-homepage{
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 24px;
+        width: 26px;
+        margin-top: 4px;
+        background-image: url("../img/tab/homepage.png");
+        background-size: contain;
+    }
+    .ion-homepage-active{
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 24px;
+        width: 26px;
+        margin-top: 4px;
+        background-image: url("../img/tab/homepage-active.png");
+        background-size: contain;
+    }
+    .ion-my-account{
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 24px;
+        width: 26px;
+        margin-top: 4px;
+        background-image: url("../img/tab/my-account.png");
+        background-size: contain;
+    }
+    .ion-my-account-active{
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 24px;
+        width: 26px;
+        margin-top: 4px;
+        background-image: url("../img/tab/my-account-active.png");
+        background-size: contain;
+    }
+    .ion-notification{
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 24px;
+        width: 26px;
+        margin-top: 4px;
+        background-image: url("../img/tab/notification.png");
+        background-size: contain;
+    }
+    .ion-notification-active{
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 24px;
+        width: 26px;
+        margin-top: 4px;
+        background-image: url("../img/tab/notification-active.png");
+        background-size: contain;
+    }
+    .ion-expense{
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 24px;
+        width: 26px;
+        margin-top: 4px;
+        background-image: url("../img/tab/expense.png");
+        background-size: contain;
+    }
+    .ion-expense-active{
+        background-repeat: no-repeat;
+        background-position: 50%;
+        height: 24px;
+        width: 26px;
+        margin-top: 4px;
+        background-image: url("../img/tab/expense-active.png");
+        background-size: contain;
+    }
+    ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
+        color: #0092da;
+    }
+    ion-header-bar.bar.bar-header {
+        background-color: #FFF;
+        box-shadow: none ;
+        border-bottom: 1px solid #cdcdcd;
+        background-image: none;
+    }
+    .arrow-btn {
+        width: 100px;
+        height: 30px;
+        position: relative;
+        left: 0;
+        right: 0;
+        margin: -29px auto;
+    }
+    span.recall-expense {
+        padding-top: 8px;
+        font-size: 13px;
+        padding-right: 5px;
+        color: #0092da;
+    }
+    span.hec-submit-expense{
+        padding-top: 8px;
+        font-size: 13px;
+        padding-right: 5px;
+        color: #a2a2a2;
+    }
+    span.hec-can-submit{
+        color: #0092da;
+    }
+    #approval-detail-back-icon {
+        font-size: 25px;
+        padding-top: 0.1em;
+        color: #444;
+        position: absolute;
+        left: 9px;
+        padding-left: 0;
+    }
+    .nav-bar-title {
+        color: #444;
+        font-size: 15px;
+    }
+    .cancel-title{
+        margin-top: 8px;
+        font-size: 12px;
+        margin-right: 7px;
+    }
+    .cover-screen {
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        z-index: 10;
+        position: absolute;
+        top: 0;
+        opacity: 0.5;
+    }
+    .header-content{
+        background-color: #f8f8f8 !important;
+        .title-center{
+            color: #4c4c4c;
+        }
+
+    }
+}
+
+.tab-red-point{
+    position: absolute;
+    top: 8px;
+    left: 64%;
+    content: ' ';
+    height: 6px;
+    width: 6px;
+    border-radius: 3px;
+    background-color: red;
+}
+
+.message-tips{
+    position: absolute;
+    top: 7px;
+    right: 6px;
+    height: 6px;
+    width: 6px;
+    border-radius: 3px;
+    background-color: red;
+}
+.dashboard-scanner-icon{
+    width: 1.6em;
+    margin: 6px 0 0 7px;
+}
+.dashboard-message-icon{
+    width: 1.6em;
+    margin: 6px 7px 0 0;
+}
+
+.text-right{
+    text-align: right;
+}
+.save-btn{
+    width: 14px;
+    height: 21px;
+    margin: 6px 30px 0 5px;
+}
+button.go-back-arrow {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+
+.platform-android .popover-backdrop, .platform-android .popover-backdrop.active {
+    background-color: #9A989A;
+    opacity: 0.8;
+}
+
+.popup-container{
+    .popup-head{
+        h5{
+            padding: 0 10px;
+            margin: 0;
+            font-size: 16px;
+            font-weight: normal;
+            color: #4C4C4C;
+            text-align: left;
+        }
+    }
+}
+
+.slider-pager .slider-pager-page {
+    color: #eee;
+}
+.bgc-white{
+    background-color: #ffffff;
+}
+
+.bg-editing {
+    background-color: #56a1f2;
+}
+.bg-wait-approval {
+    background-color: #75d2e8;
+}
+.bg-withdraw {
+    background-color: #F4C551;
+}
+.bg-has-pass {
+    background-color: #a0d468;
+}
+.bg-has-close {
+    background-color: #cccccc;
+}
+.hec-gray {
+    background-color: #c0c0c0 !important;
+}
+.bg-bpo-pass {
+    background-color: #a0d468;
+}
+.bg-has-reject {
+    background-color: #f66868;
+}
+.bg-bpo-reject {
+    background-color: #f76868;
+}
+.bg-bpo-receive {
+    background-color: #97c8ff;
+}
+.bg-finance-loan {
+    background-color: #b19ae9;
+}
+.bg-finance-refund{
+    background-color: #b19ae9;
+}
+.bg-unknown {
+    background-color: #48cfad;
+}
+.bg-delete {
+    color: white;
+    background-color: #ef473a
+}
+
+.clear {zoom:1; clear:both;}
+.clear:after {content:''; display:block; clear:both; visibility:hidden; height:0;}
+
+.modal-wrapper {
+    .imageView .button.button-light.button-outline{
+        color: #444;
+        border: none;
+        font-weight: 300;
+    }
+}
+
+
+
+.mbsc-mobiscroll {
+    .dw-li {
+        .dw-i{
+            color: #959595;
+            opacity: 0.7;
+        }
+    }
+    .dw-sel{
+        color: #0092da !important;
+        .dw-i{
+            color: #0092da;
+            opacity: 1;
+        }
+    }
+    .dw-a{
+        background: #0092da;
+        color: #fff;
+    }
+    .dwwol{
+        border-top: 1px solid #0092da !important;
+        border-bottom: 1px solid #0092da !important;
+    }
+    .dw-sel .dw-dr{
+        background: #0092da !important;
+    }
+    .dw-dr{
+        border: thin solid #0092da !important;
+    }
+    .dwbc{
+        .dwb1{
+            color: #959595 !important;
+        }
+        .dwb0{
+            color: #0092da !important;
+        }
+    }
+
+}
+
+.history-dot-wait {
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin: 11px 9px 6px 9px;
+    background-color: #e5e5e5;
+    border-radius: 50%;
+    z-index: 999;
+}
+.history-dot-success {
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin: 11px 9px 6px 9px;
+    background-color: #71d1bb;
+    border-radius: 50%;
+    z-index: 999;
+}
+.history-dot-reject {
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin: 11px 9px 6px 9px;
+    background-color: #ed3535;
+    border-radius: 50%;
+    z-index: 999;
+}
+.history-dot-withdraw {
+    display: block;
+    width: 8px;
+    height: 8px;
+    margin: 11px 9px 6px 9px;
+    background-color: #7eb6f2;
+    border-radius: 50%;
+    z-index: 999;
+}
+.history-block {
+    .padding-0 {
+        padding: 0 !important;
+    }
+    .padding-5-0 {
+        padding: 5px 0 !important;
+    }
+    .txt-right {
+        text-align: right;
+    }
+    .operation-title {
+        color: #4b4b4b !important;
+        font-size: 14px !important;
+        font-weight: bold;
+    }
+    .operation-date {
+        color: #4b4b4b !important;
+        font-size: 14px !important;
+    }
+    p {
+        word-break: break-all;
+    }
+}
+
+.back-button {
+    width: 45px;
+    text-align: left;
+}
+.application-back-button{
+    width: 67px;
+    text-align: left;
+    .save-btn{
+        width: 12px;
+        height: 18px;
+        margin: 3px 5px 0 5px;
+    }
+    .back-text{
+        margin-right: 5px;
+        display: inherit;
+        color: #0092da;
+        line-height: 24px;
+    }
+    .back-text-grey{
+        margin-right: 5px;
+        display: inherit;
+        color: #4c4c4c;
+        line-height: 24px;
+    }
+    .back-text-white{
+        margin-right: 5px;
+        display: inherit;
+        color: #fff;
+        line-height: 24px;
+    }
+}
+.isRed {
+    color: red;
+}
+
+@import "components/location.selector";
+@import "components/department.item";
+@import "page/dashboard";
+@import "page/wave.travel";
+@import "page/my-account";
+@import "page/login";
+@import "page/setting";
+@import "page/register";
+@import "page/approval.map.view";
+@import "page/approval.list";
+@import "page/expense";
+@import "page/approval.expense.list";
+@import "page/notification";
+@import "page/travel";
+@import "page/expense_report_version/travel";
+@import "page/expense_report_version/approval";
+@import "page/expense_report_version/scanner";
+@import "page/expense_report_version/notification";
+@import "page/expense_report_version/expense";
+@import "components/approval.chain";
+@import "components/user.avatar";
+@import "page/expense_report_version/invoice.apply";
+@import "page/expense_report_version/welcome";
+@import "page/expense_report_version/carousel.detail";
+@import "page/expense_report_version/report";
+@import "page/demo.didi-fake";
+@import "page/pattern.lock";
+@import "components/not.found.text";
+@import "page/expense_report_version/supplier.selector";
+@import "components/person.add";
+@import "page/expense_report_version/supplier";
+@import "page/expense_report_version/self.define.expense.report";
+@import "components/cost.center.selector";
+@import "components/relate.application.modal";
+@import "page/homapage";
+@import "page/expense_report_version/custom.application";
+@import "components/book.ticket.detail.modal";
+@import "components/application.item";
+@import "components/invoice.select.type.modal";
+@import "components/appointment.modal";
+@import "page/expense_report_version/borrow.money";
+@import "components/customer.modal";
+@import "components/linkage.switch.directive";
+@import "page/expense_report_version/jingdong.application";
+@import "page/expense_report_version/didi.refund";
+@import "page/expense_report_version/private.car.for.public";
+@import "components/applicant.selector";
+@import "components/search.loading";
+@import "components/keyboard.amount";
+@import "components/vat.special";
+@import "page/citySelector";
+@import "page/hec/test";
+@import "page/hec/demo";
+@import "page/hec/feeApplication";
+@import "page/hec/crmSelectModal";
+@import "page/hec/approvalDaily";
+@import "page/hec/comBox";
+@import "page/hec/subsidyList";
+@import "page/hec/hec.create.expense";
+@import "page/hec/hec.travel.requisition";
+@import "page/hec/hec.account.book";
+@import "page/hec/travel_trip/hec.confirm.trip";
+@import "page/hec/travel_trip/subsidy.selector.modal";
+@import "page/hec/travel_trip/hec.choose.trip";
+@import "page/hec/hec.approval";
+@import "page/hec/hec.common";
+@import "page/hec/hec.over.standard";
+@import "page/hec/hec.exp.report";

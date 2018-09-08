@@ -1,0 +1,214 @@
+<ion-modal-view class="arrange-tiket-journey">
+    <ion-header-bar>
+        <a ng-click="view.closeTicketModal()" class="row application-back-button">
+            <img src="img/back.png" class="save-btn create-expense-back-btn">
+            <span class="back-text-grey">
+                {{'custom.application.nav.back' | translate}}
+                <!--返回-->
+            </span>
+        </a>
+        <h3 class="title">
+            {{'modal.add_plane_itinerary'|translate}}
+            <!--添加机票行程-->
+        </h3>
+    </ion-header-bar>
+    <ion-content class="block-content has-footer">
+        <ion-list>
+            <ion-item ng-repeat="item in view.flightList" ng-class="{true: 'flow animated1s linear', false: ''}[$index == (view.flightList.length -1) && view.flightList.length > 1]">
+                <p class="itinerary-index">
+                    <!--行程-->
+                    {{"custom.application.tip.itinerary"|translate}}
+                    {{$index +1}}
+                </p>
+                <div class="row row-center input-list supplier-item" ng-click="view.selectSupplier(1001, $index)" ng-if="view.fightSupplier.length > 0">
+                    <div class="col col-60">
+                        <img ng-src="{{item.supplierIconUrl}}" alt="" class="supplier-icon">
+                        <span class="supplier-name">
+                            {{ item.supplierName }}
+                        </span>
+                    </div>
+                    <div class="col col-33 text-right text-change-supplier" ng-if="view.fightSupplier.length > 1">
+                        <!--切换供应商-->
+                        {{"custom.application.tip.change_supplier"|translate}}
+                    </div>
+                    <div class="col text-right" ng-if="view.fightSupplier.length > 1">
+                        <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                    </div>
+                </div>
+                <div class="block-card" ng-class="{true: 'shadow-block', false: ''}[$index == (view.flightList.length -1)]">
+                    <div class="row row-center change-tab">
+                        <div class="triangle-topleft" ng-click="view.changeItineraryType(1001, $index)"></div>
+                        <div class="triangle-topleft-right" ng-click="view.changeItineraryType(1002, $index)"></div>
+                        <div class="triangle-topright" ng-click="view.changeItineraryType(1002, $index)"></div>
+                        <div class="triangle-topright-left" ng-click="view.changeItineraryType(1001, $index)"></div>
+                        <div class="col col-50 text-center" ng-class="{'active': item.itineraryType == 1001}" ng-click="view.changeItineraryType(1001, $index)">
+                            {{'custom.application.tip.single' | translate}}
+                            <!--单程-->
+                        </div>
+                        <div class="col col-50 text-center" ng-class="{'active': item.itineraryType == 1002}" ng-click="view.changeItineraryType(1002, $index)">
+                            {{'custom.application.tip.return' | translate}}
+                            <!--往返-->
+                        </div>
+                    </div>
+                    <div class="row row-center select-city">
+                        <div class="col col-40">
+                            <p class="city-name">
+                                <city-selector supplier-name="item.serviceName" code="item.fromCityCode" city="item.fromCity" hide-hot-city="view.functionProfileList['ca.travel.hotCity.disabled']"
+                                               type="view.type" readonly="false" holder="view.departureText">
+                                </city-selector>
+                            </p>
+                        </div>
+                        <div class="col col-20"></div>
+                        <div class="col col-40">
+                            <p class="text-right city-name">
+                                <city-selector supplier-name="item.serviceName" code="item.toCityCode" city="item.toCity" hide-hot-city="view.functionProfileList['ca.travel.hotCity.disabled']"
+                                               type="view.type" readonly="false" holder="view.destinationText">
+                                </city-selector>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="to-icon">
+                        <img src="img/expense_report_version/travel/traffic/change-plane.png" alt="" ng-click="view.changeFlightCity(1001, $index)">
+                    </div>
+                    <div class="row row-center input-list">
+                        <div class="col col-50" ng-click="view.selectFlightDate('startDate', $index)">
+                            <p class="date-label" ng-hide="item.startDate">
+                                {{'custom.application.tip.start_date' | translate}}
+                                <!--出发日期-->
+                            </p>
+                            <p class="date-value" ng-if="item.startDate">
+                                {{item.startDate | dateFilter}}
+                            </p>
+                        </div>
+                        <div class="col col-50" ng-click="view.selectFlightDate('endDate', $index)" ng-if="item.itineraryType == 1002">
+                            <p class="date-label text-right" ng-hide="item.endDate">
+                                {{'custom.application.tip.back_date' | translate}}
+                                <!--返回日期-->
+                            </p>
+                            <p class="date-value text-right" ng-if="item.endDate">
+                                {{item.endDate | dateFilter}}
+                            </p>
+                        </div>
+                    </div>
+                    <!--携程才有配置字段-->
+                    <div class="row row-center input-list" ng-if="(view.applicationData.customFormProperties.controlFields.takeOffBeginTime.show
+                || view.applicationData.customFormProperties.controlFields.takeOffEndTime.show) && item.supplierOID == view.ctripFlightOID">
+                        <div class="col col-50" ng-click="view.selectFlightTime($index, 'startTime')"
+                             ng-if="view.applicationData.customFormProperties.controlFields.takeOffBeginTime.show">
+                            <p class="time-label" ng-hide="item.takeOffBeginTime">
+                                <!--起飞时间段-->
+                                {{'custom.application.tip.take_off_begin_time' | translate}}
+                            </p>
+                            <p class="time-value" ng-if="item.takeOffBeginTime">
+                                {{item.takeOffBeginTime}} －{{item.takeOffEndTime}}
+                            </p>
+                        </div>
+                        <div class="col col-50" ng-click="view.selectFlightTime($index, 'endTime')" ng-click="view.selectFlightTime($index, 'endTime')"
+                             ng-if="view.applicationData.customFormProperties.controlFields.takeOffEndTime.show && item.itineraryType == 1002">
+                            <p class="time-label text-right" ng-hide="item.arrivalBeginTime">
+                                <!--起飞时间段-->
+                                {{'custom.application.tip.take_off_begin_time' | translate}}
+                            </p>
+                            <p class="time-value text-right" ng-if="item.arrivalBeginTime">
+                                {{item.arrivalBeginTime}} －{{item.arrivalEndTime}}
+                            </p>
+                        </div>
+                    </div>
+                    <!--<div class="row row-center input-list" ng-if="item.supplierOID == 'fbf77233-766f-11e6-9639-00ffa3fb4c67'">-->
+                        <!--<div class="col col-50">-->
+                            <!--航空公司-->
+                        <!--</div>-->
+                        <!--<div class="col col-50 text-right">-->
+                            <!--所有-->
+                        <!--</div>-->
+                        <!--<div class="col col-5 text-right">-->
+                        <!--<img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="ticket-box" ng-hide="(!(view.applicationData.customFormProperties.controlFields.seatClass.show
+                && view.applicationData.customFormProperties.controlFields.discount.show && view.applicationData.customFormProperties.controlFields.ticketPrice.show)) || item.supplierOID != view.ctripFlightOID">
+                        <div class="row item-box" ng-click="view.selectFilghtSeatClass($index)" ng-if="view.applicationData.customFormProperties.controlFields.seatClass.show">
+                        <span class="item-text">
+                            <!--舱等-->
+                            {{'custom.application.class.level' | translate}}
+                        </span>
+                            <div class="text-right text-value">
+                            <span ng-if="item.seatClass != 0">
+                                {{item.seatClass}}
+                            </span>
+                                <span ng-if="item.seatClass == 0">
+                                    {{'custom.application.tip.all' | translate}}
+                                <!--所有-->
+                            </span>
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row item-box" ng-click="view.selectFilghtDiscount($index)" ng-if="view.applicationData.customFormProperties.controlFields.discount.show">
+                        <span class="item-text">
+                            {{'custom.application.discount' | translate}}
+                            <!--折扣-->
+                        </span>
+                            <div class="text-right text-value">
+                            <span ng-if="item.discount != 0">
+                                {{item.discount}}{{'custom.application.tip.discount' | translate}}
+                                <!--折-->
+                            </span>
+                                <span ng-if="item.discount == 0">
+                                <!--所有-->
+                                    {{'custom.application.tip.all' | translate}}
+                            </span>
+                                <img src="img/expense_report_version/travel/arrow.png" alt="" class="travel-arrow">
+                            </div>
+                        </div>
+                        <div class="row item-box" ng-if="view.applicationData.customFormProperties.controlFields.ticketPrice.show">
+                        <span class="item-text">
+                            <!--价格-->
+                            {{'custom.application.price' | translate}}
+                        </span>
+                            <div class="text-right text-value">
+                                <input placeholder="{{'custom.application.tip.unlimited' | translate}}" class="ticket-price"
+                                       ng-model="item.ticketPrice" maxlength="50">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-center self-comment">
+                        <div class="col col-100">
+                            <textarea placeholder="{{'form.please.input' | translate}}" ng-model="item.remark"
+                                      maxlength="200">
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="row row-center text-area-number" ng-if="item.remark.length > 0">
+                        <p class="text-right">
+                            {{item.remark.length}}/200
+                        </p>
+                    </div>
+                    <div class="row row-center text-area-number" ng-hide="item.remark.length > 0">
+                        <p class="text-right">
+                            0/200
+                        </p>
+                    </div>
+                </div>
+                <ion-option-button class="button-assertive delete-itinerary" ng-click="view.deleteFlight($index)">
+                    <div class="column">
+                        <img src="img/expense_report_version/travel/delete-itinerary.png" alt="" class="delete-icon">
+                    </div>
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+
+    </ion-content>
+    <ion-footer-bar>
+        <div class="row row-center">
+            <div class="col col-50 text-center sure" ng-click="view.saveFlightItinerary()">
+                {{"common.sure"|translate}}
+                <!--确认-->
+            </div>
+            <div class="col col-50 text-center sure-create" ng-click="view.saveMoreFlightItinerary()">
+                {{"common.sure_and_add"|translate}}
+                <!--确认并新建-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-modal-view>
+

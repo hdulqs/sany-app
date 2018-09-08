@@ -1,0 +1,168 @@
+<ion-view cache-view="false"  class="faq-list">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'help.feedback.Common.problems'|translate}}<!--常见问题--></span>
+    </ion-nav-title>
+    <ion-content class="help-category">
+            <div class="list" ng-if="view ==='login'">
+                <div class="item item-divider"></div>
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_login_detail_account')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQLoginDetail.question1'|translate}}<!--首次登录时提示我用户名和密码不正确，请问账号密码和公司HR系统一致吗？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap" ng-click="goTo('app.faq_login_detail_install')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQLoginDetail.question2'|translate}}<!--我的安卓系统安装汇联易失败?--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap" ng-click="goTo('app.faq_login_detail_hrms')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQLoginDetail.question3'|translate}}<!--汇联易与HRMS系统的关系?--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_login_detail_mobile')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQLoginDetail.question4'|translate}}<!--手机号码需要变更，怎么解除当前绑定更改新手机号码?--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_login_detail_didi')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQLoginDetail.question5'|translate}}<!--滴滴中如果点错了个人支付/个人支付(需报销)选项,有没有补救的措施?--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="list" ng-if="view ==='didi'">
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_didi_detail_invoice')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQDidiDetail.question'|translate}}<!--滴滴打车费用报销和其他类型费用报销有什么不同？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_didi_detail_approval')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQDidiDetail.question2'|translate}}<!--在滴滴企业版后台也可以提交滴滴费用进行审批，是不是可以不用汇联易？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap" ng-click="goTo('app.faq_didi_detail_type')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQDidiDetail.question3'|translate}}<!--滴滴打车的费用无法导入汇联易中?--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_didi_detail_mobile')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">
+                            {{'help.feedback.FAQDidiDetail.question4'|translate}}<!--绑定滴滴企业版的手机号码发生变更，新号无法认证到公司信息，导致滴滴出行无法选择报销，滴滴企业版又不能直接修改手机号，这种情况需要怎么处理？-->
+                        </div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_didi_detail_change')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQDidiDetail.question5'|translate}}<!--滴滴中如果点错了"个人支付/个人支付(需报销)选项,有没有补救的措施?--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="list" ng-if="view ==='travel'">
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_travel_detail_flyback_order')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQTravelDetail.question1'|translate}}<!--在汇联易中提交差旅申请、FLYBACK申请后如何预订机票？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap" ng-click="goTo('app.faq_travel_detail_born_invoice')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQTravelDetail.question2'|translate}}<!--在汇联易中预订酒店后如何生成费用？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap" ng-click="goTo('app.faq_travel_detail_hrms')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQTravelDetail.question3'|translate}}<!--FlyBack申请和之前HRMS中的操作完全相同吗？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="list" ng-if="view ==='invoice'">
+                <div class="item item-text-wrap" ng-click="goTo('app.faq_invoice_detail_type')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQInvoiceDetail.question1'|translate}}<!--汇联易上能够提交什么类型的费用报销？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap" ng-click="goTo('app.faq_invoice_detail_select_project')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQInvoiceDetail.question2'|translate}}<!--选不到项目?--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap" ng-click="goTo('app.faq_invoice_detail_find')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQInvoiceDetail.question3'|translate}}<!--误删的滴滴费用数据如何找回？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="list" ng-if="view ==='expense'">
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_expense_detail_import')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQExpenseDetail.question1'|translate}}<!--为什么我用汇联易提交的报销单没有导入到Hrms系统中去？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_expense_detail_status')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQExpenseDetail.question2'|translate}}<!--我提交了报销单以后，如何关注后续的报销单状态？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_expense_detail_reject')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQExpenseDetail.question3'|translate}}<!--报销单已由项目经理审批通过，状态却是【已驳回】--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_expense_detail_different')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQExpenseDetail.question4'|translate}}<!--报销单状态【已通过】和【审核通过】之间的区别是什么？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_expense_detail_cancel')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQExpenseDetail.question5'|translate}}<!--汇联易自动生成的报销单，发现有问题后如何进行修改和取消？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap long-text" ng-click="goTo('app.faq_expense_detail_print')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQExpenseDetail.question6'|translate}}<!--对于酒店、通讯费等报销，汇联易系统中审批之后，还需要打印出来贴票邮寄吗？如何打印呢？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="list" ng-if="view ==='bpo'">
+                <div class="item item-text-wrap" ng-click="goTo('app.faq_bpo_detail_process')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQBPODetail.question1'|translate}}<!--BPO发票拍照，提交报销单的流程是怎样的？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+                <div class="item item-text-wrap" ng-click="goTo('app.faq_bpo_detail_send')">
+                    <div class="row">
+                        <div class="col col-95 filed-name">{{'help.feedback.FAQBPODetail.question2'|translate}}<!--拍照上传发票后，我还需要寄送报销单吗？--></div>
+                        <span class="icon ion-ios-arrow-right"></span>
+                    </div>
+                </div>
+            </div>
+    </ion-content>
+</ion-view>
+
+

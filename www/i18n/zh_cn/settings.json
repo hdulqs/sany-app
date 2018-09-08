@@ -1,0 +1,126 @@
+{
+    "account_bind": {
+        "Account.binding": "账号绑定",
+        "binding": "已绑定",
+        "didi.travel": "滴滴出行",
+        "unbounded": "未绑定"
+    },
+    "account_bind_js": {
+        "binding.phone.number": "已解除绑定该手机号",
+        "phone.number.as.login.account": "该手机号做为登录账号，不能解除绑定",
+        "iuputPhoneNumber":"请输入手机号码",
+        "PhoneNumberError":"手机号码填写错误",
+        "verificationCodeSend":"验证码已发送",
+        "beenBound":"该手机号已被绑定,请绑定其他手机号",
+        "SendingFrequent":"验证码发送频繁,请稍后再试",
+        "beOccupied":"手机号已被占用",
+        "relationDiDiService":"该号码已被占用,请联系滴滴客服",
+        "verificationCodePastDue":"该验证码已过期,请重新发送",
+        "VerificationCodeError":"验证码错误,请重新输入",
+        "networkAnomaly":"网络异常,请稍后再试",
+        "BindingSuccess":"绑定成功"
+    },
+    "bind_mobile": {
+        "Binding.mobile.phone.number": "绑定手机号",
+        "Please.enter.the.phone.number": "请输入手机号",
+        "Please.enter.the.verification.code": "请输入验证码",
+        "Seconds.later": "秒后",
+        "Send.verification.code": "发送验证码",
+        "complete": "完成",
+        "resend": "重新发送",
+        "resend.the.verification.code": "重新发送验证码"
+    },
+    "didi_order": {
+        "choose.time": "点击选择时间",
+        "didi.Settings": "滴滴同步设置",
+        "start": "开始时间",
+        "stop": "结束时间",
+        "synchronous": "同步"
+    },
+    "didi_order_js": {
+        "End.time.is.not.less.than.start.time": "结束时间不能小于开始时间",
+        "End.time.is.today.at.the.latest": "结束时间最晚是今天",
+        "Please.select.start.time": "请选择开始时间",
+        "Please.select.stop.time": "请选择结束时间",
+        "Start.time.is.today.at.the.latest": "开始时间最晚是今天",
+        "check_in_expense_list": "请到费用列表里查看!",
+        "orders.have.been.synchronized.success": "滴滴订单已同步成功,"
+    },
+    "expense_time": {
+        "A.month": "每月",
+        "Please.select.a.date": "请选择日期",
+        "Regularly.submit": "定时提交",
+        "Regularly.submit.the.expense.account": "定时提交报销单",
+        "Submit.time": "提交时间",
+        "date": "号"
+    },
+    "mobile_list": {
+        "New.mobile.phone.number": "新增手机号",
+        "phone.number": "手机号"
+    },
+    "order_form": {
+        "Ctrip": "携程",
+        "Ctrip.hotline": "携程热线",
+        "Order.secretary": "订餐小秘书",
+        "The.hotel.order": "酒店订单",
+        "The.ticket.order": "机票订单",
+        "order.information": "订单信息",
+        "tip":" 提示：改签和退票所产生的相关费用默认挂个人账，如需销账请及时在OA系统中提交国内机票改签/退票申请，审批通过后联系商旅热线。"
+    },
+    "person": {
+        "Exit.from.the.current.account": "退出当前账号",
+        "Head.portrait": "头像",
+        "Personal.information": "个人信息",
+        "department": "部门",
+        "email": "邮箱",
+        "name": "姓名",
+        "phone": "手机号",
+        "position": "职位",
+        "level":"级别"
+    },
+    "person_js": {
+        "Choose.from.the.album": "从相册中选择",
+        "Failed.to.upload.again": "上传失败,请重新上传",
+        "Picture.exceeds.the.limit": "照片大小超过限制!",
+        "Uploaded.successfully": "上传成功",
+        "cancel": "取消",
+        "network": "网络异常!",
+        "ok": "确定",
+        "pictures": "拍照",
+        "prompt": "提示",
+        "confirmExit":"确定要退出吗?",
+        "uploading": "发票正在上传!"
+    },
+    "photo_settings": {
+        "Photo.set": "拍照设置",
+        "Saved": "开启后,在汇联易中拍完发票会保存到您的相册。",
+        "Saved.to.the.local": "保存到本地"
+    },
+    "relieve_bind": {
+        "Remove.the.binding": "解除绑定"
+    },
+    "security_center": {
+        "Gestures.to.lock": "手势锁",
+        "Modify.the.login.password": "修改登录密码",
+        "Security.center": "安全中心"
+    },
+    "settings_list":{
+        "Setup":"设置",
+        "didi.synchronization":"滴滴同步",
+        "Take.the.invoice":"拍发票"
+    },
+    "language_list":{
+        "language":"语言",
+        "simplified.chinese":"简体中文",
+        "english":"英文",
+        "Malay":"马来文",
+        "updating.languages":"更新语言",
+        "updating.languages_zh_CN":"更新语言",
+        "updating.languages_en":"Updating Languages",
+        "updating.languages_ms":"Updating Languages",
+        "whether_change_the_language": "是否将语言更改为",
+        "zh_cn": "简体中文",
+        "en": "英文",
+        "ms": "马来文"
+    }
+}

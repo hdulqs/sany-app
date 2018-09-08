@@ -1,0 +1,64 @@
+{
+    "base": {
+        "Jingdong.application": "permohonan Jingdong",
+        "Please.enter.a.note": "Sila masukkan komen (pilihan ,, tidak boleh lebih daripada 200 aksara)",
+        "Please.enter.the.reason": "Sila masukkan subjek (diperlukan, tidak lebih daripada 50 aksara)",
+        "delete": "memadam",
+        "save": "menyimpan",
+        "submit": "hantar"
+    },
+    "base_js": {
+        "After.deleting.will.cancel.the.jingdong.orders.at.the.same.time": "Batal akan memadamkan pesanan Jingdong",
+        "Application.form.is.invalid": "Permintaan tidak sah",
+        "Confirm.to.delete": "Adakah anda pasti untuk memadam ?",
+        "Cost.center.is.not.configured": "pusat kos tidak dikonfigurasi, sila hubungi pentadbir",
+        "Delete.failed": "gagal untuk memadam",
+        "Delete.the.success": "berjaya dipadam",
+        "Has.been.submitted": "dikemukakan",
+        "Jingdong.order.is.invalid": "perintah Jingdong tidak sah",
+        "Jingdong.order.time.error": "Jingdong memerintahkan masa yang salah",
+        "Please.enter.the": "sila masuk",
+        "Please.select.a": "sila pilih",
+        "Save.failed": "Gagal menyimpan",
+        "The.order.was.cancelled": "Perintah telah dibatalkan, permohonan itu tidak boleh dikemukakan",
+        "The.saved": "Disimpan",
+        "cancel": "membatalkan",
+        "day": "hari",
+        "determine": "menentukan",
+        "hours": "jam",
+        "submit.failure": "Penyerahan Gagal"
+    },
+    "detail": {
+        "Go.to.the.payment": "Untuk membayar",
+        "The.examination.and.approval.of.history": "Sejarah kelulusan",
+        "To.view.the.order.details": "Lihat maklumat pesanan",
+        "Waiting": "tunggu",
+        "examine.and.approve": "kelulusan",
+        "pass": "berlalu",
+        "reject": "ditolak",
+        "withdraw": "menarik balik"
+    },
+    "detail_js": {
+        "Has.been.rejected": "ditolak",
+        "Has.withdrawn": "Ia telah ditarik balik",
+        "Have.been.through": "berlalu",
+        "Please.enter.the.reject.reason": "Sila masukkan alasan penolakan",
+        "Reason.for.rejection": "alasan penolakan",
+        "Withdraw.the.failure": "kegagalan Recall",
+        "cancel": "membatalkan",
+        "failed": "gagal",
+        "ok": "mengesahkan"
+    },
+    "order": {
+        "Check.the.details": "melihat butiran",
+        "Has.been.cancelled": "Dibatalkan",
+        "Have.to.return": "kembali",
+        "Logistics.information": "Maklumat Logistics",
+        "The.order.information": "memerintahkan maklumat",
+        "The.rest.payment": "Masa yang tinggal pembayaran",
+        "Total.amount": "Jumlah",
+        "freight": "Freight",
+        "number": "kuantiti",
+        "pleaseInputReason": "请输入理由"
+    }
+}

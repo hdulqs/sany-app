@@ -1,0 +1,10 @@
+<div class="approval-selector-modal" ng-click="view.selectSupplier()">
+    <p class="join-member-placeholder" ng-show="selectedSupplier === null || selectedSupplier === ''"
+       ng-class="{'text-right': textRight}">
+        {{'supplier_tpl.Please.select.a.supplier'|translate}}<!--请选择供应商-->
+    </p>
+    <p class="join-member" ng-hide="selectedSupplier === null || selectedSupplier === ''"
+       ng-class="{'text-right': textRight}">
+        {{selectedSupplier.name}}
+    </p>
+</div>

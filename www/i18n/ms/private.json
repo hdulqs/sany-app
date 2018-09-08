@@ -1,0 +1,41 @@
+{
+    "error": {
+        "error": "Kesalahan",
+        "location.failed.please.try.again.or.manually.input": "Lokasi gagal mengesan, sila cuba lagi atau masukkan secara manual",
+        "network": "Ralat rangkaian!",
+        "no.unit.price.per.kilometer": "Tiada harga unit menetapkan setiap kilometer",
+        "server": "Ralat pelayan,",
+        "system": "juruteknik sedang berusaha membaiki!",
+        "this.type.is.not.available.please.contact.administrator": "Jenis tidak boleh didapati, sila hubungi pentadbir"
+    },
+    "private": {
+        "arrival": "Ketibaan",
+        "city": "Bandar",
+        "click.refresh": "Klik refresh",
+        "click.start.time.place": "Klik masa dan tempat mula",
+        "data.from.Baidu.maps.according.to.departure/arrival.calculation": "Data dari peta Baidu, menurut pengiraan berlepas / ketibaan",
+        "departure": "berlepas",
+        "distance": "Jarak",
+        "import": "Masukkan",
+        "kilometer": "Kilometer",
+        "location.key": "Lokasi kata kunci",
+        "meter": "Meter",
+        "mileage": "jarak tempuh",
+        "mileage.must.be.greater.than.0": "Perbatuan mesti lebih besar daripada 0",
+        "mileage.to.retain.a.decimal": "Perbatuan untuk mengekalkan satu perpuluhan",
+        "place.of.arrival": "Tempat ketibaan",
+        "place.of.departure": "Tempat berlepas",
+        "please.contact.the.administrator": "Sila hubungi pentadbir",
+        "please.enter.a.valid.range": "Sila masukkan perbatuan yang sah",
+        "position": "Kedudukan...",
+        "price": "Harga",
+        "private.car.for.public": "kereta dikongsi",
+        "revise": "Ubah suai",
+        "search": "Mencari",
+        "submit": "Hantar",
+        "submitted": "Diserahkan",
+        "time.of.arrival": "Masa ketibaan",
+        "time.of.departure": "Masa berlepas",
+        "total": "Jumlah"
+    }
+}

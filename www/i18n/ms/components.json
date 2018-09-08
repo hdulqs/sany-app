@@ -1,0 +1,306 @@
+{
+    "account": {
+        "Account.opening.an.account": "Membuka akaun",
+        "Loading": "Loading ...",
+        "To.open.an.account.name": "Nama akaun",
+        "bank": "Bank",
+        "empty": "kosong"
+    },
+    "account_js": {
+        "Make.a.mistake": "bermasalah"
+    },
+    "add": {
+        "Add.external.participants": "Menambah peserta luar",
+        "Empty.the.history": "Kosongkan sejarah",
+        "External.participants": "peserta Luar",
+        "Participants": "peserta",
+        "Please.add": "Sila tambah",
+        "The.historical.record": "rekod sejarah"
+    },
+    "add_js": {
+        "Has.been.removed": "dikeluarkan",
+        "The.user.has.been.added": "Pengguna ini telah ditambah"
+    },
+    "application_item": {
+        "Has.been.closed": "已停用",
+        "Flyback": "Flyback申请",
+        "Has.been.rejected": "Ditolak",
+        "Has.withdrawn": "dibatalkan",
+        "In.the.editor": "editing",
+        "In.the.examination.and.approval": "Kelulusan dalam proses",
+        "Reason.for.rejection": "Alasan penolakan",
+        "budget": "bajet",
+        "paymenting": "还款中",
+        "pay_in_process":"付款中",
+        "ren": "人",
+        "yetAudit": "已审核",
+        "yetRepayment": "已还款"
+    },
+    "approval_selector": {
+        "No.data": "tiada data",
+        "choose": "memilih"
+    },
+    "approval_selector_js": {
+        "mistake": "出错了",
+        "tip": "提示",
+        "clear_allowance": "更改参与人将清空已添加的差补",
+        "sure_modify": "确认更改",
+        "please_select_costCenter": "请先选择成本中心",
+        "please_select_applicant": "请先选择申请人",
+        "please_select_department": "请先选择部门",
+        "The.most.optional": "had pilihan",
+        "unit": "个"
+    },
+    "back.to.HuiLianYi": "Back",
+    "bank_item": {
+        "No.bank": "Tiada bank",
+        "Popular.bank": "popular Bank"
+    },
+    "break_expense_js": {
+        "ctrip": "jumlah Ctrip",
+        "stick": "jumlah setem",
+        "didi": "Jumlah Didi",
+        "changguan": "场馆金额",
+        "huafei": "话费金额",
+        "youka": "油卡金额"
+    },
+    "city_selector": {
+        "Please.enter.the.city": "Sila masukkan bandar"
+    },
+    "cost": {
+        "Last.choice": "Last choice",
+        "Please.enter.the.keywords": "Sila masukkan kata kunci",
+        "public": "awam"
+    },
+    "cost_center": {
+        "Cost.center.is.not.configured": "pusat kos tidak dikonfigurasi, sila hubungi pentadbir anda"
+    },
+    "cost_js": {
+        "Cost.center": "Pusat kos"
+    },
+    "date": {
+        "Friday": "jumaat",
+        "Monday": "Isnin",
+        "Saturday": "sabtu",
+        "Sunday": "ahad",
+        "Thursday": "khamis",
+        "Tuesday": "selasa",
+        "Wednesday": "rabu"
+    },
+    "destination": {
+        "Hot.city": "bandar-bandar popular",
+        "Please.enter.the.keywords": "Sila masukkan kata kunci",
+        "Select.the.city": "Pilih sebuah bandar",
+        "There.is.no.city": "Bukan bandar",
+        "cancel": "membatalkan"
+    },
+    "destination_js": {
+        "Beijing": "Beijing",
+        "Changsha": "Changsha",
+        "Guangzhou": "Guangzhou",
+        "HongKong": "Hong Kong",
+        "Shanghai": "Shanghai",
+        "Shenzhen": "Shenzhen",
+        "Wuhan": "Wuhan",
+        "Wuxi": "Wuxi"
+    },
+    "destination_js_ctrip": {
+        "Beijing": "Beijing",
+        "Changsha": "Changsha",
+        "Guangzhou": "Guangzhou",
+        "HongKong": "Hong Kong",
+        "Shanghai": "Shanghai",
+        "Shenzhen": "Shenzhen",
+        "Wuhan": "Wuhan",
+        "Wuxi": "Wuxi"
+    },
+    "didi_fake": {
+        "order.success": "Order generated successfully!",
+        "request.error": "Service request error, please try again later!"
+    },
+    "directive": {
+        "Level.approver": "tahap Pelulus",
+        "Please.select.a.user.of.examination.and.approval": "Sila pilih pengguna untuk kelulusan",
+        "Please.select.the.approver": "Sila pilih Pelulus",
+        "Select.the.approver": "Pilih Pelulus",
+        "determine": "menentukan"
+    },
+    "directive_js": {
+        "An.approver": "Pelulus",
+        "Can.only.choose": "Anda hanya boleh memilih"
+    },
+    "eid": {
+        "Have.a.refund": "Bayaran balik",
+        "Modify": "mengubah suai",
+        "The.actual.audit": "Audit yang sebenar"
+    },
+    "error_comp": {
+        "deploy": "Tidak dikonfigurasikan, sila hubungi admin",
+        "network": "Alamak, rangkaian bermasalah!",
+        "server": "Server bermasalah,",
+        "service.no.open": "Tidak melanggani perkhidmatan ini",
+        "system": "Technican sedang berusaha membaiki!",
+        "permission": "No effective proxy relationship, please contact the administrator!",
+        "error": "Request error!",
+        "connect": "Can not connect to",
+        "retry": "Please try again later!",
+        "config": "Config error!"
+    },
+    "expense_item": {
+        "Daily.expense.account": "perbelanjaan harian",
+        "Do.not.need.to.stick.a.ticket": "tanpa Setem",
+        "Make.out.an.invoice.is.rejected": "Billing menolak",
+        "Review.the.rejected": "kajian menolak",
+        "Stick.a.ticket.cost": "kos setem",
+        "Success.of.make.out.an.invoice": "kejayaan bil",
+        "Travel.reimbursement": "tuntutan perjalanan",
+        "reimbursement": "pembayaran balik"
+    },
+    "expense_item_js": {
+        "didi.travel": "perjalanan Didi"
+    },
+    "fill": {
+        "Add.personnel": "Menambah kakitangan",
+        "name": "Nama penuh"
+    },
+    "invoice_item": {
+        "Cost.to.apply.for": "tuntutan perbelanjaan",
+        "Etc": "dan lain-lain"
+    },
+    "invoice_type": {
+        "Total.amount": "Jumlah keseluruhan",
+        "add": "Tambah"
+    },
+    "invoice_type_js": {
+        "Please.enter.the.amount": "Sila masukkan jumlah itu",
+        "Please.select.a.cost.type": "Sila pilih jenis kos",
+        "type": "Jenis"
+    },
+    "item": {
+        "For.the.ticket": "tiket penggantian",
+        "Have.a.ticket": "Mempunyai tiket",
+        "Special.ticket": "tiket khas",
+        "There.is.no.ticket": "Tanpa tiket",
+        "delete": "memadam",
+        "rejected": "ditolak",
+        "through": "diluluskan",
+        "withdraw": "menarik balik"
+    },
+    "linkage": {
+        "Please.enter.the": "sila masuk",
+        "Please.enter.keyword": "请输入成本中心名称",
+        "Please.select": "sila pilih",
+        "My": "My Account ",
+        "not.enabled": "Not Enabled"
+    },
+    "location": {
+        "Please.select.a.location": "Sila pilih lokasi",
+        "Site.keywords": "kata kunci lokasi",
+        "search": "carian"
+    },
+    "location_js": {
+        "catering": "makanan dan minuman",
+        "coach": "Jurulatih",
+        "conference": "persidangan",
+        "hotel": "Hotels",
+        "ticket": "tiket penerbangan",
+        "traffic": "lalu lintas",
+        "train": "kereta api"
+    },
+    "more_settings": {
+        "More.Settings": "Lebih tetapan",
+        "The.approver.set": "tetapan Pelulus"
+    },
+    "person_tpl": {
+        "No.search.results": "Tiada hasil carian",
+        "Select.personnel": "pemilihan kakitangan"
+    },
+    "person_tpl_js": {
+        "participants": "peserta"
+    },
+    "popup": {
+        "cancel": "Cancel",
+        "ok": "Ok",
+        "you.have": "You have",
+        "need.to.be.processed": "approval(s) need to be processed."
+    },
+    "select_type": {
+        "Cost.type.choice": "pilihan kos Jenis",
+        "Enter.the.amount": "Masukkan jumlah",
+        "Enter.the.number": "Masukkan bilangan hari",
+        "Refer.to.the.mileage": "perbatuan rujukan",
+        "The.total.amount": "jumlah keseluruhan",
+        "The.total.amount.of": "sekali gus",
+        "complete": "selesai",
+        "mileage": "jarak tempuh",
+        "money": "jumlah",
+        "number": "nombor",
+        "reset": "mendamaikan",
+        "subsidies": "subsidi",
+        "histroy.select": "历史选择"
+    },
+    "select_type_js": {
+        "Length.must.be.greater.than.zero": "Mileage mesti lebih besar daripada 0",
+        "Mileage.up.to.a.decimal": "Mileage sehingga satu tempat perpuluhan",
+        "Please.enter.the.legal.number.of.days": "Sila masukkan jumlah hari yang sah",
+        "Please.enter.the.legal.range": "Sila masukkan bandar yang sah",
+        "Please.enter.the.legitimate.expression": "Sila masukkan ungkapan yang sah",
+        "Please.select.currency": "请选择币种",
+        "confirm": "mengesahkan"
+    },
+    "selector": {
+        "Choose.department": "Pilih jabatan",
+        "Department.list": "Senarai jabatan",
+        "Have.chosen.sector": "jabatan Terpilih",
+        "Please.select.a.department": "Sila pilih jabatan",
+        "The.history.department": "Jabatan Sejarah",
+        "Please.enter.the.keywords": "请输入关键字",
+        "department.disable": "已停用"
+    },
+    "status": {
+        "Bank.account.only.Numbers": "akaun bank hanya boleh menjadi nombor",
+        "Have.been.through": "berlalu",
+        "Make.out.an.invoice.through": "Billing melalui",
+        "Payment.has.been": "dibayar",
+        "Please.enter.the.legal.amount": "Sila masukkan jumlah yang sah",
+        "approved": "diluluskan",
+        "pay_in_process": "Paying",
+        "loan_in_process": "Processing"
+    },
+    "supplier_tpl": {
+        "Please.select.a.supplier": "Sila pilih pembekal",
+        "Please.select.a.supplier.new": "Choose air-ticket supplier"
+    },
+    "tabs": {
+        "Expense.account": "tuntutan bayaran balik",
+        "Home.page": "Laman utama",
+        "cost": "kos",
+        "my": "saya"
+    },
+    "travel_directive": {
+        "Travel.application": "permohonan perjalanan"
+    },
+    "upload_js": {
+        "Choose.from.the.album": "Pilih dari album",
+        "Network.failure.please.try.again.later": "rangkaian bermasalah, sila cuba lagi kemudian.",
+        "Photos.over.limit": "Gambar terlebih had!",
+        "Taking.pictures": "Gambar",
+        "take.pictures.and.compress": "Camera and Compress",
+        "choose.from.album.and.compress": "Album and Compress"
+    },
+    "user": {
+        "external": "luar"
+    },
+    "value_tpl": {
+        "Approver": "位审批人",
+        "Click.the.refresh": "Klik Refresh",
+        "No.results": "Tiada keputusan!",
+        "Select.value": "Pilih nilai",
+        "amendMileage": "修改里程",
+        "cardID": "卡号:",
+        "onlyChoose": "最多只能选择",
+        "pleaseInputMileage": "请输入里程",
+        "Approver":"位审批人",
+        "default": "默认"
+    }
+}

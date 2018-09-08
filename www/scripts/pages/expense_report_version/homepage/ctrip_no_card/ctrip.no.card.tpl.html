@@ -1,0 +1,14 @@
+<ion-view class="ctrip-no-card-page">
+    <ion-content>
+       <div class="img-container">
+           <img src="img/homepage/ctrip.no.card.png">
+       </div>
+        <div class="title">
+            <span>{{"ctripNoCard.prompting" | translate}}</span>
+        </div>
+        <div class="sub-title" ng-repeat="item in AdminInfo">
+            <span>{{item.fullName}}{{"ctripNoCard.phone" | translate}}:
+                <a class="blue-text" href="tel:{{item.login}}" target="_top">{{item.login}}</a></span>
+        </div>
+    </ion-content>
+</ion-view>

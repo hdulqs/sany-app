@@ -1,0 +1,39 @@
+{
+    "error": {
+        "no.cost.records": "No record"
+    },
+    "report": {
+        "april": "April",
+        "august": "August",
+        "budget": "Budget",
+        "category": "Category",
+        "december": "December",
+        "department": "My Department",
+        "didi.travel": "Didi travel",
+        "february": "February",
+        "january": "January",
+        "july": "July",
+        "june": "June",
+        "last.month.payment": "Last Month",
+        "march": "March",
+        "may": "May",
+        "month": "Month",
+        "nearly.six.months": "The last six months",
+        "nearly.three.months": "Nearly three months",
+        "nearly.twelve.months": "Over the past twelve months",
+        "november": "November",
+        "number.of.people": "Number",
+        "october": "October",
+        "payment.for.the.quarter": "This Quarter",
+        "payment.for.this.year": "This Year",
+        "payment.this.month": "This Month",
+        "per": "Per capita",
+        "person": "People",
+        "personal": "My Expense",
+        "personnel": "Personnel",
+        "repert": "Reports",
+        "september": "September",
+        "to": "To",
+        "year": ""
+    }
+}

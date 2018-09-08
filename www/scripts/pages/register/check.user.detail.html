@@ -1,0 +1,83 @@
+<ion-view class="register-page" hide-back-button="true">
+    <ion-nav-title>
+        <span ng-model="view.title" class="expense-report-nav-title">{{view.title}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack()" class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+   <!-- <div class="tabs-striped tabs-top" ng-if="view.content === 'active'">
+        <div class="tabs">
+            <a class="tab-item" ng-class="{'active' : view.isActive('item-phone')}" ng-click="view.setActiveContent('item-phone')">
+                {{'register.Phone.verification'|translate}}&lt;!&ndash;手机验证&ndash;&gt;
+            </a>
+            <a class="tab-item" ng-class="{'active' : view.isActive('item-email')}"> </a>
+            &lt;!&ndash;<a class="tab-item" ng-class="{'active' : view.isActive('item-email')}" ng-click="view.setActiveContent('item-email')">
+                {{'register.Email.address.verification'|translate}}&lt;!&ndash;邮箱验证&ndash;&gt;
+            </a>&ndash;&gt;
+        </div>
+    </div>-->
+    <ion-content>
+        <form name="registerForm">
+            <div class="list" style="margin-top: 0.4rem;">
+                <div class=" row input-group" align="center" ng-show="view.content=='register' && view.captchaShow">
+                    <input type="text" name="captcha" placeholder="{{'register.Image.authentication.code'|translate}}" ng-model="view.verifyCode">
+                    <div class="col-40" ng-click="view.getCaptchaImage()">
+                        <img class="captcha-image" data-ng-src="data:image/png;base64,{{view.captchaImage}}"/>
+                    </div>
+                    </button>
+                </div>
+                <div class=" row input-group" align="center">
+                    <input type="text" name="mobile" placeholder={{'register.Please.enter.the.phone.number'|translate}} ng-model="view.mobile"
+                           ng-change="reset()"
+                           ng-required="true"
+                           ng-pattern="/^1\d{10}$/"
+                           ng-if="view.activeContent === 'item-phone'"/>
+                    <input type="text" name="mobile"
+                           placeholder="{{view.holderTitle}}"
+                           ng-model="view.mobile"
+                           ng-change="reset()"
+                           ng-required="true" ng-pattern="/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/"
+                           ng-if="view.activeContent !== 'item-phone'"/>
+                    <button ng-click="register(registerForm.mobile.$valid,registerForm.mobile.$error)"
+                            class="col-40 button button-raised token-button" ng-hide="status.smsSent">
+                        {{view.btnTitle}}
+                    </button>
+                    <button class="col-40 button disabled" ng-show="status.smsSent && status.timerStart">
+                        <div class="timer" >
+                        <timer interval="1000" countdown="60" auto-start="false"
+                               finish-callback="countdownFinished()">{{'register.To.resend'|translate}}<!--重新发送-->({{countdown}}{{'register.Seconds.later'|translate}}<!--秒后-->)
+                        </timer>
+                        </div>
+                    </button>
+                    <button ng-click="register(registerForm.mobile.$valid,registerForm.mobile.$error)"
+                            class="col-40 button button-raised token-button"
+                            ng-show="status.smsSent && !status.timerStart">
+                        {{'register.To.resend.the.verification.code'|translate}}<!--重新发送验证码-->
+                    </button>
+                </div>
+                <div class="row input-group" align="center">
+                    <input name="token" class="col" type="text" placeholder="{{'register.Please.enter.the.verification.code'|translate}}"
+                           ng-model="view.token" ng-minlength="6" ng-maxlength="6"
+                           />
+                </div>
+                <div class="row checkbox-group" ng-if="view.content==='register'">
+                    <ion-checkbox ng-model="view.isChecked" class="register-checkbox">
+                    </ion-checkbox>
+                    <span>{{'register.agree'|translate}}<!--同意--><a ng-click="goTo('app.protocol')">&lt;&lt;{{'register.huilianyi.service.agreement'|translate}}<!--汇联易服务协议-->&gt;&gt;</a></span>
+                </div>
+
+                <p class="prompt-color" ng-if="view.accountStatus&&view.content === 'active'">{{'register.The.active.account.was.not.found'|translate}}<!--该激活账号不存在,请联系管理员--></p>
+                <div class="row">
+                    <button class="button next-button button button-block button-positive"
+                            ng-disabled="(registerForm.token.$invalid || registerForm.mobile.$invalid  || !status.smsSent || !view.isChecked) "
+                            ng-click="nextStep(view.mobile,view.token)">
+                        {{'register.next.step'|translate}}<!--下一步-->
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </ion-content>
+</ion-view>

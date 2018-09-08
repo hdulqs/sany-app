@@ -1,0 +1,723 @@
+[
+    {
+        "customLocationDetailDTOS": [],
+        "tag": "History"
+    },
+    {
+        "tag": "Popular",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Hong Kong",
+                "code": "CHN081000000"
+            },
+            {
+                "city": "Seoul",
+                "code": "KOR011000000"
+            },
+            {
+                "city": "Taipei",
+                "code": "CHN071001000"
+            },
+            {
+                "city": "Tokyo",
+                "code": "JPN000013000"
+            },
+            {
+                "city": "Singapore",
+                "code": "SGP000000000"
+            },
+            {
+                "city": "Bangkok",
+                "code": "THA000010000"
+            },
+            {
+                "city": "Osaka",
+                "code": "JPN000027000"
+            },
+            {
+                "city": "Ho Chi Ming City",
+                "code": "VNM000000000"
+            },
+            {
+                "city": "Manila",
+                "code": "PHL000MNL000"
+            },
+            {
+                "city": "London",
+                "code": "GBRENGLND000"
+            },
+            {
+                "city": "Kuala Lumpur",
+                "code": "MYS0KL000000"
+            },
+            {
+                "city": "Busan",
+                "code": "KOR026000000"
+            },
+            {
+                "city": "Sydney",
+                "code": "AUSNSWHBS000"
+            },
+            {
+                "city": "Frankfurt",
+                "code": "DEU000FFO000"
+            },
+            {
+                "city": "Vancouver",
+                "code": "CAN000VAN000"
+            },
+            {
+                "city": "Paris",
+                "code": "FRA000PAR000"
+            },
+            {
+                "city": "New York",
+                "code": "USA0NY000000"
+            },
+            {
+                "city": "Los Angeles",
+                "code": "USA0CALAX000"
+            },
+            {
+                "city": "Hawaii",
+                "code": "USA0HIITO000"
+            }
+        ]
+    },
+    {
+        "tag": "A",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Amsterdam",
+                "code": "NLD000AMS000"
+            },
+            {
+                "city": "Athens",
+                "code": "GRC000ATH000"
+            },
+            {
+                "city": "Atlanta",
+                "code": "USA0GATAT000"
+            },
+            {
+                "city": "Addis Ababa",
+                "code": "ETH0000AA000"
+            },
+            {
+                "city": "Algiers",
+                "code": "DZA000ALG000"
+            },
+            {
+                "city": "Auckland",
+                "code": "NZL000AUK000"
+            },
+            {
+                "city": "Adelaide",
+                "code": "AUS0SAADL000"
+            }
+        ]
+    },
+    {
+        "tag": "B",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Bangkok",
+                "code": "THA000010000"
+            },
+            {
+                "city": "Busan",
+                "code": "KOR026000000"
+            },
+            {
+                "city": "Berlin",
+                "code": "DEU0000BE000"
+            },
+            {
+                "city": "Brussels",
+                "code": "BEL000BRU000"
+            },
+            {
+                "city": "Barcelona",
+                "code": "ESP000BCN000"
+            },
+            {
+                "city": "Birmingham",
+                "code": "GBRENGBIR000"
+            },
+            {
+                "city": "Budapest",
+                "code": "HUN0000BU000"
+            },
+            {
+                "city": "Boston",
+                "code": "USA0MABZD000"
+            },
+            {
+                "city": "Buenos Aires",
+                "code": "ARG000BUE000"
+            },
+            {
+                "city": "Brisbane",
+                "code": "AUSQLDBNE000"
+            }
+        ]
+    },
+    {
+        "tag": "C",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Copenhagen",
+                "code": "DNK000CPH000"
+            },
+            {
+                "city": "Czech",
+                "code": "CZE000000000"
+            },
+            {
+                "city": "Chicago",
+                "code": "USA0ILCHI000"
+            },
+            {
+                "city": "Canada",
+                "code": "CAN000000000"
+            },
+            {
+                "city": "Cairo",
+                "code": "EGY000CAI000"
+            },
+            {
+                "city": "Cape Down",
+                "code": "ZAF000CPT000"
+            },
+            {
+                "city": "Casablanca",
+                "code": "MAR000CBL000"
+            },
+            {
+                "city": "Cameroon",
+                "code": "CMR000000000"
+            },
+            {
+                "city": "Canberra",
+                "code": "AUSACT000000"
+            }
+        ]
+    },
+    {
+        "tag": "D",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Dubai",
+                "code": "ARE0000DU000"
+            },
+            {
+                "city": "Delhi",
+                "code": "GBRNIRDRY000"
+            },
+            {
+                "city": "Dusseldorf",
+                "code": "DEU000DUS000"
+            },
+            {
+                "city": "Detroit",
+                "code": "USA0MIDET000"
+            },
+            {
+                "city": "Dalas",
+                "code": "USA0ORDAC000"
+            },
+            {
+                "city": "Denver",
+                "code": "USA0CODEN000"
+            },
+            {
+                "city": "Dar es Salaam",
+                "code": "TZA0000DS000"
+            },
+            {
+                "city": "Durban",
+                "code": "ZAF000DUR000"
+            },
+            {
+                "city": "Darwin",
+                "code": "AUS0NTDRW000"
+            },
+            {
+                "city": "Dunedin",
+                "code": "NZL000DUD000"
+            }
+        ]
+    },
+    {
+        "tag": "E",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Edinburgh",
+                "code": "GBRSCTEDH000"
+            },
+            {
+                "city": "Edmonton",
+                "code": "CAN000EDM000"
+            },
+            {
+                "city": "Egypt",
+                "code": "EGY000000000"
+            }
+        ]
+    },
+    {
+        "tag": "F",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Fukuoka",
+                "code": "JPN000040000"
+            },
+            {
+                "city": "Frankfurt",
+                "code": "DEU000FFO000"
+            },
+            {
+                "city": "Fiji Islands",
+                "code": "FJI000000000"
+            }
+        ]
+    },
+    {
+        "tag": "G",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Gao Xiong Xian",
+                "code": "CHN071019000"
+            },
+            {
+                "city": "Geneva",
+                "code": "CHE0000GE000"
+            },
+            {
+                "city": "Glasgow",
+                "code": "GBRSCTGLG000"
+            },
+            {
+                "city": "Ghana",
+                "code": "GHA000000000"
+            },
+            {
+                "city": "Gaborone",
+                "code": "BWA000001000"
+            },
+            {
+                "city": "Gold Coast",
+                "code": "AUSQLDOOL000"
+            }
+        ]
+    },
+    {
+        "tag": "H",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Hong Kong",
+                "code": "CHN081000000"
+            },
+            {
+                "city": "Ho Chi Ming City",
+                "code": "VNM000000000"
+            },
+            {
+                "city": "Hanoi",
+                "code": "VNM0000HI000"
+            },
+            {
+                "city": "Helsinki",
+                "code": "FIN000HEL000"
+            },
+            {
+                "city": "Hamburger",
+                "code": "DEU0000HH000"
+            },
+            {
+                "city": "Houston",
+                "code": "USA0TXHOU000"
+            },
+            {
+                "city": "Hawaii",
+                "code": "USA0HIITO000"
+            },
+            {
+                "city": "Harare",
+                "code": "ZWE0000HA000"
+            },
+            {
+                "city": "Hobart",
+                "code": "AUSTASHBA000"
+            }
+        ]
+    },
+    {
+        "tag": "I",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Indonesia",
+                "code": "IDN000000000"
+            },
+            {
+                "city": "Istanbul",
+                "code": "TUR000IST000"
+            },
+            {
+                "city": "India",
+                "code": "IND000000000"
+            },
+            {
+                "city": "ibaraki",
+                "code": "JPN000008000"
+            }
+        ]
+    },
+    {
+        "tag": "J",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Jakarta",
+                "code": "IDN0000JK000"
+            },
+            {
+                "city": "Jeju Island",
+                "code": "KOR000001000"
+            },
+            {
+                "city": "Johannesburg",
+                "code": "ZAF000JNB000"
+            }
+        ]
+    },
+    {
+        "tag": "K",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Kuala Lumpur",
+                "code": "MYS0KL000000"
+            },
+            {
+                "city": "Kiev",
+                "code": "UKR000030000"
+            },
+            {
+                "city": "Khartoum",
+                "code": "SDN000KRT000"
+            },
+            {
+                "city": "Kinshasa",
+                "code": "COD000001000"
+            },
+            {
+                "city": "Keynes",
+                "code": "AUSQLDCNS000"
+            }
+        ]
+    },
+    {
+        "tag": "L",
+        "customLocationDetailDTOS": [
+            {
+                "city": "London",
+                "code": "GBRENGLND000"
+            },
+            {
+                "city": "Los Angeles",
+                "code": "USA0CALAX000"
+            },
+            {
+                "city": "Las Vegas",
+                "code": "USA0NVLAS000"
+            },
+            {
+                "city": "Lagos",
+                "code": "NGA000LOS000"
+            },
+            {
+                "city": "Luanda",
+                "code": "AGO000LUA000"
+            },
+            {
+                "city": "Lusaka",
+                "code": "ZMB0000LK000"
+            }
+        ]
+    },
+    {
+        "tag": "M",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Macao",
+                "code": "CHN082000000"
+            },
+            {
+                "city": "Manila",
+                "code": "PHL000MNL000"
+            },
+            {
+                "city": "Male",
+                "code": "MDV000MAL000"
+            },
+            {
+                "city": "Moscow",
+                "code": "RUS000MOW000"
+            },
+            {
+                "city": "Milan",
+                "code": "ITA000MIL000"
+            },
+            {
+                "city": "Munich",
+                "code": "DEU000MUC000"
+            },
+            {
+                "city": "Manchester",
+                "code": "GBRENGMAN000"
+            },
+            {
+                "city": "Madrid",
+                "code": "ESP000MAD000"
+            },
+            {
+                "city": "Montreal",
+                "code": "CAN000MTR000"
+            },
+            {
+                "city": "Minneapolis",
+                "code": "USA0MNMES000"
+            },
+            {
+                "city": "Mexico City",
+                "code": "MEX000MEX000"
+            },
+            {
+                "city": "Miami",
+                "code": "USA0FLMIA000"
+            },
+            {
+                "city": "Manchester",
+                "code": "USA0NHMHT000"
+            },
+            {
+                "city": "Mauritius",
+                "code": "MUS000000000"
+            },
+            {
+                "city": "Mozambique",
+                "code": "MOZ000000000"
+            },
+            {
+                "city": "Melbourne",
+                "code": "AUSVICMEL000"
+            }
+        ]
+    },
+    {
+        "tag": "N",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Nepal",
+                "code": "NPL000000000"
+            },
+            {
+                "city": "Newcastle",
+                "code": "GBRENGNCL000"
+            },
+            {
+                "city": "New York",
+                "code": "USA0NY000000"
+            },
+            {
+                "city": "Northern Mariana Islands",
+                "code": "MNP000000000"
+            },
+            {
+                "city": "Nairobi",
+                "code": "KEN0000NA000"
+            },
+            {
+                "city": "New Zealand",
+                "code": "NZL000000000"
+            }
+        ]
+    },
+    {
+        "tag": "O",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Osaka",
+                "code": "JPN000027000"
+            },
+            {
+                "city": "Ottawa",
+                "code": "CAN000OTT000"
+            }
+        ]
+    },
+    {
+        "tag": "P",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Phuket Island",
+                "code": "THA000001000"
+            },
+            {
+                "city": "Phnom Penh",
+                "code": "KHM000PNH000"
+            },
+            {
+                "city": "Paris",
+                "code": "FRA000PAR000"
+            },
+            {
+                "city": "Philadelphia",
+                "code": "USA0PAPHL000"
+            },
+            {
+                "city": "portland",
+                "code": "USA0ORTTD000"
+            },
+            {
+                "city": "Perth",
+                "code": "AUS0WAPER000"
+            },
+            {
+                "city": "Papeete",
+                "code": "PYF000008000"
+            }
+        ]
+    },
+    {
+        "tag": "R",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Rome",
+                "code": "ITA000ROM000"
+            },
+            {
+                "city": "Rolando",
+                "code": "USA0FLORL000"
+            }
+        ]
+    },
+    {
+        "tag": "S",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Seoul",
+                "code": "KOR011000000"
+            },
+            {
+                "city": "Singapore",
+                "code": "SGP000000000"
+            },
+            {
+                "city": "Sapporo",
+                "code": "JPN000051000"
+            },
+            {
+                "city": "Stockholm",
+                "code": "SWE0000AB000"
+            },
+            {
+                "city": "St.Petersburg",
+                "code": "RUS000SPE000"
+            },
+            {
+                "city": "San Francisco",
+                "code": "USA0CASFO000"
+            },
+            {
+                "city": "Seattle",
+                "code": "USA0WASEA000"
+            },
+            {
+                "city": "St Paul",
+                "code": "BRA0000SP000"
+            },
+            {
+                "city": "San Jose",
+                "code": "USA0CASJC000"
+            },
+            {
+                "city": "sierra leone",
+                "code": "SLE000000000"
+            },
+            {
+                "city": "Sydney",
+                "code": "AUSNSWHBS000"
+            }
+        ]
+    },
+    {
+        "tag": "T",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Tokyo",
+                "code": "JPN000013000"
+            },
+            {
+                "city": "Tai Bei Shi",
+                "code": "CHN071001000"
+            },
+            {
+                "city": "Toronto",
+                "code": "CAN000TOR000"
+            },
+            {
+                "city": "Tunisia",
+                "code": "TUN000000000"
+            }
+        ]
+    },
+    {
+        "tag": "U",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Ulan Bator City",
+                "code": "MNG000001000"
+            }
+        ]
+    },
+    {
+        "tag": "V",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Vienna",
+                "code": "AUT000VDD000"
+            },
+            {
+                "city": "Vancouver",
+                "code": "CAN000VAN000"
+            }
+        ]
+    },
+    {
+        "tag": "W",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Washington",
+                "code": "USA0WA000000"
+            }
+        ]
+    },
+    {
+        "tag": "Y",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Yaounde",
+                "code": "CMR000001000"
+            }
+        ]
+    },
+    {
+        "tag": "Z",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Zurich",
+                "code": "CHE0000ZH000"
+            }
+        ]
+    }
+]

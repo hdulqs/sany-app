@@ -1,0 +1,44 @@
+<ion-view>
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'bind_mobile.Binding.mobile.phone.number'|translate}}<!--绑定手机号--></span>
+    </ion-nav-title>
+    <ion-content class="reset-password">
+
+        <form name="getBindMobileForm" novalidate
+              ng-submit="sendBindMobile(getBindMobileForm.mobile.$valid,getBindMobileForm.mobile.$error)"
+              class="token-form">
+            <div class="item item-divider"></div>
+                <img src="img/mobile-number.png" class=" mobile-icon">
+                <div class="mobile row input-group" align="center">
+                    <input type="text" name="mobile" ng-model="view.number" placeholder="{{'bind_mobile.Please.enter.the.phone.number'|translate}}"
+                           ng-change="reset()"
+                           ng-required="true" ng-pattern="/^1\d{10}$/">
+                    <button type="submit" class="col-40 button button-raised take-token" ng-hide="status.smsSent">
+                        {{'bind_mobile.Send.verification.code'|translate}}<!--发送验证码-->
+                    </button>
+                    <button class="col-40 button disabled again-send" ng-show="status.smsSent && status.timerStart">
+                        <timer interval="1000" countdown="60" auto-start="false"
+                               finish-callback="countdownFinished()">{{'bind_mobile.resend'|translate}}<!--重新发送-->({{countdown}}{{'bind_mobile.Seconds.later'|translate}}<!--秒后-->)
+                        </timer>
+                    </button>
+                    <button type="submit" class="col-40 button button-raised  take-token"
+                            ng-show="status.smsSent && !status.timerStart">
+                        {{'bind_mobile.resend.the.verification.cod'|translate}}<!--重新发送验证码-->
+                    </button>
+                </div>
+                <div class="row input-group">
+                    <input name="token" class="col-100" type="text" placeholder="{{'bind_mobile.Please.enter.the.verification.code'|translate}}"
+                           ng-model="view.token" ng-minlength="6" ng-maxlength="6"
+                           ng-required="true">
+                </div>
+            <div class="row">
+                <button type="button" class="next-button col-96 button button-block button-positive"
+                        ng-disabled="(getBindMobileForm.token.$invalid || getBindMobileForm.mobile.$invalid  || !status.smsSent) "
+                        ng-click="confirmBind(view.number,view.token)
+                        ">
+                    {{'bind_mobile.complete'|translate}}<!--完成-->
+                </button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

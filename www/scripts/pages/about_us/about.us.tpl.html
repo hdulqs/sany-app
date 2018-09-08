@@ -1,0 +1,42 @@
+<ion-view hide-back-button="false">
+    <ion-nav-buttons side="left">
+        <button class="button back-button buttons button-clear header-item" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'about_us.about.huilianyi'|translate}}<!--关于汇联易--></span>
+    </ion-nav-title>
+    <ion-content class="about-us" scrollbar-y="true">
+        <div class="about-us-content">
+            <img class="logo" src="img/logo.png"/>
+            <div class="version" ng-model="view.currentVersion">{{'about_us.huilianyi'|translate}}<!--汇联易--> V{{data.localVersion}}</div>
+            <div class="list clear ">
+                <!--<div ui-sref="app.function_introduction" class="item row row-center in-item" ng-hide="view.functionProfileList['about.us.function.introduction.disabled']">
+                    <span class="text">{{'about_us.function.Introduction'|translate}}&lt;!&ndash;功能介绍&ndash;&gt;</span>
+                        <i class="col col-center ion-ios-arrow-right item-note icon"></i>
+                </div>-->
+                <div ui-sref="app.protocol" class="item row row-center in-item" ng-hide="view.functionProfileList['about.us.user.agreement.disabled']">
+                    <span class="text">{{'about_us.user.agreement'|translate}}<!--用户协议--></span>
+                    <i class="col col-center ion-ios-arrow-right item-note icon"></i>
+                </div>
+               <!-- <div ui-sref="app.contact_us" class="item row row-center in-item" ng-hide="view.functionProfileList['about.us.contact.us.disabled']">
+                    <span class="text">{{'about_us.contact.us'|translate}}&lt;!&ndash;联系我们&ndash;&gt;</span>
+                        <i class="col col-center ion-ios-arrow-right item-note icon"></i>
+                </div>-->
+                <div ng-click="updateVersion()" class="item row row-center no-border-bottom in-item" ng-if="shouldUpdate">
+                    <div class="version-note col" ng-show="view.hasNewVersion"></div>
+                    <span class="text">{{'about_us.version.updating'|translate}}<!--版本更新--></span>
+
+                        <p class="item-note charect col col-center" ng-show="view.hasNewVersion">{{'about_us.The.new.version.is.detected'|translate}}<!--检测到新版本--> </p>
+
+                        <p class="item-note charect col col-center" ng-show="!view.hasNewVersion">{{'about_us.Is.the.latest.version'|translate}}<!--已是最新版本--></p>
+                </div>
+            </div>
+            <div align="center" class="info">
+                <p>Copyright © 2016 CloudHelios All Rights Reserved.</p>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

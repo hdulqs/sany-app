@@ -1,0 +1,213 @@
+.approval-chain-selector-modal {
+    background-color: #F1F1F1;
+    .search-selected-bar {
+        position: fixed;
+        top: 44px;
+        background-color: #fff;
+        height: 120px;
+        width: 100%;
+        border-bottom: 1px solid #e2e2e2;
+    }
+    .approval-chain-selector-body {
+        top: 170px;
+    }
+    .search-box {
+        padding: 0 10px;
+        box-shadow: none;
+    }
+    .approval-chain {
+        display: flex;
+        margin: 0;
+        .user-item {
+            display: flex;
+            flex-direction: column;
+            margin: 5px 4px 5px 10px;
+            .level {
+                white-space: nowrap;
+            }
+            .user-info {
+                display: flex;
+                white-space: nowrap;
+                .user-fullname {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                p {
+                    margin: 0 !important;
+                }
+                i.ion.ion-ios-arrow-thin-right {
+                    font-size: 29px;
+                    color: #cdcdcd;
+                    margin-top: -1px;
+                    position: relative;
+                    margin-left: 7px;
+                }
+
+            }
+        }
+        .user-item:last-child {
+            i {
+                display: none;
+            }
+        }
+
+    }
+    .user-results, .search-user-result {
+        .user-result-item {
+            padding: 10px;
+            height: 60px;
+            margin: 0;
+            border-bottom: 1px solid #e2e2e2;
+            background-color: #fff;
+            .user-full-name {
+                font-size: 16px;
+                line-height: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-left: 5px;
+                white-space: nowrap;
+            }
+            .department-info {
+                text-align: right;
+                color: #666666;
+                font-size: 13px;
+                .user-title, .user-dep {
+                    margin: 0;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    width: 100%;
+                    white-space: nowrap;
+                    word-break: keep-all;
+                }
+            }
+        }
+    }
+}
+
+
+.search-approval {
+    position: fixed;
+    top: 50px !important;
+    background-color: #fff;
+    width: 100%;
+    height: 70px;
+    .approval-chain{
+        background-color: #fff;
+        min-height: 70px;
+        .user－item{
+            .user-fullname{
+                font-size: 12px;
+            }
+            .level{
+                font-size: 12px;
+            }
+            .user-info{
+                .user-fullname{
+                    font-size: 12px;
+                }
+                .ion-ios-arrow-thin-right{
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    .item-input-wrapper {
+        background-color: #f9f9f9;
+        border: 1px solid #f9f9f9;
+        input{
+            background-color: #f9f9f9;
+        }
+    }
+}
+
+.approval-selector-modal {
+    background-color: #f1f1f1;
+    .bar-header {
+        .title {
+            color: #444;
+            font-weight: normal;
+            font-size: 15px;
+        }
+        .city-ok {
+            font-size: 0.9em;
+            color: #4c4c4c;
+            position: absolute;
+            right: 7px;
+            top: 10px !important;
+        }
+    }
+    .approval-content {
+        background-color: #fff !important;
+        top: 180px !important;
+        .approval-chain {
+            display: flex;
+            margin: 0;
+            .user-item {
+                display: flex;
+                flex-direction: column;
+                margin: 5px 4px 5px 10px;
+                .level {
+                    white-space: nowrap;
+                }
+                .user-info {
+                    display: flex;
+                    white-space: nowrap;
+                    .user-fullname {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    p {
+                        margin: 0 !important;
+                    }
+                    i.ion.ion-ios-arrow-thin-right {
+                        font-size: 29px;
+                        color: #cdcdcd;
+                        margin-top: -1px;
+                        position: relative;
+                        margin-left: 7px;
+                    }
+
+                }
+            }
+            .user-item:last-child {
+                i {
+                    display: none;
+                }
+            }
+
+        }
+        .user-result-item {
+            padding: 10px;
+            height: 60px;
+            margin: 0;
+            border-bottom: 1px solid #e2e2e2;
+            background-color: #fff;
+            .user-full-name {
+                font-size: 16px;
+                line-height: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-left: 5px;
+                white-space: nowrap;
+            }
+            .department-info {
+                text-align: right;
+                color: #666666;
+                font-size: 13px;
+                .user-title, .user-dep {
+                    margin: 0;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    width: 100%;
+                    white-space: nowrap;
+                    word-break: keep-all;
+                }
+            }
+        }
+    }
+
+}

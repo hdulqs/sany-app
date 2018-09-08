@@ -1,0 +1,45 @@
+#MapCanvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
+
+.expense-list-container {
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    .bottom-container {
+        width: 100%;
+        display: inline-block;
+        align-self: flex-end;
+        z-index: 1000;
+    }
+    .expense-carousel {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 30px;
+        .slide-container {
+            width: 100%;
+            height: 100px;
+            margin: 0 auto;
+            .slide {
+                width: 90%;
+                height: 100px;
+                margin: 0 auto;
+                background-color: #FFFFFF;
+                .icon {
+                    img {
+                        width: 80%;
+                        margin: 10px auto;
+                    }
+                }
+            }
+
+        }
+    }
+}
+

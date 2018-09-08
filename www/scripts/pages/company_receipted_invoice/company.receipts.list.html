@@ -1,0 +1,61 @@
+<ion-view cache-view="false" class="open-invoice-information">
+    <ion-nav-buttons side="left">
+        <button class="button back-button buttons button-clear header-item" ng-click="goBack()">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'company.The.information.of.make.out.an.invoice'|translate}}</span>
+    </ion-nav-title>
+    <ion-content class="bill-information has-header">
+        <!--没有开票信息-->
+        <div class="alert alert-warning warn" ng-hide="view.isHasCompany">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'company.No.information.of.make.out.an.invoice.for.the.time.being'|translate}}</p>
+        </div>
+        <!--有开票信息数据-->
+        <div class="list" ng-show="view.isHasCompany">
+            <!--<div class="item item-divider receipt-divider">
+                {{'company.my.company'|translate}}&lt;!&ndash;我所在的公司&ndash;&gt;
+            </div>-->
+            <!--显示法人名称-->
+            <div class="item row item-text-wrap" ng-if="view.selfCompany && view.selfCompany.enable"
+                 ng-click="showCompanyDetails(view.selfCompany)">
+                <div class="col col-center filed-value">{{view.selfCompany.companyName}}</div>
+                <span class="icon ion-ios-arrow-right"></span>
+            </div>
+            <!--法人已失效-->
+            <div class="item row item-text-wrap"
+                 ng-if="view.selfCompany && !view.selfCompany.enable && !view.selfCompany.hasNoCompany">
+                <div class="col col-center filed-value">{{'company.my.company.closed'|translate}}</div>
+            </div>
+            <!--没有法人信息-->
+            <div class="item row item-text-wrap"
+                 ng-if="!view.selfCompany.enable && view.selfCompany.hasNoCompany">
+                <div class="col col-center filed-value">{{'company.has.no.company'|translate}}</div>
+            </div>
+           <!-- <div class="item item-divider receipt-divider">
+                {{'company.other.company'|translate}}&lt;!&ndash;其他开票信息&ndash;&gt;
+            </div>-->
+            <!--没有更多其他开票信息-->
+           <!-- <div class="item row item-text-wrap" ng-if="count > 0">
+                <div
+                    class="col col-95 col-center filed-value">{{'company.has.no.more.other.company'|translate}}&lt;!&ndash;没有更多其他开票信息&ndash;&gt;
+                </div>
+            </div>-->
+            <div class="item row item-text-wrap"
+                 ng-if="count"
+                 ng-repeat="company in view.allCompanys"
+                 ng-click="showCompanyDetails(company)">
+                <div class="col col-95 col-center filed-value">{{company.companyName}}</div>
+                <span class="icon ion-ios-arrow-right"></span>
+            </div>
+        </div>
+        <!--上拉加载-->
+        <ion-infinite-scroll
+            ng-if="view.page < view.lastPage"
+            on-infinite="view.loadMore(view.page + 1)" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

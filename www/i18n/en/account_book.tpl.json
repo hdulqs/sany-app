@@ -1,0 +1,38 @@
+{
+    "account": {
+        "Click.the.refresh": "Click Refresh",
+        "Cost.type": "Expense Type",
+        "Date.selection": "Date",
+        "Future.generations": "All",
+        "Temporarily.no.cost.information": "No record.",
+        "The.custom.time": "Enter Time",
+        "all": "All",
+        "article": "Article",
+        "import": "Import",
+        "loading": "Loading...",
+        "my.account": "Expense List",
+        "ok": "OK",
+        "reset": "Reset",
+        "screening": "Filter",
+        "to": "To",
+        "week": "Week"
+    },
+    "account_js": {
+        "ake.a.mistake": "Error",
+        "Delete.success": "Successfully deleted",
+        "End.time.is.not.less.than.start.time": "End time can not be less than the start time",
+        "End.time.is.today.at.the.latest": "End time is latest by today",
+        "Expense.account.added.at.200": "Reimbursement claims add up to 200 charges",
+        "Please.select.a.cost": "Please select expenses",
+        "Please.try.again.later": "Please try again later!",
+        "Submitted.successfully": "Submitted successfully",
+        "Withdraw.success": "Withdrawal Successful",
+        "according_to_PDF_stick_ticket": "Please stamp according to PDF",
+        "cancel": "Cancel",
+        "nearly.a.month": "Last Month",
+        "nearly.two.month": "Last 2 Month",
+        "ok.know": "Okay, got it!",
+        "send_to_mailbox": "PDF will be sent to the mailbox",
+        "submit.failure": "Submit Failed"
+    }
+}

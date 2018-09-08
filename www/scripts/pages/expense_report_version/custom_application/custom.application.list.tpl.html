@@ -1,0 +1,81 @@
+<ion-view class="custom-application-list" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'entity.application' | translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="view.goBack()"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-subheader-bar class="bar bar-subheader">
+        <div class="row row-center head-tab">
+            <div class="col text-center"
+                 ng-repeat="item in view.tabItem"
+                 ng-click="view.changeTab($index)">
+                <span class="tab-item"
+                      ng-class="{true: 'tab-active', false: ''}[$index === view.tabIndex]">
+                    {{item.name}}
+                </span>
+            </div>
+        </div>
+    </ion-subheader-bar>
+
+    <ion-content class="travel-list-content has-subheader">
+        <div class="alert alert-warning warn"
+             ng-if="view.nothing && !view.networkError">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'common.empty' | translate}}!</p>
+            <p class="warning-word">{{'custom.application.empty' | translate}}!</p>
+        </div>
+        <div ng-if="view.networkError && view.applicationList.length === 0">
+            <not-found-text title="view.networkErrorText" icon="view.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="create-travel-btn" ng-click="view.doRefresh()">
+                    {{'common.refresh' | translate}}
+                </button>
+            </div>
+        </div>
+        <div ng-if="view.systemError && view.applicationList.length === 0">
+            <not-found-text title="view.systemErrorText"
+                            sub-title="view.systemErrorSubText"
+                            icon="view.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <ion-refresher on-refresh="view.doRefresh()"
+                       pulling-text="{{'common.loading' | translate}}...">
+        </ion-refresher>
+        <ion-list>
+            <div ng-repeat="application in view.applicationList"
+                 c
+                 lass="application-list">
+                <!--code="getCode(application)"-->
+                <!--code属性不要了,都是币种以前符号,现在改为三位字母的符号-->
+                <application-item item="application"
+                                  origin-currency-code="view.originCurrencyCode"
+                                  can-delete="view.canDelete"
+                                  can-close="application.customFormProperties && application.customFormProperties.participantEnable == 1 && view.travelStatus == 'passed' && application.status == 1003 && application.applicationParticipant.closed == 0 && (application.formType == 2001 || application.formType == 2002)"
+                                  can-restart="view.travelStatus == 'passed' && application.status == 1003 && application.applicationParticipant.closed == 1 && application.customFormProperties && application.customFormProperties.restartEnabled == 1 && !application.closed && (application.formType == 2001 || application.formType == 2002)"
+                                  withdraw="view.canWithdraw"
+                                  is-show-type="view.isShowType"
+                                  delete-travel="view.deleteApplication(application)"
+                                  withdraw-travel="view.withdrawApplication(application.applicationOID)"
+                                  close-travel="view.closeApplication($index)"
+                                  restart-travel="view.restartApplication($index)"
+                                  go-detail="view.goDetail(application)">
+                </application-item>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="view.pageable.page < view.dataNum.lastPage"
+            on-infinite="view.getApplicationList(view.pageable.page + 1)" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+
+    <div class="buttons buttons-center button-positive" ng-if="view.tabIndex === 0 && !view.functionProfileList['ca.opt.upsert.disabled'] && customApplication.length > 0" ng-click="showApplicationMenu($event)">
+        <img src="img/expense_report_version/expense_report/add.png"
+             ng-class="{true: 'pic-three', false: 'pic-rotate-three'}[!view.markStatus]"/>
+    </div>
+</ion-view>

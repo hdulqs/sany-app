@@ -1,0 +1,170 @@
+<!-- lov 费用账本--费用类型(与费用项目级联)
+Created by changyu.duan on 2017/8/15.-->
+<div class="hecexptype-selector"   ng-click="!readonly&&openDialog()">
+    <div class="row row-center">
+        <div class="col filed-name" ng-if="!expItemName">{{'hec_lov.input.exptype.prompt'|translate}}
+            <span class="hec-selector-required" ng-if="!readonly">*</span></div>
+        <div class="col filed-name" ng-if="expItemName" style="white-space: normal;">{{expItemName}}
+            <span class="hec-selector-required" ng-if="!readonly">*</span></div>
+        <div class="col col-50 text-right language-right">
+            <span ng-if="expItemName" class="cost-center-name" style="color: red;">
+                {{refCryCode | currencyFilter}} {{expValue | amountFilter}}<!--如果币种为CNY显示RMB-->
+            </span>
+            <span class="cost-center-name hec-selector-placeholder" ng-if="!readonly" ng-hide="expItemName">{{'hec_common.please.select.one'|translate}}</span>
+        </div>
+        <span class="icon ion-ios-arrow-right  hec-selector-arrow-right" ng-hide="expValue"></span>
+    </div>
+</div>
+<script id="hecexpense.type.selector.dialog.html" type="text/ng-template">
+    <ion-modal-view class="select-type">
+        <ion-header-bar>
+            <!--费用类型选择-->
+            <h3 class="title">{{'hec_lov.exp.type.choose' | translate}}</h3>
+            <span class="city-cancel"
+                  ng-click="cancel()">
+               {{'hec_lov.cancel' | translate}} <!--取消-->
+            </span>
+        </ion-header-bar>
+        <div class="approval-list-modal">
+            <div class="bar bar-subheader search">
+                    <div class="row">
+                        <div class="search-input" style="margin: 0 auto;position: relative;">
+                            <label><i class="fa fa-search" aria-hidden="true"></i></label>
+                            <!--请输入-->
+                            <input class="header-input" placeholder="{{'hec_lov.input.search.info' | translate}}" ng-model="searchKeyword.value"
+                                   ng-model-options="{ debounce: 500 }" ng-change="searchExptype()">
+                            <i class="fa fa-plus-circle" ng-show="searchKeyword.value" ng-click="clear()"
+                               style="position:absolute;top:.3rem;vertical-align:middle;color:#888;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ion-content class="has-header has-subheader"  delegate-handle="typeScroll" ng-class="{'has-full-footer': isShowKeyboard}">
+            <div class="text-center selector-nothing" ng-if="nothing">
+                <img class="no_data_img" src="img/expense_report_version/travel/no-itinerary.png" alt="">
+                <p class="text-center">
+                    {{"hec_common.no.search.results"|translate}}
+                </p>
+            </div>
+            <div class="type-list-pane">
+                <div ng-repeat="category in exptypes" class="expense-list">
+                    <ion-item  class="category-name item-divider">
+                        {{category.expense_type_description}}
+                    </ion-item>
+                    <div class="row row-center expense-item"
+                         ng-repeat="type in category.list" ng-click="selectItem(category,type)" alt="">
+                        <p class="type-list-text">{{type.expense_item_description}}</p>
+                        <img src="img/travel/select.png" alt=""
+                             ng-if="((expItemId === type.expense_item_id) && (expTypeId ==type.expense_type_id))"
+                             class="select-icon">
+                    </div>
+                </div>
+            </div>
+
+            <ion-infinite-scroll
+                on-infinite="loadMore(page + 1,searchKeyword.value)"
+                ng-if="page < lastPage"
+                distance="5%"
+                immediate-check="false"
+            ></ion-infinite-scroll>
+        </ion-content>
+        <div ng-if="isShowKeyboard" class="black-ground" ng-click="showKeyboard()">
+
+        </div>
+        <ion-footer-bar keyboard-attach ng-class="{'full-height': isShowKeyboard}">
+            <div class="calculation">
+                <div class="row row-center result"
+                     ng-click="showKeyboard()">
+                    <div class="col type-name">
+                        {{expItemName?expItemName:typePrompt}}
+                    </div>
+                    <!--计算器显示算式与金额-->
+                    <p class="text-right equational">
+                        <span class="caculation-string">{{view.equational}}</span>
+                        <br/>
+                        <span class="total">
+                         {{cryCode.value |currencyFilter}} {{expense.amount | number:2}}
+                        </span>
+                    </p>
+                </div>
+                <div class="row row-center currency-code">
+                    <div class="col col-100">
+                        <heccry-selector is-red="{{isRed}}" selected="cryCode.value" readonly="vm.isReadOnly"></heccry-selector>
+                    </div>
+                </div>
+                <div ng-if="isShowKeyboard">
+                    <div class="row row-center keyboard">
+                        <div class="col" ng-click="view.push('7')">
+                            7
+                        </div>
+                        <div class="col" ng-click="view.push('8')">
+                            8
+                        </div>
+                        <div class="col" ng-click="view.push('9')">
+                            9
+                        </div>
+                        <div class="col" ng-click="view.push('/')">
+                            /
+                        </div>
+                        <div class="col border-right"
+                             ng-click="view.clearOne()">
+                            <img src="img/expense/delete-one.png"
+                                 alt=""
+                                 class="delete-one">
+                        </div>
+                    </div>
+                    <div class="row row-center keyboard">
+                        <div class="col" ng-click="view.push('4')">
+                            4
+                        </div>
+                        <div class="col" ng-click="view.push('5')">
+                            5
+                        </div>
+                        <div class="col" ng-click="view.push('6')">
+                            6
+                        </div>
+                        <div class="col" ng-click="view.push('+')">
+                            +
+                        </div>
+                        <div class="col border-right" ng-click="view.push('-')">
+                            -
+                        </div>
+                    </div>
+                    <div class="row row-center keyboard">
+                        <div class="col" ng-click="view.push('1')">
+                            1
+                        </div>
+                        <div class="col" ng-click="view.push('2')">
+                            2
+                        </div>
+                        <div class="col" ng-click="view.push('3')">
+                            3
+                        </div>
+                        <div class="col" ng-click="view.push('x')">
+                            x
+                        </div>
+                        <div class="col border-right" ng-click="view.calculate()">
+                            =
+                        </div>
+                    </div>
+                    <div class="row row-center keyboard">
+                        <div class="col" ng-click="view.clear()">
+                            C
+                        </div>
+                        <div class="col" ng-click="view.push('0')">
+                            0
+                        </div>
+                        <div class="col" ng-click="view.push('.')">
+                            .
+                        </div>
+                        <div class="col col-40 back-ok"
+                             ng-click="view.calculationOver()">
+                            ok
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ion-footer-bar>
+    </ion-modal-view>
+</script>

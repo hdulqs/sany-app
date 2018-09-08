@@ -1,0 +1,256 @@
+/*差旅行程确认-确认差旅行程*/
+.hec-confirm-trip {
+  background-color: #f1f1f1;
+
+  .confirm-trip-content {
+    margin: 0;
+    padding: 20px 0;
+      .item {
+      border: none;
+      border-bottom: 1px solid #e2e2e2;
+      margin-top: 1px;
+      padding: 10px;
+          .hec-padding {
+              padding: 1px 5px;
+              font-size: 15px;
+          }
+          .col {
+            padding: 0;
+          }
+          .text-content {
+            font-size: 1em;
+            color: #4c4c4c;
+          }
+    }
+      /*费用项*/
+      .line-info {
+      width: 95%;
+      border: 1px solid #e2e2e2;
+      margin: 0 auto;
+      padding: 0 .5rem;
+      background-color: #fff !important;
+      margin-bottom: 1rem;
+      border-radius: 1rem;
+      .exp-item {
+        padding:0;
+        font-size: .8rem;
+        .item-content{
+          padding: 0;
+        }
+        .exp-info {
+          .exp-money {
+            text-align: right;
+            padding-top: .5rem;
+            font-size: 1.1em;
+            color: #ff6a10;
+          }
+          .exp-desc {
+          color: #959595;
+          }
+        }
+        .exp-delete {
+          background-color: #FF5252 !important;
+          color: #fff;
+        }
+      }
+      .item-width{
+        width: 100%;
+      }
+    }
+      .expense-tips {
+          margin: 10px;
+          font-size: 1em;
+          color: #959595;
+      }
+      .approval-history-pane{
+          position: relative;
+          width: 100%;
+          .line{
+              position: absolute;
+              height: 100%;
+              left: 18px;
+              border-right: 1px solid #e2e2e2;
+          }
+          .approval-history{
+              background-color: #fff;
+              width: 100%;
+              .approval-icon{
+                  width: 20px;
+                  height: 20px;
+                  margin: 6px 0 0 3px;
+                  z-index: 999;
+              }
+              .history-dot{
+                  display: block;
+                  width: 8px;
+                  height: 8px;
+                  margin: 11px 9px 6px 9px;
+                  background-color: #ACACAC;
+                  border-radius: 50%;
+                  z-index: 999;
+              }
+              .approval-time{
+                  color: #959595;
+                  font-size: 0.8em;
+                  margin: 0;
+              }
+              .reject-remark{
+                  color:#ed3535;
+              }
+              .margin-top{
+                  margin-top: 3px;
+              }
+              .approval-name{
+                  max-width: 200px;
+              }
+          }
+      }
+      .comment {
+          width: 100%;
+          min-height: 80px;
+          padding: 10px;
+          color: #959595;
+          font-size: 1em;
+          border-bottom: 1px solid #e2e2e2;
+      }
+      textarea[readonly]:not(.cloned-text-input){
+          background-color: #fff;
+      }
+      .padding-top-zero{
+          padding-top: 0 !important;
+      }
+
+      .expense-apportion-directive {
+          $margin: 9px;
+
+          padding: 10px 15px;
+          background-color: #FFFFFF;
+
+          .error-font {
+              color: #FF5252;
+          }
+
+          .title {
+              margin-bottom: $margin;
+          }
+
+          .edit-prompt {
+              color: #CDCDCD;
+          }
+
+          .apportion-list {
+              .item {
+                  border: none;
+                  padding: 0;
+                  margin: 0;
+              }
+
+              .apportion-item {
+                  &:not(:last-child) {
+                      border-bottom: 1px solid #e2e2e2;
+                      padding-bottom: $margin;
+                      margin-bottom: $margin;
+                  }
+
+                  >div:not(:first-child) {
+                      margin-top: $margin;
+                  }
+
+                  .relevant-person {
+                      font-size: 14px;
+                      color: #959595;
+                  }
+
+                  .row {
+                      padding: 0;
+
+                      .cost-center {
+                          width: 60%;
+                          white-space: normal;
+
+                          >div:not(:first-child) {
+                              margin-top: $margin;
+                          }
+                      }
+
+                      .amount{
+                          width: 40%;
+                          text-align: right;
+
+                          .local-amount {
+                              color: #959595;
+                              font-size: 12px;
+                          }
+
+                          .apportion-amount {
+                              font-size: 14px;
+                          }
+                      }
+                  }
+              }
+          }
+      }
+
+      .expense-control {
+          .city-selector {
+              input {
+                  text-align: right;
+                  background-color: #FFFFFF;
+                  border: none;
+                  font-size: 16px;
+                  width: 100%;
+                  height: 30px;
+                  color: #4c4c4c;
+              }
+          }
+      }
+
+  }
+  .expense-create-footer {
+    padding: 0;
+    .row {
+      padding: 0;
+      .col {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        line-height: 44px;
+      }
+      .expense-new {
+        background-color: #fff;
+        color: #0092da;
+        font-size: 1.2em;
+        height: 44px;
+        line-height: 44px;
+        border-top: thin solid #e2e2e2;
+      }
+      .expense-reject{
+        background-color: #e64e4e;
+        color: #fff;
+        font-size: 1.2em;
+        height: 44px;
+        line-height: 44px;
+      }
+      .expense-agree{
+        background-color: #50cd93;
+        color: #fff;
+        font-size: 1.2em;
+        height: 44px;
+        line-height: 44px;
+      }
+      .operation-all {
+        background-color: #0092da;
+        color: #fff;
+        font-size: 1.2em;
+        height: 44px;
+        line-height: 44px;
+      }
+      .disable-operation {
+        background-color: #cdcdcd;
+      }
+    }
+  }
+}
+
+
+

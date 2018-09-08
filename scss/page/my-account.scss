@@ -1,0 +1,838 @@
+.account-page {
+    background: #f1f1f1;
+    .account-content{
+        user-avatar{
+            width: 45px !important;
+            height: 45px !important;
+            border-radius: 50% !important;
+            color: white;
+        }
+    }
+    .list{
+        margin-bottom: 0;
+    }
+    .my-account {
+        padding: 12px;
+        height: 70px;
+        border-left: none;
+        border-right: none;
+        margin: -1px;
+        background-color: white;
+        border-bottom: thin solid #e2e2e2;
+        .my {
+            font-size: 16px;
+        }
+    }
+   .item.item-text-wrap.row {
+       padding: 9px 6px;
+       border-left: none;
+       border-right: none;
+       //border-bottom: none;
+       margin: -1px;
+    }
+    .item-divider {
+        min-height: 15px;
+        padding: 8px 0 2px 0;
+        border-left: thin solid #e2e2e2;
+        border-right: thin solid #e2e2e2;
+        border-bottom: thin solid #e2e2e2 !important;
+        border-top: none !important;
+    }
+    .avatar {
+        margin-top:-3%;
+        margin-left: 9%;
+    }
+    .item.item-avatar {
+        border: none;
+    }
+    .person-information {
+        max-height: 80px;
+        height: 80px;
+        border-left: none;
+        border-right: none;
+        background: #fff;
+        margin: -1px;
+        border-bottom: 1px solid #e2e2e2;
+    }
+
+    .person-img {
+        margin-left: 2em;
+        img {
+            max-width: 45px;
+            min-width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+    }
+    .info {
+        margin-left: 1.6em;
+        width: 35%;
+        .title {
+            color: #666;
+            font-size: 0.8em;
+        }
+    }
+    .no-avatar {
+        max-width: 45px;
+        min-width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: black;
+        color: white;
+        text-align: center;
+        line-height: 45px;
+        font-size: 2em;
+    }
+    .col.col-75.person-account {
+        font-size: 15px;
+        text-align: left;
+    }
+    span.setting.col.col-center.col-20 {
+        text-align: right;
+    }
+    span.col.icon.ion-ios-arrow-right.person-arrow {
+        font-size: 27px;
+        color: #cdcdcd;
+        text-align: right;
+    }
+    img.col.col-20.account-img {
+        width: 30px;
+        box-shadow: none;
+        height: 29px;
+        min-width: 30px;
+        max-width: 30px;
+    }
+    img.col.col-20.erv-account-img {
+        float: left;
+        width: 30px;
+        box-shadow: none;
+        height: 29px;
+        min-width: 30px;
+        max-width: 30px;
+    }
+    .col.col-75.filed-name {
+        clear: both;
+        text-align: left;
+    }
+    span.icon.ion-ios-arrow-right.filed-arrow {
+        font-size: 20px;
+        color: #959595;
+        text-align: right;
+    }
+    .setting{
+        text-align: right;
+        font-size: 15px;
+    }
+    .erv-setting {
+        text-align: right;
+        font-size: 15px;
+        color: #666;
+        margin-left: 3em;
+    }
+    .field {
+        margin-top: 1%;
+        max-height: none;
+        padding-bottom: 2%;
+    }
+    .field_name {
+        color: #666;
+        font-size: 0.9em;
+        margin-left: 2%;
+    }
+    .field-comment {
+        padding-bottom: 2%;
+        color: #666;
+        font-size: 0.7em;
+        border: none;
+        margin-left: 2%;
+        width: 100%;
+    }
+}
+
+.account-book {
+    background-color: #f1f1f1;
+    .platform-android .checkbox-platform input:before,
+    .platform-android .checkbox-platform .checkbox-icon:before,
+    .checkbox-square input:before,
+    .checkbox-square .checkbox-icon:before {
+        border-radius: 50%;
+    }
+    .text-center {
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+    }
+    .expense-list-header {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        .tab-mode {
+            font-size: 16px;
+            background-color: #fff;
+            border: 1px solid #0092da;
+            padding: 5px;
+            color: #0092da;
+        }
+        .tab-mode-first {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-right: none;
+        }
+        .tab-mode-second {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-left: none;
+        }
+        .active {
+            color: #fff;
+            background-color: #0092da;
+        }
+    }
+    .head-tab {
+        background-color: #fff;
+        padding: 0;
+        border-bottom: 1px solid #e2e2e2;
+        .col {
+            padding: 0;
+            .tab-item {
+                position: relative;
+                padding: 10px 0;
+                font-size: 15px;
+                color: #4c4c4c;
+                margin: 0 15%;
+                border-bottom: 3px solid #fff;
+            }
+            .tab-active {
+                border-bottom: 3px solid #0092da;
+                color: #0092da;
+            }
+            .red-point {
+                position: absolute;
+                top: 9px;
+                left: 70%;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: red;
+            }
+        }
+    }
+    .expense-list-content {
+        .total-pane {
+            margin: 5px 10px;
+            p {
+                font-size: 1em;
+                color: #959595;
+                margin: 0;
+            }
+        }
+        .time-node {
+            p {
+                margin: 5px 0 5px 10px;
+                color: #959595;
+                font-size: 14px;
+            }
+        }
+        .expense-item {
+            padding: 0;
+            margin: 0;
+            background-color: #fff;
+            border-bottom: 1px solid #e2e2e2;
+            width: 100%;
+            .col {
+                padding: 0;
+            }
+            label.item {
+                border: none;
+                background-color: transparent;
+            }
+            .item-checkbox {
+                padding: 0 0 0 30px;
+                margin: 1px;
+                width: 100%;
+            }
+        }
+        .presented {
+            .presented-head {
+                background-color: #60C0EF;
+                .row {
+                    padding: 10px 5px;
+                    .col {
+                        padding: 0;
+                        margin: 0;
+                    }
+                    p {
+                        color: #fff;
+                        font-size: 1.1em;
+                        margin: 0;
+                        padding: 5px;
+                        line-height: 16px;
+                        height: 26px;
+                    }
+                    .arrow {
+                        width: 20px;
+                        text-align: right;
+                    }
+                }
+            }
+            .presented-content {
+                background-color: #fff;
+                margin-bottom: 15px;
+                .row {
+                    padding: 0;
+                    margin: 0;
+                    .col {
+                        padding: 0;
+                        margin: 0;
+                    }
+                }
+                .presented-summary {
+                    position: relative;
+                    .receipt-amount {
+                        color: #959595;
+                        font-size: 1em;
+                        margin: 10px;
+                        span {
+                            color: #0092da;
+                        }
+                    }
+                    .total-amount {
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
+                        font-size: 1.4em;
+                        color: #4c4c4c;
+                        margin: 0;
+                    }
+                    .paper-item {
+                        border-bottom: 1px solid #e2e2e2;
+                        border-top: 1px solid #e2e2e2;
+                    }
+                    .paper-print {
+                        position: absolute;
+                        right: 0px;
+                        top: 0px;
+                        margin: 0;
+                        padding: 10px 12px 0 0;
+                        display: block;
+                        width: 80px;
+                        height: 40px;
+                        background-color: #f5f5f5;
+                        color: #1883ce;
+                        font-size: 1.1em;
+                        img {
+                            width: 14px;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+    .checkbox input, .checkbox-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .checkbox input:after, .checkbox-icon:after {
+        top: 23%;
+        left: 18%;
+    }
+    .platform-android .checkbox-platform .checkbox-icon:after,
+    .platform-android .checkbox-platform .checkbox input:after {
+        top: 10%;
+    }
+    .platform-android .checkbox-platform input:after,
+    .platform-android .checkbox-platform .checkbox-icon:after,
+    .checkbox-square input:after,
+    .checkbox-square .checkbox-icon:after {
+        width: 15px;
+        height: 7px;
+        margin-top: -4px;
+    }
+    .checkbox input:checked:before,
+    .checkbox input:checked + .checkbox-icon:before {
+        background-color: #32deb9;
+        border-color: #32deb9;
+    }
+    .expense-list-footer {
+        padding: 0;
+        .row {
+            padding: 0;
+
+            .col {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                line-height: 44px;
+            }
+            .expense-new {
+                background-color: #8ecfef;
+                color: #fff;
+                font-size: 1.2em;
+            }
+            .operation-all {
+                background-color: #0092da;
+                color: #fff;
+                font-size: 1.2em;
+                height: 44px;
+                line-height: 44px;
+            }
+            .submit-btn {
+                font-size: 0.8em;
+                line-height: 20px;
+            }
+            .disable-operation {
+                background-color: #cdcdcd;
+            }
+            .expense-checkbox-btn {
+                background-color: #fff;
+                border-top: 1px solid #e2e2e2;
+                border-right: 1px solid #e2e2e2;
+                color: #959595;
+                font-size: 16px;
+                height: 44px;
+                line-height: 44px;
+                .item-checkbox .checkbox {
+                    margin-top: -18px;
+                }
+                .item {
+                    padding: 0;
+                    border: none;
+                    margin: 11px 0 0 0;
+                }
+                .item-checkbox {
+                    padding-left: 22px;
+                }
+                .item-content {
+                    color: #959595;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+    .cover-screen {
+        position: absolute;
+        top: 0;
+        background-color: #000;
+        opacity: 0.5;
+        width: 100%;
+        height: 100%;
+        z-index: 995;
+    }
+    .expense-list-filter-container {
+        position: absolute;
+        bottom: 50px;
+        width: 100%;
+        z-index: 999;
+        max-height: 100%;
+        overflow: auto;
+        .filter-content {
+            background-color: #fff;
+            padding: 10px;
+            .self-time {
+                .col {
+                    border: 1px solid #959595;
+                    color: #959595;
+                    margin: 0 5px;
+                    p {
+                        margin: 0;
+                        text-align: center;
+                    }
+
+                }
+                .no-border {
+                    border: none;
+                }
+            }
+
+            .filter-time {
+                border-bottom: 1px solid #e2e2e2;
+                padding: 10px 0;
+            }
+            .date-select {
+                background-color: #fff;
+                font-size: 1em;
+                color: #4c4c4c;
+                border: 1px solid #e2e2e2;
+            }
+            .title {
+                font-size: 1em;
+                color: #4c4c4c;
+                margin: 0;
+            }
+            .period-btn {
+                display: block;
+                text-align: center;
+                width: 100%;
+                border: 1px solid #959595;
+                color: #959595;
+                padding: 5px 0;
+                font-size: 0.9em;
+            }
+            .period-btn-active {
+                border: 1px solid #0092da;
+                color: #0092da;
+            }
+            .type-list-pane {
+                .type-list {
+                    width: 100%;
+                    padding: 15px 0;
+                    clear: both;
+                    .type-icon {
+                        position: relative;
+                        float: left;
+                        width: 20%;
+                        text-align: center;
+                        img {
+                            width: 2.5em;
+                        }
+                        p {
+                            color: #959595;
+                        }
+                        .select-icon {
+                            width: 1.2em;
+                            position: absolute;
+                            top: -0.1em;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+            }
+            .type-list-box {
+                padding: 10px 0;
+                max-height: 200px;
+                overflow: auto;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                .type-icon {
+                    position: relative;
+                    width: 14%;
+                    text-align: center;
+                    img {
+                        width: 2em;
+                    }
+                    p {
+                        color: #959595;
+                        font-size: 0.8em;
+                    }
+                    .select-icon {
+                        width: 1.2em;
+                        position: absolute;
+                        top: -0.1em;
+                        margin-left: 5px;
+                    }
+                }
+            }
+            .btn-group {
+                .col {
+                    padding: 0 5%;
+                    .btn-reset {
+                        display: block;
+                        width: 100%;
+                        height: 44px;
+                        line-height: 44px;
+                        color: #0092da;
+                        border: 1px solid #0092da;
+                        font-size: 1em;
+                        text-align: center;
+                    }
+                    .btn-sure {
+                        display: block;
+                        width: 100%;
+                        height: 44px;
+                        line-height: 44px;
+                        color: #fff;
+                        border: 1px solid #0092da;
+                        font-size: 1em;
+                        background-color: #0092da;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+    .buttons .buttons-right {
+        width: 26px;
+        height: 26px;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+    .list {
+        background-color: #F1F1F1;
+    }
+    .invoice-item {
+        width: 97%;
+        margin: 0 auto;
+    }
+    .create-invoice {
+        width: 4.5em;
+        position: fixed;
+        bottom: 10%;
+        right: 5%;
+    }
+    .total-pane {
+        margin: 5px 10px;
+        p {
+            font-size: 1em;
+            color: #959595;
+            margin: 0;
+        }
+    }
+    .time-node {
+        p {
+            margin: 5px 0 5px 18px;
+            color: #959595;
+            font-size: 14px;
+        }
+    }
+    .expense-item {
+        padding: 0;
+        margin: 0;
+        background-color: #fff;
+        border-bottom: 1px solid #e2e2e2;
+        width: 100%;
+        .col {
+            padding: 0;
+        }
+        label.item {
+            border: none;
+            background-color: transparent;
+        }
+        .item-checkbox {
+            padding-left: 20px;
+
+        }
+    }
+    .presented {
+        .presented-head {
+            background-color: #60C0EF;
+            .row {
+                padding: 10px 5px;
+                .col {
+                    padding: 0;
+                    margin: 0;
+                }
+                p {
+                    color: #fff;
+                    font-size: 1.1em;
+                    margin: 0;
+                    padding: 5px;
+                    line-height: 16px;
+                    height: 26px;
+                }
+                .arrow {
+                    width: 20px;
+                    text-align: right;
+                }
+            }
+        }
+        .presented-content {
+            background-color: #fff;
+            margin-bottom: 15px;
+            .row {
+                padding: 0;
+                margin: 0;
+                .col {
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+            .presented-summary {
+                position: relative;
+                .receipt-amount {
+                    color: #959595;
+                    font-size: 1em;
+                    margin: 10px;
+                    span {
+                        color: #0092da;
+                    }
+                }
+                .total-amount {
+                    position: absolute;
+                    right: 10px;
+                    top: 10px;
+                    font-size: 1.4em;
+                    color: #4c4c4c;
+                    margin: 0;
+                }
+                .paper-item {
+                    border-bottom: 1px solid #e2e2e2;
+                    border-top: 1px solid #e2e2e2;
+                }
+                .paper-print {
+                    position: absolute;
+                    right: 0px;
+                    top: 0px;
+                    margin: 0;
+                    padding: 10px 12px 0 0;
+                    display: block;
+                    width: 80px;
+                    height: 40px;
+                    background-color: #f5f5f5;
+                    color: #1883ce;
+                    font-size: 1.1em;
+                    img {
+                        width: 14px;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+.erv-invoice-directive {
+    margin: 0 1px;
+    border: none;
+    //border-bottom: 1px solid #cdcdcd;
+    padding: 0;
+    .button.expense-delete {
+        background-color: red;
+    }
+    .button.expense-withdraw {
+        background-color: #FF9D29;
+    }
+    .button.expense-reject {
+        background-color: #e64e4e;
+    }
+    .button.expense-agree {
+        background-color: #50cd93;
+    }
+    .expense-icon{
+        padding: 4px;
+    }
+    .erv-invoice-directive-content-gap{
+        padding-left: 10px;
+        .type-name{
+            padding: 0;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+            span{
+                padding: 0;
+                font-size: 12px;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 100%
+            }
+        }
+        .comment{
+            padding: 0;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%
+        }
+    }
+    .fee-code-text{
+        font-size: 12px;
+    }
+    .expense-money .currencycode-outer-code{
+        font-size: 10px;
+        color: #959595;
+    }
+    .fee-code-text-outer{
+        font-size: 14px;
+        color: #959595;
+    }
+    .item-content {
+        padding: 2px 5px;
+        .expense-icon {
+            width: 2.5em;
+            height: 2.5em;
+            //margin-right: 7px;
+        }
+        .expense-type-name{
+            padding: 0;
+            //font-size: 14px;
+            font-size: 12px;
+            color: #4c4c4c;
+            height: 16px;
+            line-height: 16px;
+            //margin-left: 5%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+            //width: 56px;
+            width: 100%;
+        }
+        .type-name {
+            padding: 0;
+            font-size: 14px;
+            color: #4c4c4c;
+            //height: 16px;
+            line-height: 16px;
+            margin-left: 5%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+            //width: 56px;
+            .location-grey {
+                width: 0.5em;
+            }
+            .location-colorful {
+                margin-left: 15px;
+                width: 0.5em;
+            }
+            span {
+                color: #959595;
+                font-size: 0.8em;
+            }
+        }
+        .expense-field {
+            color: #959595;
+            font-size: 0.7em;
+            padding: 0;
+        }
+        .expense-date {
+            color: #cdcdcd;
+            font-size: 0.8em;
+            padding: 0;
+        }
+        .expense-money {
+            font-size: 1.1em;
+            color: #ff6a10;
+        }
+        .bill-status{
+            min-height: 24px;
+            overflow: hidden;
+        }
+        .expense-tip {
+            border: 1px solid #0092da;
+            color: #0092da;
+            font-size: 0.8em;
+            padding: 0px 5px 1px 5px;
+            border-radius: 3px;
+            margin-left: 3px;
+        }
+    }
+}
+
+
+
+.account-problem {
+    background: #f1f1f1;
+    .problem-title {
+        text-align: center;
+        font-size: 1.2em;
+        margin-top: 3%;
+        margin-bottom: 2%;
+    }
+    .problem-item {
+        width: 90%;
+        margin-top: 3%;
+        margin-left: 5%;
+    }
+    .problem-button {
+        width: 60%;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 10%;
+        .button-radius {
+            border-radius: 5px;
+        }
+    }
+}
+

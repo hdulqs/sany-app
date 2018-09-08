@@ -1,0 +1,845 @@
+[
+    {
+        "customLocationDetailDTOS": [],
+        "tag": "History"
+    },
+    {
+        "tag": "Popular",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Shanghai",
+                "code": "CHN031000000"
+            },
+            {
+                "city": "Beijing",
+                "code": "CHN011000000"
+            },
+            {
+                "city": "Guangzhou",
+                "code": "CHN044001000"
+            },
+            {
+                "city": "Hangzhou",
+                "code": "CHN033001000"
+            },
+            {
+                "city": "Xiamen",
+                "code": "CHN035002000"
+            },
+            {
+                "city": "Nanjing",
+                "code": "CHN032001000"
+            },
+            {
+                "city": "Macao",
+                "code": "CHN082000000"
+            },
+            {
+                "city": "Chengdu",
+                "code": "CHN051001000"
+            },
+            {
+                "city": "Qingdao",
+                "code": "CHN037002000"
+            },
+            {
+                "city": "Taipei",
+                "code": "CHN071001000"
+            },
+            {
+                "city": "Fuzhou",
+                "code": "CHN035001000"
+            },
+            {
+                "city": "Tianjin",
+                "code": "CHN012000000"
+            },
+            {
+                "city": "Shenzhen",
+                "code": "CHN044003000"
+            },
+            {
+                "city": "Dalian",
+                "code": "CHN021002000"
+            },
+            {
+                "city": "Shenyang",
+                "code": "CHN021001000"
+            },
+            {
+                "city": "Kunming",
+                "code": "CHN053001000"
+            },
+            {
+                "city": "Wuhan",
+                "code": "CHN042001000"
+            },
+            {
+                "city": "Ningbo",
+                "code": "CHN033002000"
+            },
+            {
+                "city": "Wuxi",
+                "code": "CHN032002000"
+            },
+            {
+                "city": "Jinjiang",
+                "code": "CHN035005082"
+            },
+            {
+                "city": "Chongqing",
+                "code": "CHN050000000"
+            }
+        ]
+    },
+    {
+        "tag": "A",
+        "customLocationDetailDTOS": [
+            {
+                "city": "AKe Su",
+                "code": "CHN065029000"
+            },
+            {
+                "city": "ALeTai",
+                "code": "CHN065043000"
+            },
+            {
+                "city": "An Kang",
+                "code": "CHN061009000"
+            },
+            {
+                "city": "An Qing",
+                "code": "CHN034008000"
+            },
+            {
+                "city": "An Shan",
+                "code": "CHN021003000"
+            },
+            {
+                "city": "An Shun",
+                "code": "CHN052004000"
+            }
+        ]
+    },
+    {
+        "tag": "B",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Ba Yan Nao Er",
+                "code": "CHN015008000"
+            },
+            {
+                "city": "BaiSe",
+                "code": "CHN045010000"
+            },
+            {
+                "city": "Bao Shan",
+                "code": "CHN053005000"
+            },
+            {
+                "city": "Bao Tou",
+                "code": "CHN015002000"
+            },
+            {
+                "city": "Bei Hai",
+                "code": "CHN045005000"
+            },
+            {
+                "city": "Bei Jing",
+                "code": "CHN011000000"
+            },
+            {
+                "city": "Bi Jie",
+                "code": "CHN052024000"
+            }
+        ]
+    },
+    {
+        "tag": "C",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Chang De",
+                "code": "CHN043007000"
+            },
+            {
+                "city": "Chang Zhou",
+                "code": "CHN032004000"
+            },
+            {
+                "city": "ChangBai Shan",
+                "code": "CHN022025000"
+            },
+            {
+                "city": "ChangChun",
+                "code": "CHN022001000"
+            },
+            {
+                "city": "ChangDou",
+                "code": "CHN054021000"
+            },
+            {
+                "city": "ChangSha",
+                "code": "CHN043001000"
+            },
+            {
+                "city": "ChangZhi",
+                "code": "CHN014004000"
+            },
+            {
+                "city": "ChaoYang",
+                "code": "CHN011005000"
+            },
+            {
+                "city": "ChengDou",
+                "code": "CHN051001000"
+            },
+            {
+                "city": "Chi Feng",
+                "code": "CHN015004000"
+            },
+            {
+                "city": "Chi Zhou",
+                "code": "CHN034017000"
+            },
+            {
+                "city": "ChongQing",
+                "code": "CHN050000000"
+            }
+        ]
+    },
+    {
+        "tag": "D",
+        "customLocationDetailDTOS": [
+            {
+                "city": "DaLi",
+                "code": "CHN053029000"
+            },
+            {
+                "city": "DaLian",
+                "code": "CHN021002000"
+            },
+            {
+                "city": "DaQing",
+                "code": "CHN023006000"
+            },
+            {
+                "city": "DaTong",
+                "code": "CHN014002000"
+            },
+            {
+                "city": "Dan Dong",
+                "code": "CHN021006000"
+            },
+            {
+                "city": "Di Qing",
+                "code": "CHN053034000"
+            },
+            {
+                "city": "Dong Ying",
+                "code": "CHN037005000"
+            }
+        ]
+    },
+    {
+        "tag": "E",
+        "customLocationDetailDTOS": [
+            {
+                "city": "E Er Duo Si",
+                "code": "CHN015006000"
+            },
+            {
+                "city": "En Shi",
+                "code": "CHN042028000"
+            }
+        ]
+    },
+    {
+        "tag": "F",
+        "customLocationDetailDTOS": [
+            {
+                "city": "FoShan",
+                "code": "CHN044006000"
+            },
+            {
+                "city": "Fu Yang",
+                "code": "CHN034012000"
+            },
+            {
+                "city": "Fu Zhou",
+                "code": "CHN035001000"
+            }
+        ]
+    },
+    {
+        "tag": "G",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Gan Zhou",
+                "code": "CHN036007000"
+            },
+            {
+                "city": "Gu Yuan",
+                "code": "CHN064004000"
+            },
+            {
+                "city": "GuangYuan",
+                "code": "CHN051008000"
+            },
+            {
+                "city": "GuangZhou",
+                "code": "CHN044001000"
+            },
+            {
+                "city": "Gui Lin",
+                "code": "CHN045003000"
+            },
+            {
+                "city": "Gui Yang",
+                "code": "CHN052001000"
+            }
+        ]
+    },
+    {
+        "tag": "H",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Ha Er Bin",
+                "code": "CHN023001000"
+            },
+            {
+                "city": "Hai Kou",
+                "code": "CHN046001000"
+            },
+            {
+                "city": "Han Dan",
+                "code": "CHN013004000"
+            },
+            {
+                "city": "Han Zhong",
+                "code": "CHN061007000"
+            },
+            {
+                "city": "Hang Zhou",
+                "code": "CHN033001000"
+            },
+            {
+                "city": "He Chi",
+                "code": "CHN045012000"
+            },
+            {
+                "city": "HeFei",
+                "code": "CHN034001000"
+            },
+            {
+                "city": "HeTian",
+                "code": "CHN065032000"
+            },
+            {
+                "city": "Hei He",
+                "code": "CHN023011000"
+            },
+            {
+                "city": "Heng Yang",
+                "code": "CHN043004000"
+            },
+            {
+                "city": "HuHeHao Te",
+                "code": "CHN015001000"
+            },
+            {
+                "city": "Huai An",
+                "code": "CHN032008000"
+            },
+            {
+                "city": "Huai Hua",
+                "code": "CHN043012000"
+            },
+            {
+                "city": "Huang Shan",
+                "code": "CHN034010000"
+            },
+            {
+                "city": "Hui Zhou",
+                "code": "CHN044013000"
+            }
+        ]
+    },
+    {
+        "tag": "J",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Ji Ning",
+                "code": "CHN037008000"
+            },
+            {
+                "city": "Ji Xi",
+                "code": "CHN023003000"
+            },
+            {
+                "city": "JiNan",
+                "code": "CHN037001000"
+            },
+            {
+                "city": "Jia Mu Si",
+                "code": "CHN023008000"
+            },
+            {
+                "city": "Jia Yu Guan",
+                "code": "CHN062002000"
+            },
+            {
+                "city": "Jie Yang",
+                "code": "CHN044052000"
+            },
+            {
+                "city": "Jin Chang",
+                "code": "CHN062003000"
+            },
+            {
+                "city": "Jin Zhou",
+                "code": "CHN021007000"
+            },
+            {
+                "city": "Jing De Zhen",
+                "code": "CHN036002000"
+            },
+            {
+                "city": "Jiu Jiang",
+                "code": "CHN036004000"
+            }
+        ]
+    },
+    {
+        "tag": "K",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Ka Na Si",
+                "code": "CHN065096000"
+            },
+            {
+                "city": "KaShen",
+                "code": "CHN065031000"
+            },
+            {
+                "city": "Ke La Ma Yi",
+                "code": "CHN065002000"
+            },
+            {
+                "city": "Kun Ming",
+                "code": "CHN053001000"
+            }
+        ]
+    },
+    {
+        "tag": "L",
+        "customLocationDetailDTOS": [
+            {
+                "city": "La Sa",
+                "code": "CHN054001000"
+            },
+            {
+                "city": "Lan Zhou Shi",
+                "code": "CHN062001000"
+            },
+            {
+                "city": "Li Jiang",
+                "code": "CHN053007000"
+            },
+            {
+                "city": "Lian Yun Gang",
+                "code": "CHN032007000"
+            },
+            {
+                "city": "Lin Cang",
+                "code": "CHN053009000"
+            },
+            {
+                "city": "Lin Fen",
+                "code": "CHN014010000"
+            },
+            {
+                "city": "Lin Yi",
+                "code": "CHN037013000"
+            },
+            {
+                "city": "Lin Zhi",
+                "code": "CHN054026000"
+            },
+            {
+                "city": "Liu Zhou",
+                "code": "CHN045002000"
+            },
+            {
+                "city": "LiuPan Shui",
+                "code": "CHN052002000"
+            },
+            {
+                "city": "Lü Liang",
+                "code": "CHN014011000"
+            },
+            {
+                "city": "Lu Zhou",
+                "code": "CHN051005000"
+            },
+            {
+                "city": "Luo Yang",
+                "code": "CHN041003000"
+            }
+        ]
+    },
+    {
+        "tag": "M",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Mian Yang",
+                "code": "CHN051007000"
+            },
+            {
+                "city": "Mu Dan Jiang",
+                "code": "CHN023010000"
+            }
+        ]
+    },
+    {
+        "tag": "N",
+        "customLocationDetailDTOS": [
+            {
+                "city": "NaLaTi",
+                "code": "CHN065097000"
+            },
+            {
+                "city": "NanChang",
+                "code": "CHN036001000"
+            },
+            {
+                "city": "NanChong",
+                "code": "CHN051013000"
+            },
+            {
+                "city": "NanJing",
+                "code": "CHN032001000"
+            },
+            {
+                "city": "NanNing",
+                "code": "CHN045001000"
+            },
+            {
+                "city": "NanTong",
+                "code": "CHN032006000"
+            },
+            {
+                "city": "NanYang",
+                "code": "CHN041013000"
+            },
+            {
+                "city": "Ning Bo",
+                "code": "CHN033002000"
+            }
+        ]
+    },
+    {
+        "tag": "P",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Pan Zhi Hua",
+                "code": "CHN051004000"
+            }
+        ]
+    },
+    {
+        "tag": "Q",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Qi Qi Ha Er",
+                "code": "CHN023002000"
+            },
+            {
+                "city": "Qian Jiang",
+                "code": "CHN050039000"
+            },
+            {
+                "city": "Qin Huang Dao",
+                "code": "CHN013003000"
+            },
+            {
+                "city": "Qing Dao",
+                "code": "CHN037002000"
+            },
+            {
+                "city": "Qing Yang",
+                "code": "CHN062010000"
+            },
+            {
+                "city": "Qu Zhou",
+                "code": "CHN033008000"
+            }
+        ]
+    },
+    {
+        "tag": "R",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Ri Ka Ze",
+                "code": "CHN054023000"
+            },
+            {
+                "city": "Ri Zhao",
+                "code": "CHN037011000"
+            }
+        ]
+    },
+    {
+        "tag": "S",
+        "customLocationDetailDTOS": [
+            {
+                "city": "San Ming",
+                "code": "CHN035004000"
+            },
+            {
+                "city": "San Ya",
+                "code": "CHN046002000"
+            },
+            {
+                "city": "Shang Hai",
+                "code": "CHN031000000"
+            },
+            {
+                "city": "Shen Yang",
+                "code": "CHN021001000"
+            },
+            {
+                "city": "Shen Zhen",
+                "code": "CHN044003000"
+            },
+            {
+                "city": "Shi Yan",
+                "code": "CHN042003000"
+            },
+            {
+                "city": "ShiJiaZhuang",
+                "code": "CHN013001000"
+            }
+        ]
+    },
+    {
+        "tag": "T",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Ta Cheng",
+                "code": "CHN065042000"
+            },
+            {
+                "city": "Tai Yuan",
+                "code": "CHN014001000"
+            },
+            {
+                "city": "Tai Zhou",
+                "code": "CHN033010000"
+            },
+            {
+                "city": "Tang Shan",
+                "code": "CHN013002000"
+            },
+            {
+                "city": "Tian Jin",
+                "code": "CHN012000000"
+            },
+            {
+                "city": "Tian Shui",
+                "code": "CHN062005000"
+            },
+            {
+                "city": "Tong Hua",
+                "code": "CHN022005000"
+            },
+            {
+                "city": "Tong Liao",
+                "code": "CHN015005000"
+            }
+        ]
+    },
+    {
+        "tag": "W",
+        "customLocationDetailDTOS": [
+            {
+                "city": "WanZhou",
+                "code": "CHN050001000"
+            },
+            {
+                "city": "Wei Fang",
+                "code": "CHN037007000"
+            },
+            {
+                "city": "Wei Hai",
+                "code": "CHN037010000"
+            },
+            {
+                "city": "Wen Shan",
+                "code": "CHN053026000"
+            },
+            {
+                "city": "Wen Zhou",
+                "code": "CHN033003000"
+            },
+            {
+                "city": "Wu Hai",
+                "code": "CHN015003000"
+            },
+            {
+                "city": "Wu Han",
+                "code": "CHN042001000"
+            },
+            {
+                "city": "Wu Lan Cha Bu",
+                "code": "CHN015009000"
+            },
+            {
+                "city": "Wu Lu Mu Qi",
+                "code": "CHN065001000"
+            },
+            {
+                "city": "Wu Zhou",
+                "code": "CHN045004000"
+            },
+            {
+                "city": "WuXi",
+                "code": "CHN032002000"
+            }
+        ]
+    },
+    {
+        "tag": "X",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Xi An",
+                "code": "CHN061001000"
+            },
+            {
+                "city": "Xi Ning",
+                "code": "CHN063001000"
+            },
+            {
+                "city": "Xi Shuang Ban Na",
+                "code": "CHN053028000"
+            },
+            {
+                "city": "XiaMen",
+                "code": "CHN035002000"
+            },
+            {
+                "city": "Xiang Yang",
+                "code": "CHN042006000"
+            },
+            {
+                "city": "Xu Zhou",
+                "code": "CHN032003000"
+            }
+        ]
+    },
+    {
+        "tag": "Y",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Yan An",
+                "code": "CHN061006000"
+            },
+            {
+                "city": "Yan Cheng",
+                "code": "CHN032009000"
+            },
+            {
+                "city": "Yan Tai",
+                "code": "CHN037006000"
+            },
+            {
+                "city": "Yang Zhou",
+                "code": "CHN032010000"
+            },
+            {
+                "city": "Yi Bin",
+                "code": "CHN051015000"
+            },
+            {
+                "city": "Yi Chang",
+                "code": "CHN042005000"
+            },
+            {
+                "city": "Yi Chun",
+                "code": "CHN023007000"
+            },
+            {
+                "city": "Yi Chun",
+                "code": "CHN036009000"
+            },
+            {
+                "city": "Yin Chuan",
+                "code": "CHN064001000"
+            },
+            {
+                "city": "Ying Kou",
+                "code": "CHN021008000"
+            },
+            {
+                "city": "Yong Zhou",
+                "code": "CHN043011000"
+            },
+            {
+                "city": "Yu Lin",
+                "code": "CHN061008000"
+            },
+            {
+                "city": "Yu Shu",
+                "code": "CHN063027000"
+            },
+            {
+                "city": "Yun Cheng",
+                "code": "CHN014008000"
+            }
+        ]
+    },
+    {
+        "tag": "Z",
+        "customLocationDetailDTOS": [
+            {
+                "city": "Zhan Jiang",
+                "code": "CHN044008000"
+            },
+            {
+                "city": "Zhang Ye",
+                "code": "CHN062007000"
+            },
+            {
+                "city": "ZhangJiaJie",
+                "code": "CHN043008000"
+            },
+            {
+                "city": "ZhangJiaKou",
+                "code": "CHN013007000"
+            },
+            {
+                "city": "Zhao Tong",
+                "code": "CHN053006000"
+            },
+            {
+                "city": "Zheng Zhou",
+                "code": "CHN041001000"
+            },
+            {
+                "city": "Zhong Wei",
+                "code": "CHN064005000"
+            },
+            {
+                "city": "Zhou Shan",
+                "code": "CHN033009000"
+            },
+            {
+                "city": "Zhu Hai",
+                "code": "CHN044004000"
+            },
+            {
+                "city": "Zun Yi",
+                "code": "CHN052003000"
+            }
+        ]
+    }
+]

@@ -1,0 +1,713 @@
+.item-invoice-type {
+    .item {
+        margin: auto !important;
+    }
+    .item-content {
+        padding: 0;
+    }
+    .invoice-apply-directive-delete {
+        background-color: red !important;
+    }
+}
+
+//variable for ios device
+$ios-statusbar-height: 20px !default;
+
+.platform-ios.platform-cordova {
+    .erv-approval-list {
+        .sub-has-search-bar {
+            top: 88px + $ios-statusbar-height !important;
+        }
+        .content-has-search-bar {
+            top: 132px + $ios-statusbar-height !important;
+        }
+        .sub-no-search-bar {
+            top: 44px + $ios-statusbar-height !important;
+        }
+        .content-no-search-bar {
+            top: 88px + $ios-statusbar-height !important;
+        }
+        .search-div {
+            top: 44px + $ios-statusbar-height !important;
+        }
+    }
+}
+
+.erv-approval-list {
+    background-color: #f1f1f1;
+    .sub-has-search-bar {
+        top: 88px;
+    }
+    .content-has-search-bar {
+        top: 132px;
+    }
+    .sub-no-search-bar {
+        top: 44px;
+    }
+    .content-no-search-bar {
+        top: 88px;
+    }
+    .search-div {
+        height: 44px;
+        padding: 7px 8px;
+        top: 44px;
+        position: absolute;
+        .search-bar {
+            width: 100%;
+            font-size: 14px;
+            color: #4c4c4c;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            i.fa.fa-search {
+                margin-right: 8px;
+            }
+        }
+    }
+    .bar-subheader {
+        font-size: 16px;
+        color: #4c4c4c;
+        .head-tab {
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            .approval-head-item {
+                padding: 0;
+                width: 100px;
+                text-align: center;
+                line-height: 44px;
+            }
+            .approval-head-item.active {
+                border-bottom: 3px solid #0092da;
+                color: #0092da;
+            }
+        }
+    }
+    .warning-icon {
+        width: 40%;
+    }
+    .warning-word {
+        margin-top: 10px;
+        font-size: 1.1em;
+    }
+    .approval-item {
+        margin: 5px 0 10px 0;
+        padding: 0;
+        border: 0;
+        border-bottom: thin solid #e2e2e2;
+        .item-content{
+            padding: 0;
+        }
+        .approval-detail {
+            height: 30px;
+            .approval-dep {
+                font-size: 12px;
+                padding: 0;
+                color: #4c4c4c;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .approval-name {
+                text-align: right;
+                font-size: 12px;
+                padding: 0;
+                color: #4c4c4c;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        .border-top {
+            border-top: 1px solid #e2e2e2;
+        }
+    }
+
+}
+
+.approval-list-modal {
+    #approval-modal-search {
+        background-color: #fff !important;
+    }
+    .search {
+        height: 44px;
+        padding: 7px 8px 6px 8px;
+        .row {
+            padding: 0;
+            .search-input {
+                flex: 0 0 85%;
+                background-color: #eff2f5;
+                border-radius: 5px;
+                padding-left: 5px;
+                color: #888888;
+                input {
+                    background-color: #eff2f5;
+                    border: none;
+                    width: 85%;
+                    margin: 0;
+                    height: 30px;
+                }
+            }
+            .cancel {
+                text-align: center;
+                color: #0092da;
+                white-space: nowrap;
+                position: relative;
+            }
+            .clear-div {
+                position: absolute;
+                width: 30px;
+                left: -30px;
+                vertical-align: middle;
+                color: #888;
+            }
+            i.fa.fa-plus-circle {
+                font-size: 20px;
+                vertical-align: middle;
+                transform: rotate(45deg);
+            }
+
+        }
+    }
+    .approval-item {
+        > .item {
+            border: none;
+            margin: 0;
+        }
+        .application-item-directive {
+            border: 1px solid #ddd;
+            .approval-detail {
+                font-size: 12px;
+            }
+
+        }
+        .expense-directive {
+            border: 1px solid #ddd;
+        }
+    }
+    .approval-item:first-of-type ~ .approval-item {
+        border-top: 1px solid #ddd;
+    }
+    .col.col-center.approval-name.ng-binding {
+        text-align: right;
+    }
+    .nothing-div {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -40px;
+        margin-top: -80px;
+        img {
+            width: 80px;
+        }
+        .comment {
+            text-align: center;
+            color: #888;
+        }
+    }
+
+    travel-item {
+        .approval-detail {
+            font-size: 12px;
+        }
+    }
+}
+.approval-already {
+    margin-top: 6px;
+}
+
+.erv-approval-expense-report-list {
+    background-color: #F1F1F1;
+    .budget-content{
+        background:#fff6a7;
+        .budget-row{
+            font-size:14px;
+            color:#e56e1b;
+            text-align:left;
+            padding: 0;
+            .budget-right{
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+        .budget-arrow{
+            font-size:16px;
+            text-align:center;
+            color: #e56e1b;
+
+        }
+    }
+    .budget-content-strong{
+        background: #ff9b9d !important;
+        color: #d5555d !important;
+    }
+    .travel-approval-histroy {
+        background-color: #fff;
+        margin: 20px 0;
+        .travel-tips {
+            padding: 5px 0 5px 13px;
+            font-size: 1em;
+            color: #4c4c4c;
+            margin: 0;
+        }
+        .approval-history-pane {
+            position: relative;
+            width: 100%;
+            .line {
+                position: absolute;
+                height: 100%;
+                left: 18px;
+                border-right: 1px solid #cdcdcd;
+            }
+            .approval-history {
+                background-color: #fff;
+                width: 100%;
+                .approval-icon {
+                    width: 20px;
+                    height: 20px;
+                    margin: 6px 0 0 3px;
+                    z-index: 999;
+                }
+                .history-dot {
+                    display: block;
+                    width: 8px;
+                    height: 8px;
+                    margin: 12px 9px 6px 9px;
+                    background-color: #ACACAC;
+                    border-radius: 50%;
+                    z-index: 999;
+                }
+                .approval-time {
+                    color: #959595;
+                    font-size: 0.8em;
+                    margin: 0;
+                }
+                .reject-remark{
+                    color:#ed3535;
+                }
+                .margin-top {
+                    margin-top: 3px;
+                }
+                .approval-name{
+                    max-width: 200px;
+                }
+            }
+        }
+    }
+    .create-base-message {
+        background-color: #fff;
+        padding: 10px;
+        border-bottom: thin solid #e2e2e2;
+        .base-edit {
+            width: 1.5em;
+            position: absolute;
+            right: 10px;
+            top: 15px;
+        }
+        .travel-comment {
+            padding: 0 30px;
+            font-size: 1.2em;
+            color: #4c4c4c;
+            margin: 5px 0;
+        }
+        .travel-remark {
+            font-size: 13px;
+            color: #959595;
+            margin: 0;
+        }
+        .travel-refund{
+            color: #0092da;
+            font-size: 13px;
+        }
+        .travel-department {
+            font-size: 1em;
+            color: #959595;
+            margin: 5px 0;
+        }
+        .travel-date {
+            font-size: 0.9em;
+            color: #959595;
+            margin: 5px 0;
+        }
+        .travel-avaergeBudget {
+            font-size: 0.9em;
+            color: #959595;
+            padding: 0 0 0 5px;
+        }
+        .travel-start-date {
+            font-size: 0.9em;
+            color: #959595;
+            padding: 0;
+        }
+        .travel-money {
+            color: #ff6a10;
+            font-size: 1.1em;
+            padding: 0;
+        }
+        .approval-department {
+            font-size: 14px;
+            color: #959595;
+            padding: 0;
+        }
+        .budget-amount {
+            font-size: 0.9em;
+            color: #959595;
+            border-right: thin solid #e2e2e2;
+            padding: 0 5px 0 0;
+            text-align: right;
+        }
+        .budget-amount-change {
+            padding: 0;
+            font-size: 0.9em;
+            color: #959595;
+            text-align: center;
+        }
+    }
+    .expand-member-list {
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+        width: 50px;
+        height: 21px;
+        margin-top: -3px;
+        background-color: #fff;
+        border-radius: 5px;
+        border-bottom: thin solid #e2e2e2;
+        margin-bottom: 5px;
+        img {
+            width: 20px;
+            transform: rotate(0deg);
+        }
+        .rotate {
+            transform: rotate(180deg);
+        }
+    }
+    .bar-subheader {
+        .total-amount {
+            font-size: 1.2em;
+            color: #4c4c4c;
+        }
+        .budget-amount {
+            font-size: 1em;
+            color: #959595;
+        }
+    }
+    .expense-list-header {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        .tab-mode {
+            font-size: 16px;
+            background-color: #fff;
+            border: 1px solid #0092da;
+            padding: 5px;
+            color: #0092da;
+        }
+        .tab-mode-first {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-right: none;
+        }
+        .tab-mode-second {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-left: none;
+        }
+        .active {
+            color: #fff;
+            background-color: #0092da;
+        }
+    }
+
+    .budget-arrow {
+        width: 7px;
+    }
+    .time-node {
+        p {
+            margin: 5px 0;
+            padding-left: 10px;
+            font-size: 1em;
+            color: #4c4c4c;
+        }
+    }
+    .no-padding {
+        padding: 0;
+    }
+    .remark {
+        background-color: #fff;
+        padding: 10px;
+        font-size: 1em;
+        color: #4c4c4c;
+    }
+    .expense-report-item {
+        background-color: #fff;
+        padding: 0;
+        border-bottom: 1px solid #e2e2e2;
+        .item-checkbox{
+            padding-left: 22px;
+            border: none;
+            input{
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+    .batch-opertion {
+        position: fixed;
+        bottom: 60px;
+        right: 20px;
+        z-index: 100;
+        img{
+            width: 3.5em;
+            height: 3.5em;
+        }
+    }
+    .expense-report-list-footer {
+        padding: 0;
+        .row {
+            padding: 0;
+            .col {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                line-height: 44px;
+            }
+        }
+        .approval-checkbox-btn {
+            background-color: #fff;
+            border-top: 1px solid #cdcdcd;
+            border-right: 1px solid #cdcdcd;
+            color: #959595;
+            font-size: 16px;
+            height: 44px;
+            line-height: 44px;
+            .item-checkbox{
+                padding-right: 8px !important;
+            }
+            .item-checkbox .checkbox {
+                margin-top: -18px;
+            }
+            .item {
+                padding: 0;
+                border: none;
+                margin: 11px 0 0 0;
+            }
+            .item-checkbox {
+                padding-left: 22px;
+            }
+            .item-content {
+                color: #959595;
+                font-size: 16px;
+            }
+            .reject-batch{
+                background-color: red;
+                color: #fff;
+            }
+        }
+    }
+    .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before{
+        background-color: #0092da;
+        border-color:  #0092da;
+    }
+}
+.approval-budget-modal{
+    background: #f8f8f8;
+    .budget-row{
+        padding: 0;
+        height: 45px;
+        .budget-icon {
+            background: #ff6262;
+            width: 4px;
+            height: 15px;
+            margin-top: 8px;
+        }
+        .budget-color-name{
+            background: #ffc636;
+            width: 4px;
+            height: 15px;
+            margin-top: 8px;
+        }
+        .red-row {
+            padding: 5px;
+            font-size: 12px;
+            color: #e5221b;
+            text-align: left;
+            background: #ffd5d5;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+    .arrow-red-row{
+        width: 0;
+        height: 0;
+        border-width: 10px 10px 0;
+        border-style: solid;
+        border-color: #ffd5d5 transparent transparent;
+        margin: -9px 11px;
+        position: relative;
+        z-index: 99;
+    }
+    .item-invoice-list {
+        padding: 0px;
+        margin: 0px;
+        z-index: -1;
+        background: #fff;
+        .img-icon {
+            width: 27px;
+            position: relative;
+            height: 27px;
+            top: 10px;
+            left: 3px;
+        }
+        .col{
+            padding: 5px;
+        }
+        .row{
+            padding: 0;
+            margin: 0;
+        }
+    }
+    .table{
+        padding: 0;
+        border:1px solid #cdcdcd;
+        margin: 10px;
+        border-top: none;
+        background: #fff;
+        .row,.cell{
+            padding: 0;
+        }
+        .cell{
+            border: 1px solid #cdcdcd;
+            border-right: none;
+            border-bottom: none;
+            height: 45px;
+            line-height: 45px;
+            padding: 0;
+        }
+        .cell:first-child{
+            border-left: none;
+        }
+        .cell-icon{
+            width: 27px;
+            position: relative;
+            top: 5px;
+        }
+    }
+}
+.approval-operation{
+   .operate-text{
+       color: #fff;
+       font-size: 1em;
+       margin: 14px 5px 0 0;
+   }
+    .batch-opertion {
+        position: fixed;
+        bottom: 60px;
+        right: 20px;
+        z-index: 100;
+        img{
+            width: 3.5em;
+            height: 3.5em;
+        }
+    }
+    .batch-reject
+    {
+        animation-name: batch-reject;
+        position: fixed;
+        bottom: 20px;
+        right: 90px;
+        display: inline-flex;
+        img{
+            width: 3.5em;
+            height: 3.5em;
+        }
+    }
+    .reject-all{
+        animation-name: reject-all;
+        position: fixed;
+        bottom: 96px;
+        right: 110px;
+        display: inline-flex;
+        img{
+            width: 3.5em;
+            height: 3.5em;
+        }
+    }
+    .pass-all{
+        animation-name: pass-all;
+        position: fixed;
+        bottom: 150px;
+        right: 30px;
+        display: inline-flex;
+        img{
+            width: 3.5em;
+            height: 3.5em;
+        }
+    }
+    @keyframes batch-reject {
+        0% {
+            transform: translate(70px, -40px) ;
+        }
+        100% {
+            transform: translate(0px, 0px);
+        }
+    }
+    @keyframes reject-all {
+        0% {
+            transform: translate(90px, 34px) ;
+        }
+        100% {
+            transform: translate(0px, 0px);
+        }
+    }
+    @keyframes pass-all {
+        0% {
+            transform: translate(10px, 90px) ;
+        }
+        100% {
+            transform: translate(0px, 0px);
+        }
+    }
+    .animated2s {
+        animation-duration: 0.2s;
+        animation-fill-mode: both;
+    }
+    .linear
+    {
+        animation-timing-function:linear;
+    }
+
+}
+
+
+.checkbox input, .checkbox-icon {
+    width: 20px;
+    height: 20px;
+}
+.checkbox input:after, .checkbox-icon:after {
+    top: 23%;
+    left: 18%;
+}
+.platform-android .checkbox-platform .checkbox-icon:after,
+.platform-android .checkbox-platform .checkbox input:after{
+    top: 10%;
+}
+.platform-android .checkbox-platform input:after,
+.platform-android .checkbox-platform .checkbox-icon:after,
+.checkbox-square input:after,
+.checkbox-square .checkbox-icon:after{
+    width: 15px;
+    height: 7px;
+    margin-top: -4px;
+}
+.checkbox input:checked:before,
+.checkbox input:checked + .checkbox-icon:before {
+    background-color: #32deb9;
+    border-color: #32deb9;
+}

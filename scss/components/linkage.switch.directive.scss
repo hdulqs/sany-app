@@ -1,0 +1,87 @@
+.linkage-switch-directive{
+    .list {
+        margin: 0;
+        padding: 0;
+        color: #4C4C4C;
+        font-size: 14px;
+        .item {
+            padding: 0;
+            margin: 0;
+            border: none;
+            .row + .row {
+                margin: 0;
+            }
+            .row {
+                border-bottom: thin solid #e2e2e2;
+                padding: 10px;
+                .col{
+                    padding: 5px 0;
+                }
+                .input-label {
+                    font-size: 1em;
+                    color: #4c4c4c;
+                    padding: 0;
+                    line-height: 30px;
+                }
+                .travel-start-date {
+                    background-color: transparent;
+                    border: none;
+                    text-align: right;
+                    font-size: 16px;
+                    color: #4c4c4c;
+                    width: 100%;
+                    line-height: 16px;
+                }
+                .external-person {
+                    padding: 0;
+                    height: 16px;
+                    line-height: 16px;
+                }
+                .select-department {
+                    .department-selector {
+                        text-align: right;
+                    }
+                }
+                .time-input {
+                    font-size: 1em;
+                    color: #4c4c4c;
+                }
+                .travel-arrow {
+                    width: 6px;
+                }
+                .select-destination {
+                    input {
+                        text-align: right;
+                        box-shadow: none;
+                        border: none;
+                        background-color: #fff;
+                        font-size: 16px;
+                        color: #4c4c4c;
+                    }
+                }
+            }
+            .text-value {
+                text-align: right;
+                width: 100%;
+                padding: 0 0 0 10px;
+                border: none;
+                color: #4c4c4c;
+                font-size: 16px;
+                line-height: 20px;
+                height: 20px;
+            }
+            .text-value[readonly] {
+                background-color: #fff;
+            }
+            .text-no-input {
+                color: #959595;
+            }
+        }
+        .no-border {
+            border: none !important;
+        }
+        .row-min {
+            padding: 3px 10px !important;
+        }
+    }
+}

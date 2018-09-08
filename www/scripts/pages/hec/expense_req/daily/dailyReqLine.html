@@ -1,0 +1,124 @@
+<ion-view class="hec-common" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'req.line.daily.title'|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="vm.goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content class="has-header hec-content has-footer">
+        <div class="list">
+            <!--部门-->
+            <ion-item>
+                <hecunit-selector unit-name="vm.line.unit_name" selected="vm.line.unit_id"
+                                  company-id="vm.line.company_id" resp-center-id="vm.line.responsibility_center_id"
+                                  resp-center-name="vm.line.responsibility_center_name"
+                                  readonly="vm.isReadOnly"></hecunit-selector>
+            </ion-item>
+
+            <!--成本中心-->
+            <ion-item>
+                <hecresp-selector company-id="vm.line.company_id" unit-id="vm.line.unit_id"
+                                  readonly="vm.isReadOnly" resp-name="vm.line.responsibility_center_name"
+                                  selected="vm.line.responsibility_center_id"
+                                  employee-id="vm.line.employee_id"></hecresp-selector>
+            </ion-item>
+
+          <!--  &lt;!&ndash;业务期间&ndash;&gt;
+            <ion-item>
+                <hecperiod-selector company-id="vm.line.company_id" selected="vm.line.period_name"
+                                    readonly="vm.isReadOnly"></hecperiod-selector>
+            </ion-item>-->
+
+            <!--报销类型 -->
+            <ion-item>
+                <hecreimtype-selector doc-type-id="vm.header.exp_requisition_type_id"
+                                      company-id="vm.line.company_id"
+                                      reim-type-name="vm.line.expense_type_display"
+                                      selected="vm.line.expense_type_id"
+                                      reim-data-type="exp_expense_type"
+                                      readonly="vm.isReadOnly"></hecreimtype-selector>
+            </ion-item>
+
+            <!--申请项目-->
+            <ion-item>
+                <hecreqitem-selector req-item-name="vm.line.exp_req_item_display"
+                                      company-id="vm.line.company_id"
+                                      expense-type-id="vm.line.expense_type_id"
+                                      selected="vm.line.exp_req_item_id"
+                                      readonly="vm.isReadOnly"></hecreqitem-selector>
+            </ion-item>
+
+            <!--&lt;!&ndash;币种&ndash;&gt;
+            <ion-item>
+                <div class="row row-center">
+                    <span>{{'req.line.cry_name'|translate}}</span>
+                    <div class="col">
+                        <p class="text-right expense-money"> {{vm.line.currency_code|currencyFilter}} </p>
+                    </div>
+                </div>
+            </ion-item>
+
+            &lt;!&ndash;汇率&ndash;&gt;
+            <ion-item>
+                <div class="row row-center">
+                    <span>{{'req.line.rate'|translate}}</span>
+                    <div class="col">
+                        <p class="text-right expense-money"> {{vm.line.exchange_rate}} </p>
+                    </div>
+                </div>
+            </ion-item>
+-->
+            <!--申请金额-->
+            <ion-item class="hec-item-input">
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.amount'|translate}}<span class="hec-input-required">*</span></span>
+                    <div class="col">
+                        <input type="number" placeholder="{{ 'form.please.input' | translate}}"
+                                   ng-model="vm.line.requisition_amount">
+                    </div>
+                    <img class="form-logo" src="img/hec/form/edit.png" alt="">
+                </div>
+            </ion-item>
+
+            <!--本币申请金额-->
+            <ion-item>
+                <div class="row row-center">
+                    <span class="hec-item-prompt">{{'req.line.transfer.amount'|translate}}</span>
+                    <div class="col">
+                        <p class="text-value">
+                            <span>{{ vm.line.requisition_functional_amount |amountFilter}}</span>
+                        </p>
+                    </div>
+                </div>
+            </ion-item>
+
+            <!--项目-->
+            <ion-item>
+                <hecdimension-selector dim-desc="vm.line.d2" selected="vm.line.e2" dim-prompt="vm.dimPrompt"
+                                       company-id="{{vm.line.company_id}}"
+                                       readonly="vm.isReadOnly"></hecdimension-selector>
+            </ion-item>
+
+            <!--备注-->
+            <p class="text-tip">{{'req.line.description'|translate}}</p>
+            <div> <textarea class="text-area" maxlength="200" ng-model="vm.line.description"
+                            placeholder="{{'req.message.infor.travel.lessThan200Characters' | translate}}"> </textarea>
+            </div>
+        </div>
+    </ion-content>
+
+    <ion-footer-bar class="hec-footer">
+        <div class="row row-center">
+            <div class="col text-center expense-new" ng-click="vm.saveReqLine('M')">
+                {{'req.button.save'|translate}}
+            </div>
+            <div class="col text-center operation-all" ng-click="vm.addNewLine()">
+                {{'req.button.save.and.new.detail'|translate}}
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+

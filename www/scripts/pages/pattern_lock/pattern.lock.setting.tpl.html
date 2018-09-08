@@ -1,0 +1,17 @@
+<ion-view>
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'pattern.Gestures.to.lock'|translate}}<!--手势锁--></span>
+    </ion-nav-title>
+    <ion-content padding="false" class="save-photo" scroll="false">
+        <div class="list">
+            <div class="item item-divider"></div>
+            <div class="submit-expense">
+                <ion-toggle ng-model="view.enable"
+                            ng-change="view.setIsPatternLock()">
+                    {{'pattern.Gestures.to.lock'|translate}}<!--手势锁-->
+                </ion-toggle>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

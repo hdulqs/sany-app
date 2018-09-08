@@ -1,0 +1,17 @@
+<ion-modal-view class="approval-scan-modal-view">
+    <ion-header-bar>
+        <!--关闭-->
+        <button class="button-close" ng-click="modal.scanModal.closeModal()">{{ 'approval.close' | translate }}</button>
+        <!--扫一扫-->
+        <h1 class="title title-center header-item"><span>{{ 'approval.scan.title' | translate }}</span></h1>
+    </ion-header-bar>
+    <ion-content class="approval-scan-modal-content">
+        <img src="img/expense_report_version/scanner/approval-web-big.png"/>
+        <div class="approval-scan-modal-tip">{{ 'approval.scan.scanModal.webTip' | translate }}</div>
+        <div class="button-scan-next">
+            <button class="button button-positive" ng-click="modal.scanModal.scanNext()">
+                {{ 'approval.scan.scanModal.nextTip' | translate }}
+            </button>
+        </div>
+    </ion-content>
+</ion-modal-view>

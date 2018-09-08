@@ -1,0 +1,114 @@
+$border: 1px solid #eff4f8;
+$color-blue: #0092da;
+$color-label: #959595;
+$color-font: #4C4C4C;
+
+.vat-special-directive {
+    font-size: 16px;
+    background-color: #FFFFFF;
+    padding: 0 15px;
+
+    .label {
+        color: $color-label;
+        line-height: 16px;
+
+        img {
+            position: relative;
+            height: 14px;
+            width: auto;
+        }
+    }
+
+    .content {
+        color: $color-font;
+        line-height: 16px;
+    }
+
+    .row {
+        padding: 0;
+        margin: 0;
+
+        >div {
+            width: 50%;
+
+            &:not(:first-child) {
+                border-left: $border;
+                padding-left: 15px;
+            }
+        }
+    }
+
+    >div {
+        //height: 61px;
+
+        &:not(:last-child) {
+            border-bottom: $border;
+        }
+    }
+
+    .vat-special-row{
+        position: relative;
+        padding: 10px 0;
+
+        .vat-special-col {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            font-size: 16px;
+            padding: 0;
+            border: none;
+            height: 20px;
+            margin-top: 7px;
+        }
+    }
+
+    .font-size-14 {
+        font-size: 14px;
+    }
+
+    .color-blue {
+        color: $color-blue;
+    }
+
+    .margin-top-10 {
+        margin-top: 10px;
+    }
+
+    .margin-left-10 {
+        margin-left: 10px;
+    }
+
+    img {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-top: -6px;
+        height: 13px;
+        width: auto;
+    }
+
+    .inline-img {
+        right: 15px;
+    }
+}
+
+.vat-special-amount-description-modal {
+    .zoom-pane{
+        height: 100%;
+        width: 100%;
+    }
+
+    .cancel {
+        color: #0092da;
+        margin-top: 7px;
+        padding-left: 13px;
+        font-size: 15px;
+    }
+
+    img {
+        height: 100%;
+        width: auto;
+    }
+}

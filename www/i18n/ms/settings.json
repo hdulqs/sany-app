@@ -1,0 +1,124 @@
+{
+    "account_bind": {
+        "Account.binding": "Akaun mengikat",
+        "binding": "Terikat",
+        "didi.travel": "perjalanan Didi",
+        "unbounded": "tak terbatas"
+    },
+    "account_bind_js": {
+        "BindingSuccess": "绑定成功",
+        "PhoneNumberError": "手机号码填写错误",
+        "SendingFrequent": "验证码发送频繁,请稍后再试",
+        "VerificationCodeError": "验证码错误,请重新输入",
+        "beOccupied": "手机号已被占用",
+        "beenBound": "该手机号已被绑定,请绑定其他手机号",
+        "binding.phone.number": "Sudah memperlonggar nombor telefon",
+        "iuputPhoneNumber": "请输入手机号码",
+        "networkAnomaly": "网络异常,请稍后再试",
+        "phone.number.as.login.account": "Nombor telefon mudah alih sebagai akaun log masuk, anda tidak boleh membuka ikatan",
+        "relationDiDiService": "该号码已被占用,请联系滴滴客服",
+        "verificationCodePastDue": "该验证码已过期,请重新发送",
+        "verificationCodeSend": "验证码已发送"
+    },
+    "bind_mobile": {
+        "Binding.mobile.phone.number": "Nombor telefon terikat",
+        "Please.enter.the.phone.number": "Sila masukkan nombor telefon",
+        "Please.enter.the.verification.code": "sila masukkan kod pengesahan",
+        "Seconds.later": "saat",
+        "Send.verification.code": "Hantar kod pengesahan",
+        "complete": "menjalankan",
+        "resend": "Hantar semula",
+        "resend.the.verification.code": "Hantar semula kod pengesahan"
+    },
+    "didi_order": {
+        "choose.time": "Klik untuk memilih masa",
+        "didi.Settings": "tetapan penyegerakan Didi",
+        "start": "masa bermula",
+        "stop": "Masa tamat",
+        "synchronous": "Segerakkan"
+    },
+    "didi_order_js": {
+        "End.time.is.not.less.than.start.time": "Masa bertamat tidak boleh kurang daripada masa bermula",
+        "End.time.is.today.at.the.latest": "Masa bertamat tidak boleh lewat daripada hari ini",
+        "Please.select.start.time": "Sila pilih masa bermula",
+        "Please.select.stop.time": "Sila pilih masa bertamat",
+        "Start.time.is.today.at.the.latest": "Masa bermula tidak boleh lewat daripada hari ini",
+        "check_in_expense_list": "sila menyemak perbelanjaan senarai!",
+        "orders.have.been.synchronized.success": "Tempahan Didi telah berjaya disegerakkan,"
+    },
+    "expense_time": {
+        "A.month": "setiap bulan",
+        "Please.select.a.date": "Sila pilih tarikh ",
+        "Regularly.submit": "Kerap penghantaran",
+        "Regularly.submit.the.expense.account": "Menghantar tuntutan pembayaran balik dengan kerap",
+        "Submit.time": "masa penghantaran",
+        "date": "nombor"
+    },
+    "language_list": {
+        "Malay": "Bahasa Melayu",
+        "en": "Inggeris",
+        "english": "Inggeris",
+        "language": "Language",
+        "ms": "Bahasa Melayu",
+        "simplified.chinese": "Cina",
+        "updating.languages": "Updating Languages",
+        "updating.languages_en": "Updating Languages",
+        "updating.languages_ms": "Updating Languages",
+        "updating.languages_zh_CN": "更新语言",
+        "whether_change_the_language": "Would you like to set ",
+        "zh_cn": "Cina"
+    },
+    "mobile_list": {
+        "New.mobile.phone.number": "nombor telefon baru",
+        "phone.number": "nombor telefon"
+    },
+    "order_form": {
+        "Ctrip": "Ctrip",
+        "Ctrip.hotline": "Talian hotline Ctrip",
+        "Order.secretary": "Makanan pesanan setiausaha kecil",
+        "The.hotel.order": "Tempahan hotel",
+        "The.ticket.order": "Tempahan Tiket",
+        "order.information": "maklumat tempahan"
+    },
+    "person": {
+        "Exit.from.the.current.account": "Keluar dari akaun semasa",
+        "Head.portrait": "Gambar Profil",
+        "Personal.information": "Maklumat peribadi",
+        "department": "jabatan",
+        "email": "peti mel",
+        "name": "Nama",
+        "phone": "nombor telefon",
+        "position": "kedudukan"
+    },
+    "person_js": {
+        "Choose.from.the.album": "Pilih daripada Album",
+        "Failed.to.upload.again": "Memuat gagal, sila muat naik semula",
+        "Picture.exceeds.the.limit": "Saiz foto melebihi had!",
+        "Uploaded.successfully": "Memuat berjaya",
+        "cancel": "membatalkan",
+        "confirmExit": "确定要退出吗?",
+        "network": "rangkaian yang tidak normal!",
+        "ok": "menentukan",
+        "pictures": "Gambar",
+        "prompt": "Petunjuk",
+        "uploading": "The invoice is being uploaded!"
+    },
+    "photo_settings": {
+        "Photo.set": "tetapan kamera",
+        "Saved": "Apabila dihidupkan, invois siap dalam Helios akan disimpan ke album foto anda.",
+        "Saved.to.the.local": "Simpan ke tempatan"
+    },
+    "relieve_bind": {
+        "Remove.the.binding": "memperlonggar"
+    },
+    "security_center": {
+        "Gestures.to.lock": "Lock isyarat",
+        "Modify.the.login.password": "Ubahsuai kata laluan log masuk",
+        "Security.center": "pusat keselamatan"
+    },
+    "settings_list": {
+        "Setup": "tetapan",
+        "Take.the.invoice": "Ambil gambar invois",
+        "didi.synchronization": "penyegerakan Didi"
+    }
+}

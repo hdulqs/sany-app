@@ -1,0 +1,20 @@
+<ion-view>
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'photo_settings.Photo.set'|translate}}<!--拍照设置--></span>
+    </ion-nav-title>
+    <ion-content padding="false" class="save-photo" scroll="false">
+            <div class="list">
+                <div class="item item-divider"></div>
+                <div class="submit-expense">
+                    <ion-toggle ng-model="view.enable"
+                                ng-change="view.IsSavePhoto()">
+                        {{'photo_settings.Saved.to.the.local'|translate}}<!--保存到本地-->
+                    </ion-toggle>
+                </div>
+            </div>
+        <div class="save-text">
+            {{'photo_settings.Saved'|translate}}<!--开启后,在汇联易中拍完发票会保存到您的相册。-->
+        </div>
+    </ion-content>
+</ion-view>
+

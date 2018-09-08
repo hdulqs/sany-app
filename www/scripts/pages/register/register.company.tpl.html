@@ -1,0 +1,31 @@
+<ion-view class="register-company" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'register.registered'|translate}}<!--注册--></span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="isDirtyForm()" class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content>
+        <form name="registerForm">
+            <div class="list">
+                <div class="row row-center input-group">
+                    <input type="text" name="companyName" placeholder="{{'register.An.enterprise.name'|translate}}" ng-model="view.companyName"
+                           ng-required="true"/>
+                </div>
+                <div class="row row-center input-group">
+                    <input type="text" name="username" placeholder="{{'register.A.personal.name'|translate}}" ng-model="view.username"
+                           ng-required="true"/>
+                </div>
+            </div>
+            <div class="row">
+                <button class="button next-button button button-block button-positive"
+                        ng-click="nextStep(view.companyName,view.username)"
+                >
+                    {{'register.next.step'|translate}}<!--下一步-->
+                </button>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

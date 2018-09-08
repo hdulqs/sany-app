@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="day_name_format">EEE</string>
+    <string name="invalid_date">Date must be between %1$s and %2$s.</string>
+    <string name="month_name_format">MMM yyyy</string>
+    <string name="YYYY_MM_DD_format">yyyy-MM-DD</string>
+    <string name="cancel">Cancel</string>
+    <string name="select_date">Select Date</string>
+    <string name="ok">OK</string>
+    <string name= "Sun">SUN</string>
+    <string name= "Mon">MON</string>
+    <string name= "Tues">TUE</string>
+    <string name= "Wed">WED</string>
+    <string name= "Thur">THU</string>
+    <string name= "Fri">FRI</string>
+    <string name= "Sat">SAT</string>
+</resources>

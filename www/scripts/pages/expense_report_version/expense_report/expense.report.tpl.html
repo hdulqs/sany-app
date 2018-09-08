@@ -1,0 +1,64 @@
+<ion-view class="erv-expense-page" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">
+            {{'expense.expense.account' | translate}}
+        </span>
+    </ion-nav-title>
+    <ion-subheader-bar class="bar bar-subheader">
+        <div class="row row-center head-tab">
+            <div class="col text-center" ng-repeat="item in view.tabItem" ng-click="view.changeTab($index)">
+                <span class="tab-item" ng-class="{true: 'tab-active', false: ''}[$index === view.tabIndex]">
+                    {{item.name}}
+                    <div class="red-point" ng-if="view.hasApprovaled && $index === 2 "></div>
+                </span>
+            </div>
+        </div>
+    </ion-subheader-bar>
+    <ion-content class="has-subheader">
+        <ion-refresher on-refresh="view.doRefresh()" pulling-text="{{'expense.Loading.in'|translate}}"></ion-refresher>
+        <div class="alert alert-warning warn-expense" ng-if="view.nothing">
+            <img class="warning-icon" src="img/expense/nothing-icon.png"/>
+            <p class="warning-word">{{'expense.Nothing'|translate}}<!--空空如也--></p>
+            <p class="warning-word">{{'expense.No.expense.account'|translate}}<!--暂无报销单!--></p>
+            <p class="warning-word"  ng-if="view.tabIndex===0 && !view.functionProfileList['er.opt.upsert.disabled'] && myCustomForm.length>0">{{'expense.Click.here.to.add.a.deal'|translate}}<!--点此新增一笔--></p>
+            <img src="img/expense_report_version/expense_report/guide.png" class="guide-icon" ng-if="view.tabIndex===0 && !view.functionProfileList['er.opt.upsert.disabled'] && myCustomForm.length>0">
+        </div>
+        <div ng-if="view.networkError && view.expenseList.length === 0">
+            <not-found-text title="view.networkErrorText" icon="view.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="view.doRefresh()">
+                    {{'expense.Click.the.refresh'|translate}}<!--点击刷新-->
+                </button>
+            </div>
+        </div>
+        <div ng-if="view.systemError && view.expenseList.length === 0">
+            <not-found-text title="view.systemErrorText" sub-title="view.systemErrorSubText"
+                            icon="view.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <ion-list>
+            <div ng-repeat="expense in view.expenseList" ng-if="!view.nothing" class="export-item-content">
+                <expense-report-item item="expense"
+                                     show-delete="view.canDelete"
+                                     origin-currency-code="view.originCurrencyCode"
+                                     show-withdraw="view.canWithdraw"
+                                     delete-expense="view.deleteExpenseReport(expense.expenseReportOID)"
+                                     withdraw-expense="view.withdraw(expense.expenseReportOID)"
+                                     go-detail="view.goExpenseReportDetail(expense)"
+                >
+                </expense-report-item>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="view.pageable.page < view.dataNum.lastPage"
+            on-infinite="view.getExpenseList(view.pageable.page + 1)"
+            immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+    <div class="buttons buttons-center button-positive" ng-if="view.tabIndex===0 && !view.functionProfileList['er.opt.upsert.disabled'] && myCustomForm.length>0" ng-click="relateExpense($event)">
+        <img src="img/expense_report_version/expense_report/add.png"
+             ng-class="{true: 'pic-ten', false: 'pic-rotate-ten'}[!view.markStatus]"/>
+    </div>
+</ion-view>

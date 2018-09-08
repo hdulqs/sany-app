@@ -1,0 +1,42 @@
+<ion-view class="borrow-money-list" hide-back-button="false">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'interface_my.Borrowing.and.cancel.after.verification'|translate}}</span>
+    </ion-nav-title>
+    <ion-content class="borrow-list-content" overflow-scroll="true">
+        <div class="alert alert-warning warn" ng-if="view.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'interface_my.There.is.no.cost.information.for.the.time.being'|translate}}</p>
+        </div>
+        <div ng-if="view.networkError && view.travelList.length === 0">
+            <not-found-text title="view.networkErrorText" icon="view.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="create-travel-btn" ng-click="view.doRefresh()">
+                    {{'interface_my.Click.the.refresh'|translate}}
+                </button>
+            </div>
+        </div>
+        <ion-refresher on-refresh="view.doRefresh()" pulling-text="{{'interface_my.Loading.in'|translate}}"></ion-refresher>
+        <div class="actual-amount" ng-if="view.borrowList.length > 0">
+            <img src="img/borrow_money/amount-icon.png"/>
+            <span class="title">{{'interface_my.Amount.to.be.cancel.after.verification:'|translate}}</span>
+            <span>{{view.StayWriteoff.stayWriteoffAmount | currency: view.code}}</span>
+        </div>
+        <ion-list>
+            <div ng-repeat="borrowItem in view.borrowList">
+                <div class="time-node"
+                     ng-if="($index === 0 || ($index > 0 && view.borrowList[$index].createdMonth !== view.borrowList[$index-1].createdMonth))">
+                    <p>{{ borrowItem.createdDate | oldMonthFilter }}{{'interface_my.month'|translate}}</p>
+                </div>
+                <borrow-money-item item="borrowItem"
+                                   code="{{view.code}}"
+                                   go-detail="view.goDetail(borrowItem)"></borrow-money-item>
+            </div>
+        </ion-list>
+        <ion-infinite-scroll
+            ng-if="view.pageable.page < view.dataNum.lastPage"
+            on-infinite="view.loadMore(view.pageable.page + 1)" immediate-check="false"
+            distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

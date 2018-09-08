@@ -1,0 +1,25 @@
+<ion-modal-view class="self-select-currency-code">
+    <ion-header-bar>
+        <span class="cancel" ng-click="selectCurrencyCode.hide()">
+            {{'expense.cancel'|translate}}<!--取消-->
+        </span>
+        <h3 class="title">{{'expense.Select.the.currency'|translate}}<!--选择币种--></h3>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+            <ion-item ng-repeat="item in view.cashCategoryList track by $index"
+                      ng-click="view.changeCurrencyCode(item)">
+                <div class="row row-center">
+                    <div class="col col-70 text-left margin-left">
+                        {{item.currencyName}}
+                    </div>
+                    <div class="col col-10"
+                         ng-if="view.currencyCode === item.currency">
+                        <img class="select" ng-src="img/travel/select.png">
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-modal-view>
+

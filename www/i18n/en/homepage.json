@@ -1,0 +1,18 @@
+{
+    "application": {
+        "activity.form": "Activity form",
+        "meike.approval": "Meike.approval",
+        "other.apply": "Other application"
+    },
+    "vendor": {
+        "fasco": "Fasco air ticket",
+        "hrs": "HRS",
+        "huazhu": "Huazhu",
+        "jingdong": "Jingdong",
+        "xiecheng": "Xiecheng",
+        "baoku": "Baoku",
+        "baokuAir": "Baoku Air",
+        "baokuHotel": "Baoku Hotel",
+        "cas":"CAS Air tickets"
+    }
+}

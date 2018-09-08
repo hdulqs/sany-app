@@ -1,0 +1,16 @@
+{
+    "pattern": {
+        "Cancel.the.gestures.password": "取消手势密码",
+        "Enter.the.password.for.gestures": "请输入手势密码",
+        "Gestures.password.authentication.failed.please.login.again": "手势密码验证失败,请重新登录",
+        "Gestures.password.canceled.successfully": "手势密码取消成功",
+        "Gestures.password.shall.not.be.less.than.four.points": "手势密码不得少于4个点",
+        "Gestures.password.successfully": "手势密码设置成功",
+        "Gestures.to.lock": "手势锁",
+        "Password.Settings.gestures": "设置手势密码",
+        "Please.input.gesture.password.again": "请再次输入手势密码",
+        "Verify.password": "验证登录密码",
+        "You.can.also.input": "您还可以输入",
+        "times": "次"
+    }
+}

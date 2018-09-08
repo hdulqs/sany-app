@@ -1,0 +1,86 @@
+<div class="linkage-switch-directive">
+    <ion-list>
+        <div class="load-contain">
+            <ion-toggle ng-model="field.value" toggle-class="toggle-calm">
+                {{field.fieldName}}
+            </ion-toggle>
+        </div>
+        <ion-item ng-repeat="item in field.content"
+                  ng-switch="item.fieldType" ng-if="field.value">
+            <div class="row row-center" ng-switch-when="CUSTOM_ENUMERATION">
+                <div class="col">
+                    {{item.fieldName}}
+                </div>
+                <div class="col">
+                    <value-item selected="item" readonly="view.isReadOnly" applicant="applicant">
+
+                    </value-item>
+                    <!--<input type="text" ng-model="field.value"  maxlength="100" class="text-value" ng-readonly="view.isReadOnly"/>-->
+                </div>
+            </div>
+            <div class="row row-center" ng-switch-when="TEXT">
+                <div class="col">
+                    {{item.fieldName}}
+                </div>
+                <div class="col">
+                    <input type="text" ng-model="item.value" maxlength="100" placeholder="{{'linkage.Please.enter.the'|translate}}"
+                           class="text-value" ng-readonly="view.isReadOnly"/><!--请输入-->
+                </div>
+            </div>
+            <div class="row row-center" ng-switch-when="LONG">
+                <div class="col">
+                    {{item.fieldName}}
+                </div>
+                <div class="col">
+                    <input type="number" ng-model="item.value" decimal-length="2" class="text-value" placeholder="{{'linkage.Please.enter.the'|translate}}"
+                           ng-readonly="view.isReadOnly"/><!--请输入-->
+                </div>
+            </div>
+            <div class="row row-center" ng-switch-when="DATETIME"
+                 ng-click="datePicker.selectDateTime(item.name)">
+                <div class="col">
+                    {{item.fieldName}}
+                </div>
+                <div class="col">
+                    <p class="text-right expense-money">
+                        <span ng-if="item.value === null || item.value === ''">{{'linkage.Please.select'|translate}}<!--请选择--></span>
+                        <span ng-if="item.value !== null && item.value !== ''">{{item.value | dateTimeFilter}}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="row row-center" ng-switch-when="DATE"
+                 ng-click="datePicker.selectDate(item.name)">
+                <div class="col">
+                    {{item.fieldName}}
+                </div>
+                <div class="col">
+                    <p class="text-right expense-money">
+                        <span ng-if="item.value === null || item.value === ''">{{'linkage.Please.select'|translate}}<!--请选择--></span>
+                        <span
+                            ng-if="item.value !== null && item.value !== ''">{{item.value | dateFilter}} </span>
+                    </p>
+                </div>
+            </div>
+            <div class="row row-center" ng-switch-when="DOUBLE">
+                <div class="col">
+                    {{item.fieldName}}
+                </div>
+                <div class="col">
+                    <input type="number" money-input decimal-length="2"
+                           ng-model="item.value" class="text-value"
+                           placeholder="{{'linkage.Please.enter.the'|translate}}"
+                    /><!--请输入-->
+                </div>
+            </div>
+            <div class="row row-center" ng-switch-when="GPS">
+                <div class="col">
+                    {{item.fieldName}}
+                </div>
+                <div class="col">
+                    <location-selector selected="item.value"
+                                       location="view.currentLocation"></location-selector>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+</div>

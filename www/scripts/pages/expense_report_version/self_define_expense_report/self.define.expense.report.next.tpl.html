@@ -1,0 +1,411 @@
+<ion-view class="self-define-expense-report">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{view.reportData.formName}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <i class="ion-ios-more" ng-click="openPopover($event)"></i>
+    </ion-nav-buttons>
+    <!--<ion-nav-buttons side="right">-->
+        <!--<div class="create-travel-save" ng-if="view.content === 'self_next' || view.content === 'edit'"-->
+             <!--ng-click="!view.disabled && view.saveCustomForm()">-->
+            <!--{{'expense.save'|translate}}&lt;!&ndash;保存&ndash;&gt;-->
+        <!--</div>-->
+    <!--</ion-nav-buttons>-->
+    <ion-content class="self-expense-report-detail has-footer"
+                 on-scroll="showScroll()" delegate-handle="expenseReportScroll">
+        <div ng-if="view.isNotFound">
+            <not-found-text title="view.notFoundText" icon="view.notFoundIcon">
+
+            </not-found-text>
+        </div>
+        <div class="budget-content row row-center" ng-class="{'budget-content-strong':errorColor}"  ng-click="view.openBudgetModal()" ng-if="lastShowTab && budgetError.length > 0 && !isError" ng-click="view.openBudgetModal()">
+            <div class="col col-center col-90" ng-repeat="item in budgetError">
+                <div class="row row-center budget-row">
+                    <div class="col col-30 col-center text-left budget-left"> <!--bug修改   加了col-20-->
+                        <span ng-if="item.externalPropertyName==='1001' || item.externalPropertyName==='2002'">超申请</span><!--bug修改  超申请缺少2002一个状态-->
+                        <span ng-if="item.externalPropertyName==='2001'">超差标</span>
+                        <span ng-if="item.externalPropertyName==='1002' || item.externalPropertyName==='1004'">超预算</span>
+                        <span ng-if="item.externalPropertyName==='1003'">系统错误</span>
+                    </div>
+                    <div class="col  col-center text-right budget-right" ng-repeat="msg in item.errorMsg"><!--bug修改   col-70去掉了-->
+                        {{msg.msg}}
+                    </div>
+                </div>
+            </div>
+            <div class="col col-center budget-arrow">
+                <i class="base-edit ion-ios-arrow-right"></i>
+            </div>
+        </div>
+
+        <div ng-if="!view.isNotFound && view.isLoadFinish">
+
+            <div ng-if="view.expenseReportList.length === 0">
+                <div class="alert alert-warning warn" ng-class="{'has-allowance':view.travelAllowance}">
+                    <img class="warning-icon" src="img/nothing.png"/>
+                    <p class="warning-word">{{'expense.Have.not.charge.a.new.at.once'|translate}}<!--还没有费用,赶紧新增一笔吧!--></p>
+                    <img src="img/expense_report_version/expense_report/guide.png" class="guide-icon">
+                </div>
+            </div>
+            <div class="create-base-message" ng-click="view.editBase()">
+                <img class="edit-icon"  ng-if="view.content === 'self_next'"
+                     src="img/expense_report_version/expense_report/edit-icon.png" alt="">
+                <!--<i class="base-edit ion-ios-arrow-right"  ng-if="view.content === 'self_next'"></i>-->
+                <!--<p class="text-center sefl-define-title" ng-if="view.reportData.type !== 1001 && view.reportData.title">-->
+                    <!--{{view.reportData.title}}-->
+                <!--</p>-->
+
+                <p class="travel-remark" ng-if="view.reportData.type === 1002">
+                    <span ng-if="view.reportData.travelStartDate">
+                        {{view.reportData.travelStartDate | dateDotFilter}} --
+                    </span>
+                    <span ng-if="view.reportData.travelEndDate">
+                        {{view.reportData.travelEndDate | dateDotFilter}}
+                    </span>
+                </p>
+                <!--这个地方显示报销单的总金额
+                需要分为两种情况,就是外币与本位币的时候
+                如果是外币报销单,只能选择或创建外币的费用;
+                如果是本位币报销单,可以选择任何费用类型;
+                -->
+                <div class="col travel-budget">
+                    <p ng-if="view.originCurrencyCode!=view.reportData.currencyCode">
+                        {{view.reportData.currencyCode}}
+                        {{view.amount|number:2}}
+                    </p>
+                    <p ng-if="view.originCurrencyCode==view.reportData.currencyCode">
+                        {{view.reportData.currencyCode}}
+                        {{view.amount|number:2}}
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-center travel-remark">
+                        <span class="text-label">{{'expense.currency'|translate}}</span>
+                    </p>
+                    <p class="text-center travel-remark">
+                        <span>{{view.reportData.currencyCodeName}}</span>
+                    </p>
+                </div>
+                <!--制单人-->
+                <p class="text-center travel-remark" ng-if="view.reportData.createdName && view.reportData.createdBy!==view.reportData.applicantOID">
+                    <span class="text-label">
+                        {{'expense.createdName'|translate}}
+                    </span>
+                    <br>
+                    {{view.reportData.createdName}} {{view.reportData.createdDate | dateTimeFilter}}
+                </p>
+                <div ng-repeat="field in view.reportData.custFormValues | orderBy: 'sequence'" ng-if="view.isBaseMessageKey(field)">
+                    <p class="travel-remark" ng-if="field.messageKey === 'select_department' && field.value">
+                        <span class="text-label">
+                        {{field.fieldName}}
+                        </span>
+                        <br>
+                        {{field.departmentName}}
+                    </p>
+                    <p class="travel-remark" ng-if="field.messageKey === 'title' && field.value">
+                        <span class="text-label">
+                            {{field.fieldName}}
+                        </span>
+                        <br>{{field.value}}
+                    </p>
+                </div>
+                <div ng-if="view.showTravelMember">
+                    <p class="text-center travel-remark" ng-if="view.reportData.type === 1002 && view.reportData.budgetAmount">
+                        <span class="text-label">
+                            {{'expense.budget'|translate}}<!--预算-->
+                        </span>
+                        <br>
+                        {{view.reportData.budgetAmount | currency: code}}／{{'expense.people'|translate}}<!--人-->
+                    </p>
+                    <p class="text-center travel-remark" ng-if="view.reportData.type === 1003 && view.reportData.budgetAmount">
+                        <span class="text-label">
+                            {{'expense.Total.budget'|translate}}<!--总预算-->
+                        </span>
+                        <br>
+                        {{view.reportData.budgetAmount | currency: code}}
+                    </p>
+                    <div ng-repeat="field in view.reportData.custFormValues | orderBy: 'sequence'" ng-if="!view.isBaseMessageKey(field)" ng-switch="field.messageKey">
+                        <!--申请人-->
+                        <div ng-switch-when='applicant'>
+                            <p class="travel-remark" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>
+                                {{field.applicantName}}
+                            </p>
+                        </div>
+                        <div ng-switch-when='writeoff_flag'>
+                            <div class="col travel-avaergeBudget" ng-if="field.value === true">
+                                <span class="travel-remark">
+                                    {{'expense.Cancel.after.verification'|translate}}<!--还款--><img class="write-off-icon" src="img/operationTypeIcon/2001.png">
+                                </span>
+                            </div>
+                            <p class="travel-remark" ng-if="!field.value">
+                                {{'expense.Do.not.cancel.after.verification'|translate}}<!--不核销-->
+                            </p>
+                        </div>
+                        <div ng-switch-when='total_budget'>
+                            <p class="travel-money" ng-if="field.value">
+                                {{field.value | currency : code}}
+                            </p>
+                        </div>
+                        <div ng-switch-when='select_cost_center'>
+                            <p class="travel-remark" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                 <br>{{field.costCenterName}}
+                            </p>
+                        </div>
+                        <div ng-switch-when='select_approver'>
+                            <p class="travel-remark text-center" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>{{field.approvalSelectedName}}
+                            </p>
+                        </div>
+                        <div ng-switch-when='select_user'>
+                            <p class="travel-remark" ng-if="field.approvalSelectedName">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>{{field.approvalSelectedName}}
+                            </p>
+                        </div>
+                        <div ng-switch-when='select_corporation_entity'>
+                            <p class="travel-remark" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>{{field.entityName}}
+                            </p>
+                        </div>
+                        <div ng-switch-when='linkage_switch'>
+                            <div ng-if="field.value && field.content.length > 0">
+                                <p class="travel-remark text-center" ng-repeat="item in field.content">
+                                    {{item.fieldName}}:{{item.value}}
+                                </p>
+                            </div>
+                        </div>
+                        <div ng-switch-when='currency_code'>
+                            <p class="travel-remark" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>
+                                {{getCashName(field.value)}}
+                            </p>
+                        </div>
+                        <div ng-switch-when='cust_list'>
+                            <p class="travel-remark text-center" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>
+                                {{field.valueKey}}
+                            </p>
+                        </div>
+                        <div ng-switch-when='select_box'>
+                            <p class="travel-remark" ng-if="field.selectValue.length > 0">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>
+                                <span ng-repeat="seleted in field.selectValue">
+                                    {{seleted.name}} <span ng-if="$index !== (field.selectValue.length -1)">，</span>
+                                </span>
+                            </p>
+                        </div>
+                        <div ng-switch-when='contact_bank_account'>
+                            <p class="travel-remark" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>{{field.bankAccountNo}}
+                            </p>
+                        </div>
+                        <div ng-switch-when='start_date'>
+                            <p class="travel-remark" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>{{field.value | dateFilter}}
+                            </p>
+                        </div>
+                        <div ng-switch-when='end_date'>
+                            <p class="travel-remark" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>{{field.value | dateFilter}}
+                            </p>
+                        </div>
+                        <div ng-switch-when='time'>
+                            <p class="travel-remark" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>{{field.value | date: 'HH:mm'}}
+                            </p>
+                        </div>
+                        <div ng-switch-default ng-switch="field.fieldType">
+                            <p class="travel-remark" ng-switch-when="CUSTOM_ENUMERATION" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>
+                                {{field.valueKey}}
+                            </p>
+                            <!--普通开关-->
+                            <p class="travel-remark" ng-switch-when="BOOLEAN" ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>
+                                <span ng-if="field.value==='true'">{{ 'common.yes' | translate }}</span>
+                                <span ng-if="field.value!=='true'">{{ 'common.no' | translate }}</span>
+                            </p>
+                            <p class="travel-remark" ng-switch-default ng-if="field.value">
+                                <span class="text-label">
+                                    {{field.fieldName}}
+                                </span>
+                                <br>
+                                {{field.value}}
+                            </p>
+                        </div>
+                        <!--<p class="travel-remark text-center" ng-if="!view.isNotNativeFieldValue(field) && field.value">-->
+                            <!--{{field.fieldName}}:{{field.value}}-->
+                        <!--</p>-->
+                    </div>
+                </div>
+            </div>
+            <div class="expand-member-list" ng-click="view.expandTravelMember()">
+                <img src="img/expense_report_version/travel/expand-arrow2.png" alt=""
+                     ng-class="{true: 'rotate',false: ''}[view.showTravelMember]">
+            </div>
+            <div class="row row-center allowance-money" ng-if="view.travelAllowance && (!view.functionProfileList || !view.functionProfileList['travel.allowance.disabled'])">
+                <div class="col col-center allowance-label">{{'expense.Poor.filling.amount'|translate}}<!--差补金额-->:</div>
+                <div class="col col-center col-67 allowance-value">{{view.travelAllowance}}</div>
+            </div>
+            <!--费用列表-->
+            <ion-list class="invoice-list">
+                <ion-item ng-repeat="expense in view.expenseReportList"
+                          class="invoice-item-list">
+                    <div>
+                        <div class="row row-center row-date"
+                             ng-if="$index === 0 || ($index > 0 && view.expenseReportList[$index].formatDate !== view.expenseReportList[$index-1].formatDate)">
+                            <div class="col col-center col-60 expense-date">
+                                <p>{{expense.createdDate | dayCharFilter }} {{expense.week | weekFilter}}</p>
+                            </div>
+                        </div>
+                        <expense-item item="expense"
+                                      origin-currency-code="view.originCurrencyCode"
+                                      delete="view.canDelete"
+                                      delete-expense="view.removeInvoice(expense, $index)"
+                                      go-detail="showDetail(expense)">
+                        </expense-item>
+                    </div>
+                </ion-item>
+            </ion-list>
+
+            <ion-infinite-scroll
+                ng-if="pagenation.page < pagenation.maxPage"
+                on-infinite="pagenation.loadMore(pagenation.page + 1)" immediate-check="false"
+                distance="1%">
+            </ion-infinite-scroll>
+            <div class="approval-history-page" ng-if="view.reportData.approvalHistoryDTOs.length > 0">
+                <p class="expense-tips">
+                    {{'expense.The.examination.and.approval.of.history'|translate}}<!--审批历史-->
+                </p>
+                <div class="approval-history-pane history-block">
+                    <div class="line"></div>
+                    <div class="approval-history">
+                        <div class="row" ng-repeat="history in view.reportData.approvalHistoryDTOs">
+                            <span class="history-dot-wait" ng-if="history.operation === 3004 || history.operation === 4000"></span>
+                            <span class="history-dot-success" ng-if="history.operation === 1001 ||
+                            history.operation === 2001 || history.operation === 3001 || history.operation === 3003 ||
+                            history.operation === 4001 || history.operation === 4011 || history.operation === 5000 ||
+                            history.operation === 5001 || history.operation === 5002 || history.operation === 5004 || history.operation === 5007"></span>
+                            <span class="history-dot-reject" ng-if="history.operation === 2002 || history.operation === 3002 ||
+                            history.operation === 4012 || history.operation === 5003 || history.operation === 5005 || history.operation === 5006 || history.operation === 5008"></span>
+                            <span class="history-dot-withdraw" ng-if="history.operation === 1002"></span>
+
+                            <div class="col padding-0">
+                                <div class="row padding-5-0">
+                                    <div class="col padding-0">
+                                        <p class="approval-time operation-title">
+                                            {{history.splitName|splitName}}&nbsp;
+                                            <span ng-hide="history.operation == 2001 && history.operationType == 1001">
+                                                {{history.operation | operation}}
+                                            </span>
+                                            <span ng-if="history.operation == 2001 && history.operationType == 1001">
+                                                {{'filter_js.selfApproval' | translate}}
+                                                <!--自审批通过-->
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col padding-0">
+                                        <p class="approval-time txt-right operation-date">
+                                            {{history.createdDate | dateTimeFilter}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="approval-time">
+                                    <span ng-if="history.operation === 4000 || history.operation === 4001">{{'expense.financial'|translate}}</span>
+                                    <span ng-if="history.operation !== 4000 && history.operation !== 4001">{{history.operator.fullName}}&nbsp;{{history.operator.employeeID}}</span>
+                                </p>
+                                <p class="approval-time" ng-class="{'reject-remark': history.operation == 2002 || history.operation == 3002 || history.operation == 4012 || history.operation == 5003}">
+                                    {{history.operationDetail}}
+                                </p>
+                                <p class="approval-time" ng-if="history.operation === 4001">
+                                    {{'expense.The.exchange.rate.standards'|translate}}<!--汇率执行标准-->:&nbsp;{{view.reportData.exchangeRateValue}}
+                                </p>
+                                <p class="approval-time approval-name" ng-if="history.operation === 4001">
+                                    {{'expense.make.loans'|translate}}<!--放款-->:&nbsp;{{view.reportData.baseCurrencyAmount|currency:'¥'}}<br>
+                                </p>
+                                <p class="approval-time" ng-if="history.operation !== 4001 && history.operation !== 4000">
+                                    <span class="receipt-reason" ng-if="history.operation === 4012 && history.operationDetail === null"><br>
+                                        {{'expense.Failure.of.make.out.an.invoice'|translate}}<!--滴滴开票失败,请联系滴滴客服-->
+                                    </span>
+                                </p>
+                                <p class="approval-time" ng-if="history.operation !== 4001 && history.operation !== 4000">
+                                    <span ng-if="history.remarks.rejectCount>0&&history.remarks!==null&&views.content=='passed'&&history.remarks.value.length>0">
+                                        {{history.remarks.passCount}}&nbsp;{{'expense.deal'|translate}}<!--笔-->&nbsp;&nbsp;
+                                    </span><br>
+                                    <span ng-if="history.remarks.rejectCount>0&&history.remarks!==null&&views.content=='passed'&&history.remarks.value.length>0">
+                                        {{'expense.rejected'|translate}}<!--驳回-->&nbsp;{{history.remarks.rejectCount}}&nbsp;{{'expense.deal'|translate}}<!--笔-->&nbsp;
+                                        <span ng-repeat="type in history.remarks.value">
+                                             {{type.key}}&nbsp;{{type.amount|currency:'¥'}}&nbsp;
+                                        </span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <div class="add-invoice" ng-click="view.addInvoice()" ng-hide="view.functionProfileList['account.book.upsert.disabled']">
+        <img class="create-icon" ng-class="{true: 'create-icon-en',false: ''}[view.language === 'en']" src="img/expense_report_version/expense_report/create-expense.png">
+        <span class="create-text">{{'expense.Manually.add'|translate}}<!--手动添加--></span>
+    </div>
+    <div class="add-invoice" ng-click="view.importInvoice()">
+        <img class="import-icon" ng-class="{true: 'import-icon-en',false: ''}[view.language === 'en']"
+             src="img/expense_report_version/expense_report/choice.png">
+        <span class="import-text">{{'expense.account.book.to.lead'|translate}}<!--账本导入--></span>
+    </div>
+    <ion-footer-bar class="report-next-footer" ng-if="!view.isNotFound">
+        <div class="row row-center" ng-if="view.content === 'self_next'">
+            <div class="col text-center report-save" ng-click="!view.disabled && view.saveCustomForm()">
+                {{'expense.save'|translate}}<!--保存-->
+            </div>
+            <div class="col text-center report-submit" ng-click="!view.disabled && view.submitCustomForm($event)">
+                {{'expense.submit'|translate}}<!--提交-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+

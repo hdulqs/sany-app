@@ -1,0 +1,27 @@
+/*
+  Localizable.strings
+  PluginDemo
+
+  Created by Yongjia Liu on 2017/5/31.
+
+*/
+"CALENDAR_TEST" = "TEst";
+"CALENDAR_SELECT_DATE" = "Select Date";
+"CALENDAR_CANCEL" = "Cancel";
+"CALENDAR_LIMIT" = "Unlimit";
+
+
+
+"CALENDAR_SUN" = "SUN";
+"CALENDAR_MON" = "MON";
+"CALENDAR_TUE" = "TUE";
+"CALENDAR_WED" = "WED";
+"CALENDAR_THU" = "THU";
+"CALENDAR_FRI" = "FRI";
+"CALENDAR_SAT" = "SAT";
+
+
+"alert_title" = "Unable to get location";
+"alert_message" = "Didi, expense, mileage allowance and other functions need to use positioning function,please allow access to geographical location in iPhone's Settings - Privacy - Location Services";
+"alert_cancel" = "cancel";
+"alert_comfirm" = "confirm";

@@ -1,0 +1,325 @@
+$color-h2: #404040;
+$color-blue: #00aaee;
+$color-font: #4c4c4c;
+$color-clicked-background: #f8f8f8;
+$color-border: #dfe7ec;
+$color-title: #959595;
+
+.hly .erv-approval-expense-scanner-color {
+    ion-header-bar.bar.bar-header
+    {
+        background-color: #FFF !important;
+        border: none !important;
+    }
+}
+
+.erv-approval-expense-scanner {
+    .approval-receive {
+        margin-top: 30px;
+        margin-bottom: 12px;
+    }
+
+    .function-split {
+        margin: 0 25px;
+        border-bottom: 1px solid $color-border;
+    }
+
+    .approval-audit {
+        margin: 20px 0;
+
+        .approval-title {
+            color: $color-title;
+            font-size: 15px;
+            margin: 0 0 8px 25px;
+        }
+
+        .approval-reject {
+            margin: 10px 0 15px 0;
+        }
+    }
+
+    .approval-scanner {
+        display: -webkit-flex;
+        display: flex;
+        width: 100%;
+
+        img {
+            margin: 12px 15px 13px 25px;
+            width: auto;
+            height: 60px;
+            min-width: 60px;
+        }
+
+        .function-info {
+            margin: 20px 0 0 0;
+            padding-right: 25px;
+
+            h2 {
+                color: $color-h2;
+                font-size: 18px;
+                margin: 0 0 10px 0;
+            }
+
+            p {
+                color: $color-font;
+                font-size: 15px;
+                margin: 0;
+
+                span {
+                    color: $color-blue;
+                }
+            }
+        }
+    }
+
+    .touched {
+        background-color: $color-clicked-background;
+    }
+}
+
+
+.approval-scan-modal-view {
+
+    ion-header-bar.bar.bar-header
+    {
+        background-color: #FFF !important;
+        border: none !important;
+
+        .title {
+            font-size: 18px;
+            font-weight: normal;
+            color: $color-font;
+        }
+
+        .button-close {
+            padding: 0;
+            font-size: 14px;
+            color: $color-blue;
+            margin-left: 15px;
+            border: none;
+            background: none;
+        }
+    }
+
+    .approval-scan-modal-content {
+        text-align: center;
+
+        img {
+            width: 125px;
+            height: 135px;
+            margin-top: 73px;
+        }
+
+        .approval-scan-modal-tip {
+            margin-top: 35px;
+            font-size: 16px;
+            color: $color-font;
+        }
+
+        .button-scan-next {
+            margin-top: 35px;
+            padding: 0 20px;
+
+            button {
+                width: 100%;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+.erv-approval-reject-modal-view,.erv-approval-input-modal-view {
+    background-color: #f1f1f1;
+
+    ion-header-bar.bar.bar-header {
+        .hide-button {
+            min-width: 40px;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: normal;
+            color: $color-font;
+        }
+    }
+}
+
+.erv-approval-reject-modal-view {
+    .divider-label {
+        height: 45px;
+        line-height: 45px;
+        font-size: 15px;
+        margin: 0 15px;
+        color: $color-title;
+
+        span:first-child {
+            padding-right: 13px;
+        }
+    }
+
+    .reply-content {
+        textarea {
+            width: 100%;
+            height: 160px;
+            padding: 10px 15px;
+            font-size: 15px;
+            resize: none;
+        }
+    }
+
+    .auto-replies {
+        .item {
+            color: $color-font;
+            background-color: #ffffff;
+        }
+        .item:first-child {
+            border-top: none;
+        }
+
+    }
+
+    .btn-wrap {
+        width: 100%;
+        margin-top: 30px;
+        text-align: center;
+        .btn-reject {
+            width: 160px;
+            height: 45px;
+            border-radius: 50px;
+            font-size: 18px;
+            background: #F56666;
+            color: #FFF;
+
+            &:disabled {
+                background-color: #cdcdcd;
+            }
+        }
+    }
+}
+
+.erv-approval-input-modal-view {
+
+    .bar {
+        background-size: 0;
+    }
+
+    .bar-subheader {
+        height: 69px;
+        background-color: #f1f1f1;
+    }
+
+    .has-subheader {
+        top: 113px;
+    }
+
+    .expense-search {
+        margin: 15px 0 10px 0;
+        width: 100%;
+        display: -webkit-flex;
+        display: flex;
+
+        .expense-input {
+            flex: 70%;
+            position: relative;
+            background: #ffffff;
+
+            input {
+                color: #484848;
+                font-size: 14px;
+                height: 44px;
+                width: 100%;
+                padding: 14px 35px 14px 15px;
+                line-height: 16px;
+                position: relative;
+                background: none;
+                z-index: 100;
+            }
+
+            img {
+                width: 15px;
+                height: 15px;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                z-index: 10;
+            }
+        }
+
+        .button-search {
+            font-size: 15px;
+            color: #ffffff;
+            height: 44px;
+            min-width: 60px;
+            background-color: #0092da;
+            border: none;
+            border-radius: 0;
+
+            &:disabled {
+                background-color: #cdcdcd;
+            }
+        }
+
+        .REVIEW, .RECEIVE {
+            background-color: #0092da;
+        }
+
+        .AUDIT_PASS {
+            background-color: #17cb66;
+        }
+
+        .AUDIT {
+            background-color: #f56666;
+        }
+    }
+
+    .reject-tip {
+        margin: 5px 15px 0;
+        font-size: 14px;
+        line-height: 17px;
+        color: $color-title;
+
+        span {
+            color: $color-blue;
+        }
+    }
+
+    .loader--audioWave {
+        margin: 50px auto;
+    }
+
+    .expense-report-list {
+        .list {
+            box-shadow: 0 1px 0 0 rgba(159, 159, 159, 0.50);
+            padding-left: 15px;
+            background-color: #ffffff;
+        }
+
+        .expense-report-item {
+            font-size: 15px;
+            color: #484848;
+            border: none;
+            border-top: 1px solid #e2e2e2;
+            line-height: 15px;
+            padding-left: 0;
+
+            &:first-child {
+                border-top: none;
+            }
+        }
+
+        .highlight-font {
+            color: $color-blue;
+        }
+    }
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .erv-approval-input-modal-view .has-subheader {
+    top: 133px;
+}
+
+.error {
+    color: #EB3941;
+    margin-left: 10px;
+    padding-top: 10px;
+}

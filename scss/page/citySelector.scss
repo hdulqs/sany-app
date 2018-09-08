@@ -1,0 +1,381 @@
+.city-selector-modal{
+    width: 100%;
+    .value{
+        font-size: 20px;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        white-space: nowrap;
+        overflow : hidden;
+        text-overflow: ellipsis;
+        height: 33px;
+        line-height: 33px;
+    }
+    .choice-value {
+        color: #444;
+        height: 33px;
+        line-height: 33px;
+        text-align: center;
+    }
+    .value-placeholder{
+        color: #cdcdcd;
+    }
+}
+
+.contactQuickContent::-webkit-scrollbar {
+    display: none
+    /* 隐藏滚动条，但依旧具备可以滚动的功能 */
+}
+
+.contactQuickContent::scrollbar {
+    display: none
+    /* 隐藏滚动条，但依旧具备可以滚动的功能 */
+}
+
+.contact-quick .contact-item .contact-header {
+    padding-left: 15px;
+    height: 25px;
+    line-height: 25px;
+    background: #f5f5f5;
+    font-weight: bold; }
+
+.contact-quick .contact-item .contact-element {
+    margin-left: 15px;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border-bottom: 1px solid #f5f5f5; }
+.contact-quick .contact-item .contact-element span {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: block; }
+.contact-quick .contact-item .contact-element .contact-element-value {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #f5f5f5; }
+
+.platform-ios .contact-quick-bar-header {
+    position: fixed;
+    top: 63.5px;
+    padding-left: 15px;
+    height: 25px;
+    width: 100%;
+    line-height: 25px;
+    background: #f5f5f5;
+    font-weight: bold; }
+
+.platform-android .contact-quick-bar-header {
+    position: fixed;
+    top: 44px;
+    padding-left: 15px;
+    height: 25px;
+    width: 100%;
+    line-height: 25px;
+    background: #f5f5f5;
+    font-weight: bold; }
+
+.contact-quick-bar-header {
+    position: fixed;
+    top: 44px;
+    padding-left: 15px;
+    height: 25px;
+    width: 100%;
+    line-height: 25px;
+    background: #f5f5f5;
+    font-weight: bold;
+}
+
+.contact-quick-bar {
+    position: fixed;
+    width: 40px;
+    top: 44px;
+    right: 0;
+    background: #f8f8f8;
+    height: 100%;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+.contact-quick-bar .contact-quick-content {
+    margin-top: calc(50vh - 230px);
+    width: 16px;
+    text-align: center;
+    height: 416px; }
+
+.platform-ios .contact-quick .bar .buttons .button {
+    color: gray;
+    font-size: 17px;
+    margin-top:-4px;
+}
+.contact-quick {
+    .row-city{
+        padding: 15px;border-bottom: 1px solid gainsboro;
+    }
+    .waiting-data {
+        height: 400px;
+        width: 100%;
+        line-height: 400px;
+        text-align: center
+    }
+
+    .icon-style{
+        font-size: 20px;
+        margin-left: 20px;
+        color: rgb(0, 146, 218);
+    }
+    .color-style{
+        color:#2cabe0;
+    }
+    .bar.bar-stable {
+        background: #f8f8f8 !important;
+    }
+
+    .bar .buttons .button {
+        color: gray;
+        font-size: 17px;
+        margin-top: 2px;
+    }
+
+    .font-style{
+        padding-left: 15px;
+        font-size: 14px;
+        background: #efeff4 !important;
+    }
+    .transmit-search {
+        width: 78%;
+        margin-left: 15px;
+        background: white;
+        height: 28px;
+        color: gray;
+        margin-top: 5px;
+        padding-left: 15px;
+        border-radius: 15px;
+        background: #e3e4e6;
+        .transmit-button {
+            float: left;
+            width: 8%;
+            margin-top: 5px;
+            font-size: 18px;
+        }
+        input {
+            float: left;
+            width: 85%;
+            height: 20px;
+            line-height: 20px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            border: none;
+            background: #e3e4e6;
+        }
+        .like-input{
+            float: left;
+            width: 85%;
+            height: 20px;
+            line-height: 20px;
+            margin-top: 4px;
+            margin-bottom: 4px;
+            border: none;
+            background: #e3e4e6;
+        }
+    }
+    .employee-clear-img {
+        width: 18px;
+        height: 18px;
+        background-color: rgba(250, 250, 250, 0.6);
+        margin-right: 10px;
+        border-radius: 50%;
+        float: right;
+        margin-top: -23px;
+    }
+
+    .tab-active {
+        border-bottom: 3px solid #2cabe0;
+        color: #2cabe0 !important;
+    }
+
+    .tab-item {
+        position: relative;
+        padding: 10px 0;
+        font-size: 15px;
+        color: #4c4c4c;
+        /*border-bottom: 3px solid #fff;*/
+    }
+
+    .animate-repeat.ng-enter {
+        -webkit-animation: fadeInUp 0.5s;
+        -o-animation: fadeInUp 0.5s;
+        animation: fadeInUp 0.5s;
+    }
+
+    .animate-repeat.ng-enter-stagger {
+        -webkit-animation-delay: 150ms;
+        -moz-animation-delay: 150ms;
+        -o-animation-delay: 150ms;
+        animation-delay: 150ms;
+        -webkit-animation-duration: 0s;
+        -moz-animation-duration: 0s;
+        -o-animation-duration: 0s;
+        animation-duration: 0s;
+    }
+
+    .button-white {
+        font-size: 14px;
+        line-height: 35px;
+        background: white;
+        border: 1px solid gainsboro;
+        padding: 0px 10px 0px 10px;
+        width: 90%;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        border-radius: 6px;
+        height: 35px;
+    }
+
+    .selected-hot-city {
+        color: #2cabe0;
+    }
+    .span-style{
+        color: #959595;font-size: 12px;margin-left: 20px
+    }
+    .button-style-city{
+        background: #2cabdf;color: white;font-size: 12px
+    }
+
+}
+
+.fly-back{
+    /*transition: transform  2s;*/
+    /*-moz-transition: -moz-transform 2s;	!* Firefox 4 *!*/
+    /*-webkit-transition: -webkit-transform  2s;	!* Safari 和 Chrome *!*/
+    /*-o-transition: -o-transform  2s;	!* Opera *!*/
+    -webkit-transform: none;
+    transform: none;
+    font-size: 1.2em !important;
+    animation:my-first 1s;
+    -moz-animation:my-first 1s; /* Firefox */
+    -webkit-animation:my-first 1s; /* Safari and Chrome */
+    -o-animation:my-first 1s; /* Opera */
+}
+@-webkit-keyframes my-first {
+    /*from {*/
+    /*opacity: 1;*/
+    /*-webkit-transform: none;*/
+    /*transform: none;*/
+    /*}*/
+
+    /*to {*/
+    /*opacity: 1;*/
+    /*-webkit-transform: translate3d(100%, 0, 0);*/
+    /*transform: translate3d(100%, 0, 0);*/
+
+    /*}*/
+
+
+    0%   {opacity: 1;
+        -webkit-transform: none;
+        transform: none;}
+    40%  { opacity: 1;
+        -webkit-transform: translate3d(124%, 0, 0);
+        transform: translate3d(124%, 0, 0);  }
+    60%  {opacity: 1;
+        -webkit-transform: translate3d(122%, 0, 0);
+        transform: translate3d(122%, 0, 0);  }
+    80% {opacity: 1;
+        -webkit-transform: translate3d(126%, 0, 0);
+        transform: translate3d(126%, 0, 0);
+    }
+
+    100% {opacity: 1;
+        -webkit-transform: translate3d(124%, 0, 0);
+        transform: translate3d(124%, 0, 0);
+    }
+}
+
+@keyframes my-first {
+
+
+    0%   {opacity: 1;
+        -webkit-transform: none;
+        transform: none;}
+    40%  { opacity: 1;
+        -webkit-transform: translate3d(124%, 0, 0);
+        transform: translate3d(124%, 0, 0);  }
+    60%  {opacity: 1;
+        -webkit-transform: translate3d(122%, 0, 0);
+        transform: translate3d(122%, 0, 0);  }
+    80% {opacity: 1;
+        -webkit-transform: translate3d(126%, 0, 0);
+        transform: translate3d(126%, 0, 0);
+    }
+
+    100% {opacity: 1;
+        -webkit-transform: translate3d(124%, 0, 0);
+        transform: translate3d(124%, 0, 0);
+    }
+    /*from {*/
+    /*opacity: 0;*/
+    /*-webkit-transform: none;*/
+    /*transform: none;*/
+    /*}*/
+
+    /*to {*/
+    /*opacity: 1;*/
+    /*-webkit-transform: translate3d(100%, 0, 0);*/
+    /*transform: translate3d(100%, 0, 0);*/
+    /*}*/
+}
+
+
+.fly-back-two{
+    /*transition: transform  2s;*/
+    /*-moz-transition: -moz-transform 2s;	!* Firefox 4 *!*/
+    /*-webkit-transition: -webkit-transform  2s;	!* Safari 和 Chrome *!*/
+    /*-o-transition: -o-transform  2s;	!* Opera *!*/
+    -webkit-transform: none;
+    transform: none;
+    animation:my-second 1s;
+    -moz-animation:my-second 1s; /* Firefox */
+    -webkit-animation:my-second 1s; /* Safari and Chrome */
+    -o-animation:my-second 1s; /* Opera */
+}
+@-webkit-keyframes my-second {
+    0%   {opacity: 1;
+        -webkit-transform: none;
+        transform: none;}
+    40%  { opacity: 1;
+        -webkit-transform: translate3d(-124%, 0, 0);
+        transform: translate3d(-124%, 0, 0);  }
+    60%  {opacity: 1;
+        -webkit-transform: translate3d(-122%, 0, 0);
+        transform: translate3d(-122%, 0, 0);  }
+    80% {opacity: 1;
+        -webkit-transform: translate3d(-126%, 0, 0);
+        transform: translate3d(-126%, 0, 0);
+    }
+
+    100% {opacity: 1;
+        -webkit-transform: translate3d(-124%, 0, 0);
+        transform: translate3d(-124%, 0, 0);
+    }
+}
+
+@keyframes my-second {
+    0%   {opacity: 1;
+        -webkit-transform: none;
+        transform: none;}
+    40%  { opacity: 1;
+        -webkit-transform: translate3d(-124%, 0, 0);
+        transform: translate3d(-124%, 0, 0);  }
+    60%  {opacity: 1;
+        -webkit-transform: translate3d(-122%, 0, 0);
+        transform: translate3d(-122%, 0, 0);  }
+    80% {opacity: 1;
+        -webkit-transform: translate3d(-126%, 0, 0);
+        transform: translate3d(-126%, 0, 0);
+    }
+
+    100% {opacity: 1;
+        -webkit-transform: translate3d(-124%, 0, 0);
+        transform: translate3d(-124%, 0, 0);
+    }
+}

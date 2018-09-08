@@ -1,0 +1,13 @@
+<div class="grey-mark" ng-click="durationPopover.hide()">
+</div>
+<ion-popover-view class="center-different-arr">
+
+    <!--<ion-scroll direction="y">-->
+    <ion-list>
+        <ion-item ng-repeat=" item in view.centerConsumeArr" ng-click="choiceDifferentType(item)">
+            {{item.name}}
+        </ion-item>
+    </ion-list>
+    <!--</ion-scroll>-->
+</ion-popover-view>
+

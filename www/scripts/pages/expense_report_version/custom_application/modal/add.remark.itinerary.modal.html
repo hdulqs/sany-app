@@ -1,0 +1,178 @@
+<ion-modal-view class="arrange-tiket-journey" ng-if="view.remarkItineraryList.length > 0">
+    <ion-header-bar>
+        <a ng-click="view.closeRemarkModal()" class="row application-back-button">
+            <img src="img/back.png" class="save-btn create-expense-back-btn">
+            <span class="back-text-grey">
+                {{'custom.application.nav.back' | translate}}
+                <!--返回-->
+            </span>
+        </a>
+        <h3 class="title">
+            {{"modal.add_itinerary_remark"|translate}}
+            <!--添加行程备注-->
+        </h3>
+        <span class="check-ok" ng-click="view.saveAllRemark()">
+            {{"common.save"|translate}}
+            <!--保存-->
+        </span>
+    </ion-header-bar>
+    <div class="row row-center select-remark">
+        <div class="col col-33 select-date">
+            {{'custom.application.travel.date' | translate}}
+            <!--日期-->
+        </div>
+        <div class="col column">
+            <p class="select-journey">
+                {{'custom.application.travel.number' | translate}}
+                {{view.remarkItineraryList[view.selectItineraryIndex].dayNumber}}
+                {{'custom.application.travel.day' | translate}}
+                &nbsp;&nbsp;
+                <span>
+                    {{view.remarkItineraryList[view.selectItineraryIndex].remarkDate | dayCharFilter}}
+                </span>
+                &nbsp;&nbsp;
+                <span>
+                    {{view.remarkItineraryList[view.selectItineraryIndex].remarkDate | weekDayFilter}}
+                </span>
+            </p>
+            <div class="row row-center">
+                <div class="col col-20">
+                    <!--飞机-->
+                    <img src="img/expense_report_version/travel/remark/plane_remark.png" alt="" class="remark_icon"
+                         ng-hide="view.remarkItineraryList[view.selectItineraryIndex].itineraryType.indexOf(1001) > 0">
+                    <img src="img/expense_report_version/travel/element/ticket_allowance.png" alt="" class="remark_icon"
+                         ng-if="view.remarkItineraryList[view.selectItineraryIndex].itineraryType.indexOf(1001) > 0">
+                </div>
+                <div class="col col-20">
+                    <!--火车-->
+                    <img src="img/expense_report_version/travel/remark/train_remark.png" alt="" class="remark_icon"
+                         ng-hide="view.remarkItineraryList[view.selectItineraryIndex].itineraryType.indexOf(1002) > 0">
+                    <img src="img/expense_report_version/travel/element/train_allowance.png" alt="" class="remark_icon"
+                         ng-if="view.remarkItineraryList[view.selectItineraryIndex].itineraryType.indexOf(1002) > 0">
+                </div>
+                <div class="col col-20">
+                    <!--酒店-->
+                    <img src="img/expense_report_version/travel/remark/hotel_remark.png" alt="" class="remark_icon"
+                         ng-hide="view.remarkItineraryList[view.selectItineraryIndex].itineraryType.indexOf(1003) > 0">
+                    <img src="img/expense_report_version/travel/element/hotel_allowance.png" alt="" class="remark_icon"
+                         ng-if="view.remarkItineraryList[view.selectItineraryIndex].itineraryType.indexOf(1003) > 0">
+                </div>
+                <div class="col col-20">
+                    <!--其他-->
+                    <img src="img/expense_report_version/travel/remark/remark_remark.png" alt="" class="remark_icon"
+                         ng-hide="view.remarkItineraryList[view.selectItineraryIndex].itineraryType.indexOf(1004) > 0">
+                    <img src="img/expense_report_version/travel/element/other_allowance.png" alt="" class="remark_icon"
+                         ng-if="view.remarkItineraryList[view.selectItineraryIndex].itineraryType.indexOf(1004) > 0">
+                </div>
+                <div class="col col-20">
+                    <!--差补-->
+                    <img src="img/expense_report_version/travel/remark/other_remark.png" alt="" class="remark_icon"
+                         ng-hide="view.remarkItineraryList[view.selectItineraryIndex].itineraryType.indexOf(1006) > 0">
+                    <img src="img/expense_report_version/travel/element/other_allowance.png" alt="" class="remark_icon"
+                         ng-if="view.remarkItineraryList[view.selectItineraryIndex].itineraryType.indexOf(1006) > 0">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <ion-content class="remark-content">
+        <ion-scroll direction="y" class="scroll-date">
+            <div class="scroll-content-container">
+                <div class="row row-center date-list"
+                     ng-repeat="date in  view.remarkItineraryList"
+                     ng-click="view.selectItinerary($index)"
+                     ng-class="{'active-itinerary': view.selectItineraryIndex == $index}">
+                    <p class="date-week" ng-class="{'blue-date': date.hasRoute}">
+                        {{date.remarkDate | dayDotFilter}}
+                    </p>
+                    <p class="date-index" ng-class="{'blue-date': date.hasRoute}">
+                        {{'custom.application.travel.number' |
+                        translate}}{{date.dayNumber}}{{'custom.application.travel.day' | translate}}
+                    </p>
+                </div>
+            </div>
+        </ion-scroll>
+        <ion-scroll direction="y" class="scroll-remark">
+            <div class="scroll-content-container">
+                <div class="itinerary-content" ng-if="view.remarkItineraryList[view.selectItineraryIndex].hasRoute">
+                    <div ng-repeat="flight in view.remarkItineraryList[view.selectItineraryIndex].itineraryList.FLIGHT"
+                         ng-if="view.remarkItineraryList[view.selectItineraryIndex].itineraryList.FLIGHT.length > 0" ng-click="flight.remark && view.readyCopy($event, flight.remark)">
+                        <div class="row row-center flight-route">
+                            <img src="img/expense_report_version/travel/element/ticket_allowance.png" alt=""
+                                 class="remark_icon">
+                            {{ flight.fromCity }} — {{ flight.toCity }}
+                        </div>
+                        <p class="route-remark" ng-if="flight.remark">
+                            {{ flight.remark }}
+                        </p>
+                    </div>
+                    <div ng-repeat="train in view.remarkItineraryList[view.selectItineraryIndex].itineraryList.TRAIN"
+                         ng-if="view.remarkItineraryList[view.selectItineraryIndex].itineraryList.TRAIN.length > 0"
+                         ng-click="train.remark && view.readyCopy($event, train.remark)">
+                        <div class="row row-center flight-route">
+                            <img src="img/expense_report_version/travel/element/train_allowance.png" alt=""
+                                 class="remark_icon">
+                            {{ train.fromCity }} — {{ train.toCity }}
+                        </div>
+                        <p class="route-remark" ng-if="train.remark">
+                            {{ train.remark }}
+                        </p>
+                    </div>
+                    <div ng-repeat="hotel in view.remarkItineraryList[view.selectItineraryIndex].itineraryList.HOTEL"
+                         ng-if="view.remarkItineraryList[view.selectItineraryIndex].itineraryList.HOTEL.length > 0"
+                         ng-click="hotel.remark && view.readyCopy($event, hotel.remark)">
+                        <div class="row row-center">
+                            <img src="img/expense_report_version/travel/element/hotel_allowance.png" alt=""
+                                 class="remark_icon">
+                            &nbsp;{{ hotel.cityName }}
+                        </div>
+                        <p class="route-remark" ng-if="hotel.remark">
+                            {{ hotel.remark }}
+                        </p>
+                    </div>
+                    <div ng-repeat="other in view.remarkItineraryList[view.selectItineraryIndex].itineraryList.OTHER"
+                         ng-if="view.remarkItineraryList[view.selectItineraryIndex].itineraryList.OTHER.length > 0"
+                         ng-click="other.remark && view.readyCopy($event, other.remark)">
+                        <div class="row row-center flight-route">
+                            <img src="img/expense_report_version/travel/element/other_allowance.png" alt=""
+                                 class="remark_icon">
+                            {{ other.fromCity }} — {{ other.toCity }}
+                        </div>
+                        <p class="route-remark" ng-if="other.remark">
+                            {{ other.remark }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row remark-itinerary-row">
+                    <div class="col col-10">
+                        <img src="img/expense_report_version/travel/remark/input.png" alt="" class="input-icon">
+                    </div>
+                    <div class="col col-90">
+                        <!--点击输入行程备注...-->
+                            <textarea placeholder="{{'custom.application.tip.click_to_add_remark' | translate}}"
+                                      ng-model="view.remarkItineraryList[view.selectItineraryIndex].remark"
+                                      maxlength="200"></textarea>
+
+                    </div>
+                </div>
+                <div class="row row-right text-area-number" ng-if="view.remarkItineraryList[view.selectItineraryIndex].remark.length > 0">
+                    <div class="col col-100 text-right">
+                        <span class="clear-remark" ng-click="view.clearRemark(view.selectItineraryIndex)">
+                            {{"common.clear"|translate}}
+                            <!--清空-->
+                        </span>
+                        {{view.remarkItineraryList[view.selectItineraryIndex].remark.length}}/200
+                    </div>
+                </div>
+                <div class="row row-center text-area-number" ng-hide="view.remarkItineraryList[view.selectItineraryIndex].remark.length > 0">
+                    <div class="col col-100 text-right">
+                        0/200
+                    </div>
+                </div>
+            </div>
+        </ion-scroll>
+    </ion-content>
+</ion-modal-view>
+
+

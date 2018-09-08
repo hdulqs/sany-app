@@ -1,0 +1,71 @@
+<!--关联借款申请维护
+ Created by Hurong on 2017/10/20.
+-->
+<ion-view class="hec-ref-loan" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'req.reqRefLoan.title'|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content>
+        <!--操作按钮-->
+        <div class="row hec-operation-row">
+            <div class="col" ng-click="vm.goAddLoan()" >
+                <button type="button" class="button button-block button-positive">
+                    <!--关联申请新增借款单-->
+                    {{'req.reqRefLoan.button.add.loan'|translate}}
+                </button>
+            </div>
+        </div>
+
+        <div class="alert alert-warning warn" ng-if="vm.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">
+                <!--暂无借款信息-->
+                {{'req.reqRefLoan.noting.tip'|translate}}!
+            </p>
+        </div>
+
+        <ion-refresher on-refresh="vm.doRefresh()" pulling-text="{{'req.reqRefLoan.loading'|translate}}"></ion-refresher>
+
+        <div class="tip">
+            <!--已关联借款单信息-->
+            {{'req.reqRefLoan.already.be.related'|translate}}：
+        </div>
+        <ion-list>
+            <ion-item ng-repeat="refLoan in vm.reqRefLoanList">
+                <div  ng-click="vm.updateReqLoan(refLoan)" >
+                    <div class="row">
+                        <div class="col"><!--单据编号-->{{'approval.req.loan.number' | translate}}：{{refLoan.requisition_number}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col special-text"><!--申请人-->{{'approval.req.loan.applyer' | translate}}：{{refLoan.employee_nname}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><!--申请日期-->{{'approval.req.loan.date' | translate}}：{{refLoan.requisition_date}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><!--借款金额-->{{'approval.req.loan.amount' | translate}}：{{refLoan.amount|amountFilter}}</div>
+                    </div>
+                </div>
+                <ion-option-button class="button-delete" ng-if="true"
+                                   ng-click="vm.deleteReqLoan(refLoan)">
+                    <div class="column">
+                        <div class="delete-text">删除</div>
+                    </div>
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            on-infinite="vm.searchReqLoanList(vm.page+1)"
+            ng-if="vm.page < vm.pageCount"
+            distance="5%"
+            immediate-check="false"
+        ></ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+

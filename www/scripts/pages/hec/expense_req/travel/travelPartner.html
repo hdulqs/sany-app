@@ -1,0 +1,74 @@
+<ion-modal-view class="hec-common">
+    <ion-header-bar class="header">
+        <button class="button button-clear" ng-click="vm.goBack('hide')">
+            <i class="icon ion-ios-arrow-left"></i>
+        </button>
+        <h1 class="title">{{'req.partner.title' | translate}}</h1>
+    </ion-header-bar>
+    <ion-content class="hec-content">
+        <!--员工类型-->
+        <ion-item>
+            <hecemptype-selector emp-type-name="vm.traveler.employee_type" is-internal="vm.traveler.isInternal"
+                                 selected="vm.traveler.employee_type_code"
+                                 readonly="vm.traveler.updateFlag"></hecemptype-selector>
+        </ion-item>
+        <!-- 受益人维护-员工工号选择（所有员工）-->
+        <ion-item  ng-if="vm.traveler.isInternal">
+            <hecbemp-selector emp-name="vm.traveler.employee_name" id-card="vm.traveler.id_code"
+                              selected="vm.traveler.employee_code" mobile-phone="vm.traveler.employee_mobil"
+                              readonly="vm.traveler.updateFlag"></hecbemp-selector>
+        </ion-item>
+        <!--员工姓名-->
+        <ion-item class="hec-item-input">
+            <div class="row row-center">
+                <span>{{'req.partner.name' | translate}}</span>
+                <span class="hec-input-required" ng-if="!vm.traveler.isInternal">*</span>
+                <div class="col">
+                    <input type="text" placeholder="{{ 'form.please.input' | translate}}"
+                               ng-model="vm.traveler.employee_name" >
+                </div>
+                <img class="form-logo" src="img/hec/form/edit.png" alt="">
+            </div>
+        </ion-item>
+        <!--身份号码-->
+        <ion-item class="hec-item-input" ng-if="!vm.traveler.isInternal">
+            <div class="row row-center">
+                <span>{{'req.partner.idcard' | translate}}</span>
+                <span ng->{{'req.partner.or.passport'|translate}}</span>
+                <span class="hec-input-required" ng-if="!vm.traveler.isReadOnly">*</span>
+                <div class="col">
+                    <input type="text" placeholder="{{ 'form.please.input' | translate}}"
+                               ng-model="vm.traveler.id_code" ng-disabled="vm.traveler.isReadOnly">
+                </div>
+                <img class="form-logo" src="img/hec/form/edit.png" alt=""  ng-if="!vm.traveler.isInternal">
+            </div>
+        </ion-item>
+        <!--手机号码-->
+        <ion-item class="hec-item-input" ng-if="!vm.traveler.isInternal">
+            <div class="row row-center">
+                <span>{{'req.partner.phone' | translate}}</span>
+                <span class="hec-input-required" ng-if="!vm.traveler.isInternal">*</span>
+                <div class="col">
+                    <input type="text" placeholder="{{ 'form.please.input' | translate}}"
+                               ng-model="vm.traveler.employee_mobil" ng-disabled="vm.traveler.isInternal">
+                </div>
+                <img class="form-logo" src="img/hec/form/edit.png" alt="" ng-if="!vm.traveler.isInternal">
+            </div>
+        </ion-item>
+        <button class="button button-positive"  ng-click="vm.saveTraveler()" style="width: 100%;">
+            {{'req.partner.save' | translate}}
+        </button>
+        <div class="hec-common-tip" ng-if="!vm.traveler.updateFlag">
+            <span>{{'req.message.add.travel.partner.tip.prompt'|translate}}</span>
+            <p style="text-indent: 25px">{{'req.message.add.travel.partner.tip'|translate}}</p>
+            <p style="text-indent: 25px">{{'req.message.add.travel.partner.tip2'|translate}}（Please Fill in your name as the format LastName/FirstName MiddleName if you're foreign, or you'll fail in booking tickets）
+            </p>
+        </div>
+        <div class="hec-common-tip" ng-if="vm.traveler.updateFlag">
+            <span>{{'req.message.add.travel.partner.tip.prompt'|translate}}</span>
+            <p style="text-indent: 25px">{{'req.message.add.travel.partner.tip3'|translate}}（Please Fill in your name as the format LastName/FirstName MiddleName if you're foreign, or you'll fail in booking tickets）
+            </p>
+        </div>
+    </ion-content>
+</ion-modal-view>
+

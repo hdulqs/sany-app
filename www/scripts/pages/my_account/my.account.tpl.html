@@ -1,0 +1,64 @@
+<ion-view cache-view="false" class="account-page">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'my.my'|translate}}<!--我的--></span>
+    </ion-nav-title>
+    <ion-content class="account-content has-header">
+        <div class="list">
+            <div class="item item-divider"></div>
+            <div class="row row-center person-information" ng-click="goTo('app.person_setting')">
+                <div class="item item-avatar">
+                    <img class="person-img" ng-src="{{imgUrl}}"/>
+                    <h2>{{person.fullName}}</h2>
+                    <p>{{person.title}}</p>
+                </div>
+                <span class="setting col col-33  col-center" >{{'my.set'|translate}}<!--设置--></span>
+                <span class=" col  col-center icon ion-ios-arrow-right person-arrow"></span>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item item-divider"></div>
+            <!--订单信息-->
+            <div class="item item-text-wrap row row-center" ng-show="orderAuth" ng-click="goTo('app.order_form')">
+                <img src="img/order-icon.png" class="col col-center col-20 account-img"/>
+                <div class="col col-center col-75 filed-name">{{'my.order.information'|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+            <!--开票信息-->
+            <div class="item item-text-wrap row row-center" ng-click="goTo('app.company_receipts')">
+                <img class="col col-center col-20 account-img" src="img/receipt-icon.png"/>
+                <div class="col col-center col-75 filed-name">{{'my.billing.information'|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+            <div class="item item-text-wrap row row-center" ng-click="goTo('app.account_bind')">
+                <img src="img/bind-icon.png" class="col col-center col-20 account-img"/>
+                <div class="col col-center col-75 filed-name">{{'my.Account.binding'|translate}}<!--账号绑定--></div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item item-divider"></div>
+            <div class="item item-text-wrap row row-center" ng-click="goTo('app.setting_list')">
+                <img class="col col-center col-20 account-img" src="img/setting-icon.png"/>
+                <div class="col col-center col-75 filed-name">{{'my.set'|translate}}<!--设置--></div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item item-divider"></div>
+            <div class="item item-text-wrap row row-center" ng-click="goTo('app.help_list')">
+                <img class="col col-center col-20 account-img" src="img/help-icon.png"/>
+                <!--帮助与反馈-->
+                <div class="col col-center col-75 filed-name">{{"my.helpAndFeedback"|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+            <div class="item item-text-wrap row row-center" ng-click="goTo('app.about_us')">
+                <div class="version-tips" ng-show="view.hasNewVersion"></div>
+                <img class="col col-center col-20 account-img" src="img/about-hly.png"/>
+                <!--关于汇联易-->
+                <div class="col col-center col-75 filed-name">{{"my.aboutHuiLianYi"|translate}}</div>
+                <span class="col col-center icon ion-ios-arrow-right filed-arrow"></span>
+            </div>
+        </div>
+        <location-selector selected="selected" callback="selectLocation" location="currentLocation"></location-selector>
+    </ion-content>
+</ion-view>

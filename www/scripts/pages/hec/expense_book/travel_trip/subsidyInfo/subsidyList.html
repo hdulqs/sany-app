@@ -1,0 +1,84 @@
+<!--补贴信息列表维护
+ Created by Dawn on 2017/8/31.
+-->
+<ion-view class="subsidy-list" hide-back-button="true">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'subsidy_list.title'|translate}}</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <a ng-click="goBack();"
+           class="back-button">
+            <img src="img/back.png" class="save-btn">
+        </a>
+    </ion-nav-buttons>
+    <ion-content>
+        <div ng-click="vm.goAddSubsidy()" style="padding: 0px 5px">
+            <button type="button" class="button button-block button-positive"
+                    style="min-height: 35px; font-size: 15px;line-height: 35px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                {{'subsidy_list.add.from.req'|translate}}<!--从差旅申请单中关联补贴信息-->
+            </button>
+        </div>
+        <div class="alert alert-warning warn" ng-if="vm.nothing">
+            <img class="warning-icon" src="img/nothing.png"/>
+            <p class="warning-word">{{'subsidy_list.Please.add.the.subsidy.information'|translate}}<!--请添加补贴信息!--></p>
+        </div>
+        <div ng-if="vm.networkError && vm.importSubsidy.length === 0">
+            <not-found-text title="vm.networkErrorText" icon="vm.networkErrorIcon">
+            </not-found-text>
+            <div class="text-center">
+                <button class="refresh-btn" ng-click="vm.doRefresh()">
+                    {{'subsidy_list.Click.the.refresh'|translate}}<!--点击刷新-->
+                </button>
+            </div>
+        </div>
+        <div ng-if="vm.systemError && vm.importSubsidy.length === 0">
+            <not-found-text title="vm.systemErrorText" sub-title="vm.systemErrorSubText"
+                            icon="vm.systemErrorIcon">
+            </not-found-text>
+        </div>
+        <ion-refresher on-refresh="vm.doRefresh()" pulling-text="{{'subsidy_list.Loading'|translate}}"></ion-refresher>
+
+        <div style="padding: .5rem;font-size: 16px;">{{'subsidy_list.has.ass.req.subsidy'|translate}}<!--已关联差旅申请单补贴信息-->：</div>
+        <ion-list>
+            <ion-item ng-repeat="item in vm.importSubsidy" class="expense-directive item item-complex"
+                      style="border-radius:10px;border: 1px #ddd solid;width: 96%;margin: 5px auto;">
+                <div ng-click="vm.updateSubidy(item)">
+                    <div class="row expense-item-content">
+                        <div class="col col-10 list-number">
+                            <span>{{item.line_number}}</span>
+                        </div>
+                        <div class="col-60">
+                            <div class="row row-center" style="padding:0">
+                                <sapn style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-size: 15px;">
+                                    {{item.place_from}}-{{item.place_to}}
+                                </sapn>
+                            </div>
+                            <div class="row row-center" style="padding: 0;font-size: 14px">
+                                <span class="text-left" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+                                    {{item.travel_start_date}}-{{item.travel_end_date}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-30" style="align-self: center">
+                            <span ng-if="vm.subsidyParam.expReqTypeCode === '1010'">{{item.subsidy_currency_code | currencyFilter}} {{item.subsidy_amount | amountFilter}}</span>
+                            <span ng-if="vm.subsidyParam.expReqTypeCode === '1015'">{{'subsidy_list.has.import'|translate}}</span>
+                        </div>
+                    </div>
+                </div>
+                <ion-option-button class="button-assertive expense-delete" ng-if="true"
+                                   ng-click="vm.deleteLine(item)">
+                    <div class="column">
+                        <div class="delete-text">{{ 'subsidy_list.delete' | translate}}</div>
+                    </div>
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll
+            on-infinite="vm.getSubsidyList(vm.page+1)"
+            ng-if="vm.page < vm.pageCnt"
+            distance="5%"
+            immediate-check="false"
+        ></ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+

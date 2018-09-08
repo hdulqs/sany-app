@@ -1,0 +1,19 @@
+{
+    "invoice.list": {
+        "button": {
+            "delete": "Delete",
+            "edit": "Edit"
+        },
+        "empty": "No cost information",
+        "header": {
+            "amount": "Amount",
+            "attachment": "Attachment",
+            "comment": "Incidents",
+            "date": "Date",
+            "index": "Index",
+            "invoiceType": "Cost type"
+        },
+        "noComment": "No data filled",
+        "title": "Account"
+    }
+}

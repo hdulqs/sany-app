@@ -1,0 +1,162 @@
+<ion-view class="jingdong-application-detail">
+    <ion-nav-title>
+        <span class="expense-report-nav-title">{{'base.Jingdong.application'|translate}}<!--京东申请--></span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <div class="create-expense-report" ng-if="view.content==='waitApproval' && !view.functionProfileList['ca.opt.withdraw.disabled']" ng-click="view.withdrawApplication()">
+            {{'detail.withdraw'|translate}}<!--撤回-->
+        </div>
+    </ion-nav-buttons>
+    <ion-content class="custom-application-detail-content"
+                 ng-class="{true: 'has-footer',false: ''}[(view.content==='approval' && !view.functionProfileList['ca.opt.approval.disabled']  && view.application.status===1002) || view.content==='hasPass']" overflow-scroll="true">
+        <div ng-if="view.isNotFound">
+            <not-found-text title="view.notFoundText" icon="view.notFoundIcon">
+
+            </not-found-text>
+        </div>
+        <div>
+            <!--表单信息-->
+            <div class="create-base-message">
+                <div ng-repeat="field in view.application.custFormValues">
+                    <p class="application-title text-center" ng-if="field.messageKey==='title'">
+                        {{field.value}}
+                    </p>
+                </div>
+                <!--价格-->
+                <p class="jingdong-order-price text-center">
+                    {{ view.application.jingDongOrderApplication.jingDongOrder.totalAmount | currency:code }}
+                </p>
+                <!--制单人-->
+                <p class="text-center application-comment" ng-if="view.application.createdName && view.application.createdBy!==view.application.applicantOID">
+                    {{'common.createdName'|translate}}: {{view.application.createdName}} {{view.application.createdDate | dateTimeFilter}}
+                </p>
+                <div ng-repeat="field in view.application.custFormValues">
+                    <!--部门-->
+                    <p class="application-comment text-center" ng-if="field.messageKey==='select_department'">
+                        {{field.fieldName}}:{{field.departmentName}}
+                    </p>
+                    <!--申请人-->
+                    <p class="application-comment text-center" ng-if="field.messageKey==='applicant' && view.showFormDetail">
+                        {{field.fieldName}}:{{field.applicant.fullName}}
+                    </p>
+                    <!--成本中心-->
+                    <p class="application-comment text-center" ng-if="field.messageKey==='select_cost_center' && view.showFormDetail">
+                        {{field.fieldName}}:{{field.costCenterName}}
+                    </p>
+                    <!--审批人-->
+                    <p class="application-comment text-center" ng-if="field.messageKey==='select_approver' && view.showFormDetail">
+                        {{field.fieldName}}:{{field.approvalSelectedName}}
+                    </p>
+                    <!--备注-->
+                    <p class="application-comment text-center" ng-if="field.messageKey==='remark' && field.value && view.showFormDetail">
+                        {{field.fieldName}}:{{field.value}}
+                    </p>
+                </div>
+            </div>
+            <div class="expand-member-list" ng-click="view.expandFormDetail()">
+                <img src="img/expense_report_version/travel/expand-arrow.png" alt=""
+                     ng-class="{true: 'rotate',false: ''}[view.showFormDetail]">
+            </div>
+
+            <!--京东订单信息-->
+            <ng-include src="'scripts/pages/expense_report_version/custom_application/jingdong/jingdong.order.tpl.html'"></ng-include>
+
+            <!--审批历史-->
+            <div class="travel-approval-histroy" ng-if="view.application.approvalHistorys.length > 0">
+                <p class="travel-tips">
+                    {{'detail.The.examination.and.approval.of.history'|translate}}<!--审批历史-->
+                </p>
+                <div class="approval-history-pane history-block">
+                    <div class="line"></div>
+                    <div class="approval-history">
+                        <div class="row" ng-if="view.application.approvalChains.length > 0">
+                            <span class="history-dot-wait"></span>
+                            <div class="col padding-0">
+                                <div class="row padding-5-0">
+                                    <div class="col padding-0">
+                                        <p class="approval-time approval-name operation-title">
+                                            {{'detail.Waiting'|translate}}<!--等待-->
+                                            {{'detail.examine.and.approve'|translate}}<!--审批-->
+                                        </p>
+                                    </div>
+                                    <div class="col padding-0">
+                                        <p class="approval-time txt-right operation-date">
+                                            {{view.application.approvalChains[0].lastModifiedDate | dateTimeFilter}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="approval-time">
+                                    <span ng-repeat="chain in view.application.approvalChains">
+                                        {{chain.approverName}}&nbsp;{{chain.approverEmployeeID}} <span ng-if="$index != (view.application.approvalChains.length -1)">，</span>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row" ng-repeat="history in view.application.approvalHistorys">
+                            <span class="history-dot-wait" ng-if="history.operation === 3004 || history.operation === 4000"></span>
+                            <span class="history-dot-success" ng-if="history.operation === 1001 ||
+                            history.operation === 2001 || history.operation === 3001 || history.operation === 3003 ||
+                            history.operation === 4001 || history.operation === 4011 || history.operation === 5000 ||
+                            history.operation === 5001 || history.operation === 5002 || history.operation === 5004 || history.operation === 5007"></span>
+                            <span class="history-dot-reject" ng-if="history.operation === 2002 || history.operation === 3002 ||
+                            history.operation === 4012 || history.operation === 5003 || history.operation === 5005 || history.operation === 5006 || history.operation === 5008"></span>
+                            <span class="history-dot-withdraw" ng-if="history.operation === 1002"></span>
+
+                            <div class="col padding-0">
+                                <div class="row padding-5-0">
+                                    <div class="col padding-0">
+                                        <p class="approval-time operation-title">
+                                            <span ng-hide="history.operation == 2001 && history.operationType == 1001">
+                                                {{history.operation | operation}}
+                                            </span>
+                                            <span ng-if="history.operation == 2001 && history.operationType == 1001">
+                                                {{'filter_js.selfApproval' | translate}}
+                                                <!--自审批通过-->
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col padding-0">
+                                        <p class="approval-time txt-right operation-date">
+                                            {{history.createdDate | dateTimeFilter}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="approval-time">
+                                    {{history.operator.fullName}}&nbsp;{{history.operator.employeeID}}
+                                </p>
+                                <p class="approval-time" ng-class="{'reject-remark': history.operation == 2002 || history.operation == 3002 || history.operation == 4012 || history.operation == 5003}">
+                                    {{history.operationDetail}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="jingdong-detail-footer" ng-hide="view.content==='waitApproval' || view.content==='detail' || (view.content==='approval' && !view.functionProfileList['ca.opt.approval.disabled'] && view.application.status===1003)">
+        <!--审批页面,并且为待审批状态时显示通过驳回按钮-->
+        <div class="row row-center" ng-if="view.content==='approval' && !view.functionProfileList['ca.opt.approval.disabled'] && view.application.status===1002">
+            <div class="col text-center jingdong-reject" ng-click="view.reject()">
+                {{'detail.reject'|translate}}<!--驳回-->
+            </div>
+            <div class="col text-center jingdong-agree" ng-click="view.agree()">
+                {{'detail.pass'|translate}}<!--通过-->
+            </div>
+        </div>
+        <!--审批通过并且未付款-->
+        <div class="row row-center" ng-click="view.jumpJDPay()"
+             ng-if="view.content==='hasPass' && view.application.jingDongOrderApplication.jingDongOrder.status===1002">
+            <div class="col text-center jingdong-order-pay">
+                {{'detail.Go.to.the.payment'|translate}}<!--去付款-->
+            </div>
+        </div>
+        <!--审批通过并且已付款或者已取消-->
+        <div class="row row-center" ng-click="view.jumpJD()"
+             ng-if="view.content==='hasPass'  && (view.application.jingDongOrderApplication.jingDongOrder.status===1003 || view.application.jingDongOrderApplication.jingDongOrder.status===1004)">
+            <div class="col text-center jingdong-order-detail">
+                {{'detail.To.view.the.order.details'|translate}}<!--查看订单详情-->
+            </div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

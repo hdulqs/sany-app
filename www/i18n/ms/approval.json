@@ -1,0 +1,187 @@
+{
+    "approval": {
+        "Category": "类别",
+        "Interview": "面试",
+        "OnJuly5": "7月5号",
+        "Other": "其他",
+        "TemporarilyNotMessge": "暂时没有费用信息!",
+        "aggregate.amount": "jumlah keseluruhan",
+        "all": "全部",
+        "all.rejected": "Semua ditolak",
+        "all.through": "Semua yang diluluskan",
+        "already": "diluluskan",
+        "already.passed": "berlalu",
+        "approval.passed": "diluluskan",
+        "approval.rejected": "kelulusan menolak",
+        "approve": "kelulusan",
+        "audit.rejected": "Audit ditolak balik, anda boleh log masuk Helios, dalam pengurusan kewangan> audit pembayaran balik> sementara menunggu suis audit ke mod imbas, masukkan alasan penolakan dengan papan kekunci",
+        "automatically.receive.scanned.reimbursement.Report": "Imbasan untuk menerima tuntutan bayaran balik secara automatik",
+        "automatically.reject.the.scanned.reimbursement.form.and.fill.out.the.reasons": "menolak secara automatik Imbasan akaun perbelanjaan dan isikan sebab",
+        "automatically.through.scanning.to.submit.the.expense.accounts": "mengimbas untuk tuntutan bayaran secara automatik",
+        "batch.reject": "Batch ditolak",
+        "batchSubmit": "批量提交",
+        "borrowing.application": "Borrowing application",
+        "budget": "bajet",
+        "cancel": "membatalkan",
+        "cancel.after.verification": "pembayaran balik",
+        "check.all": "pilih semua",
+        "click.refresh": "Klik refresh",
+        "close": "menutup",
+        "common": "普通",
+        "confirm": "mengesahkan",
+        "cost": "笔费用",
+        "costContain": "费用包含:",
+        "daily.expense.report": "laporan perbelanjaan harian",
+        "didi.failure.costs": "kos kegagalan bil, butiran menghubungi perkhidmatan pelanggan",
+        "does.not.conform.to.the.reimbursement.policy": "Tidak memenuhi dasar pembayaran balik",
+        "empty": "kosong!",
+        "haveTicket": "有票",
+        "history.of.approval": "Sejarah kelulusan",
+        "listing": "列表",
+        "loading": "Loading ...",
+        "map": "地图",
+        "mapApproval": "地图审批",
+        "money": "金额",
+        "no.approval": "Tiada bil untuk diluluskan",
+        "no.verification": "Tidak membayar",
+        "noTicket": "无票",
+        "not.approved": "yang tidak dibenarkan",
+        "notApprovalMessage": "暂时没有审批信息!",
+        "notFlightPlan": "无飞行计划",
+        "oneMonth": "近一个月",
+        "pass": "通过",
+        "pleaseReason": "请输入理由",
+        "pen.billing.failure.costs": "kos kegagalan bil, butiran menghubungi perkhidmatan pelanggan",
+        "pen.cost": "Bayaran",
+        "pending": "Yang belum selesai",
+        "people": "orang",
+        "please.enter.the.reason.for.rejecting": "Sila masukkan alasan bagi penolakan",
+        "please.select.the.cost": "Sila pilih kos",
+        "project": "项目",
+        "received": "menerima",
+        "recentlyApproval": "最近审批",
+        "reimbursement.approval": "Perbelanjaan kelulusan laporan",
+        "reject": "驳回",
+        "rejected": "Ditolak",
+        "remark": "Nota",
+        "revise": "mengubah suai",
+        "scan": {
+            "title": "imbas",
+            "plugin": {
+                "title": {
+                    "AUDIT_PASS": "Lock approval passed",
+                    "AUDIT": "kelulusan Lock ditolak balik",
+                    "RECEIVE": "Lock expense received"
+                },
+                "tipScan": "请扫描单据上的二维码",
+                "tipInput": "输入单号",
+                "tipLoading": "正在处理中... ",
+                "tipNetworkError": "当前网络不可用, 请检查网络设置",
+                "tipOffline": "请按照页面下方提示 先打开汇联易网站",
+                "openButton": "我已打开",
+                "footerFirst": {
+                    "REVIEW": "请先在电脑游览器打开https://www.huilianyi.com",
+                    "AUDIT": "如需通过键盘输入驳回理由，可在电脑游览器打开https://www.huilianyi.com，在财务管理>单据审核页面切换到扫码审核模式"
+                },
+                "footerSecond": {
+                    "REVIEW": "进入财务管理>单据审核页面，再进行app扫码"
+                }
+            },
+            "receive": {
+                "title": "收到",
+                "tip": "Imbasan untuk menerima tuntutan bayaran balik secara automatik"
+            },
+            "APPApproval": {
+                "title": "APP端审核",
+                "pass": {
+                    "title": "审核通过",
+                    "tip": "mengimbas untuk tuntutan bayaran secara automatik"
+                },
+                "reject": {
+                    "title": "审核驳回",
+                    "tip1": "如需通过键盘输入驳回理由，可在电脑游览器打开 ",
+                    "tip2": "https://www.huilianyi.com",
+                    "tip3": "，在",
+                    "tip4": "财务管理>单据审核",
+                    "tip5": "页面切换到",
+                    "tip6": "扫码审核模式"
+                }
+            },
+            "WebApproval": {
+                "title": "网页端审核",
+                "tip1": "请先在电脑游览器打开 ",
+                "tip2": "https://www.huilianyi.com",
+                "tip3": ",进入",
+                "tip4": "财务管理>单据审核",
+                "tip5": "页面，使用APP进行扫码审核"
+            },
+            "scanModal": {
+                "webTip": "请在PC端审核单据",
+                "nextTip": "继续扫描下一张"
+            },
+            "rejectModal": {
+                "title": "审核驳回",
+                "placeholder": "请输入驳回理由, 最多200个字符",
+                "emptyTip": "Alasan bagi penolakan tidak boleh dikosongkan",
+                "quickReply": {
+                    "title": "jawapan cepat",
+                    "tip0": "bil pembayaran balik tidak konsisten dengan yang asal",
+                    "tip1": "Jenis bil asal dan perbelanjaan tidak selaras",
+                    "tip2": "rang undang-undang asal tidak memenuhi keperluan",
+                    "tip3": "Tidak memenuhi dasar pembayaran balik",
+                    "tip4": "perkara pembayaran balik yang tidak munasabah"
+                }
+            },
+            "inputModal": {
+                "title": "输入单号",
+                "placeholder": "请输入最少3位单据号",
+                "noResult": "无搜索结果",
+                "buttonContent": {
+                    "REVIEW": "确认",
+                    "AUDIT_PASS": "审核通过",
+                    "AUDIT": "审核驳回",
+                    "RECEIVE": "确认收到"
+                }
+            },
+            "toast": {
+                "reject": {
+                    "success": "驳回成功",
+                    "fail": "驳回失败"
+                },
+                "report": {
+                    "success": "处理成功!",
+                    "fail": "处理失败!",
+                    "notValid": "该单据无效!",
+                    "offline": "请先打开汇联易网站,进入财务管理>单据审核页面!"
+                }
+            }
+        },
+        "search": "Search",
+        "selectAll": "全选",
+        "strip": "条",
+        "submit": "提交",
+        "submission.of.reasons.for.failure": "Kegagalan mengemukakan alasan bagi penolakan",
+        "submitOk": "提交成功!",
+        "submitted.for.success": "Mengemukakan alasan untuk kejayaan keengganan",
+        "submitter": "Submitter",
+        "total": "jumlah",
+        "total.budget": "jumlah bajet",
+        "twoMonthes": "近两个月",
+        "uploadCentre": "加载中...",
+        "view.application": "Lihat permohonan",
+        "waiting": "sila tunggu",
+        "week": "周",
+        "please.enter": "Please Enter Applicant / Code"
+    },
+    "error": {
+        "failed": "gagal",
+        "network": "Alamak, rangkaian bermasalah!",
+        "please.enter.the.reason.for.rejecting": "Sila masukkan alasan bagi penolakan",
+        "reason.for.rejection": "sebab penolakan",
+        "reject.failure": "gagal untuk Menolak balik",
+        "release.budget.failed.withdraw.failed": "Pembebasan bajet gagal, gagal untuk menarik balik",
+        "server": "Server bermasalah,",
+        "system": "Juruteknik berusaha untuk kerja memperbaiki!",
+        "there.is.no.charge.for.this.expense": "pembayaran balik ini tidak mempunyai kos"
+    }
+}

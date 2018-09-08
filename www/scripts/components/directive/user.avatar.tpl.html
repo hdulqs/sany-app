@@ -1,0 +1,14 @@
+<div class="user-avatar-text" ng-if="!iconUrl && !bigger" ng-class="bgClass">
+    <span ng-if="!isEnternal">
+        {{fullName | surnameFilter}}
+    </span>
+    <span ng-if="isEnternal">
+        {{'user.external'|translate}}<!--外部-->
+    </span>
+</div>
+<div class="no-avatar-big" ng-if="!iconUrl && bigger"><div class="user-avatar-big"  ng-class="bgClass">{{fullName | surnameFilter}}</div></div>
+<div class="user-avatar-img" ng-if="iconUrl && !bigger"><img cache-src="{{iconUrl}}" encode-uri="false" bgcolor="#ddd"
+                                                             color="#0092da"/></div>
+<div class="user-avatar-big-img" ng-if="iconUrl && bigger"><img cache-src="{{iconUrl}}" encode-uri="false"
+                                                                bgcolor="#ddd" color="#0092da"/></div>
+

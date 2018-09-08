@@ -1,0 +1,166 @@
+{
+  "name": "ionic-project",
+  "version": "1.1.1",
+  "description": "An Ionic project",
+  "dependencies": {
+    "cordova-android": "^5.1.1",
+    "cordova-ios": "^4.5.5",
+    "cordova-plugin-crosswalk-webview": "~1.6.1",
+    "cordova-plugin-image-picker": "git+https://github.com/Findiglay/cordova-imagePicker.git",
+    "cordova-plugin-media-capture": "~1.2.0",
+    "cordova-plugin-whitelist": "^1.3.2",
+    "graceful-fs": "^4.1.4",
+    "gulp": "^3.5.6",
+    "gulp-concat": "^2.2.0",
+    "gulp-minify-css": "^0.3.0",
+    "gulp-remove-code": "^1.0.2",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.0.4"
+  },
+  "devDependencies": {
+    "bower": "^1.3.3",
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-json-editor": "^2.2.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-ng-constant": "^1.1.0",
+    "gulp-util": "^2.2.14",
+    "ionic": "3.9.2",
+    "run-sequence": "^2.1.0",
+    "shelljs": "^0.3.0"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-crosswalk-webview@1.6.1",
+    {
+      "locator": "local_plugins/cordova-plugin-file-transfer",
+      "id": "cordova-plugin-file-transfer"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-code-push",
+      "id": "cordova-plugin-code-push"
+    },
+    {
+      "locator": "local_plugins/com.verso.cordova.clipboard",
+      "id": "com.verso.cordova.clipboard"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-media-capture",
+      "id": "cordova-plugin-media-capture"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-file",
+      "id": "cordova-plugin-file"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-file-opener2",
+      "id": "cordova-plugin-file-opener2"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-compat",
+      "id": "cordova-plugin-compat"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-device",
+      "id": "cordova-plugin-device"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-console",
+      "id": "cordova-plugin-console"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-whitelist",
+      "id": "cordova-plugin-whitelist"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-splashscreen",
+      "id": "cordova-plugin-splashscreen"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-statusbar",
+      "id": "cordova-plugin-statusbar"
+    },
+    {
+      "locator": "local_plugins/ionic-plugin-keyboard",
+      "id": "ionic-plugin-keyboard"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-geolocation",
+      "id": "cordova-plugin-geolocation"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-appversion",
+      "id": "cordova-plugin-appversion"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-network-information",
+      "id": "cordova-plugin-network-information"
+    },
+    {
+      "id": "cn.jpush.phonegap.JPushPlugin",
+      "locator": "local_plugins/cn.jpush.phonegap.JPushPlugin",
+      "variables": {
+        "API_KEY": "2cfa6af6bae2fb85a3c2a341"
+      }
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-inappbrowser",
+      "id": "cordova-plugin-inappbrowser"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-datepicker",
+      "id": "cordova-plugin-datepicker"
+    },
+    {
+      "locator": "local_plugins/info.duanye.dusdk",
+      "id": "info.duanye.dusdk"
+    },
+    {
+      "locator": "local_plugins/info.linlong.didisdk",
+      "id": "info.linlong.didisdk"
+    },
+    {
+      "locator": "https://github.com/MrLiZ/HuiLianYi-barCode.git",
+      "id": "com.jieweifu.plugins.barcode"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-image-picker",
+      "id": "cordova-plugin-image-picker"
+    },
+    {
+      "locator": "local_plugins/cordova-plugin-x-toast",
+      "id": "cordova-plugin-x-toast"
+    },
+    {
+      "id": "cordova-plugin-camera",
+      "locator": "local_plugins/cordova-plugin-camera",
+      "variables": {
+        "CAMERA_USAGE_DESCRIPTION": "汇联易将打开摄像头"
+      }
+    },
+    "D:\\idea_workspace\\sany-app\\local_plugins\\cordova-plugin-calendar"
+  ],
+  "cordovaPlatforms": [
+    {
+      "platform": "android",
+      "version": "5.1",
+      "locator": "android@5.1"
+    },
+    {
+      "platform": "ios",
+      "version": "3.9.0",
+      "locator": "ios@3.9.0"
+    }
+  ],
+  "cordova": {
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "plugins": {
+      "cordova-plugin-media-capture": {},
+      "cordova-plugin-image-picker": {},
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-crosswalk-webview": {}
+    }
+  }
+}
